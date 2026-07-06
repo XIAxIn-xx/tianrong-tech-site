@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 33% 97%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --primary: 188 95% 48%;
+  --primary-foreground: 222.2 84% 4.9%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214 31% 92%;
+  --input: 214 31% 92%;
+  --ring: 188 95% 48%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f5f7fa;
+  color: #0f172a;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.32);
+}
+
+.section-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.tech-grid {
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+.pretty-copy h1,
+.pretty-copy h2,
+.pretty-copy h3,
+.pretty-copy p {
+  text-wrap: pretty;
+  word-break: keep-all;
+  line-break: strict;
+}
+
+.tianrong-blueprint {
+  background-image:
+    linear-gradient(rgba(37, 64, 86, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 64, 86, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 70% 25%, rgba(11, 92, 173, 0.16), transparent 28%);
+  background-size: 56px 56px, 56px 56px, 100% 100%;
+}
+
+.tianrong-map {
+  background:
+    radial-gradient(circle at 22% 35%, rgba(11, 92, 173, 0.24) 0 6px, transparent 7px),
+    radial-gradient(circle at 58% 58%, rgba(11, 92, 173, 0.22) 0 5px, transparent 6px),
+    radial-gradient(circle at 78% 28%, rgba(11, 92, 173, 0.2) 0 5px, transparent 6px),
+    linear-gradient(135deg, transparent 0 46%, rgba(11, 92, 173, 0.22) 46% 47%, transparent 47% 100%),
+    linear-gradient(18deg, transparent 0 38%, rgba(11, 92, 173, 0.2) 38% 39%, transparent 39% 100%);
+}
+
+.tianrong-site-map {
+  background:
+    linear-gradient(90deg, rgba(17, 25, 35, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(17, 25, 35, 0.08) 1px, transparent 1px),
+    linear-gradient(28deg, transparent 0 39%, rgba(255, 255, 255, 0.62) 39% 52%, transparent 52% 100%),
+    linear-gradient(116deg, transparent 0 42%, rgba(255, 255, 255, 0.48) 42% 50%, transparent 50% 100%),
+    radial-gradient(circle at 74% 24%, rgba(11, 92, 173, 0.22), transparent 18%);
+  background-size: 48px 48px, 48px 48px, 100% 100%, 100% 100%, 100% 100%;
+}
+
+.tianrong-route-base,
+.tianrong-route-active {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tianrong-route-base {
+  stroke: rgba(17, 25, 35, 0.18);
+  stroke-width: 10;
+}
+
+.tianrong-route-active {
+  stroke: #0b5cad;
+  stroke-dasharray: 1060;
+  stroke-dashoffset: 1060;
+  stroke-width: 5;
+  animation: tianrongRoute 5.6s ease-in-out infinite;
+}
+
+.tianrong-robot {
+  clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%);
+  animation: tianrongRobot 5.6s ease-in-out infinite;
+  box-shadow: 0 0 0 10px rgba(11, 92, 173, 0.15);
+}
+
+.tianrong-pulse-dot {
+  animation: tianrongPulseDot 1.5s ease-in-out infinite;
+}
+
+.tianrong-pulse {
+  animation: tianrongPulse 2.6s ease-in-out infinite;
+}
+
+.tianrong-product-grid {
+  background-image:
+    linear-gradient(rgba(17, 25, 35, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 25, 35, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 68% 38%, rgba(11, 92, 173, 0.18), transparent 34%);
+  background-size: 64px 64px, 64px 64px, 100% 100%;
+}
+
+.tianrong-product-field {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.08)),
+    radial-gradient(circle at 52% 46%, rgba(107, 183, 255, 0.22), transparent 32%);
+}
+
+.tianrong-matrix-rings {
+  background:
+    radial-gradient(circle at 50% 45%, transparent 0 24%, rgba(11, 92, 173, 0.08) 24% 24.5%, transparent 24.5% 42%, rgba(11, 92, 173, 0.08) 42% 42.4%, transparent 42.4%),
+    linear-gradient(90deg, rgba(17, 25, 35, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(17, 25, 35, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 52px 52px, 52px 52px;
+}
+
+.tianrong-ability-path {
+  fill: none;
+  stroke: rgba(11, 92, 173, 0.72);
+  stroke-width: 2;
+  stroke-dasharray: 16 14;
+  animation: tianrongFlowPath 4.8s linear infinite;
+}
+
+.tianrong-ability-path.delay {
+  animation-delay: -1.8s;
+}
+
+.tianrong-wheel-spin {
+  animation: tianrongWheelSpin 8s linear infinite;
+}
+
+.tianrong-progress {
+  animation: tianrongProgress 2.8s ease-out infinite;
+  transform-origin: left;
+}
+
+@keyframes tianrongPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(104, 183, 255, 0.42);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(104, 183, 255, 0);
+    transform: scale(1.06);
+  }
+}
+
+@keyframes tianrongProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  45%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes tianrongRoute {
+  0% {
+    stroke-dashoffset: 1060;
+  }
+  48%,
+  78% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -1060;
+  }
+}
+
+@keyframes tianrongRobot {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(-12deg);
+  }
+  48% {
+    transform: translate(120%, -220%) rotate(18deg);
+  }
+  78% {
+    transform: translate(340%, -380%) rotate(24deg);
+  }
+}
+
+@keyframes tianrongPulseDot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 1;
+  }
+}
+
+@keyframes tianrongFlowPath {
+  to {
+    stroke-dashoffset: -120;
+  }
+}
+
+@keyframes tianrongWheelSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .tianrong-pulse,
+  .tianrong-progress,
+  .tianrong-route-active,
+  .tianrong-robot,
+  .tianrong-pulse-dot,
+  .tianrong-ability-path,
+  .tianrong-wheel-spin {
+    animation: none;
+  }
+}
