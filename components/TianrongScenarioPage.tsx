@@ -1,10 +1,13 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   CircleDot,
   Layers3,
   Languages,
@@ -18,7 +21,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import DotField from "@/components/DotField";
 import { HeroRobotPreview } from "@/components/hero/hero-robot-preview";
-import CircularGallery from "@/components/effects/circular-gallery";
 
 const nav = [
   ["首页", "#top"],
@@ -33,13 +35,61 @@ const nav = [
 ];
 
 
-const matrix = [
-  { title: "机器人本体系列", copy: "提供四足机器人移动底座，承载巡检、安防与行业作业模块。", image: "/images/generated/argos-body.png" },
-  { title: "模块化背包系列", copy: "围绕任务快速换装，把巡检、检测、通信和算力装到同一平台。", image: "/images/generated/modular-backpack.png" },
-  { title: "标准足端模块", copy: "面向楼梯、坡道、碎石和室内外混合地面，保证稳定支撑。", image: "/images/generated/standard-feet.png" },
-  { title: "轮足运动模块", copy: "在园区道路和仓储通道中提升长距离移动效率。", image: "/images/generated/wheel-foot-module.png" },
-  { title: "ROBOX 盒子", copy: "作为现场接入与边缘控制单元，连接机器人、网络和远程操控。", image: "/images/generated/robox.png" },
-  { title: "机器人调度平台", copy: "统一地图、任务、设备、告警、数据回传和运行记录。", image: "/images/generated/mission-control-ui.png" }
+const products = [
+  {
+    id: "robot-body",
+    title: "机器人本体系列",
+    tagline: "面向巡检与安防任务的四足移动平台",
+    description: "适用于园区、厂区、仓储和重点设施巡检，为摄像头、热成像、通信与边缘计算模块提供稳定移动底座。",
+    image: "/images/generated/argos-body.png",
+    target: "#bodies",
+    cta: "了解本体能力"
+  },
+  {
+    id: "modular-backpack",
+    title: "模块化背包",
+    tagline: "让同一台机器人适配不同任务",
+    description: "支持巡检、安防、通信增强、边缘计算和行业传感模块组合，降低重复采购成本，提升机器人任务扩展能力。",
+    image: "/images/generated/modular-backpack.png",
+    target: "#modules",
+    cta: "了解模块能力"
+  },
+  {
+    id: "standard-feet",
+    title: "标准足端",
+    tagline: "稳定、轻量的通用运动接触单元",
+    description: "面向常规园区道路、室内外地面和轻量巡检任务，兼顾耐用性、稳定性和维护便利性。",
+    image: "/images/generated/standard-feet.png",
+    target: "#motion",
+    cta: "了解足端设计"
+  },
+  {
+    id: "wheel-foot",
+    title: "轮足运动模块",
+    tagline: "兼顾轮式效率与足式通过能力",
+    description: "适合大面积园区、仓储通道和长距离巡检路线，在平整地面提升移动效率，同时保留复杂环境适应能力。",
+    image: "/images/generated/wheel-foot-module.png",
+    target: "#motion",
+    cta: "了解运动模块"
+  },
+  {
+    id: "robox",
+    title: "ROBOX 远程接入盒",
+    tagline: "连接机器人、网络与远程操控平台",
+    description: "为现场机器人提供远程接入、视频回传、网络中继与平台联动能力，让机器人可以被远程查看、接管和调度。",
+    image: "/images/generated/robox.png",
+    target: "#robox",
+    cta: "了解 ROBOX"
+  },
+  {
+    id: "rsp",
+    title: "RSP 调度平台",
+    tagline: "统一管理机器人任务、设备与数据",
+    description: "面向多机器人、多点位和多任务巡检场景，支持任务编排、远程调度、日志留痕和运维管理。",
+    image: "/images/generated/mission-control-ui.png",
+    target: "#rsp",
+    cta: "了解 RSP 平台"
+  }
 ];
 
 const matrixFlow = ["机器人本体", "模块化背包", "标准足端 / 轮足", "ROBOX 接入", "调度平台", "场景落地"];
@@ -163,44 +213,8 @@ export function TianrongScenarioPage() {
         </section>
 
         <RevealSection id="matrix" className="bg-white py-20">
-          <SectionTitle eyebrow="产品矩阵" title="从本体到平台的机器人能力矩阵" />
-          <div className="mt-8 grid border border-[#E0E0E0] bg-[#E0E0E0] lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="relative min-h-[620px] overflow-hidden bg-[#F4F4F4]">
-              <div className="absolute inset-0 tianrong-product-grid opacity-45" />
-              <div className="absolute left-6 top-6 z-20 border border-[#E0E0E0] bg-white px-3 py-2 text-sm text-[#525252]">
-                可组合能力单元
-              </div>
-              <CircularGallery
-                items={matrix.map((item) => ({ image: item.image, text: item.title }))}
-                bend={2.2}
-                textColor="#161616"
-                borderRadius={0.01}
-                scrollSpeed={1.6}
-                scrollEase={0.045}
-                font="600 26px sans-serif"
-              />
-            </div>
-            <div className="grid bg-white lg:grid-rows-[auto_1fr]">
-              <div className="border-b border-[#E0E0E0] p-8">
-                <p className="max-w-2xl text-xl leading-8 text-[#393939]">
-                  围绕机器人本体系列、模块化背包系列、足端与轮足运动模块、ROBOX 盒子、机器人调度平台和场景化集成服务，形成可组合的机器人软硬件能力体系。
-                </p>
-              </div>
-              <div className="grid gap-px bg-[#E0E0E0] md:grid-cols-2 lg:grid-cols-1">
-                {matrix.map((item, index) => (
-                  <div key={item.title} className="grid grid-cols-[64px_1fr] bg-white">
-                    <div className="border-r border-[#E0E0E0] p-5 text-sm font-semibold text-[#0F62FE]">
-                      {String(index + 1).padStart(2, "0")}
-                    </div>
-                    <div className="p-5">
-                      <div className="font-semibold text-[#161616]">{item.title}</div>
-                      <div className="mt-2 leading-6 text-[#525252]">{item.copy}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <SectionTitle eyebrow="产品矩阵" title="一套面向机器人巡检部署的软硬件能力体系" />
+          <ProductShowcase />
           <div className="mt-6 grid border border-[#E0E0E0] bg-[#E0E0E0] text-sm font-semibold text-[#525252] md:grid-cols-6">
             {matrixFlow.map((item, index) => (
               <div key={item} className="bg-[#F4F4F4] p-4">
@@ -313,7 +327,7 @@ export function TianrongScenarioPage() {
           </div>
         </RevealSection>
 
-        <RevealSection className="bg-white py-20">
+        <RevealSection id="motion" className="bg-white py-20">
           <SectionTitle eyebrow="运动扩展" title="标准足端与轮足运动模块" />
           <div className="mt-12 overflow-hidden border border-[#E0E0E0] bg-[#F4F4F4]">
             <Image
@@ -362,12 +376,12 @@ export function TianrongScenarioPage() {
             </div>
             <div className="grid bg-[#E0E0E0] md:grid-cols-4">
               {[
-                ["网络接口", "待补充"],
-                ["视频输入", "待补充"],
-                ["控制接口", "待补充"],
-                ["电源输入", "待补充"],
-                ["工作温度", "待补充"],
-                ["安装方式", "待补充"],
+                ["网络接口", "以太网 / 无线链路 / 现场网关"],
+                ["视频输入", "机器人视频流 / 巡检画面回传"],
+                ["控制接口", "远程接管 / 平台调度 / 设备联动"],
+                ["电源输入", "现场部署电源方案"],
+                ["工作温度", "园区与工业现场环境"],
+                ["安装方式", "机柜 / 现场设备箱 / 移动部署"],
                 ["适配对象", "四足机器人 / 移动机器人 / 巡检设备"],
                 ["平台联动", "机器人调度平台"]
               ].map(([label, value]) => (
@@ -476,6 +490,205 @@ export function TianrongScenarioPage() {
           </div>
         </section>
       </main>
+    </div>
+  );
+}
+
+function ProductShowcase() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const dragStartRef = useRef<number | null>(null);
+  const didDragRef = useRef(false);
+  const activeProduct = products[active];
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = window.setInterval(() => {
+      setActive((current) => (current + 1) % products.length);
+    }, 5200);
+    return () => window.clearInterval(timer);
+  }, [paused]);
+
+  function goTo(index: number) {
+    const next = (index + products.length) % products.length;
+    setActive(next);
+    const container = scrollRef.current;
+    const item = container?.children[next] as HTMLElement | undefined;
+    item?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }
+
+  function scrollToTarget(target: string) {
+    document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function onMobileScroll() {
+    const container = scrollRef.current;
+    if (!container) return;
+    const center = container.scrollLeft + container.clientWidth / 2;
+    let next = active;
+    let min = Number.POSITIVE_INFINITY;
+    Array.from(container.children).forEach((child, index) => {
+      const item = child as HTMLElement;
+      const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+      const distance = Math.abs(center - itemCenter);
+      if (distance < min) {
+        min = distance;
+        next = index;
+      }
+    });
+    if (next !== active) setActive(next);
+  }
+
+  function getOffset(index: number) {
+    const raw = index - active;
+    if (raw > products.length / 2) return raw - products.length;
+    if (raw < -products.length / 2) return raw + products.length;
+    return raw;
+  }
+
+  return (
+    <div className="mt-10 border border-[#D8E6F5] bg-[linear-gradient(180deg,#F8FBFF_0%,#EEF6FF_100%)]">
+      <div
+        className="relative overflow-hidden"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(15,98,254,0.16),transparent_38%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-[#0F62FE]/25" />
+
+        <div
+          className="relative hidden h-[520px] touch-pan-y select-none md:block"
+          onPointerDown={(event) => {
+            dragStartRef.current = event.clientX;
+            didDragRef.current = false;
+            setPaused(true);
+          }}
+          onPointerUp={(event) => {
+            const start = dragStartRef.current;
+            dragStartRef.current = null;
+            if (start === null) return;
+            const distance = event.clientX - start;
+            if (Math.abs(distance) > 48) {
+              didDragRef.current = true;
+              goTo(active + (distance < 0 ? 1 : -1));
+            }
+          }}
+          onPointerCancel={() => {
+            dragStartRef.current = null;
+            didDragRef.current = false;
+          }}
+        >
+          {products.map((product, index) => {
+            const offset = getOffset(index);
+            const hidden = Math.abs(offset) > 2;
+            return (
+              <button
+                key={product.id}
+                type="button"
+                aria-label={`查看${product.title}`}
+                onClick={() => {
+                  if (didDragRef.current) {
+                    didDragRef.current = false;
+                    return;
+                  }
+                  goTo(index);
+                }}
+                className="absolute left-1/2 top-1/2 h-[390px] w-[52%] max-w-[720px] -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out"
+                style={{
+                  transform: `translate(-50%, -50%) translateX(${offset * 46}%) scale(${offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.72 : 0.52})`,
+                  opacity: hidden ? 0 : offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.48 : 0.18,
+                  filter: offset === 0 ? "none" : "blur(1px)",
+                  zIndex: 20 - Math.abs(offset),
+                  pointerEvents: hidden ? "none" : "auto"
+                }}
+              >
+                <span className="absolute inset-x-10 bottom-8 h-16 bg-[#0F62FE]/12 blur-2xl" />
+                <span className="relative flex h-full items-center justify-center border border-[#C7DBF2] bg-white/80 p-8 backdrop-blur">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    width={980}
+                    height={720}
+                    className="h-full w-full object-contain"
+                    priority={index === 0}
+                  />
+                </span>
+              </button>
+            );
+          })}
+
+          <button
+            type="button"
+            aria-label="上一个产品"
+            onClick={() => goTo(active - 1)}
+            className="absolute left-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center border border-[#C7DBF2] bg-white/90 text-[#0F62FE] backdrop-blur hover:bg-[#EAF4FF]"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="下一个产品"
+            onClick={() => goTo(active + 1)}
+            className="absolute right-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center border border-[#C7DBF2] bg-white/90 text-[#0F62FE] backdrop-blur hover:bg-[#EAF4FF]"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div
+          ref={scrollRef}
+          onScroll={onMobileScroll}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+          className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-8 md:hidden"
+        >
+          {products.map((product) => (
+            <div key={product.id} className="w-[82%] shrink-0 snap-center border border-[#C7DBF2] bg-white/85 p-5">
+              <div className="relative aspect-[1.28]">
+                <Image src={product.image} alt={product.title} fill className="object-contain" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="relative border-t border-[#D8E6F5] bg-white/86 p-6 backdrop-blur md:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr_auto] lg:items-end">
+            <div>
+              <div className="text-sm font-semibold text-[#0F62FE]">PRODUCT / {String(active + 1).padStart(2, "0")}</div>
+              <h3 className="mt-3 text-3xl font-semibold leading-tight md:text-4xl">{activeProduct.title}</h3>
+            </div>
+            <div>
+              <div className="text-lg font-semibold text-[#1F4F82]">{activeProduct.tagline}</div>
+              <p className="mt-3 max-w-3xl leading-7 text-[#525252]">{activeProduct.description}</p>
+            </div>
+            <Button asChild size="lg" className="w-fit rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
+              <a
+                href={activeProduct.target}
+                onClick={(event) => {
+                  event.preventDefault();
+                  scrollToTarget(activeProduct.target);
+                }}
+              >
+                {activeProduct.cta}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+
+          <div className="mt-6 flex gap-2">
+            {products.map((product, index) => (
+              <button
+                key={product.id}
+                type="button"
+                aria-label={`切换到${product.title}`}
+                onClick={() => goTo(index)}
+                className={`h-1.5 transition-all ${index === active ? "w-10 bg-[#0F62FE]" : "w-4 bg-[#C7DBF2] hover:bg-[#78A9FF]"}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
