@@ -16,6 +16,7 @@ import {
 import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
+import DotField from "@/components/DotField";
 import { HeroRobotPreview } from "@/components/hero/hero-robot-preview";
 import CircularGallery from "@/components/effects/circular-gallery";
 
@@ -107,7 +108,22 @@ export function TianrongScenarioPage() {
       <main>
         <section className="relative overflow-hidden border-b border-[#E0E0E0] bg-[#F4F4F4]">
           <div className="absolute inset-0 tianrong-product-grid opacity-70" />
-          <div className="mx-auto grid min-h-[calc(100vh-4rem)] w-[min(1240px,calc(100%-32px))] items-center gap-8 py-16 lg:grid-cols-[0.8fr_1.2fr]">
+          <DotField
+            className="absolute inset-0 pointer-events-none"
+            dotRadius={1.5}
+            dotSpacing={13}
+            bulgeStrength={75}
+            glowRadius={180}
+            sparkle={false}
+            waveAmplitude={0}
+            cursorRadius={520}
+            cursorForce={0.12}
+            bulgeOnly
+            gradientFrom="rgba(70, 150, 255, 0.45)"
+            gradientTo="rgba(120, 100, 220, 0.28)"
+            glowColor="#071426"
+          />
+          <div className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] w-[min(1240px,calc(100%-32px))] items-center gap-8 py-16 lg:grid-cols-[0.8fr_1.2fr]">
             <div className="relative z-10">
               <div className="inline-flex border border-[#E0E0E0] bg-white px-3 py-2 text-sm text-[#525252]">
                 ARGOS / ROBOX / RSP
