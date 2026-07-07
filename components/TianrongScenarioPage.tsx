@@ -113,7 +113,7 @@ export function TianrongScenarioPage() {
               dotRadius={1.9}
               dotSpacing={11}
               bulgeStrength={115}
-              glowRadius={260}
+              glowRadius={180}
               sparkle={false}
               waveAmplitude={0}
               cursorRadius={650}
