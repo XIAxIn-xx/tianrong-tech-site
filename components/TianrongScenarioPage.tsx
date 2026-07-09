@@ -83,23 +83,23 @@ const products = [
 const matrixFlow = ["机器人本体", "任务载荷", "远程接入", "调度平台", "场景部署"];
 
 const robotBodies = [
-  { name: "小型四足机器人", image: "/images/generated/argos-body.png", note: "适合室内通道、轻量巡检和教育展示。" },
-  { name: "中型四足机器人", image: "/images/generated/hyper-dog.png", note: "适合园区巡检、安防巡逻和工业点位巡检。" },
-  { name: "大型四足机器人", image: "/images/tianrong/product-matrix-body-series.png", note: "适合更高负载、更长续航和复杂地形任务。" },
-  { name: "小型轮足机器人", image: "/images/generated/wheel-foot-module.png", note: "适合平整通道和短距离高频巡检。" },
-  { name: "中型轮足机器人", image: "/images/tianrong/robot-wheel-platform.png", note: "适合园区道路、仓储通道和长距离路线。" },
-  { name: "大型轮足机器人", image: "/images/tianrong/foot-wheel-module.png", note: "适合复杂场地中兼顾效率与通过能力。" }
+  { name: "小型四足机器人", image: "/images/tianrong/final-assets/body-tr-s1.png", note: "适合室内通道、轻量巡检和教育展示。" },
+  { name: "中型四足机器人", image: "/images/tianrong/final-assets/body-tr-m1.png", note: "适合园区巡检、安防巡逻和工业点位巡检。" },
+  { name: "大型四足机器人", image: "/images/tianrong/final-assets/body-tr-l1.png", note: "适合更高负载、更长续航和复杂地形任务。" },
+  { name: "小型轮足机器人", image: "/images/tianrong/final-assets/body-tr-s1w.png", note: "适合平整通道和短距离高频巡检。" },
+  { name: "中型轮足机器人", image: "/images/tianrong/final-assets/body-tr-m1w.png", note: "适合园区道路、仓储通道和长距离路线。" },
+  { name: "大型轮足机器人", image: "/images/tianrong/final-assets/body-tr-l1w.png", note: "适合复杂场地中兼顾效率与通过能力。" }
 ];
 
 const bodyDimensions = ["尺寸等级", "负载能力", "续航能力", "地形适应", "适配场景", "可扩展接口"];
 
 const payloadModules = [
-  { name: "可见光巡检载荷", tag: "视频巡检与远程查看", image: "/images/tianrong/industrial-inspection.png", note: "用于常规视频巡检、点位复核和远程查看。" },
-  { name: "热成像载荷", tag: "温度异常与设备状态识别", image: "/images/tianrong/backpack-series.png", note: "用于设备温度异常、热源变化和状态识别。" },
-  { name: "气体检测载荷", tag: "危险环境与工业安全监测", image: "/images/generated/modular-backpack.png", note: "用于气体风险识别和工业现场安全监测。" },
-  { name: "通信增强载荷", tag: "复杂现场网络接入", image: "/images/generated/robox.png", note: "用于弱网区域、复杂园区和远距链路增强。" },
-  { name: "边缘计算载荷", tag: "现场数据处理与智能识别", image: "/images/generated/mission-control-ui.png", note: "用于现场推理、事件初筛和低延迟处理。" },
-  { name: "广播交互载荷", tag: "远程喊话与现场交互", image: "/images/generated/modular-backpack.png", note: "用于安防巡逻、现场提示和远程交互。" }
+  { name: "可见光巡检载荷", tag: "视频巡检与远程查看", image: "/images/tianrong/final-assets/payload-visible-light.png", note: "用于常规视频巡检、点位复核和远程查看。" },
+  { name: "热成像载荷", tag: "温度异常与设备状态识别", image: "/images/tianrong/final-assets/payload-thermal.png", note: "用于设备温度异常、热源变化和状态识别。" },
+  { name: "气体检测载荷", tag: "危险环境与工业安全监测", image: "/images/tianrong/final-assets/payload-gas.png", note: "用于气体风险识别和工业现场安全监测。" },
+  { name: "通信增强载荷", tag: "复杂现场网络接入", image: "/images/tianrong/final-assets/payload-communication.png", note: "用于弱网区域、复杂园区和远距链路增强。" },
+  { name: "边缘计算载荷", tag: "现场数据处理与智能识别", image: "/images/tianrong/final-assets/payload-edge-compute.png", note: "用于现场推理、事件初筛和低延迟处理。" },
+  { name: "广播交互载荷", tag: "远程喊话与现场交互", image: "/images/tianrong/final-assets/payload-broadcast.png", note: "用于安防巡逻、现场提示和远程交互。" }
 ];
 
 const rspFeatures = ["地图管理", "任务调度", "设备管理", "告警联动", "数据回传", "报告生成", "多终端访问", "远程控制入口"];
@@ -111,9 +111,9 @@ const casePoints = [
 ];
 
 const caseImages = [
-  ["/images/tianrong/logistics-route-a.png", "物流园区路线实践"],
-  ["/images/tianrong/logistics-route-b.png", "仓储物流园区巡检路线"],
-  ["/images/tianrong/park-west-gate.png", "园区出入口巡检实践"]
+  ["/images/tianrong/final-assets/logistics-yard-road.png", "物流园区路线实践"],
+  ["/images/tianrong/final-assets/logistics-warehouse-patrol.png", "仓储物流园区巡检路线"],
+  ["/images/tianrong/final-assets/logistics-gate-patrol.png", "园区出入口巡检实践"]
 ];
 
 const aboutItems = [
@@ -242,7 +242,7 @@ export function TianrongScenarioPage() {
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-contain p-8 transition duration-300 group-hover:scale-[1.05]"
+                    className="object-contain p-5 transition duration-300 group-hover:scale-[1.05]"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
@@ -359,11 +359,11 @@ export function TianrongScenarioPage() {
                 任务调度界面
               </div>
               <Image
-                src="/images/tianrong/rsp-monitor.png"
+                src="/images/tianrong/final-assets/rsp-platform-complete.png"
                 alt="机器人调度平台真实界面"
-                width={1088}
-                height={1392}
-                className="h-full max-h-[680px] w-full object-cover object-top"
+                width={1672}
+                height={941}
+                className="max-h-[680px] w-full object-contain"
               />
             </div>
             <div className="grid bg-white">
