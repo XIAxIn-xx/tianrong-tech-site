@@ -9,7 +9,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Layers3,
-  Languages,
   MonitorCog,
   ShieldCheck
 } from "lucide-react";
@@ -139,10 +138,6 @@ export function TianrongScenarioPage() {
               </a>
             ))}
           </nav>
-          <Link href="/en" className="inline-flex items-center gap-2 border border-[#E0E0E0] bg-white px-3 py-2 text-sm font-semibold">
-            <Languages className="h-4 w-4" />
-            EN
-          </Link>
         </div>
       </header>
 

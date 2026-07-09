@@ -1,6 +1,6 @@
-# Hyper AI Force Website
+# Tianrong Tech Site
 
-Independent MVP website for Hyper AI Force Limited / 超流智能有限公司.
+天戎科技中文官网。
 
 ## Run
 
@@ -12,10 +12,11 @@ pnpm dev
 
 Routes:
 
-- `/` English homepage
-- `/zh-hk` Traditional Chinese homepage
+- `/` 中文官网首页
+- `/zh-cn` 中文官网首页别名
+- `/classic` 旧版中文页面对比
 
-Content is centralized in `data/hyper.ts`.
+Content is centralized in `data/tianrong.ts`.
 
 ## Mainland China Install Note
 
@@ -23,4 +24,4 @@ The project includes `.npmrc` configured for `https://registry.npmmirror.com/` a
 
 If dependency installation is slow or interrupted, close unstable VPN connections and run the commands above again.
 
-The generated hero image is saved at `public/images/generated/hyper-hero-robotics.png`.
+Static images live under `public/images/`.

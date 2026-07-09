@@ -15,7 +15,7 @@ import {
   Wrench
 } from "lucide-react";
 
-export type TianrongLocale = "zh-cn" | "en";
+export type TianrongLocale = "zh-cn";
 
 export type TianrongContent = (typeof content)[TianrongLocale];
 
@@ -110,72 +110,6 @@ export const content = {
     contactCopy:
       "无论是园区夜间巡逻、工业设备巡检，还是仓储物流园区的安防与运维需求，天戎科技都可以根据现场环境、巡检路线和服务模式，协助匹配合适的机器人巡检解决方案。",
     contactButton: "联系天戎科技"
-  },
-  en: {
-    lang: "en",
-    nav: ["Solutions", "Applications", "Platform", "Delivery", "Services", "Contact"],
-    seo: {
-      title: "Tianrong Technology | Robotic Inspection and Intelligent Security Solutions",
-      description:
-        "Tianrong Technology provides quadruped patrol robots, industrial inspection, remote operation, rental deployment and maintenance support for sites across China.",
-      keywords: ["Tianrong Technology", "robotic inspection", "intelligent security", "quadruped patrol", "industrial inspection"]
-    },
-    hero: {
-      label: "Robotic inspection and intelligent security",
-      title: "Deploy robot patrols into real sites",
-      subtitle:
-        "Tianrong Technology provides quadruped patrol robots, industrial inspection systems, remote operation services, rental deployment and maintenance support for industrial parks, factories, logistics facilities and critical sites across China.",
-      primary: "Request a solution",
-      secondary: "View applications",
-      metrics: [
-        ["Site survey", "Understand the site first"],
-        ["Route plan", "Build tasks around checkpoints"],
-        ["Rental deployment", "Reduce upfront investment"],
-        ["Service support", "Training, maintenance and response"]
-      ]
-    },
-    capabilityTitle: "Integrated capability from robot hardware to field delivery",
-    capabilities: [
-      ["PackageCheck", "Quadruped patrol", "For parks, factories, warehouses and perimeter routes."],
-      ["Route", "Autonomous route planning", "Configure patrol points, frequency, time windows and events."],
-      ["Radio", "Remote operation", "Live video, assisted takeover and abnormal-event reporting."],
-      ["ClipboardCheck", "Inspection records", "Traceable task logs for review and management."],
-      ["Wrench", "Rental and maintenance", "Purchase, rental, training, maintenance and service support."]
-    ],
-    scenarioTitle: "Robotic inspection for real operating sites",
-    scenarios: [
-      ["ShieldCheck", "Park security patrol", "Night patrol, perimeter checks and video return"],
-      ["Factory", "Industrial inspection", "Equipment areas, risk points and repeated tasks"],
-      ["Truck", "Logistics facilities", "Warehouse perimeter, loading zones and entrances"],
-      ["Flame", "Fire and emergency assist", "Early reconnaissance and hazardous area checking"],
-      ["Building2", "Critical site patrol", "Energy, tunnel, underground and restricted areas"],
-      ["AlertTriangle", "Event response", "Video records, remote review and response workflow"]
-    ],
-    valueTitle: "Higher-frequency, safer and more traceable inspection",
-    values: [
-      "Reduce pressure on night and high-risk patrol teams",
-      "Improve coverage and task consistency",
-      "Review and report abnormal events remotely",
-      "Create traceable inspection records",
-      "Support purchase, rental and project deployment"
-    ],
-    processTitle: "Complete delivery from site survey to maintenance",
-    process: ["Needs", "Survey", "Design", "Route", "Deploy", "Training", "Trial", "Support"],
-    serviceTitle: "Flexible purchase, rental and service models",
-    services: [
-      ["Purchase", "For long-term fixed sites and internal teams."],
-      ["Rental", "For pilots, temporary projects and staged budgets."],
-      ["Remote operation", "Remote assistance for customers without operators."],
-      ["Training", "On-site operation, inspection and emergency workflows."],
-      ["Maintenance", "Device checks, troubleshooting and configuration tuning."],
-      ["SLA support", "Response mechanism and service cycle by project."]
-    ],
-    experienceTitle: "For parks, factories, logistics and critical facilities",
-    experiences: ["Night security patrol", "Factory equipment inspection", "Logistics perimeter patrol"],
-    contactTitle: "Tell us about your site and inspection needs",
-    contactCopy:
-      "For night patrols, industrial equipment inspection, logistics security or operations needs, Tianrong Technology can help match the right robotic inspection solution based on your site, route and service model.",
-    contactButton: "Contact Tianrong"
   }
 } as const;
 

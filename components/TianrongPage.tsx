@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Languages } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { getTianrongContent, getTianrongIcon, type TianrongLocale } from "@/data/tianrong";
@@ -11,19 +11,16 @@ type TianrongPageProps = {
 
 export function TianrongPage({ locale }: TianrongPageProps) {
   const content = getTianrongContent(locale);
-  const isEn = locale === "en";
-  const languageHref = isEn ? "/" : "/en";
-  const languageLabel = isEn ? "中文" : "EN";
 
   return (
     <div className="min-h-screen bg-[#F4F6F8] text-[#101820]">
       <header className="sticky top-0 z-50 border-b border-[#DDE3EA] bg-[#F8FAFC]/92 backdrop-blur">
         <div className="mx-auto flex h-16 w-[min(1180px,calc(100%-32px))] items-center justify-between">
-          <Link href={isEn ? "/en" : "/"} className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <span className="grid h-9 w-9 place-items-center rounded border border-[#1C3F5F] bg-[#10283E] text-sm font-black text-white">
               TR
             </span>
-            <span className="text-base font-black tracking-normal">{isEn ? "Tianrong Technology" : "天戎科技"}</span>
+            <span className="text-base font-black tracking-normal">天戎科技</span>
           </Link>
           <nav className="hidden items-center gap-6 text-sm text-[#52616F] lg:flex">
             {content.nav.map((item, index) => (
@@ -32,13 +29,6 @@ export function TianrongPage({ locale }: TianrongPageProps) {
               </a>
             ))}
           </nav>
-          <Link
-            href={languageHref}
-            className="inline-flex items-center gap-2 rounded border border-[#C8D2DD] bg-white px-3 py-2 text-sm font-semibold text-[#10283E] hover:border-[#0B5CAD]"
-          >
-            <Languages className="h-4 w-4" />
-            {languageLabel}
-          </Link>
         </div>
       </header>
 
@@ -95,7 +85,7 @@ export function TianrongPage({ locale }: TianrongPageProps) {
                     <div className="flex items-center justify-between gap-4">
                       <div>
                         <div className="text-sm text-white/60">Inspection task</div>
-                        <div className="mt-1 text-xl font-black">{isEn ? "North gate perimeter" : "北门周界夜巡"}</div>
+                        <div className="mt-1 text-xl font-black">北门周界夜巡</div>
                       </div>
                       <div className="h-12 w-12 rounded-full border border-[#68B7FF] bg-[#0B5CAD]/30 tianrong-pulse" />
                     </div>
@@ -170,9 +160,7 @@ export function TianrongPage({ locale }: TianrongPageProps) {
               <div className="relative z-10 grid h-full content-between">
                 <div>
                   <div className="text-sm font-bold uppercase text-[#536474]">Route planning</div>
-                  <h3 className="mt-3 max-w-lg text-3xl font-black text-[#101820]">
-                    {isEn ? "Patrol routes become visible, recorded and manageable." : "巡检路线可视化，任务过程可记录、可管理。"}
-                  </h3>
+                  <h3 className="mt-3 max-w-lg text-3xl font-black text-[#101820]">巡检路线可视化，任务过程可记录、可管理。</h3>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-3">
                   {["A-01", "B-06", "C-12"].map((point, index) => (
@@ -218,11 +206,7 @@ export function TianrongPage({ locale }: TianrongPageProps) {
               <article key={item} className="min-h-[260px] rounded border border-[#C9D4DE] bg-[#F8FAFC] p-6">
                 <div className="text-sm font-black text-[#0B5CAD]">TYPICAL / {index + 1}</div>
                 <h3 className="mt-16 text-3xl font-black text-[#101820]">{item}</h3>
-                <p className="mt-5 leading-7 text-[#667582]">
-                  {isEn
-                    ? "Built as a scenario plan first, then replaced with real customer cases after project approval."
-                    : "先作为典型场景方案呈现，后续有真实项目后再替换为客户案例。"}
-                </p>
+                <p className="mt-5 leading-7 text-[#667582]">先作为典型场景方案呈现，后续有真实项目后再替换为客户案例。</p>
               </article>
             ))}
           </div>
@@ -249,8 +233,8 @@ export function TianrongPage({ locale }: TianrongPageProps) {
 
       <footer className="border-t border-[#DDE3EA] bg-white py-8">
         <div className="mx-auto flex w-[min(1180px,calc(100%-32px))] flex-col gap-3 text-sm text-[#667582] md:flex-row md:items-center md:justify-between">
-          <span className="font-bold text-[#10283E]">{isEn ? "Tianrong Technology" : "天戎科技"}</span>
-          <span>{isEn ? "Robotic inspection and intelligent security solutions." : "机器人巡检与智能安防解决方案供应商。"}</span>
+          <span className="font-bold text-[#10283E]">天戎科技</span>
+          <span>机器人巡检与智能安防解决方案供应商。</span>
         </div>
       </footer>
     </div>

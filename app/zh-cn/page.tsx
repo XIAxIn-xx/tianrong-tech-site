@@ -10,11 +10,7 @@ export const metadata: Metadata = {
   description: content.seo.description,
   keywords: [...content.seo.keywords],
   alternates: {
-    canonical: "/zh-cn",
-    languages: {
-      en: "/en",
-      "zh-CN": "/zh-cn"
-    }
+    canonical: "/zh-cn"
   },
   openGraph: {
     title: content.seo.title,
