@@ -143,11 +143,17 @@ export function TianrongScenarioPage() {
 
       <main>
         <section className="relative overflow-hidden border-b border-[#E0E0E0] bg-[#F4F4F4]">
-          <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_70%_35%,rgba(37,99,235,0.22),transparent_34%),linear-gradient(135deg,#ffffff_0%,#eef6ff_48%,#dbeafe_100%)]" />
-          <div className="absolute inset-0 z-[1] pointer-events-none">
+          <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_74%_54%,rgba(37,99,235,0.28),transparent_38%),linear-gradient(135deg,#ffffff_0%,#f3f8ff_46%,#dbeafe_100%)]" />
+          <div
+            className="pointer-events-none absolute inset-0 z-[1] opacity-90"
+            style={{
+              WebkitMaskImage: "radial-gradient(ellipse 68% 82% at 74% 48%, black 0%, rgba(0,0,0,0.92) 42%, rgba(0,0,0,0.28) 72%, transparent 100%)",
+              maskImage: "radial-gradient(ellipse 68% 82% at 74% 48%, black 0%, rgba(0,0,0,0.92) 42%, rgba(0,0,0,0.28) 72%, transparent 100%)"
+            }}
+          >
             <DotField
-              dotRadius={1.9}
-              dotSpacing={11}
+              dotRadius={1.8}
+              dotSpacing={12}
               bulgeStrength={115}
               glowRadius={180}
               sparkle={false}
@@ -162,34 +168,28 @@ export function TianrongScenarioPage() {
           </div>
           <div className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] w-[min(1240px,calc(100%-32px))] items-center gap-8 py-16 lg:grid-cols-[0.8fr_1.2fr]">
             <div className="relative z-10">
-              <div className="inline-flex border border-[#E0E0E0] bg-white px-3 py-2 text-sm text-[#525252]">
-                ARGOS / ROBOX / RSP
-              </div>
               <motion.h1
                 initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.65, delay: 0.08 }}
-                className="mt-7 max-w-4xl text-5xl font-light leading-[1.08] md:text-7xl"
+                className="max-w-4xl text-5xl font-light leading-[1.08] md:text-6xl"
               >
-                机器人软硬件能力平台
+                机器人核心产品与技术底座
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.65, delay: 0.16 }}
-                className="mt-7 max-w-2xl text-lg leading-8 text-[#525252]"
+                className="mt-7 max-w-2xl text-lg font-medium leading-8 text-[#393939] md:text-xl"
               >
-                天戎科技提供机器人本体系列、模块化背包系列、足端与运动模块，为行业机器人解决方案提供能力底座。
+                聚焦机器人本体、任务载荷、ROBOX远程接入与RSP调度平台，为合作伙伴提供可组合、可集成、可扩展的软硬件产品。
               </motion.p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8">
                 <Button asChild size="lg" className="rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
                   <a href="#matrix">
                     查看产品矩阵
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
-                </Button>
-                <Button asChild variant="dark" size="lg" className="rounded-none border border-[#161616] bg-white text-[#161616] hover:bg-[#E0E0E0]">
-                  <a href="#modules">查看模块能力</a>
                 </Button>
               </div>
             </div>
@@ -650,9 +650,12 @@ function ProductStage() {
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.7 }}
-      className="relative z-10 h-[420px] overflow-visible md:h-[520px]"
+      className="relative z-10 h-[420px] translate-y-3 overflow-visible md:h-[520px] lg:translate-x-10 lg:translate-y-8"
     >
-      <HeroRobotPreview />
+      <div className="absolute inset-x-[12%] bottom-[14%] h-16 rounded-[50%] bg-[radial-gradient(ellipse,rgba(15,23,42,0.2)_0%,rgba(15,98,254,0.16)_38%,transparent_72%)] blur-2xl" />
+      <div className="relative z-10 h-full w-full">
+        <HeroRobotPreview />
+      </div>
     </motion.div>
   );
 }

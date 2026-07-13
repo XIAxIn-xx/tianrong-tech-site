@@ -42,7 +42,7 @@ export function HeroRobotPreview() {
       <directionalLight position={[4, 5, 4]} intensity={1.18} />
       <directionalLight position={[-4, 2, -3]} intensity={0.42} />
       <Suspense fallback={<Loader />}>
-        <Bounds fit clip observe margin={1.42}>
+        <Bounds fit clip observe margin={1.04}>
           <TianrongRobotDogModel />
         </Bounds>
       </Suspense>
