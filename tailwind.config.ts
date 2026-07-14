@@ -42,11 +42,15 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
-          "Inter",
-          "Arial",
-          "Helvetica",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
           "PingFang SC",
+          "Hiragino Sans GB",
           "Microsoft YaHei",
+          "Noto Sans CJK SC",
+          "Source Han Sans SC",
           "sans-serif"
         ]
       },
