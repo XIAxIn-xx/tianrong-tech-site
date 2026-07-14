@@ -8,8 +8,6 @@ import {
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
-  Layers3,
-  MonitorCog,
   ShieldCheck
 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -99,7 +97,20 @@ const payloadModules = [
   { name: "广播交互载荷", tag: "远程喊话与现场交互", image: "/images/tianrong/final-assets/payload-broadcast.png", note: "用于安防巡逻、现场提示和远程交互。" }
 ];
 
-const rspFeatures = ["地图与路线", "任务调度", "设备管理", "远程控制"];
+const roboxFeatures = [
+  ["现场设备接入", "统一接入机器人、摄像头和传感器，适配有线与无线网络环境。"],
+  ["实时数据回传", "持续回传视频画面、机器人状态、任务进度和异常告警。"],
+  ["远程诊断与控制", "远程查看设备状态、排查故障、调整配置，并在需要时接管设备。"],
+  ["平台安全连接", "连接现场设备与 RSP 平台，为跨区域运维和多站点管理提供稳定通道。"]
+];
+
+const rspFeatures = [
+  ["地图与任务编排", "在统一地图中配置巡检点位、路线、执行时间和任务规则。"],
+  ["多机器人协同调度", "根据机器人状态、位置和任务优先级分配任务，支持多区域协同运行。"],
+  ["实时监控与异常告警", "查看机器人位置、任务进度、设备状态和现场视频，集中处理异常。"],
+  ["远程运维与控制", "支持任务暂停、恢复、重新下发，以及必要时的远程控制和故障处理。"],
+  ["数据记录与复盘", "保存任务结果、巡检记录、告警信息和设备运行数据，方便追溯与分析。"]
+];
 
 const casePoints = [
   "机器人按照预设路线巡查园区道路、仓库外围和重点区域。",
@@ -197,7 +208,10 @@ export function TianrongScenarioPage() {
         </section>
 
         <RevealSection id="matrix" className="bg-white py-20">
-          <SectionTitle eyebrow="产品矩阵" title="机器人巡检软硬件产品体系" />
+          <SectionHeading
+            title="机器人巡检软硬件产品体系"
+            description="从机器人本体、任务载荷到远程接入和调度平台，覆盖机器人巡检项目所需的核心产品。"
+          />
           <ProductShowcase />
           <div className="mt-6 text-base font-semibold text-[#0F62FE]">从产品到现场的完整链路</div>
           <div className="mt-3 grid border border-[#E0E0E0] bg-[#E0E0E0] text-base font-semibold text-[#525252] md:grid-cols-5">
@@ -215,10 +229,10 @@ export function TianrongScenarioPage() {
 
         <RevealSection id="robot-series" className="border-y border-[#E0E0E0] bg-[#F4F4F4] py-20">
           <span id="bodies" className="block scroll-mt-20" />
-          <SectionTitle eyebrow="机器人本体系列" title="覆盖足式与轮足式的机器人本体系列" />
-          <p className="mt-6 max-w-4xl text-xl leading-8 text-[#393939]">
-            提供小型、中型和大型机器人平台，可根据负载、续航、地形和任务需求选择足式或轮足式配置。
-          </p>
+          <SectionHeading
+            title="足式与轮足式机器人本体"
+            description="提供小型、中型和大型平台，适配不同负载、地形和巡检任务。"
+          />
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {robotBodies.map((item, index) => (
               <motion.article
@@ -251,13 +265,10 @@ export function TianrongScenarioPage() {
 
         <RevealSection id="payload-modules" className="border-y border-[#E0E0E0] bg-[#F4F4F4] py-20">
           <span id="modules" className="block scroll-mt-20" />
-          <SectionTitle eyebrow="任务载荷模块" title="面向不同巡检任务的模块化载荷" />
-          <div className="mt-8 flex items-start gap-4 border border-[#D8E6F5] bg-white p-6">
-            <Layers3 className="mt-1 h-7 w-7 shrink-0 text-[#0F62FE]" />
-            <p className="max-w-4xl text-lg leading-8 text-[#393939]">
-              不同载荷可独立选配，也可根据项目需要组合，让同一台机器人承担巡检、检测、通信和现场交互等任务。
-            </p>
-          </div>
+          <SectionHeading
+            title="面向巡检任务的模块化载荷"
+            description="根据巡检、检测、通信和现场交互需求，灵活选择和组合不同功能模块。"
+          />
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {payloadModules.map((item, index) => (
               <motion.article
@@ -290,14 +301,14 @@ export function TianrongScenarioPage() {
         </RevealSection>
 
         <RevealSection id="robox" className="bg-white py-20">
-          <SectionTitle eyebrow="ROBOX 远程接入" title="连接机器人现场与远程平台" />
+          <SectionHeading
+            title="ROBOX 机器人远程接入网关"
+            description="将机器人、现场网络与远程管理平台安全连接，实现视频、设备状态和告警数据回传，并支持远程诊断、配置与控制。"
+          />
           <div className="mt-8 border border-[#E0E0E0] bg-white">
             <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
               <div className="relative min-h-[460px] overflow-hidden border-b border-[#E0E0E0] bg-[#F4F4F4] lg:border-b-0 lg:border-r">
                 <div className="absolute inset-0 tianrong-product-grid opacity-40" />
-                <div className="absolute left-6 top-6 z-10 border border-[#E0E0E0] bg-white px-3 py-2 text-base text-[#525252]">
-                  现场接入网关
-                </div>
                 <div className="relative flex h-full min-h-[460px] items-center justify-center p-10">
                   <Image
                     src="/images/generated/robox.png"
@@ -308,13 +319,21 @@ export function TianrongScenarioPage() {
                   />
                 </div>
               </div>
-              <div className="p-8">
-                <p className="max-w-3xl text-xl leading-8 text-[#393939]">
-                  ROBOX 负责把机器人、现场网络和远程平台连接起来，完成视频与设备数据回传，并支持远程控制。
-                </p>
-                <div className="mt-8 grid gap-px bg-[#E0E0E0] md:grid-cols-2">
-                  {["现场联网", "视频回传", "远程接管", "平台联动"].map((item) => (
-                    <div key={item} className="bg-[#F4F4F4] p-5 text-lg font-semibold text-[#161616]">{item}</div>
+              <div className="p-7 md:p-8">
+                <div className="border-y border-[#E0E0E0] py-5">
+                  <div className="text-base font-semibold text-[#0F62FE]">连接链路</div>
+                  <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center">
+                    {["机器人与现场设备", "ROBOX 接入网关", "RSP 平台 / 远程运维端"].map((item, index) => (
+                      <div key={item} className="flex items-center gap-3">
+                        <div className="border border-[#D8E6F5] bg-[#F4F8FC] px-3 py-3 text-base font-semibold text-[#393939]">{item}</div>
+                        {index < 2 && <ArrowRight className="hidden h-4 w-4 shrink-0 text-[#0F62FE] md:block" />}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-7 grid gap-5 md:grid-cols-2">
+                  {roboxFeatures.map(([title, description], index) => (
+                    <FeatureItem key={title} index={index} title={title} description={description} />
                   ))}
                 </div>
               </div>
@@ -324,13 +343,12 @@ export function TianrongScenarioPage() {
 
         <RevealSection id="rsp-platform" className="border-y border-[#E0E0E0] bg-[#F4F4F4] py-20">
           <span id="rsp" className="block scroll-mt-20" />
-          <SectionTitle eyebrow="RSP 调度平台" title="统一管理机器人、任务与现场数据" />
-          <div className="mt-8 grid border border-[#E0E0E0] bg-[#E0E0E0] lg:grid-cols-[1.1fr_0.9fr]">
+          <SectionHeading
+            title="RSP 多机器人调度管理平台"
+            description="集中管理机器人、地图、任务和现场数据，支持多机器人任务编排、运行监控、异常处理和远程运维。"
+          />
+          <div className="mt-10 grid border border-[#E0E0E0] bg-[#E0E0E0] lg:grid-cols-[1.05fr_0.95fr]">
             <div className="relative overflow-hidden bg-white p-6">
-              <div className="mb-4 flex items-center gap-3 text-base font-semibold text-[#525252]">
-                <MonitorCog className="h-5 w-5 text-[#0F62FE]" />
-                任务调度界面
-              </div>
               <Image
                 src="/images/tianrong/final-assets/rsp-platform-complete.png"
                 alt="机器人调度平台真实界面"
@@ -339,18 +357,16 @@ export function TianrongScenarioPage() {
                 className="max-h-[680px] w-full object-contain"
               />
             </div>
-            <div className="grid bg-white">
-              <div className="border-b border-[#E0E0E0] p-8">
-                <h3 className="max-w-xl text-3xl font-semibold leading-tight md:text-4xl">多机器人任务调度与远程管理</h3>
-                <p className="mt-5 leading-8 text-[#525252]">
-                  RSP 集中管理地图、任务和设备状态，支持多机器人、多点位巡检任务的下发、监控与远程控制。
-                </p>
-              </div>
-              <div className="grid gap-px bg-[#E0E0E0] sm:grid-cols-2">
-                {rspFeatures.map((item) => (
-                  <span key={item} className="bg-[#F4F4F4] p-5 text-base font-semibold text-[#525252]">
-                    {item}
-                  </span>
+            <div className="bg-white p-7 md:p-8">
+              <div className="grid gap-5 sm:grid-cols-2">
+                {rspFeatures.map(([title, description], index) => (
+                  <FeatureItem
+                    key={title}
+                    index={index}
+                    title={title}
+                    description={description}
+                    className={index === rspFeatures.length - 1 ? "sm:col-span-2" : undefined}
+                  />
                 ))}
               </div>
             </div>
@@ -358,11 +374,14 @@ export function TianrongScenarioPage() {
         </RevealSection>
 
         <RevealSection id="case" className="bg-white py-20">
-          <SectionTitle eyebrow="实践案例" title="物流园区巡检实践" />
-          <div className="mt-12 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+          <SectionHeading
+            title="物流园区机器人夜间巡检实践"
+            description="以园区道路、仓储外围和重点点位为主要巡检区域，验证机器人连续作业与远程管理能力。"
+          />
+          <div className="mt-10 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
             <div className="border border-[#161616] bg-[#161616] p-8 text-white">
               <ShieldCheck className="h-10 w-10 text-[#78A9FF]" />
-              <h3 className="mt-24 text-4xl font-semibold leading-tight">机器人在物流园区的夜间巡检实践</h3>
+              <h3 className="mt-24 text-4xl font-semibold leading-tight [text-wrap:balance]">从路线执行到远程管理，覆盖园区夜间巡检流程。</h3>
             </div>
             <div className="grid gap-4">
               <div className="grid gap-3 md:grid-cols-3">
@@ -385,7 +404,10 @@ export function TianrongScenarioPage() {
         </RevealSection>
 
         <RevealSection id="about" className="border-y border-[#E0E0E0] bg-[#F4F4F4] py-20">
-          <SectionTitle eyebrow="关于天戎" title="专注机器人产品与平台研发" />
+          <SectionHeading
+            title="专注机器人产品与平台研发"
+            description="围绕机器人本体、现场接入和调度平台，为项目提供从产品选型到系统集成的技术支持。"
+          />
           <div className="mt-10 grid gap-3 md:grid-cols-2">
             {aboutItems.map((item) => (
               <div key={item} className="flex gap-3 border border-[#E0E0E0] bg-white p-5">
@@ -646,12 +668,36 @@ function RevealSection({ id, className, children }: { id?: string; className: st
   );
 }
 
-function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
+function SectionHeading({ title, description }: { title: string; description?: string }) {
   return (
-    <div className="grid gap-4 border-t border-[#E0E0E0] pt-6 lg:grid-cols-[180px_1fr]">
-      <div className="text-base font-semibold leading-7 text-[#0F62FE]">{eyebrow}</div>
-      <h2 className="max-w-5xl text-4xl font-semibold leading-tight [text-wrap:balance] md:text-5xl">{title}</h2>
+    <div className="section-heading mx-auto max-w-4xl text-center">
+      <h2 className="section-title text-4xl font-semibold leading-tight md:text-5xl">{title}</h2>
+      {description && <p className="section-description mx-auto mt-5 max-w-3xl text-lg leading-8 text-[#525252]">{description}</p>}
     </div>
+  );
+}
+
+function FeatureItem({
+  index,
+  title,
+  description,
+  className = ""
+}: {
+  index: number;
+  title: string;
+  description: string;
+  className?: string;
+}) {
+  return (
+    <article className={`feature-item border-t border-[#D8E6F5] pt-4 ${className}`}>
+      <div className="flex gap-3">
+        <span className="shrink-0 text-base font-semibold text-[#0F62FE]">{String(index + 1).padStart(2, "0")}</span>
+        <div>
+          <h3 className="text-lg font-semibold text-[#161616]">{title}</h3>
+          <p className="card-description mt-2 text-base leading-7 text-[#525252]">{description}</p>
+        </div>
+      </div>
+    </article>
   );
 }
 

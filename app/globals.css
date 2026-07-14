@@ -56,7 +56,17 @@ body {
 .pretty-copy h3,
 .pretty-copy p {
   text-wrap: pretty;
-  word-break: keep-all;
+  line-break: strict;
+}
+
+.section-heading .section-title {
+  text-wrap: balance;
+  line-height: 1.2;
+}
+
+.section-heading .section-description,
+.card-description {
+  text-wrap: pretty;
   line-break: strict;
 }
 
