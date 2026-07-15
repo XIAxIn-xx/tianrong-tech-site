@@ -37,8 +37,8 @@ const products = [
   {
     id: "robot-body",
     title: "机器人本体系列",
-    tagline: "覆盖足式与轮足式的移动平台",
-    description: "提供小型、中型和大型四足及轮足平台，可根据负载、续航、地形与任务需求选择合适配置。",
+    tagline: "覆盖点足式与轮足式的移动平台",
+    description: "提供小型、中型和大型四足及轮足机器人本体，可根据负载、续航、地形与任务需求选择合适配置。",
     image: "/images/generated/argos-body.png",
     target: "#robot-series",
     cta: "了解本体系列"
@@ -63,12 +63,12 @@ const products = [
   },
   {
     id: "rsp",
-    title: "RSP 调度平台",
+    title: "机器人远程调度平台",
     tagline: "统一管理机器人、任务与现场数据",
     description: "集中完成地图管理、任务下发、设备监控和远程控制，适用于多设备、多点位巡检。",
     image: "/images/generated/mission-control-ui.png",
     target: "#rsp-platform",
-    cta: "了解 RSP 平台"
+    cta: "了解调度平台"
   },
   {
     id: "scenario",
@@ -83,7 +83,7 @@ const products = [
 
 const robotBodies = [
   { model: "TR-S1", name: "小型四足平台", image: "/images/tianrong/final-assets/body-tr-s1.png", note: "适用于室内通道、轻量巡检和教学展示。" },
-  { model: "TR-M1", name: "中型四足平台", image: "/images/tianrong/final-assets/body-tr-m1.png", note: "适用于园区巡逻、安防和工业巡检。" },
+  { model: "TR-M1", name: "中型四足平台", image: "/images/tianrong/final-assets/body-tr-m1.png", note: "适用于园区和安防的巡逻巡检。" },
   { model: "TR-L1", name: "大型四足平台", image: "/images/tianrong/final-assets/body-tr-l1.png", note: "面向高负载、长续航和复杂地形任务。" },
   { model: "TR-S1W", name: "小型轮足平台", image: "/images/tianrong/final-assets/body-tr-s1w.png", note: "适用于平整路面和短距离高频巡检。" },
   { model: "TR-M1W", name: "中型轮足平台", image: "/images/tianrong/final-assets/body-tr-m1w.png", note: "适用于园区道路、仓储通道和长距离巡检。" },
