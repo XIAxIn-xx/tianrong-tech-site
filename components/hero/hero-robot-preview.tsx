@@ -4,7 +4,7 @@ import { Suspense, useMemo, useRef } from "react";
 import { Bounds, Center, Html, OrbitControls, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 
-const MODEL_URL = "/models/tianrong-robot-dog.glb";
+const MODEL_URL = "/models/tianrong-robot-dog.v1.glb";
 
 function Loader() {
   return (
@@ -50,7 +50,5 @@ export function HeroRobotPreview() {
     </Canvas>
   );
 }
-
-useGLTF.preload(MODEL_URL);
 
 export default HeroRobotPreview;

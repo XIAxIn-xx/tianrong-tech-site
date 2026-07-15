@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -14,7 +15,11 @@ import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import DotField from "@/components/DotField";
-import { HeroRobotPreview } from "@/components/hero/hero-robot-preview";
+
+const DynamicHeroRobotPreview = dynamic(
+  () => import("@/components/hero/hero-robot-preview").then((module) => module.HeroRobotPreview),
+  { ssr: false }
+);
 
 const nav = [
   ["首页", "#top"],
@@ -191,7 +196,7 @@ export function TianrongScenarioPage() {
                 transition={{ duration: 0.65, delay: 0.16 }}
                 className="mt-7 max-w-2xl text-lg font-medium leading-8 text-[#393939] md:text-xl"
               >
-                聚焦机器人本体、任务载荷、ROBOX远程接入与RSP调度平台，为合作伙伴提供可组合、可集成、可扩展的软硬件产品。
+                聚焦机器人本体、任务载荷、ROBOX 远程接入与 RSP 调度平台，为合作伙伴提供可组合、可集成、可扩展的软硬件产品。
               </motion.p>
               <div className="mt-8">
                 <Button asChild size="lg" className="rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
@@ -208,17 +213,7 @@ export function TianrongScenarioPage() {
         </section>
 
         <section className="relative min-h-[460px] overflow-hidden bg-[#161616] text-white md:min-h-[580px]">
-          <video
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/images/tianrong/industrial-inspection.png"
-          >
-            <source src="/videos/tianrong/autonomous-patrol.mp4" type="video/mp4" />
-          </video>
+          <LazyPatrolVideo />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/25 to-transparent" />
           <div className="relative mx-auto flex min-h-[460px] w-[min(1240px,calc(100%-32px))] items-end pb-16 md:min-h-[580px] md:pb-20">
             <div className="max-w-xl">
@@ -394,7 +389,7 @@ export function TianrongScenarioPage() {
 
         <RevealSection id="case" className="bg-white py-20">
           <SectionHeading
-            title="物流园区机器人夜间巡检实践"
+            title={<>物流园区机器人 <span className="whitespace-nowrap">夜间巡检实践</span></>}
             description="以园区道路、仓储外围和重点点位为主要巡检区域，验证机器人连续作业与远程管理能力。"
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
@@ -445,7 +440,7 @@ export function TianrongScenarioPage() {
             </div>
             <div className="border-t border-white/20 pt-6 text-white">
               <div className="grid gap-4 md:grid-cols-2">
-                <Field label="合作方向" value="本体 / 背包 / 足端 / 调度平台 / ROBOX" />
+                <Field label="合作方向" value="本体 / 任务载荷 / ROBOX / RSP" />
                 <Field label="应用行业" value="安防 / 巡检 / 仓储 / 应急 / 其他" />
                 <Field label="能力需求" value="硬件模块 / 软件平台 / 接口集成" />
                 <Field label="项目阶段" value="评估 / 试点 / 集成 / 批量" />
@@ -459,6 +454,8 @@ export function TianrongScenarioPage() {
             </div>
           </div>
         </section>
+
+        <TianrongFooter />
       </main>
     </div>
   );
@@ -616,7 +613,7 @@ function ProductShowcase() {
           {products.map((product) => (
             <div key={product.id} className="w-[82%] shrink-0 snap-center border border-[#C7DBF2] bg-white/85 p-5">
               <div className="relative aspect-[1.28]">
-                <Image src={product.image} alt={product.title} fill className="object-contain" />
+                <Image src={product.image} alt={product.title} fill sizes="82vw" className="object-contain" />
               </div>
             </div>
           ))}
@@ -673,9 +670,147 @@ function ProductStage() {
     >
       <div className="absolute inset-x-[12%] bottom-[14%] h-16 rounded-[50%] bg-[radial-gradient(ellipse,rgba(15,23,42,0.2)_0%,rgba(15,98,254,0.16)_38%,transparent_72%)] blur-2xl" />
       <div className="relative z-10 h-full w-full">
-        <HeroRobotPreview />
+        <LazyHeroRobotPreview />
       </div>
     </motion.div>
+  );
+}
+
+function LazyHeroRobotPreview() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element) return;
+
+    const mobileQuery = window.matchMedia("(max-width: 767px)");
+    const updateMobileState = () => setIsMobile(mobileQuery.matches);
+    updateMobileState();
+
+    if (!("IntersectionObserver" in window)) {
+      if (!mobileQuery.matches) setShouldLoad(true);
+      mobileQuery.addEventListener("change", updateMobileState);
+      return () => mobileQuery.removeEventListener("change", updateMobileState);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || mobileQuery.matches) return;
+        setShouldLoad(true);
+        observer.disconnect();
+      },
+      { rootMargin: "300px 0px" }
+    );
+
+    observer.observe(element);
+    mobileQuery.addEventListener("change", updateMobileState);
+
+    return () => {
+      observer.disconnect();
+      mobileQuery.removeEventListener("change", updateMobileState);
+    };
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative h-full w-full">
+      {shouldLoad ? <DynamicHeroRobotPreview /> : <HeroRobotPoster interactive={isMobile} onActivate={() => setShouldLoad(true)} />}
+    </div>
+  );
+}
+
+function HeroRobotPoster({ interactive, onActivate }: { interactive: boolean; onActivate: () => void }) {
+  const poster = (
+    <div className="relative h-full w-full">
+      <Image
+        src="/images/generated/argos-body.png"
+        alt="天戎科技机器人本体"
+        fill
+        priority
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-contain p-8 md:p-12"
+      />
+      <div className="absolute inset-x-[16%] bottom-[16%] h-12 rounded-full bg-[#0F62FE]/15 blur-2xl" />
+    </div>
+  );
+
+  if (!interactive) return poster;
+
+  return (
+    <button type="button" onClick={onActivate} className="group relative h-full w-full text-left">
+      {poster}
+      <span className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/90 px-4 py-2 text-sm font-semibold text-[#0F62FE] shadow-sm transition group-hover:bg-white">
+        查看 3D 模型
+      </span>
+    </button>
+  );
+}
+
+function LazyPatrolVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(reducedMotionQuery.matches);
+
+    if (!("IntersectionObserver" in window)) {
+      setShouldLoad(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          if (!reducedMotionQuery.matches) void video.play().catch(() => undefined);
+        } else {
+          video.pause();
+        }
+      },
+      { rootMargin: "300px 0px" }
+    );
+
+    const handleVisibility = () => {
+      if (document.hidden) video.pause();
+      else if (!reducedMotionQuery.matches && shouldLoad) void video.play().catch(() => undefined);
+    };
+
+    observer.observe(video);
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibility);
+      video.pause();
+    };
+  }, [shouldLoad]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldLoad) return;
+    video.load();
+    if (!reducedMotion) void video.play().catch(() => undefined);
+  }, [shouldLoad, reducedMotion]);
+
+  return (
+    <video
+      ref={videoRef}
+      className="absolute inset-0 h-full w-full object-cover"
+      autoPlay={!reducedMotion}
+      muted
+      loop
+      playsInline
+      preload="none"
+      poster="/images/tianrong/industrial-inspection.png"
+    >
+      {shouldLoad && <source src="/videos/tianrong/autonomous-patrol.v1.mp4" type="video/mp4" />}
+    </video>
   );
 }
 
@@ -687,12 +822,41 @@ function RevealSection({ id, className, children }: { id?: string; className: st
   );
 }
 
-function SectionHeading({ title, description }: { title: string; description?: string }) {
+function SectionHeading({ title, description }: { title: React.ReactNode; description?: string }) {
   return (
     <div className="section-heading mx-auto max-w-4xl text-center">
       <h2 className="section-title text-4xl font-semibold leading-tight md:text-5xl">{title}</h2>
       {description && <p className="section-description mx-auto mt-5 max-w-3xl text-lg leading-8 text-[#525252]">{description}</p>}
     </div>
+  );
+}
+
+function TianrongFooter() {
+  return (
+    <footer className="border-t border-[#E0E0E0] bg-white">
+      <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-10 py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+        <div>
+          <Link href="#top" className="inline-flex items-center gap-3">
+            <span className="grid h-9 w-9 place-items-center bg-[#161616] text-sm font-semibold text-white">TR</span>
+            <span className="text-base font-semibold">天戎科技</span>
+          </Link>
+          <p className="mt-5 max-w-sm text-base leading-7 text-[#525252]">机器人本体、任务载荷、现场接入与调度平台。</p>
+        </div>
+        <div>
+          <h2 className="text-base font-semibold text-[#161616]">快速浏览</h2>
+          <div className="mt-4 flex flex-col items-start gap-3 text-base text-[#525252]">
+            <a href="#matrix" className="hover:text-[#0F62FE]">产品矩阵</a>
+            <a href="#case" className="hover:text-[#0F62FE]">实践案例</a>
+            <a href="#contact" className="hover:text-[#0F62FE]">联系我们</a>
+          </div>
+        </div>
+        <div>
+          <h2 className="text-base font-semibold text-[#161616]">联系天戎</h2>
+          <a href="mailto:contact@tianrongtech.com" className="mt-4 inline-block whitespace-nowrap text-base text-[#525252] hover:text-[#0F62FE]">contact@tianrongtech.com</a>
+        </div>
+      </div>
+      <div className="border-t border-[#E0E0E0] py-5 text-center text-sm text-[#737373]">© 2026 天戎科技</div>
+    </footer>
   );
 }
 

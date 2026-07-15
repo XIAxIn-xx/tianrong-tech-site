@@ -62,10 +62,13 @@ body {
 .section-heading .section-title {
   text-wrap: balance;
   line-height: 1.2;
+  overflow-wrap: normal;
 }
 
 .section-heading .section-description,
-.card-description {
+.card-description,
+.feature-item h3,
+.feature-item p {
   text-wrap: pretty;
   line-break: strict;
 }
