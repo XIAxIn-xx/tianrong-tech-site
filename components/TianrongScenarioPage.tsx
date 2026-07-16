@@ -182,7 +182,7 @@ export function TianrongScenarioPage() {
                 transition={{ duration: 0.65, delay: 0.08 }}
                 className="max-w-4xl text-5xl font-light leading-[1.08] md:text-6xl"
               >
-                机器人核心产品与技术底座
+                具身智能二次开发与场景应用集成商
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
@@ -239,7 +239,7 @@ export function TianrongScenarioPage() {
         <RevealSection id="robot-series" className="border-b border-[#E0E0E0] bg-[#F4F4F4] py-20 md:py-24">
           <span id="bodies" className="block scroll-mt-20" />
           <SectionHeading
-            title="足式与轮足式机器人本体"
+            title="点足式与轮足式机器人本体"
             description="提供小型、中型和大型平台，适配不同负载、地形和巡检任务。"
             align="left"
           />
