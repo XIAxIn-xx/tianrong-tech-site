@@ -24,7 +24,7 @@ const nav = [
   ["首页", "#top"],
   ["产品矩阵", "#matrix"],
   ["本体系列", "#bodies"],
-  ["模块能力", "#modules"],
+  ["模块载荷", "#modules"],
   ["ROBOX", "#robox"],
   ["调度平台", "#rsp"],
   ["实践案例", "#case"],
@@ -54,7 +54,7 @@ const products = [
   },
   {
     id: "robox",
-    title: "ROBOX 远程接入",
+    title: "ROBOX 远程控制盒",
     tagline: "连接机器人、现场网络与远程平台",
     description: "负责视频与设备数据回传、网络接入和远程控制，让现场机器人稳定接入上层平台。",
     image: "/images/generated/robox.png",
@@ -102,7 +102,7 @@ const payloadModules = [
 const roboxFeatures = [
   ["现场设备接入", "统一接入机器人、摄像头和传感器，适配有线与无线网络环境。"],
   ["实时数据回传", "持续回传视频画面、机器人状态、任务进度和异常告警。"],
-  ["远程诊断与控制", "连接 RSP 平台，支持远程查看设备状态、排查故障、调整配置和接管设备。"]
+  ["远程诊断与控制", "连接机器人调度平台，支持远程查看设备状态、排查故障、调整配置和接管设备。"]
 ];
 
 const rspFeatures = [
@@ -126,7 +126,7 @@ const caseImages = [
 const aboutItems = [
   "机器人本体与模块化硬件研发",
   "ROBOX 现场接入与远程控制",
-  "RSP 调度平台与系统集成",
+  "机器人调度平台与系统集成",
   "为项目提供选型、接口和技术支持"
 ];
 
@@ -182,7 +182,7 @@ export function TianrongScenarioPage() {
                 transition={{ duration: 0.65, delay: 0.08 }}
                 className="max-w-4xl text-5xl font-light leading-[1.08] md:text-6xl"
               >
-                具身智能二次开发与场景应用集成商
+                机器人软硬件产品与技术集成商
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
@@ -190,7 +190,7 @@ export function TianrongScenarioPage() {
                 transition={{ duration: 0.65, delay: 0.16 }}
                 className="mt-7 max-w-2xl text-lg font-medium leading-8 text-[#393939] md:text-xl"
               >
-                聚焦机器人本体、任务载荷、ROBOX 远程接入与 RSP 调度平台，为合作伙伴提供可组合、可集成、可扩展的软硬件产品。
+                聚焦机器人本体、任务载荷、ROBOX 远程接入与机器人调度平台，为合作伙伴提供可组合、可集成、可扩展的软硬件产品。
               </motion.p>
               <div className="mt-8">
                 <Button asChild size="lg" className="rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
@@ -338,7 +338,7 @@ export function TianrongScenarioPage() {
                 <div className="border-b border-[#E0E0E0] pb-6">
                   <div className="text-sm font-semibold tracking-[0.12em] text-[#0F62FE]">连接链路</div>
                   <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center">
-                    {["机器人与现场设备", "ROBOX 接入网关", "RSP 平台 / 远程运维端"].map((item, index) => (
+                    {["机器人与现场设备", "ROBOX 接入网关", "机器人调度平台 / 远程运维端"].map((item, index) => (
                       <div key={item} className="flex items-center gap-3">
                         <div className="px-1 py-3 text-base font-semibold text-[#393939]">{item}</div>
                         {index < 2 && <ArrowRight className="hidden h-4 w-4 shrink-0 text-[#0F62FE] md:block" />}
@@ -359,7 +359,7 @@ export function TianrongScenarioPage() {
         <RevealSection id="rsp-platform" className="border-y border-[#E0E0E0] bg-[#F4F4F4] py-20">
           <span id="rsp" className="block scroll-mt-20" />
           <SectionHeading
-            title="RSP 多机器人调度管理平台"
+            title="机器人调度平台"
             description="集中管理机器人、地图、任务和现场数据，支持多机器人任务编排、运行监控、异常处理和远程运维。"
             align="left"
           />
@@ -450,7 +450,7 @@ export function TianrongScenarioPage() {
             </div>
             <div className="border-t border-white/20 pt-6 text-white">
               <div className="grid gap-4 md:grid-cols-2">
-                <Field label="合作方向" value="本体 / 任务载荷 / ROBOX / RSP" />
+                <Field label="合作方向" value="机器人本体 / 任务载荷 / ROBOX / 机器人调度平台" />
                 <Field label="应用行业" value="安防 / 巡检 / 仓储 / 应急 / 其他" />
                 <Field label="能力需求" value="硬件模块 / 软件平台 / 接口集成" />
                 <Field label="项目阶段" value="评估 / 试点 / 集成 / 批量" />
