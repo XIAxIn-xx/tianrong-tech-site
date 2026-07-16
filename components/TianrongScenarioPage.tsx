@@ -819,7 +819,7 @@ function LazyPatrolVideo() {
       preload="none"
       poster="/images/tianrong/industrial-inspection.png"
     >
-      {shouldLoad && <source src="/videos/tianrong/autonomous-patrol.v1.mp4" type="video/mp4" />}
+      {shouldLoad && <source src="/videos/tianrong/s07-complex-scene-2.mp4" type="video/mp4" />}
     </video>
   );
 }
