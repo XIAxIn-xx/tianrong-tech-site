@@ -218,7 +218,11 @@ export function TianrongScenarioPage() {
               className="max-w-2xl border-l-2 border-[#78A9FF] pl-5 md:pl-7"
             >
               <p className="text-sm font-semibold tracking-[0.16em] text-[#B9D4FF]">现场验证</p>
-              <h2 className="mt-4 text-4xl font-semibold leading-tight md:text-6xl">让机器人进入真实作业现场</h2>
+              <h2 className="mt-4 text-4xl font-semibold leading-tight md:text-6xl">
+                让机器人进入
+                <br />
+                真实作业现场
+                </h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">从移动平台、任务载荷到远程管理，产品能力在真实环境中协同工作。</p>
               <a href="#case" className="mt-7 inline-flex items-center text-base font-semibold text-white transition hover:text-[#B9D4FF]">
                 查看实践案例
