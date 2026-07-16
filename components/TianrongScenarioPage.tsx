@@ -7,8 +7,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -473,197 +471,79 @@ export function TianrongScenarioPage() {
 
 function ProductShowcase() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const dragStartRef = useRef<number | null>(null);
-  const didDragRef = useRef(false);
   const activeProduct = products[active];
 
-  useEffect(() => {
-    if (paused) return;
-    const timer = window.setInterval(() => {
-      setActive((current) => (current + 1) % products.length);
-    }, 5200);
-    return () => window.clearInterval(timer);
-  }, [paused]);
-
   function goTo(index: number) {
-    const next = (index + products.length) % products.length;
-    setActive(next);
-    const container = scrollRef.current;
-    const item = container?.children[next] as HTMLElement | undefined;
-    item?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-  }
-
-  function scrollToTarget(target: string) {
-    document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  function onMobileScroll() {
-    const container = scrollRef.current;
-    if (!container) return;
-    const center = container.scrollLeft + container.clientWidth / 2;
-    let next = active;
-    let min = Number.POSITIVE_INFINITY;
-    Array.from(container.children).forEach((child, index) => {
-      const item = child as HTMLElement;
-      const itemCenter = item.offsetLeft + item.offsetWidth / 2;
-      const distance = Math.abs(center - itemCenter);
-      if (distance < min) {
-        min = distance;
-        next = index;
-      }
-    });
-    if (next !== active) setActive(next);
-  }
-
-  function getOffset(index: number) {
-    const raw = index - active;
-    if (raw > products.length / 2) return raw - products.length;
-    if (raw < -products.length / 2) return raw + products.length;
-    return raw;
+    setActive(index);
   }
 
   return (
-    <div className="mt-10 overflow-hidden bg-[linear-gradient(180deg,#F8FBFF_0%,#EEF6FF_100%)]">
-      <div
-        className="relative overflow-hidden"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(15,98,254,0.16),transparent_38%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-[#0F62FE]/25" />
-
-        <div
-          className="relative hidden h-[520px] touch-pan-y select-none md:block"
-          onPointerDown={(event) => {
-            dragStartRef.current = event.clientX;
-            didDragRef.current = false;
-            setPaused(true);
-          }}
-          onPointerUp={(event) => {
-            const start = dragStartRef.current;
-            dragStartRef.current = null;
-            if (start === null) return;
-            const distance = event.clientX - start;
-            if (Math.abs(distance) > 48) {
-              didDragRef.current = true;
-              goTo(active + (distance < 0 ? 1 : -1));
-            }
-          }}
-          onPointerCancel={() => {
-            dragStartRef.current = null;
-            didDragRef.current = false;
-          }}
-        >
-          {products.map((product, index) => {
-            const offset = getOffset(index);
-            const hidden = Math.abs(offset) > 2;
-            return (
-              <button
-                key={product.id}
-                type="button"
-                aria-label={`查看${product.title}`}
-                onClick={() => {
-                  if (didDragRef.current) {
-                    didDragRef.current = false;
-                    return;
-                  }
-                  goTo(index);
-                }}
-                className="absolute left-1/2 top-1/2 h-[390px] w-[52%] max-w-[720px] -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out"
-                style={{
-                  transform: `translate(-50%, -50%) translateX(${offset * 46}%) scale(${offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.72 : 0.52})`,
-                  opacity: hidden ? 0 : offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.48 : 0.18,
-                  filter: offset === 0 ? "none" : "blur(1px)",
-                  zIndex: 20 - Math.abs(offset),
-                  pointerEvents: hidden ? "none" : "auto"
-                }}
-              >
-                <span className="absolute inset-x-10 bottom-8 h-16 bg-[#0F62FE]/12 blur-2xl" />
-                <span className="relative flex h-full items-center justify-center border border-[#C7DBF2] bg-white/80 p-8 backdrop-blur">
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    width={980}
-                    height={720}
-                    className="h-full w-full object-contain"
-                    priority={index === 0}
-                  />
-                </span>
-              </button>
-            );
-          })}
-
-          <button
-            type="button"
-            aria-label="上一个产品"
-            onClick={() => goTo(active - 1)}
-            className="absolute left-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center border border-[#C7DBF2] bg-white/90 text-[#0F62FE] backdrop-blur hover:bg-[#EAF4FF]"
+    <div className="mt-10 overflow-hidden border-y border-[#D8E6F5] bg-[#F5F8FA]">
+      <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="relative min-h-[360px] overflow-hidden bg-[linear-gradient(135deg,#EDF2F3_0%,#F8FAF8_62%,#E5EEF0_100%)] md:min-h-[520px]">
+          <div className="absolute inset-0 tianrong-product-grid opacity-60" />
+          <div className="absolute left-6 top-6 z-10 text-xs font-semibold tracking-[0.16em] text-[#1F4F82] md:left-8 md:top-8">
+            PRODUCT SYSTEM / {String(active + 1).padStart(2, "0")} — 05
+          </div>
+          <motion.div
+            key={activeProduct.id}
+            initial={{ opacity: 0.35, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.24, ease: "easeOut" }}
+            className="relative z-10 flex min-h-[360px] items-center justify-center p-8 md:min-h-[520px] md:p-12"
           >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            aria-label="下一个产品"
-            onClick={() => goTo(active + 1)}
-            className="absolute right-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center border border-[#C7DBF2] bg-white/90 text-[#0F62FE] backdrop-blur hover:bg-[#EAF4FF]"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
+            <Image
+              src={activeProduct.image}
+              alt={activeProduct.title}
+              width={980}
+              height={720}
+              className="h-full max-h-[430px] w-full object-contain"
+              sizes="(max-width: 1024px) 100vw, 58vw"
+              priority={active === 0}
+            />
+          </motion.div>
+          <div className="absolute bottom-6 left-6 right-6 z-10 flex items-end justify-between gap-4 md:bottom-8 md:left-8 md:right-8">
+            <span className="text-sm font-semibold text-[#52616A]">{activeProduct.tagline}</span>
+            <span className="hidden font-mono text-xs text-[#70818A] sm:inline">TR / FIELD READY</span>
+          </div>
         </div>
 
-        <div
-          ref={scrollRef}
-          onScroll={onMobileScroll}
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
-          className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-8 md:hidden"
-        >
-          {products.map((product) => (
-            <div key={product.id} className="w-[82%] shrink-0 snap-center border border-[#C7DBF2] bg-white/85 p-5">
-              <div className="relative aspect-[1.28]">
-                <Image src={product.image} alt={product.title} fill sizes="82vw" className="object-contain" />
-              </div>
-            </div>
-          ))}
-        </div>
+        <div className="border-t border-[#D8E6F5] bg-white p-6 md:p-8 lg:border-l lg:border-t-0">
+          <div className="text-sm font-semibold tracking-[0.14em] text-[#0F62FE]">产品链路</div>
+          <h3 aria-live="polite" className="mt-3 text-3xl font-semibold leading-tight text-[#161616] md:text-4xl">
+            {activeProduct.title}
+          </h3>
+          <p className="mt-4 leading-7 text-[#525252]">{activeProduct.description}</p>
 
-        <div className="relative border-t border-[#D8E6F5] bg-white/86 p-6 backdrop-blur md:p-8">
-          <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr_auto] lg:items-end">
-            <div>
-              <div className="text-base font-semibold text-[#0F62FE]">产品 {String(active + 1).padStart(2, "0")}</div>
-              <h3 className="mt-3 text-3xl font-semibold leading-tight md:text-4xl">{activeProduct.title}</h3>
-            </div>
-            <div>
-              <div className="text-lg font-semibold text-[#1F4F82]">{activeProduct.tagline}</div>
-              <p className="mt-3 max-w-3xl leading-7 text-[#525252]">{activeProduct.description}</p>
-            </div>
-            <Button asChild size="lg" className="w-fit rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
-              <a
-                href={activeProduct.target}
-                onClick={(event) => {
-                  event.preventDefault();
-                  scrollToTarget(activeProduct.target);
-                }}
-              >
-                {activeProduct.cta}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-          </div>
+          <nav className="mt-7 flex flex-col gap-2" aria-label="产品体系导航">
+            {products.map((product, index) => {
+              const selected = index === active;
+              return (
+                <button
+                  key={product.id}
+                  type="button"
+                  aria-label={`查看${product.title}`}
+                  aria-pressed={selected}
+                  onClick={() => goTo(index)}
+                  className={`group flex min-h-[68px] w-full items-center gap-4 border-t px-3 py-3 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F62FE] ${selected ? "border-[#0F62FE] bg-[#F2F7FD]" : "border-[#E2E8EE] hover:bg-[#F7FAFC]"}`}
+                >
+                  <span className={`font-mono text-xs ${selected ? "text-[#0F62FE]" : "text-[#81909A]"}`}>0{index + 1}</span>
+                  <span className="min-w-0 flex-1">
+                    <span className={`block text-base font-semibold ${selected ? "text-[#161616]" : "text-[#52616A]"}`}>{product.title}</span>
+                    <span className="mt-1 block truncate text-sm text-[#81909A]">{product.tagline}</span>
+                  </span>
+                  <ArrowRight className={`h-4 w-4 shrink-0 transition-transform duration-200 ${selected ? "text-[#0F62FE]" : "text-[#A4B0B7] group-hover:translate-x-0.5"}`} />
+                </button>
+              );
+            })}
+          </nav>
 
-          <div className="mt-6 flex gap-2">
-            {products.map((product, index) => (
-              <button
-                key={product.id}
-                type="button"
-                aria-label={`切换到${product.title}`}
-                onClick={() => goTo(index)}
-                className={`h-1.5 transition-all ${index === active ? "w-10 bg-[#0F62FE]" : "w-4 bg-[#C7DBF2] hover:bg-[#78A9FF]"}`}
-              />
-            ))}
-          </div>
+          <Button asChild size="lg" className="mt-7 w-full rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6] sm:w-fit">
+            <a href={activeProduct.target}>
+              {activeProduct.cta}
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
         </div>
       </div>
     </div>
