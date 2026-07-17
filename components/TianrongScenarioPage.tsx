@@ -82,7 +82,7 @@ const products = [
 ];
 
 const robotBodies = [
-  { model: "TR-S1", name: "小型四足平台", image: "/images/tianrong/final-assets/body-tr-s1.png", note: "适用于室内通道、轻量巡检和教学展示。" },
+  { model: "TR-S1", name: "小型四足平台", image: "/images/tianrong/final-assets/body-tr-s1.png", note: "适用于室内通道、轻量巡检。" },
   { model: "TR-M1", name: "中型四足平台", image: "/images/tianrong/final-assets/body-tr-m1.png", note: "适用于园区和安防的巡逻巡检。" },
   { model: "TR-L1", name: "大型四足平台", image: "/images/tianrong/final-assets/body-tr-l1.png", note: "面向高负载、长续航和复杂地形任务。" },
   { model: "TR-S1W", name: "小型轮足平台", image: "/images/tianrong/final-assets/body-tr-s1w.png", note: "适用于平整路面和短距离高频巡检。" },
@@ -190,7 +190,7 @@ export function TianrongScenarioPage() {
                 transition={{ duration: 0.65, delay: 0.16 }}
                 className="mt-7 max-w-2xl text-lg font-medium leading-8 text-[#393939] md:text-xl"
               >
-                聚焦机器人本体、任务载荷、ROBOX 远程接入与机器人调度平台，为合作伙伴提供可组合、可集成、可扩展的软硬件产品。
+                聚焦机器人本体、任务载荷、ROBOX 远程控制盒与机器人调度平台，为合作伙伴提供可组合、可集成、可扩展的软硬件产品。
               </motion.p>
               <div className="mt-8">
                 <Button asChild size="lg" className="rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
@@ -316,7 +316,7 @@ export function TianrongScenarioPage() {
 
         <RevealSection id="robox" className="bg-white py-20">
           <SectionHeading
-            title="ROBOX 机器人远程接入网关"
+            title="ROBOX 远程控制盒"
             description="将机器人、现场网络与远程管理平台安全连接，实现视频、设备状态和告警数据回传，并支持远程诊断、配置与控制。"
             align="left"
           />
@@ -327,7 +327,7 @@ export function TianrongScenarioPage() {
                 <div className="relative flex h-full min-h-[500px] items-center justify-center p-8 md:min-h-[560px] md:p-12">
                   <Image
                     src="/images/generated/robox.png"
-                    alt="ROBOX 盒子"
+                    alt="ROBOX 远程控制盒"
                     width={860}
                     height={640}
                     className="max-h-[360px] w-full object-contain"
@@ -338,7 +338,7 @@ export function TianrongScenarioPage() {
                 <div className="border-b border-[#E0E0E0] pb-6">
                   <div className="text-sm font-semibold tracking-[0.12em] text-[#0F62FE]">连接链路</div>
                   <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center">
-                    {["机器人与现场设备", "ROBOX 接入网关", "机器人调度平台 / 远程运维端"].map((item, index) => (
+                    {["机器人与现场设备", "ROBOX ", "机器人调度平台 "].map((item, index) => (
                       <div key={item} className="flex items-center gap-3">
                         <div className="px-1 py-3 text-base font-semibold text-[#393939]">{item}</div>
                         {index < 2 && <ArrowRight className="hidden h-4 w-4 shrink-0 text-[#0F62FE] md:block" />}
@@ -446,14 +446,14 @@ export function TianrongScenarioPage() {
         <section id="contact" className="bg-[#161616] py-20 text-white">
           <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-8 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
-              <h2 className="text-4xl font-semibold leading-tight md:text-6xl">为你的项目选择合适的机器人产品与平台</h2>
+              <h2 className="text-4xl font-semibold leading-tight md:text-6xl">为您的项目选择合适的机器人产品与平台</h2>
             </div>
             <div className="border-t border-white/20 pt-6 text-white">
               <div className="grid gap-4 md:grid-cols-2">
                 <Field label="合作方向" value="机器人本体 / 任务载荷 / ROBOX / 机器人调度平台" />
-                <Field label="应用行业" value="安防 / 巡检 / 仓储 / 应急 / 其他" />
+                <Field label="应用行业" value="安防 / 巡检 / 仓储 / 应急 " />
                 <Field label="能力需求" value="硬件模块 / 软件平台 / 接口集成" />
-                <Field label="项目阶段" value="评估 / 试点 / 集成 / 批量" />
+                <Field label="项目阶段" value="评估 / 试点 / 批量" />
               </div>
               <Button asChild size="lg" className="mt-6 rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
                 <a href="mailto:contact@tianrongtech.com">
