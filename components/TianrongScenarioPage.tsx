@@ -137,7 +137,7 @@ export function TianrongScenarioPage() {
         <div className="mx-auto flex h-16 w-[min(1240px,calc(100%-32px))] items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/images/tianrong/tianrong-logo.png"
+              src="/images/tianrong/tianrong-logo.svg"
               alt="天戎科技"
               width={1080}
               height={820}
@@ -873,7 +873,7 @@ function TianrongFooter() {
         <div>
           <Link href="#top" className="inline-flex items-center gap-3">
             <Image
-              src="/images/tianrong/tianrong-logo.png"
+              src="/images/tianrong/tianrong-logo.svg"
               alt="天戎科技"
               width={1080}
               height={820}
