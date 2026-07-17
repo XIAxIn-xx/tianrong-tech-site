@@ -136,7 +136,14 @@ export function TianrongScenarioPage() {
       <header className="sticky top-0 z-50 border-b border-[#E0E0E0] bg-white/95 backdrop-blur">
         <div className="mx-auto flex h-16 w-[min(1240px,calc(100%-32px))] items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <span className="grid h-9 w-9 place-items-center bg-[#161616] text-sm font-semibold text-white">TR</span>
+            <Image
+              src="/images/tianrong/tianrong-logo.png"
+              alt="天戎科技"
+              width={1080}
+              height={820}
+              priority
+              className="h-9 w-11 shrink-0 object-contain"
+            />
             <span className="text-base font-semibold">天戎科技</span>
           </Link>
           <nav className="hidden items-center gap-5 text-[15px] text-[#525252] lg:flex">
@@ -182,7 +189,8 @@ export function TianrongScenarioPage() {
                 transition={{ duration: 0.65, delay: 0.08 }}
                 className="max-w-4xl text-5xl font-light leading-[1.08] md:text-6xl"
               >
-                机器人软硬件产品与技术集成商
+                <span className="block">机器人软硬件产品</span>
+                <span className="block">与技术集成商</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
@@ -864,7 +872,13 @@ function TianrongFooter() {
       <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-10 py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div>
           <Link href="#top" className="inline-flex items-center gap-3">
-            <span className="grid h-9 w-9 place-items-center bg-[#161616] text-sm font-semibold text-white">TR</span>
+            <Image
+              src="/images/tianrong/tianrong-logo.png"
+              alt="天戎科技"
+              width={1080}
+              height={820}
+              className="h-9 w-11 shrink-0 object-contain"
+            />
             <span className="text-base font-semibold">天戎科技</span>
           </Link>
         </div>
