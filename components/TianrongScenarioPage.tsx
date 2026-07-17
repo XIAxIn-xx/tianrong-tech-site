@@ -851,7 +851,6 @@ function TianrongFooter() {
             <span className="grid h-9 w-9 place-items-center bg-[#161616] text-sm font-semibold text-white">TR</span>
             <span className="text-base font-semibold">天戎科技</span>
           </Link>
-          <p className="mt-5 max-w-sm text-base leading-7 text-[#525252]">机器人本体、任务载荷、现场接入与调度平台。</p>
         </div>
         <div>
           <h2 className="text-base font-semibold text-[#161616]">快速浏览</h2>
@@ -866,7 +865,7 @@ function TianrongFooter() {
           <a href="mailto:contact@tianrongtech.com" className="mt-4 inline-block whitespace-nowrap text-base text-[#525252] hover:text-[#0F62FE]">contact@tianrongtech.com</a>
         </div>
       </div>
-      <div className="border-t border-[#E0E0E0] py-5 text-center text-sm text-[#737373]">© 2026 天戎科技</div>
+      <div className="border-t border-[#E0E0E0] py-5 text-center text-sm text-[#737373]">Copyright © 2026 杭州天戎智能科技有限公司版权所有</div>
     </footer>
   );
 }
