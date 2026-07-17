@@ -406,9 +406,9 @@ export function TianrongScenarioPage() {
                 transition={{ duration: 0.7 }}
                 className="max-w-3xl"
               >
-                <p className="text-sm font-semibold tracking-[0.16em] text-[#B9D4FF]">物流园区实践</p>
+                
                 <h2 className="mt-4 text-4xl font-semibold leading-tight md:text-6xl [text-wrap:balance]">物流园区机器人夜间巡检实践</h2>
-                <p className="mt-5 max-w-2xl text-lg leading-8 text-white/80">以园区道路、仓储外围和重点点位为主要巡检区域，验证机器人连续作业与远程管理能力。</p>
+                <p className="mt-5 max-w-2xl text-lg leading-8 text-white/80">围绕园区道路、仓储外围及重点点位开展巡检，通过机器人连续作业与远程管理，提升巡检覆盖效率，减少重复性人工投入。</p>
                 <div className="mt-8 grid gap-4 border-t border-white/25 pt-6 md:grid-cols-3">
                   {casePoints.map((item) => (
                     <p key={item} className="border-l border-[#78A9FF] pl-4 text-base leading-7 text-white/85">{item}</p>
