@@ -10,7 +10,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import DotField from "@/components/DotField";
@@ -132,7 +132,7 @@ const aboutItems = [
 
 export function TianrongScenarioPage() {
   return (
-    <div id="top" className="min-h-screen bg-white text-[#161616]">
+    <div id="top" className="tianrong-page min-h-screen bg-white text-[#161616]">
       <header className="sticky top-0 z-50 border-b border-[#E0E0E0] bg-white/95 backdrop-blur">
         <div className="mx-auto flex h-16 w-[min(1240px,calc(100%-32px))] items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
@@ -218,11 +218,9 @@ export function TianrongScenarioPage() {
               className="max-w-2xl border-l-2 border-[#78A9FF] pl-5 md:pl-7"
             >
               <p className="text-sm font-semibold tracking-[0.16em] text-[#B9D4FF]">现场验证</p>
-              <h2 className="mt-4 text-4xl font-semibold leading-tight md:text-6xl">
-                让机器人进入
-                <br />
-                真实作业现场
-                </h2>
+              <h2 className="mt-4 max-w-2xl text-4xl font-semibold leading-tight md:text-6xl">
+                让机器人进入真实作业现场
+              </h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">从移动平台、任务载荷到远程管理，产品能力在真实环境中协同工作。</p>
               <a href="#case" className="mt-7 inline-flex items-center text-base font-semibold text-white transition hover:text-[#B9D4FF]">
                 查看实践案例
@@ -240,7 +238,7 @@ export function TianrongScenarioPage() {
           <ProductShowcase />
         </RevealSection>
 
-        <RevealSection id="robot-series" className="border-b border-[#E0E0E0] bg-[#F4F4F4] py-20 md:py-24">
+        <RevealSection id="robot-series" className="bg-[#F4F4F4] py-20 md:py-24">
           <span id="bodies" className="block scroll-mt-20" />
           <SectionHeading
             title="四足机器人本体"
@@ -254,15 +252,15 @@ export function TianrongScenarioPage() {
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: index * 0.04 }}
-                className="group overflow-hidden bg-transparent transition duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#0F62FE]/35"
+                transition={{ delay: index * 0.08, duration: 0.62 }}
+                className="group overflow-hidden bg-transparent transition duration-500 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-[#0F62FE]/35"
               >
                 <div className="relative aspect-[1.38] overflow-hidden bg-white">
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-contain p-6 transition duration-500 group-hover:scale-[1.04]"
+                    className="object-contain p-5 transition duration-700 ease-out group-hover:scale-[1.12] group-hover:-translate-y-1 group-focus:scale-[1.12]"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
@@ -276,7 +274,7 @@ export function TianrongScenarioPage() {
           </div>
         </RevealSection>
 
-        <RevealSection id="payload-modules" className="border-b border-[#E0E0E0] bg-white py-20 md:py-24">
+        <RevealSection id="payload-modules" className="bg-white py-20 md:py-24">
           <span id="modules" className="block scroll-mt-20" />
           <SectionHeading
             title="面向巡检任务的模块化载荷"
@@ -291,15 +289,15 @@ export function TianrongScenarioPage() {
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: index * 0.04 }}
-                className="group overflow-hidden bg-transparent transition duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#0F62FE]/35"
+                transition={{ delay: index * 0.08, duration: 0.62 }}
+                className="group overflow-hidden bg-transparent transition duration-500 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-[#0F62FE]/35"
               >
                 <div className="relative aspect-[1.42] overflow-hidden bg-[#F4F8FC]">
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-contain p-8 transition duration-500 group-hover:scale-[1.04]"
+                    className="object-contain p-7 transition duration-700 ease-out group-hover:scale-[1.14] group-hover:-translate-y-1 group-focus:scale-[1.14]"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
@@ -355,7 +353,7 @@ export function TianrongScenarioPage() {
           </div>
         </RevealSection>
 
-        <RevealSection id="rsp-platform" className="border-y border-[#E0E0E0] bg-[#F4F4F4] py-20">
+        <RevealSection id="rsp-platform" className="bg-[#F4F4F4] py-20">
           <span id="rsp" className="block scroll-mt-20" />
           <SectionHeading
             title="机器人调度平台"
@@ -426,7 +424,7 @@ export function TianrongScenarioPage() {
           </div>
         </section>
 
-        <RevealSection id="about" className="border-y border-[#E0E0E0] bg-[#F4F4F4] py-20">
+        <RevealSection id="about" className="bg-[#F4F4F4] py-20">
           <SectionHeading
             title="专注机器人产品与平台研发"
             description="围绕机器人本体、现场接入和调度平台，为项目提供从产品选型到系统集成的技术支持。"
@@ -580,7 +578,7 @@ function ProductShowcase() {
                 }}
               >
                 <span className="absolute inset-x-10 bottom-8 h-16 bg-[#0F62FE]/12 blur-2xl" />
-                <span className="relative flex h-full items-center justify-center border border-[#C7DBF2] bg-white/80 p-8 backdrop-blur">
+                <span className="relative flex h-full items-center justify-center bg-white/75 p-8 shadow-[0_24px_70px_rgba(15,98,254,0.12)] backdrop-blur transition-shadow duration-500 hover:shadow-[0_28px_90px_rgba(15,98,254,0.2)]">
                   <Image
                     src={product.image}
                     alt={product.title}
@@ -598,7 +596,7 @@ function ProductShowcase() {
             type="button"
             aria-label="上一个产品"
             onClick={() => goTo(active - 1)}
-            className="absolute left-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center border border-[#C7DBF2] bg-white/90 text-[#0F62FE] backdrop-blur hover:bg-[#EAF4FF]"
+            className="absolute left-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center bg-white/85 text-[#0F62FE] shadow-[0_8px_24px_rgba(15,98,254,0.14)] backdrop-blur transition hover:bg-[#EAF4FF]"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -606,7 +604,7 @@ function ProductShowcase() {
             type="button"
             aria-label="下一个产品"
             onClick={() => goTo(active + 1)}
-            className="absolute right-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center border border-[#C7DBF2] bg-white/90 text-[#0F62FE] backdrop-blur hover:bg-[#EAF4FF]"
+            className="absolute right-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center bg-white/85 text-[#0F62FE] shadow-[0_8px_24px_rgba(15,98,254,0.14)] backdrop-blur transition hover:bg-[#EAF4FF]"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
@@ -620,7 +618,7 @@ function ProductShowcase() {
           className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-8 md:hidden"
         >
           {products.map((product) => (
-            <div key={product.id} className="w-[82%] shrink-0 snap-center border border-[#C7DBF2] bg-white/85 p-5">
+            <div key={product.id} className="w-[82%] shrink-0 snap-center bg-white/85 p-5 shadow-[0_18px_52px_rgba(15,98,254,0.12)]">
               <div className="relative aspect-[1.28]">
                 <Image src={product.image} alt={product.title} fill sizes="82vw" className="object-contain" />
               </div>
@@ -629,28 +627,37 @@ function ProductShowcase() {
         </div>
 
         <div className="relative border-t border-[#D8E6F5] bg-white/86 p-6 backdrop-blur md:p-8">
-          <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr_auto] lg:items-end">
-            <div>
-              <div className="text-base font-semibold text-[#0F62FE]">产品 {String(active + 1).padStart(2, "0")}</div>
-              <h3 className="mt-3 text-3xl font-semibold leading-tight md:text-4xl">{activeProduct.title}</h3>
-            </div>
-            <div>
-              <div className="text-lg font-semibold text-[#1F4F82]">{activeProduct.tagline}</div>
-              <p className="mt-3 max-w-3xl leading-7 text-[#525252]">{activeProduct.description}</p>
-            </div>
-            <Button asChild size="lg" className="w-fit rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
-              <a
-                href={activeProduct.target}
-                onClick={(event) => {
-                  event.preventDefault();
-                  scrollToTarget(activeProduct.target);
-                }}
-              >
-                {activeProduct.cta}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-          </div>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={activeProduct.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.32, ease: "easeOut" }}
+              className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr_auto] lg:items-end"
+            >
+              <div>
+                <div className="text-base font-semibold text-[#0F62FE]">产品 {String(active + 1).padStart(2, "0")}</div>
+                <h3 className="mt-3 text-3xl font-semibold leading-tight md:text-4xl">{activeProduct.title}</h3>
+              </div>
+              <div>
+                <div className="text-lg font-semibold text-[#1F4F82]">{activeProduct.tagline}</div>
+                <p className="mt-3 max-w-3xl leading-7 text-[#525252]">{activeProduct.description}</p>
+              </div>
+              <Button asChild size="lg" className="w-fit rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
+                <a
+                  href={activeProduct.target}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    scrollToTarget(activeProduct.target);
+                  }}
+                >
+                  {activeProduct.cta}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </motion.div>
+          </AnimatePresence>
 
           <div className="mt-6 flex gap-2">
             {products.map((product, index) => (
@@ -824,8 +831,17 @@ function LazyPatrolVideo() {
 }
 
 function RevealSection({ id, className, children }: { id?: string; className: string; children: React.ReactNode }) {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <motion.section id={id} className={className} initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-90px" }} transition={{ duration: 0.55 }}>
+    <motion.section
+      id={id}
+      className={`module-section ${className}`}
+      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 48, scale: 0.985 }}
+      whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.16, margin: "-100px 0px" }}
+      transition={reduceMotion ? { duration: 0.2 } : { duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className="mx-auto w-[min(1240px,calc(100%-32px))]">{children}</div>
     </motion.section>
   );
