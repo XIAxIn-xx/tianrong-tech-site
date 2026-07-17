@@ -37,8 +37,8 @@ const products = [
   {
     id: "robot-body",
     title: "机器人本体系列",
-    tagline: "覆盖点足式与轮足式的移动平台",
-    description: "提供小型、中型和大型四足及轮足机器人本体，可根据负载、续航、地形与任务需求选择合适配置。",
+    tagline: "面向多场景部署的机器人本体系列",
+    description: "提供多尺寸、多配置的机器人本体，可根据负载、续航、地形与任务需求选择合适配置。",
     image: "/images/generated/argos-body.png",
     target: "#robot-series",
     cta: "了解本体系列"
@@ -82,12 +82,12 @@ const products = [
 ];
 
 const robotBodies = [
-  { model: "TR-S1", name: "小型四足平台", image: "/images/tianrong/final-assets/body-tr-s1.png", note: "适用于室内通道、轻量巡检。" },
-  { model: "TR-M1", name: "中型四足平台", image: "/images/tianrong/final-assets/body-tr-m1.png", note: "适用于园区和安防的巡逻巡检。" },
-  { model: "TR-L1", name: "大型四足平台", image: "/images/tianrong/final-assets/body-tr-l1.png", note: "面向高负载、长续航和复杂地形任务。" },
-  { model: "TR-S1W", name: "小型轮足平台", image: "/images/tianrong/final-assets/body-tr-s1w.png", note: "适用于平整路面和短距离高频巡检。" },
-  { model: "TR-M1W", name: "中型轮足平台", image: "/images/tianrong/final-assets/body-tr-m1w.png", note: "适用于园区道路、仓储通道和长距离巡检。" },
-  { model: "TR-L1W", name: "大型轮足平台", image: "/images/tianrong/final-assets/body-tr-l1w.png", note: "适用于大范围场地和复杂路况下的连续作业。" }
+  { model: "TR-S1", name:  "轻型点足本体", image: "/images/tianrong/final-assets/body-tr-s1.png", note: "适用于室内通道、轻量巡检。" },
+  { model: "TR-M1", name:  "中型点足本体", image: "/images/tianrong/final-assets/body-tr-m1.png", note: "适用于园区和安防的巡逻巡检。" },
+  { model: "TR-L1", name:  "重载点足本体", image: "/images/tianrong/final-assets/body-tr-l1.png", note: "面向高负载、长续航和复杂地形任务。" },
+  { model: "TR-S1W", name: "轻型轮足本体", image: "/images/tianrong/final-assets/body-tr-s1w.png", note: "适用于平整路面和短距离高频巡检。" },
+  { model: "TR-M1W", name: "中型轮足本体", image: "/images/tianrong/final-assets/body-tr-m1w.png", note: "适用于园区道路、仓储通道和长距离巡检。" },
+  { model: "TR-L1W", name: "重载轮足本体", image: "/images/tianrong/final-assets/body-tr-l1w.png", note: "适用于大范围场地和复杂路况下的连续作业。" }
 ];
 
 const payloadModules = [
@@ -243,8 +243,7 @@ export function TianrongScenarioPage() {
         <RevealSection id="robot-series" className="border-b border-[#E0E0E0] bg-[#F4F4F4] py-20 md:py-24">
           <span id="bodies" className="block scroll-mt-20" />
           <SectionHeading
-            title="点足式与轮足式机器人本体"
-            description="提供小型、中型和大型平台，适配不同负载、地形和巡检任务。"
+            title="四足机器人本体"
             align="left"
           />
           <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
