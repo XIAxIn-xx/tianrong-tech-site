@@ -409,7 +409,7 @@ export function TianrongScenarioPage() {
         <RevealSection id="about" className="bg-[#F4F4F4] py-20">
           <SectionHeading
             title={<>专注<span className="keep-phrase">机器人产品</span>与平台研发</>}
-            description={<>围绕<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">现场接入</span>和<span className="keep-phrase">调度平台</span>，为项目提供从<span className="keep-phrase">产品选型</span>到<span className="keep-phrase">系统集成</span>的<span className="keep-phrase">技术支持</span>。</>}
+            description={<>围绕<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">远程控制盒</span>和<span className="keep-phrase">调度平台</span>，为项目提供从<span className="keep-phrase">产品选型</span>到<span className="keep-phrase">系统集成</span>的<span className="keep-phrase">技术支持</span>。</>}
             align="left"
           />
           <div className="mt-10 grid gap-3 md:grid-cols-2">
