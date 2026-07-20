@@ -167,10 +167,16 @@ export function TianrongScenarioPage() {
               >
                 聚焦<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">任务载荷</span>、<span className="keep-phrase">ROBOX 远程控制盒</span>与<span className="keep-phrase">机器人调度平台</span>，为<span className="keep-phrase">合作伙伴</span>提供可组合、可集成、可扩展的<span className="keep-phrase">软硬件产品</span>。
               </motion.p>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
                   <a href="#matrix">
                     <span className="keep-phrase">查看产品矩阵</span>
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-none border-[#0F62FE] bg-transparent text-[#0F62FE] shadow-none hover:bg-[#EAF4FF]">
+                  <a href="#contact">
+                    <span className="keep-phrase">项目咨询</span>
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>

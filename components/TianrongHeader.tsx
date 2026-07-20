@@ -167,7 +167,6 @@ export function TianrongHeader({
           <a href={hrefFor("case")} className={navClass(activeSection === "case")} onClick={closeMenus}>实践案例</a>
           <a href={hrefFor("about")} className={navClass(activeSection === "about")} onClick={closeMenus}>关于天戎</a>
           <a href={hrefFor("contact")} className={navClass(activeSection === "contact")} onClick={closeMenus}>联系我们</a>
-          <a href={hrefFor("contact")} onClick={closeMenus} className="ml-1 inline-flex h-10 shrink-0 items-center whitespace-nowrap bg-[#0F62FE] px-5 text-[15px] font-semibold text-white transition-colors hover:bg-[#0050E6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F62FE]/45 focus-visible:ring-offset-2">项目咨询</a>
         </nav>
 
         <button
@@ -206,7 +205,6 @@ export function TianrongHeader({
               <a href={hrefFor("case")} onClick={closeMenus} className="keep-phrase flex min-h-12 items-center border-b border-[#F0F0F0] px-2 text-base text-[#3D3D3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F62FE]/45">实践案例</a>
               <a href={hrefFor("about")} onClick={closeMenus} className="keep-phrase flex min-h-12 items-center border-b border-[#F0F0F0] px-2 text-base text-[#3D3D3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F62FE]/45">关于天戎</a>
               <a href={hrefFor("contact")} onClick={closeMenus} className="keep-phrase flex min-h-12 items-center border-b border-[#F0F0F0] px-2 text-base text-[#3D3D3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F62FE]/45">联系我们</a>
-              <a href={hrefFor("contact")} onClick={closeMenus} className="keep-phrase mt-3 flex min-h-11 items-center justify-center bg-[#0F62FE] px-5 text-[15px] font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F62FE]/45 focus-visible:ring-offset-2">项目咨询</a>
             </nav>
           </div>
         )}
