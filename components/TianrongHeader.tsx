@@ -13,14 +13,13 @@ type TianrongHeaderProps = {
 };
 
 const productItems = [
-  ["产品矩阵", "matrix"],
   ["机器人本体", "robot-series"],
-  ["模块化载荷", "payload-modules"],
-  ["ROBOX 远程接入终端", "robox"],
+  ["任务载荷模块", "payload-modules"],
+  ["ROBOX 远程控制盒", "robox"],
   ["机器人调度平台", "rsp-platform"]
 ] as const;
 
-const productSectionIds: readonly string[] = productItems.map(([, id]) => id);
+const productSectionIds: readonly string[] = ["matrix", ...productItems.map(([, id]) => id)];
 const defaultSectionIds = ["matrix", "robot-series", "payload-modules", "robox", "rsp-platform", "case", "about", "contact"];
 
 export function TianrongHeader({
@@ -139,10 +138,10 @@ export function TianrongHeader({
             onFocus={() => setProductOpen(true)}
             onBlur={handleProductBlur}
           >
-            <a href={hrefFor("matrix")} className={navClass(isProductsActive)} onClick={closeMenus}>产品与技术</a>
+            <a href={hrefFor("matrix")} className={navClass(isProductsActive)} onClick={closeMenus}>产品矩阵</a>
             <button
               type="button"
-              aria-label="展开产品与技术菜单"
+              aria-label="展开产品矩阵菜单"
               aria-expanded={productOpen}
               onClick={() => setProductOpen((open) => !open)}
               className={`ml-0.5 inline-flex h-8 w-7 items-center justify-center text-[#525252] transition hover:text-[#0F62FE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F62FE]/45 ${isProductsActive ? activeClass : ""}`}
@@ -192,7 +191,7 @@ export function TianrongHeader({
                 onClick={() => setProductOpen((open) => !open)}
                 className={`flex min-h-12 items-center justify-between border-b border-[#F0F0F0] px-2 text-left text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F62FE]/45 ${isProductsActive ? activeClass : "text-[#3D3D3D]"}`}
               >
-                <span className="keep-phrase">产品与技术</span>
+                <span className="keep-phrase">产品矩阵</span>
                 <ChevronDown className={`h-4 w-4 transition-transform ${productOpen ? "rotate-180" : ""}`} />
               </button>
               {productOpen && (

@@ -33,7 +33,7 @@ const products = [
   },
   {
     id: "payload-modules",
-    title: "模块化载荷",
+    title: "任务载荷模块",
     tagline: "按任务灵活组合的功能模块",
     description: "可见光、热成像、气体检测、通信、计算和广播模块可独立选配，也可根据项目需要组合使用。",
     image: "/images/generated/modular-backpack.png",
@@ -42,7 +42,7 @@ const products = [
   },
   {
     id: "robox",
-    title: "ROBOX 远程接入终端",
+    title: "ROBOX 远程控制盒",
     tagline: "连接机器人、现场网络与远程平台",
     description: "负责视频与设备数据回传、网络接入和远程控制，让现场机器人稳定接入上层平台。",
     image: "/images/generated/robox.png",
@@ -154,10 +154,10 @@ export function TianrongScenarioPage() {
                 initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.65, delay: 0.08 }}
-                className="cjk-heading max-w-4xl text-5xl font-light leading-[1.08] md:text-6xl"
+                className="cjk-heading max-w-4xl text-4xl font-semibold leading-[1.08] sm:text-5xl md:text-6xl"
               >
-                <span className="block">机器人<span className="keep-phrase">软硬件产品</span></span>
-                <span className="block">与<span className="keep-phrase">技术集成商</span></span>
+                <span className="block keep-phrase">机器人软硬件产品</span>
+                <span className="block keep-phrase">与技术集成商</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
@@ -289,7 +289,7 @@ export function TianrongScenarioPage() {
 
         <RevealSection id="robox" className="bg-white py-20">
           <SectionHeading
-            title={<span className="keep-phrase">ROBOX 远程接入终端</span>}
+            title={<span className="keep-phrase">ROBOX 远程控制盒</span>}
             description={<>将机器人、<span className="keep-phrase">现场网络</span>与<span className="keep-phrase">远程管理平台</span>安全连接，实现视频、<span className="keep-phrase">设备状态</span>和<span className="keep-phrase">告警数据</span>回传，并支持<span className="keep-phrase">远程诊断</span>、<span className="keep-phrase">配置与控制</span>。</>}
             align="left"
           />
@@ -300,7 +300,7 @@ export function TianrongScenarioPage() {
                 <div className="relative flex h-full min-h-[500px] items-center justify-center p-8 md:min-h-[560px] md:p-12">
                   <Image
                     src="/images/generated/robox.png"
-                    alt="ROBOX 远程接入终端"
+                    alt="ROBOX 远程控制盒"
                     width={860}
                     height={640}
                     className="max-h-[360px] w-full object-contain"
