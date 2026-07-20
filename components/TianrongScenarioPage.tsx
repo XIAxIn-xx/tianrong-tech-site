@@ -14,24 +14,12 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import DotField from "@/components/DotField";
+import { TianrongHeader } from "@/components/TianrongHeader";
 
 const DynamicHeroRobotPreview = dynamic(
   () => import("@/components/hero/hero-robot-preview").then((module) => module.HeroRobotPreview),
   { ssr: false }
 );
-
-const nav = [
-  ["首页", "#top"],
-  ["产品矩阵", "#matrix"],
-  ["本体系列", "#bodies"],
-  ["模块载荷", "#modules"],
-  ["ROBOX", "#robox"],
-  ["调度平台", "#rsp"],
-  ["实践案例", "#case"],
-  ["关于天戎", "#about"],
-  ["联系我们", "#contact"]
-];
-
 
 const products = [
   {
@@ -45,7 +33,7 @@ const products = [
   },
   {
     id: "payload-modules",
-    title: "任务载荷模块",
+    title: "模块化载荷",
     tagline: "按任务灵活组合的功能模块",
     description: "可见光、热成像、气体检测、通信、计算和广播模块可独立选配，也可根据项目需要组合使用。",
     image: "/images/generated/modular-backpack.png",
@@ -54,7 +42,7 @@ const products = [
   },
   {
     id: "robox",
-    title: "ROBOX 远程控制盒",
+    title: "ROBOX 远程接入终端",
     tagline: "连接机器人、现场网络与远程平台",
     description: "负责视频与设备数据回传、网络接入和远程控制，让现场机器人稳定接入上层平台。",
     image: "/images/generated/robox.png",
@@ -133,28 +121,7 @@ const aboutItems = [
 export function TianrongScenarioPage() {
   return (
     <div id="top" className="tianrong-page min-h-screen bg-white text-[#161616]">
-      <header className="sticky top-0 z-50 border-b border-[#E0E0E0] bg-white/95 backdrop-blur">
-        <div className="mx-auto flex h-16 w-[min(1240px,calc(100%-32px))] items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/images/tianrong/tianrong-logo.png"
-              alt="天戎科技"
-              width={1080}
-              height={820}
-              priority
-              className="h-9 w-11 shrink-0 object-contain"
-            />
-            <span className="text-base font-semibold">天戎科技</span>
-          </Link>
-          <nav className="hidden items-center gap-5 text-[15px] text-[#525252] lg:flex">
-            {nav.map(([label, href]) => (
-              <a key={label} href={href} className="hover:text-[#0F62FE]">
-                {label}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </header>
+      <TianrongHeader />
 
       <main>
         <section className="relative overflow-hidden border-b border-[#E0E0E0] bg-[#F4F4F4]">
@@ -181,29 +148,29 @@ export function TianrongScenarioPage() {
               glowColor="#93c5fd"
             />
           </div>
-          <div className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] w-[min(1240px,calc(100%-32px))] items-center gap-8 py-16 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="relative z-10 mx-auto grid min-h-[calc(100vh-4.625rem)] w-[min(1240px,calc(100%-32px))] items-center gap-8 py-16 lg:grid-cols-[0.8fr_1.2fr]">
             <div className="relative z-10">
               <motion.h1
                 initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.65, delay: 0.08 }}
-                className="max-w-4xl text-5xl font-light leading-[1.08] md:text-6xl"
+                className="cjk-heading max-w-4xl text-5xl font-light leading-[1.08] md:text-6xl"
               >
-                <span className="block">机器人软硬件产品</span>
-                <span className="block">与技术集成商</span>
+                <span className="block">机器人<span className="keep-phrase">软硬件产品</span></span>
+                <span className="block">与<span className="keep-phrase">技术集成商</span></span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.65, delay: 0.16 }}
-                className="mt-7 max-w-2xl text-lg font-medium leading-8 text-[#393939] md:text-xl"
+                className="cjk-body mt-7 max-w-2xl text-lg font-medium leading-8 text-[#393939] md:text-xl"
               >
-                聚焦机器人本体、任务载荷、ROBOX 远程控制盒与机器人调度平台，为合作伙伴提供可组合、可集成、可扩展的软硬件产品。
+                聚焦<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">任务载荷</span>、<span className="keep-phrase">ROBOX 远程控制盒</span>与<span className="keep-phrase">机器人调度平台</span>，为<span className="keep-phrase">合作伙伴</span>提供可组合、可集成、可扩展的<span className="keep-phrase">软硬件产品</span>。
               </motion.p>
               <div className="mt-8">
                 <Button asChild size="lg" className="rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
                   <a href="#matrix">
-                    查看产品矩阵
+                    <span className="keep-phrase">查看产品矩阵</span>
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
@@ -226,12 +193,13 @@ export function TianrongScenarioPage() {
               className="max-w-2xl border-l-2 border-[#78A9FF] pl-5 md:pl-7"
             >
               <p className="text-sm font-semibold tracking-[0.16em] text-[#B9D4FF]">现场验证</p>
-              <h2 className="mt-4 max-w-2xl text-4xl font-semibold leading-tight md:text-6xl">
-                让机器人进入真实作业现场
+              <h2 className="cjk-heading mt-4 max-w-2xl text-4xl font-semibold leading-tight md:text-6xl">
+                <span className="block">让机器人进入</span>
+                <span className="block keep-phrase">真实作业现场</span>
               </h2>
-              <p className="mt-5 max-w-xl text-lg leading-8 text-white/80">从移动平台、任务载荷到远程管理，产品能力在真实环境中协同工作。</p>
+              <p className="cjk-body mt-5 max-w-xl text-lg leading-8 text-white/80">从<span className="keep-phrase">移动平台</span>、<span className="keep-phrase">任务载荷</span>到<span className="keep-phrase">远程管理</span>，<span className="keep-phrase">产品能力</span>在<span className="keep-phrase">真实环境</span>中<span className="keep-phrase">协同工作</span>。</p>
               <a href="#case" className="mt-7 inline-flex items-center text-base font-semibold text-white transition hover:text-[#B9D4FF]">
-                查看实践案例
+                <span className="keep-phrase">查看实践案例</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </motion.div>
@@ -240,8 +208,8 @@ export function TianrongScenarioPage() {
 
         <RevealSection id="matrix" className="bg-white py-20">
           <SectionHeading
-            title="机器人巡检软硬件产品体系"
-            description="从机器人本体、任务载荷到远程接入和调度平台，覆盖机器人巡检项目所需的核心产品。"
+            title={<>机器人巡检<span className="keep-phrase">软硬件产品</span>体系</>}
+            description={<>从<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">任务载荷</span>到<span className="keep-phrase">远程接入</span>和<span className="keep-phrase">调度平台</span>，覆盖机器人巡检项目所需的<span className="keep-phrase">核心产品</span>。</>}
           />
           <ProductShowcase />
         </RevealSection>
@@ -249,7 +217,7 @@ export function TianrongScenarioPage() {
         <RevealSection id="robot-series" className="bg-[#F4F4F4] py-20 md:py-24">
           <span id="bodies" className="block scroll-mt-20" />
           <SectionHeading
-            title="四足机器人本体"
+            title={<span className="keep-phrase">四足机器人本体</span>}
             align="left"
           />
           <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
@@ -274,8 +242,8 @@ export function TianrongScenarioPage() {
                 </div>
                 <div className="pt-5">
                   <div className="text-sm font-semibold tracking-[0.12em] text-[#0F62FE]">{item.model}</div>
-                  <h3 className="mt-2 text-2xl font-semibold">{item.name}</h3>
-                  <p className="mt-2 max-h-0 overflow-hidden text-base leading-7 text-[#525252] opacity-0 transition-all duration-300 max-md:max-h-16 max-md:opacity-100 md:group-hover:max-h-16 md:group-hover:opacity-100 md:group-focus-within:max-h-16 md:group-focus-within:opacity-100">{item.note}</p>
+                  <h3 className="cjk-heading keep-phrase mt-2 text-2xl font-semibold">{item.name}</h3>
+                  <p className="cjk-body mt-2 max-h-0 overflow-hidden text-base leading-7 text-[#525252] opacity-0 transition-all duration-300 max-md:max-h-16 max-md:opacity-100 md:group-hover:max-h-16 md:group-hover:opacity-100 md:group-focus-within:max-h-16 md:group-focus-within:opacity-100">{item.note}</p>
                 </div>
               </motion.article>
             ))}
@@ -285,8 +253,8 @@ export function TianrongScenarioPage() {
         <RevealSection id="payload-modules" className="bg-white py-20 md:py-24">
           <span id="modules" className="block scroll-mt-20" />
           <SectionHeading
-            title="面向巡检任务的模块化载荷"
-            description="根据巡检、检测、通信和现场交互需求，灵活选择和组合不同功能模块。"
+            title={<>面向巡检任务的 <span className="keep-phrase">模块化载荷</span></>}
+            description={<>根据巡检、检测、通信和现场交互需求，灵活选择和组合不同功能模块。</>}
             align="left"
           />
           <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
@@ -310,9 +278,9 @@ export function TianrongScenarioPage() {
                   />
                 </div>
                 <div className="pt-5">
-                  <h3 className="text-2xl font-semibold">{item.name}</h3>
-                  <p className="mt-2 text-base font-semibold text-[#0F62FE]">{item.tag}</p>
-                  <p className="mt-2 max-h-0 overflow-hidden text-base leading-7 text-[#525252] opacity-0 transition-all duration-300 max-md:max-h-16 max-md:opacity-100 md:group-hover:max-h-16 md:group-hover:opacity-100 md:group-focus-within:max-h-16 md:group-focus-within:opacity-100">{item.note}</p>
+                  <h3 className="cjk-heading keep-phrase text-2xl font-semibold">{item.name}</h3>
+                  <p className="cjk-body keep-phrase mt-2 text-base font-semibold text-[#0F62FE]">{item.tag}</p>
+                  <p className="cjk-body mt-2 max-h-0 overflow-hidden text-base leading-7 text-[#525252] opacity-0 transition-all duration-300 max-md:max-h-16 max-md:opacity-100 md:group-hover:max-h-16 md:group-hover:opacity-100 md:group-focus-within:max-h-16 md:group-focus-within:opacity-100">{item.note}</p>
                 </div>
               </motion.article>
             ))}
@@ -321,8 +289,8 @@ export function TianrongScenarioPage() {
 
         <RevealSection id="robox" className="bg-white py-20">
           <SectionHeading
-            title="ROBOX 远程控制盒"
-            description="将机器人、现场网络与远程管理平台安全连接，实现视频、设备状态和告警数据回传，并支持远程诊断、配置与控制。"
+            title={<span className="keep-phrase">ROBOX 远程接入终端</span>}
+            description={<>将机器人、<span className="keep-phrase">现场网络</span>与<span className="keep-phrase">远程管理平台</span>安全连接，实现视频、<span className="keep-phrase">设备状态</span>和<span className="keep-phrase">告警数据</span>回传，并支持<span className="keep-phrase">远程诊断</span>、<span className="keep-phrase">配置与控制</span>。</>}
             align="left"
           />
           <div className="mt-12">
@@ -332,7 +300,7 @@ export function TianrongScenarioPage() {
                 <div className="relative flex h-full min-h-[500px] items-center justify-center p-8 md:min-h-[560px] md:p-12">
                   <Image
                     src="/images/generated/robox.png"
-                    alt="ROBOX 远程控制盒"
+                    alt="ROBOX 远程接入终端"
                     width={860}
                     height={640}
                     className="max-h-[360px] w-full object-contain"
@@ -343,9 +311,9 @@ export function TianrongScenarioPage() {
                 <div className="border-b border-[#E0E0E0] pb-6">
                   <div className="text-sm font-semibold tracking-[0.12em] text-[#0F62FE]">连接链路</div>
                   <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center">
-                    {["机器人与现场设备", "ROBOX ", "机器人调度平台 "].map((item, index) => (
+                    {["机器人与现场设备", "ROBOX", "机器人调度平台"].map((item, index) => (
                       <div key={item} className="flex items-center gap-3">
-                        <div className="px-1 py-3 text-base font-semibold text-[#393939]">{item}</div>
+                        <div className="keep-phrase px-1 py-3 text-base font-semibold text-[#393939]">{item}</div>
                         {index < 2 && <ArrowRight className="hidden h-4 w-4 shrink-0 text-[#0F62FE] md:block" />}
                       </div>
                     ))}
@@ -364,8 +332,8 @@ export function TianrongScenarioPage() {
         <RevealSection id="rsp-platform" className="bg-[#F4F4F4] py-20">
           <span id="rsp" className="block scroll-mt-20" />
           <SectionHeading
-            title="机器人调度平台"
-            description="集中管理机器人、地图、任务和现场数据，支持多机器人任务编排、运行监控、异常处理和远程运维。"
+            title={<span className="keep-phrase">机器人调度平台</span>}
+            description={<><span className="keep-phrase">集中管理</span>机器人、地图、任务和现场数据，支持<span className="keep-phrase">多机器人任务编排</span>、<span className="keep-phrase">运行监控</span>、<span className="keep-phrase">异常处理</span>和<span className="keep-phrase">远程运维</span>。</>}
             align="left"
           />
           <div className="mt-12 grid gap-10 lg:grid-cols-[1.18fr_0.82fr] lg:items-start">
@@ -413,8 +381,8 @@ export function TianrongScenarioPage() {
                 className="max-w-3xl"
               >
                 
-                <h2 className="mt-4 text-4xl font-semibold leading-tight md:text-6xl [text-wrap:balance]">物流园区机器人夜间巡检实践</h2>
-                <p className="mt-5 max-w-2xl text-lg leading-8 text-white/80">围绕园区道路、仓储外围及重点点位开展巡检，通过机器人连续作业与远程管理，提升巡检覆盖效率，减少重复性人工投入。</p>
+                <h2 className="cjk-heading mt-4 text-4xl font-semibold leading-tight md:text-6xl [text-wrap:balance]"><span className="block">物流园区机器人</span><span className="block keep-phrase">夜间巡检实践</span></h2>
+                <p className="cjk-body mt-5 max-w-2xl text-lg leading-8 text-white/80">围绕<span className="keep-phrase">园区道路</span>、<span className="keep-phrase">仓储外围</span>及<span className="keep-phrase">重点点位</span>开展巡检，通过机器人<span className="keep-phrase">连续作业</span>与<span className="keep-phrase">远程管理</span>，提升<span className="keep-phrase">巡检覆盖效率</span>，减少<span className="keep-phrase">重复性人工投入</span>。</p>
                 <div className="mt-8 grid gap-4 border-t border-white/25 pt-6 md:grid-cols-3">
                   {casePoints.map((item) => (
                     <p key={item} className="border-l border-[#78A9FF] pl-4 text-base leading-7 text-white/85">{item}</p>
@@ -434,35 +402,35 @@ export function TianrongScenarioPage() {
 
         <RevealSection id="about" className="bg-[#F4F4F4] py-20">
           <SectionHeading
-            title="专注机器人产品与平台研发"
-            description="围绕机器人本体、现场接入和调度平台，为项目提供从产品选型到系统集成的技术支持。"
+            title={<>专注<span className="keep-phrase">机器人产品</span>与平台研发</>}
+            description={<>围绕<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">现场接入</span>和<span className="keep-phrase">调度平台</span>，为项目提供从<span className="keep-phrase">产品选型</span>到<span className="keep-phrase">系统集成</span>的<span className="keep-phrase">技术支持</span>。</>}
             align="left"
           />
           <div className="mt-10 grid gap-3 md:grid-cols-2">
             {aboutItems.map((item) => (
               <div key={item} className="flex gap-3 border-t border-[#D8E6F5] py-5">
                 <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#0F62FE]" />
-                <p className="text-lg font-semibold">{item}</p>
+                <p className="cjk-body text-lg font-semibold">{item}</p>
               </div>
             ))}
           </div>
         </RevealSection>
 
         <section id="contact" className="bg-[#161616] py-20 text-white">
-          <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
-              <h2 className="text-4xl font-semibold leading-tight md:text-6xl">为您的项目选择合适的机器人产品与平台</h2>
+              <h2 className="cjk-heading text-4xl font-semibold leading-tight md:text-6xl"><span className="block">为您的项目选择合适的</span><span className="block keep-phrase">机器人产品与平台</span></h2>
             </div>
             <div className="border-t border-white/20 pt-6 text-white">
               <div className="grid gap-4 md:grid-cols-2">
-                <Field label="合作方向" value="机器人本体 / 任务载荷 / ROBOX / 机器人调度平台" />
-                <Field label="应用行业" value="安防 / 巡检 / 仓储 / 应急 " />
-                <Field label="能力需求" value="硬件模块 / 软件平台 / 接口集成" />
-                <Field label="项目阶段" value="评估 / 试点 / 批量" />
+                <Field className="md:col-span-2" label="合作方向" value={<><span className="keep-phrase">机器人本体</span> / <span className="keep-phrase">任务载荷</span> / <span className="keep-phrase">ROBOX</span> / <span className="keep-phrase">机器人调度平台</span></>} />
+                <Field label="应用行业" value={<><span className="keep-phrase">安防</span> / <span className="keep-phrase">巡检</span> / <span className="keep-phrase">仓储</span> / <span className="keep-phrase">应急</span></>} />
+                <Field label="能力需求" value={<><span className="keep-phrase">硬件模块</span> / <span className="keep-phrase">软件平台</span> / <span className="keep-phrase">接口集成</span></>} />
+                <Field label="项目阶段" value={<><span className="keep-phrase">评估</span> / <span className="keep-phrase">试点</span> / <span className="keep-phrase">批量</span></>} />
               </div>
               <Button asChild size="lg" className="mt-6 rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
                 <a href="mailto:contact@tianrongtech.com">
-                  联系天戎科技
+                  <span className="keep-phrase">联系天戎科技</span>
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
@@ -646,11 +614,11 @@ function ProductShowcase() {
             >
               <div>
                 <div className="text-base font-semibold text-[#0F62FE]">产品 {String(active + 1).padStart(2, "0")}</div>
-                <h3 className="mt-3 text-3xl font-semibold leading-tight md:text-4xl">{activeProduct.title}</h3>
+                <h3 className="cjk-heading keep-phrase mt-3 text-3xl font-semibold leading-tight md:text-4xl">{activeProduct.title}</h3>
               </div>
               <div>
-                <div className="text-lg font-semibold text-[#1F4F82]">{activeProduct.tagline}</div>
-                <p className="mt-3 max-w-3xl leading-7 text-[#525252]">{activeProduct.description}</p>
+                <div className="cjk-heading text-lg font-semibold text-[#1F4F82]">{activeProduct.tagline}</div>
+                <p className="cjk-body mt-3 max-w-3xl leading-7 text-[#525252]">{activeProduct.description}</p>
               </div>
               <Button asChild size="lg" className="w-fit rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
                 <a
@@ -660,7 +628,7 @@ function ProductShowcase() {
                     scrollToTarget(activeProduct.target);
                   }}
                 >
-                  {activeProduct.cta}
+                  <span className="keep-phrase">{activeProduct.cta}</span>
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
@@ -855,13 +823,13 @@ function RevealSection({ id, className, children }: { id?: string; className: st
   );
 }
 
-function SectionHeading({ title, description, align = "center" }: { title: React.ReactNode; description?: string; align?: "center" | "left" }) {
+function SectionHeading({ title, description, align = "center" }: { title: React.ReactNode; description?: React.ReactNode; align?: "center" | "left" }) {
   const isLeftAligned = align === "left";
 
   return (
     <div className={`section-heading ${isLeftAligned ? "max-w-3xl text-left" : "mx-auto max-w-4xl text-center"}`}>
-      <h2 className="section-title text-4xl font-semibold leading-tight md:text-5xl">{title}</h2>
-      {description && <p className={`${isLeftAligned ? "mx-0" : "mx-auto"} section-description mt-5 max-w-3xl text-lg leading-8 text-[#525252]`}>{description}</p>}
+      <h2 className="cjk-heading section-title text-4xl font-semibold leading-tight md:text-5xl">{title}</h2>
+      {description && <p className={`${isLeftAligned ? "mx-0" : "mx-auto"} cjk-body section-description mt-5 max-w-3xl text-lg leading-8 text-[#525252]`}>{description}</p>}
     </div>
   );
 }
@@ -883,19 +851,19 @@ function TianrongFooter() {
           </Link>
         </div>
         <div>
-          <h2 className="text-base font-semibold text-[#161616]">快速浏览</h2>
+          <h2 className="cjk-heading whitespace-nowrap text-base font-semibold text-[#161616]">快速浏览</h2>
           <div className="mt-4 flex flex-col items-start gap-3 text-base text-[#525252]">
-            <a href="#matrix" className="hover:text-[#0F62FE]">产品矩阵</a>
-            <a href="#case" className="hover:text-[#0F62FE]">实践案例</a>
-            <a href="#contact" className="hover:text-[#0F62FE]">联系我们</a>
+            <a href="#matrix" className="keep-phrase hover:text-[#0F62FE]">产品矩阵</a>
+            <a href="#case" className="keep-phrase hover:text-[#0F62FE]">实践案例</a>
+            <a href="#contact" className="keep-phrase hover:text-[#0F62FE]">联系我们</a>
           </div>
         </div>
         <div>
-          <h2 className="text-base font-semibold text-[#161616]">联系天戎</h2>
+          <h2 className="cjk-heading whitespace-nowrap text-base font-semibold text-[#161616]">联系天戎</h2>
           <a href="mailto:contact@tianrongtech.com" className="mt-4 inline-block whitespace-nowrap text-base text-[#525252] hover:text-[#0F62FE]">contact@tianrongtech.com</a>
         </div>
       </div>
-      <div className="border-t border-[#E0E0E0] py-5 text-center text-sm text-[#737373]">Copyright © 2026 杭州天戎智能科技有限公司版权所有</div>
+      <div className="border-t border-[#E0E0E0] py-5 text-center text-sm text-[#737373]">Copyright © 2026 <span className="keep-phrase">杭州天戎智能科技有限公司</span> 版权所有</div>
     </footer>
   );
 }
@@ -916,19 +884,19 @@ function FeatureItem({
       <div className="flex gap-3">
         <span className="shrink-0 text-base font-semibold text-[#0F62FE]">{String(index + 1).padStart(2, "0")}</span>
         <div>
-          <h3 className="text-lg font-semibold text-[#161616]">{title}</h3>
-          <p className="card-description mt-2 text-base leading-7 text-[#525252]">{description}</p>
+          <h3 className="cjk-heading keep-phrase text-lg font-semibold text-[#161616]">{title}</h3>
+          <p className="cjk-body card-description mt-2 text-base leading-7 text-[#525252]">{description}</p>
         </div>
       </div>
     </article>
   );
 }
 
-function Field({ label, value }: { label: string; value: string }) {
+function Field({ label, value, className = "" }: { label: string; value: React.ReactNode; className?: string }) {
   return (
-    <div className="border-t border-white/15 py-4">
+    <div className={`border-t border-white/15 py-4 ${className}`}>
       <div className="text-base font-semibold text-[#9CC4FF]">{label}</div>
-      <div className="mt-2 text-base leading-7 text-white/75">{value}</div>
+      <div className="cjk-body mt-2 text-base leading-7 text-white/75">{value}</div>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { TianrongHeader } from "@/components/TianrongHeader";
 import { getTianrongContent, getTianrongIcon, type TianrongLocale } from "@/data/tianrong";
 
 type TianrongPageProps = {
@@ -13,24 +13,8 @@ export function TianrongPage({ locale }: TianrongPageProps) {
   const content = getTianrongContent(locale);
 
   return (
-    <div className="min-h-screen bg-[#F4F6F8] text-[#101820]">
-      <header className="sticky top-0 z-50 border-b border-[#DDE3EA] bg-[#F8FAFC]/92 backdrop-blur">
-        <div className="mx-auto flex h-16 w-[min(1180px,calc(100%-32px))] items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <span className="grid h-9 w-9 place-items-center rounded border border-[#1C3F5F] bg-[#10283E] text-sm font-black text-white">
-              TR
-            </span>
-            <span className="text-base font-black tracking-normal">天戎科技</span>
-          </Link>
-          <nav className="hidden items-center gap-6 text-sm text-[#52616F] lg:flex">
-            {content.nav.map((item, index) => (
-              <a key={item} href={`#section-${index}`} className="hover:text-[#0B5CAD]">
-                {item}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </header>
+    <div className="tianrong-page min-h-screen bg-[#F4F6F8] text-[#101820]">
+      <TianrongHeader brand="mark" basePath="/" containerClassName="w-[min(1180px,calc(100%-32px))]" />
 
       <main>
         <section className="relative overflow-hidden border-b border-[#DDE3EA] bg-[#EEF2F5]">

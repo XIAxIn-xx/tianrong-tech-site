@@ -46,7 +46,7 @@ body {
   overflow-wrap: normal;
   text-wrap: balance;
   word-break: normal;
-  word-break: auto-phrase;
+  hyphens: none;
 }
 
 .tianrong-page :where(p, a, button) {
@@ -54,7 +54,29 @@ body {
   overflow-wrap: break-word;
   text-wrap: pretty;
   word-break: normal;
-  word-break: auto-phrase;
+  hyphens: none;
+}
+
+.cjk-heading {
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+  text-wrap: balance;
+  text-align: left;
+}
+
+.cjk-body {
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+  text-wrap: pretty;
+  text-align: left;
+}
+
+.keep-phrase {
+  white-space: nowrap;
 }
 
 .tianrong-page .section-description,
