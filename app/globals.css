@@ -63,7 +63,6 @@ body {
   overflow-wrap: normal;
   hyphens: none;
   text-wrap: balance;
-  text-align: left;
 }
 
 .cjk-body {
@@ -72,7 +71,6 @@ body {
   overflow-wrap: break-word;
   hyphens: none;
   text-wrap: pretty;
-  text-align: left;
 }
 
 .keep-phrase {
