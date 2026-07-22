@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 
@@ -10,9 +10,15 @@ const VIDEO_SRC = "/videos/tianrong/s07-complex-scene-2.mp4";
 const POSTER_SRC = "/images/tianrong/industrial-inspection.png";
 
 export function VideoHero() {
+  const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoEnabled, setVideoEnabled] = useState(false);
   const reduceMotion = useReducedMotion();
+  const { scrollYProgress: heroScrollProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  const arrowOpacity = useTransform(heroScrollProgress, [0, 0.65, 1], [1, 0.72, 0]);
 
   useEffect(() => {
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -36,7 +42,7 @@ export function VideoHero() {
   }, [videoEnabled]);
 
   return (
-    <section className="relative h-[100svh] min-h-[560px] overflow-hidden bg-[#101820] text-white" aria-labelledby="video-hero-title">
+    <section ref={heroRef} className="relative h-[100svh] min-h-[560px] overflow-hidden bg-[#101820] text-white" aria-labelledby="video-hero-title">
       <video
         ref={videoRef}
         aria-hidden="true"
@@ -92,17 +98,16 @@ export function VideoHero() {
         </div>
       </div>
 
-      <motion.a
-        href="#matrix"
-        aria-label="向下浏览产品矩阵"
+      <motion.div
+        aria-hidden="true"
         initial={false}
-        animate={reduceMotion ? { y: 0 } : { y: [0, 5, 0] }}
+        animate={reduceMotion ? { y: 0 } : { y: [0, 3, 0] }}
         transition={reduceMotion ? { duration: 0 } : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center text-white/75 transition-colors hover:text-white md:bottom-8"
+        style={{ opacity: reduceMotion ? 0.72 : arrowOpacity }}
+        className="pointer-events-none absolute bottom-7 left-1/2 z-10 grid h-16 w-16 -translate-x-1/2 place-items-center select-none rounded-full border border-white/30 bg-white/10 text-white/80 shadow-[0_10px_32px_rgba(0,0,0,0.2)] backdrop-blur-md md:bottom-8"
       >
-        <span className="h-8 w-px bg-white/60" />
-        <ChevronDown className="mt-1 h-4 w-4" />
-      </motion.a>
+        <ChevronDown className="h-9 w-9" strokeWidth={1.4} />
+      </motion.div>
     </section>
   );
 }

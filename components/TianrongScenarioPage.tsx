@@ -10,7 +10,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import DotField from "@/components/DotField";
@@ -191,13 +191,13 @@ export function TianrongScenarioPage() {
         </section>}
         {USE_VIDEO_HERO && <VideoHero />}
 
-        <RevealSection id="matrix" className="bg-white py-20">
+        <ScrollDrivenSection id="matrix" className="bg-white py-20">
           <SectionHeading
             title={<>机器人巡检<span className="keep-phrase">软硬件产品</span>体系</>}
             description={<>从<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">任务载荷</span>到<span className="keep-phrase">远程接入</span>和<span className="keep-phrase">调度平台</span>，覆盖机器人巡检项目所需的<span className="keep-phrase">核心产品</span>。</>}
           />
           <ProductShowcase />
-        </RevealSection>
+        </ScrollDrivenSection>
 
         <RevealSection id="robot-series" className="bg-[#F4F4F4] py-20 md:py-24">
           <span id="bodies" className="block scroll-mt-20" />
@@ -738,6 +738,30 @@ function RevealSection({ id, className, children }: { id?: string; className: st
     >
       <div className="mx-auto w-[min(1240px,calc(100%-32px))]">{children}</div>
     </motion.section>
+  );
+}
+
+function ScrollDrivenSection({ id, className, children }: { id?: string; className: string; children: React.ReactNode }) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "start start"]
+  });
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [112, 0]);
+
+  return (
+    <div ref={sectionRef}>
+      <motion.section
+        id={id}
+        className={`module-section ${className}`}
+        initial={false}
+        style={reduceMotion ? undefined : { opacity, y }}
+      >
+        <div className="mx-auto w-[min(1240px,calc(100%-32px))]">{children}</div>
+      </motion.section>
+    </div>
   );
 }
 
