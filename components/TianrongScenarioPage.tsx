@@ -15,11 +15,14 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import DotField from "@/components/DotField";
 import { TianrongHeader } from "@/components/TianrongHeader";
+import VideoHero from "@/components/hero/video-hero";
 
 const DynamicHeroRobotPreview = dynamic(
   () => import("@/components/hero/hero-robot-preview").then((module) => module.HeroRobotPreview),
   { ssr: false }
 );
+
+const USE_VIDEO_HERO = true;
 
 const products = [
   {
@@ -124,7 +127,7 @@ export function TianrongScenarioPage() {
       <TianrongHeader />
 
       <main>
-        <section className="relative overflow-hidden border-b border-[#E0E0E0] bg-[#F4F4F4]">
+        {!USE_VIDEO_HERO && <section className="relative overflow-hidden border-b border-[#E0E0E0] bg-[#F4F4F4]">
           <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_74%_54%,rgba(37,99,235,0.28),transparent_38%),linear-gradient(135deg,#ffffff_0%,#f3f8ff_46%,#dbeafe_100%)]" />
           <div
             className="pointer-events-none absolute inset-0 z-[1] opacity-90"
@@ -185,7 +188,8 @@ export function TianrongScenarioPage() {
 
             <ProductStage />
           </div>
-        </section>
+        </section>}
+        {USE_VIDEO_HERO && <VideoHero />}
 
         <section className="relative min-h-[460px] overflow-hidden bg-[#161616] text-white md:min-h-[580px]">
           <LazyPatrolVideo />
