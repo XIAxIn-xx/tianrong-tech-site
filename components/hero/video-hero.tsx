@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
@@ -61,10 +61,9 @@ export function VideoHero() {
             initial={reduceMotion ? false : { opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={reduceMotion ? { duration: 0.2 } : { duration: 0.65, delay: 0.08 }}
-            className="cjk-heading text-[clamp(2rem,5.5vw,4.5rem)] font-semibold leading-[1.08]"
+            className="cjk-heading text-[clamp(1.35rem,4.8vw,3.75rem)] font-semibold leading-[1.12]"
           >
-            <span className="keep-phrase">机器人软硬件产品</span>
-            <span className="mx-2 sm:mx-4">与技术集成商</span>
+            <span className="keep-phrase">机器人软硬件产品与技术集成商</span>
           </motion.h1>
 
           <motion.p
@@ -78,20 +77,32 @@ export function VideoHero() {
 
           <div className="mt-7 flex flex-nowrap justify-center gap-3">
             <Button asChild size="lg" className="rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
-              <a href="#matrix">
-                <span className="keep-phrase">查看产品矩阵</span>
+              <a href="#contact">
+                <span className="keep-phrase">项目咨询</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-none border-white/70 bg-transparent text-white shadow-none hover:bg-white/10">
-              <a href="#contact">
-                <span className="keep-phrase">项目咨询</span>
+            <Button asChild size="lg" variant="outline" className="rounded-none border-white/75 bg-transparent text-white shadow-none hover:bg-white/10">
+              <a href="#matrix">
+                <span className="keep-phrase">查看产品矩阵</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
           </div>
         </div>
       </div>
+
+      <motion.a
+        href="#matrix"
+        aria-label="向下浏览产品矩阵"
+        initial={false}
+        animate={reduceMotion ? { y: 0 } : { y: [0, 5, 0] }}
+        transition={reduceMotion ? { duration: 0 } : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center text-white/75 transition-colors hover:text-white md:bottom-8"
+      >
+        <span className="h-8 w-px bg-white/60" />
+        <ChevronDown className="mt-1 h-4 w-4" />
+      </motion.a>
     </section>
   );
 }

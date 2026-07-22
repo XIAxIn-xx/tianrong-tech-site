@@ -763,10 +763,12 @@ function TianrongFooter() {
               alt="天戎科技"
               width={1080}
               height={820}
-              className="h-9 w-11 shrink-0 object-contain"
+              className="h-12 w-16 shrink-0 object-contain"
+              style={{ filter: "brightness(0) saturate(100%) invert(31%) sepia(97%) saturate(3697%) hue-rotate(211deg) brightness(98%) contrast(107%)" }}
             />
             <span className="text-base font-semibold">天戎科技</span>
           </Link>
+          <p className="mt-5 max-w-xs text-sm leading-6 text-[#737373]">机器人本体、任务载荷、远程接入与调度平台，为项目提供可组合、可集成的软硬件能力。</p>
         </div>
         <div>
           <h2 className="cjk-heading whitespace-nowrap text-base font-semibold text-[#161616]">快速浏览</h2>
