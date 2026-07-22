@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
   ArrowRight,
-  CheckCircle2,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -112,13 +111,6 @@ const caseImages = [
   ["/images/tianrong/final-assets/logistics-yard-road.png", "物流园区路线实践"],
   ["/images/tianrong/final-assets/logistics-warehouse-patrol.png", "仓储物流园区巡检路线"],
   ["/images/tianrong/final-assets/logistics-gate-patrol.png", "园区出入口巡检实践"]
-];
-
-const aboutItems = [
-  "机器人本体与模块化硬件研发",
-  "ROBOX 现场接入与远程控制",
-  "机器人调度平台与系统集成",
-  "为项目提供选型、接口和技术支持"
 ];
 
 export function TianrongScenarioPage() {
@@ -385,19 +377,58 @@ export function TianrongScenarioPage() {
           </div>
         </section>
 
-        <RevealSection id="about" className="bg-[#F4F4F4] py-20">
-          <SectionHeading
-            title={<>专注<span className="keep-phrase">机器人产品</span>与平台研发</>}
-            description={<>围绕<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">远程控制盒</span>和<span className="keep-phrase">调度平台</span>，为项目提供从<span className="keep-phrase">产品选型</span>到<span className="keep-phrase">系统集成</span>的<span className="keep-phrase">技术支持</span>。</>}
-            align="left"
-          />
-          <div className="mt-10 grid gap-3 md:grid-cols-2">
-            {aboutItems.map((item) => (
-              <div key={item} className="flex gap-3 border-t border-[#D8E6F5] py-5">
-                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#0F62FE]" />
-                <p className="cjk-body text-lg font-semibold">{item}</p>
+        <RevealSection id="about" className="overflow-hidden bg-[#F1F2F0] py-20 md:py-32">
+          <div className="relative lg:min-h-[720px]">
+            <div className="relative z-10 max-w-[660px]">
+              <div className="text-[13px] font-medium tracking-[0.08em] text-[#737373]">关于天戎</div>
+              <h2 className="cjk-heading mt-8 max-w-[680px] text-[clamp(48px,5.5vw,78px)] font-semibold leading-[1.08] tracking-[-0.04em]">
+                专注于巡检场景的高度定制化解决方案
+              </h2>
+              <div className="cjk-body mt-12 max-w-[660px] space-y-6 text-[17px] leading-[1.9] text-[#4E514F] md:text-[18px]">
+                <p>
+                  天戎科技聚焦巡检场景的高度定制化解决方案，面向物流仓储、公共安全、工业园区等领域，提供能够进入真实作业现场的智能化巡检服务。
+                </p>
+                <p>
+                  公司以 RSP 云控平台、设备传感器与硬件背包集成、数采与分析平台为核心，基于不同厂商的机器狗本体，提供从本体选型、模块集成到远程控制和数据闭环的完整巡检方案。
+                </p>
               </div>
-            ))}
+            </div>
+
+            <div className="relative mt-12 aspect-[3/4] w-full overflow-hidden rounded-[12px] lg:absolute lg:right-0 lg:top-[-38px] lg:mt-0 lg:w-[clamp(340px,34vw,500px)]">
+              <Image
+                src="/images/tianrong/about-office.png"
+                alt="天戎科技办公空间与机器人产品"
+                fill
+                sizes="(max-width: 1023px) 100vw, 34vw"
+                className="object-cover object-center"
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/10 to-transparent" />
+            </div>
+
+            <div className="relative mt-12 h-[180px] overflow-hidden md:h-[210px] lg:mt-0">
+              <Image
+                src="/images/tianrong/location-map.png"
+                alt="天戎科技杭州办公位置卫星图"
+                fill
+                sizes="100vw"
+                className="object-cover object-[50%_54%] grayscale-[0.65] saturate-[0.55] contrast-[0.9] brightness-[0.72]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/5" />
+              <div className="relative z-10 flex h-full flex-col justify-center px-6 text-white md:px-10">
+                <div className="text-lg font-semibold tracking-[0.02em] md:text-xl">杭州 · 天戎科技</div>
+                <div className="mt-2 max-w-[520px] text-sm leading-6 text-white/80 md:text-base">
+                  中国浙江省杭州市上城区新风路与新塘路辅路交叉口北100米
+                </div>
+                <a
+                  href="https://maps.apple.com/?q=%E5%A4%A9%E6%88%8E%E7%A7%91%E6%8A%80%0A%E4%B8%AD%E5%9B%BD%0A%E6%B5%99%E6%B1%9F%E7%9C%81%0A%E6%9D%AD%E5%B7%9E%E5%B8%82%20%E4%B8%8A%E5%9F%8E%E5%8C%BA%0A%E6%96%B0%E9%A3%8E%E8%B7%AF%E4%B8%8E%E6%96%B0%E5%A1%98%E8%B7%AF%E8%BE%85%E8%B7%AF%E4%BA%A4%E5%8F%89%E5%8F%A3%E5%8C%97100%E7%B1%B3&ll=30.287306,120.211700"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex w-fit items-center text-sm font-semibold text-white underline decoration-white/45 underline-offset-4 transition hover:decoration-white md:text-base"
+                >
+                  查看地图 <span aria-hidden="true" className="ml-1">↗</span>
+                </a>
+              </div>
+            </div>
           </div>
         </RevealSection>
 
