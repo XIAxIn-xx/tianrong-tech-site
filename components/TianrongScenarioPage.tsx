@@ -377,12 +377,18 @@ export function TianrongScenarioPage() {
           </div>
         </section>
 
-        <RevealSection id="about" className="overflow-hidden bg-[#F1F2F0] py-20 md:py-32">
+        <RevealSection id="about" className="overflow-hidden bg-[#F1F2F0] pb-0 pt-20 md:pt-32">
           <div className="relative lg:min-h-[720px]">
             <div className="relative z-10 max-w-[660px]">
               <div className="text-[13px] font-medium tracking-[0.08em] text-[#737373]">关于天戎</div>
-              <h2 className="cjk-heading mt-8 max-w-[680px] text-[clamp(48px,5.5vw,78px)] font-semibold leading-[1.08] tracking-[-0.04em]">
-                专注于巡检场景的高度定制化解决方案
+              <h2 className="cjk-heading mt-8 max-w-[720px] text-left text-[clamp(40px,10.5vw,48px)] font-semibold leading-[1.1] tracking-[-0.035em] md:text-[clamp(52px,4.4vw,68px)] md:leading-[1.1]">
+                <span className="block lg:whitespace-nowrap">
+                  专注于<span className="keep-phrase">巡检场景</span>的
+                </span>
+                <span className="block lg:whitespace-nowrap">
+                  <span className="keep-phrase">高度定制化</span>{" "}
+                  <span className="keep-phrase">解决方案</span>
+                </span>
               </h2>
               <div className="cjk-body mt-12 max-w-[660px] space-y-6 text-[17px] leading-[1.9] text-[#4E514F] md:text-[18px]">
                 <p>
@@ -405,7 +411,7 @@ export function TianrongScenarioPage() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/10 to-transparent" />
             </div>
 
-            <div className="relative mt-12 h-[180px] overflow-hidden md:h-[210px] lg:mt-0">
+            <div className="relative left-1/2 mt-12 h-[190px] w-screen -translate-x-1/2 overflow-hidden bg-[#161616] md:h-[220px] lg:mt-0">
               <Image
                 src="/images/tianrong/location-map.png"
                 alt="天戎科技杭州办公位置卫星图"
@@ -413,8 +419,9 @@ export function TianrongScenarioPage() {
                 sizes="100vw"
                 className="object-cover object-[50%_54%] grayscale-[0.65] saturate-[0.55] contrast-[0.9] brightness-[0.72]"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/5" />
-              <div className="relative z-10 flex h-full flex-col justify-center px-6 text-white md:px-10">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#161616]/70 via-[#161616]/24 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#161616] to-transparent" />
+              <div className="relative z-10 mx-auto flex h-full w-[min(1240px,calc(100%-32px))] flex-col justify-center text-white">
                 <div className="text-lg font-semibold tracking-[0.02em] md:text-xl">杭州 · 天戎科技</div>
                 <div className="mt-2 max-w-[520px] text-sm leading-6 text-white/80 md:text-base">
                   中国浙江省杭州市上城区新风路与新塘路辅路交叉口北100米
