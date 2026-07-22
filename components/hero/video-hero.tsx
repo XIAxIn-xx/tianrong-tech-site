@@ -18,7 +18,7 @@ export function VideoHero() {
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  const arrowOpacity = useTransform(heroScrollProgress, [0, 0.65, 1], [1, 0.72, 0]);
+  const arrowOpacity = useTransform(heroScrollProgress, [0, 0.5, 0.9], [1, 0.78, 0]);
 
   useEffect(() => {
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -99,14 +99,19 @@ export function VideoHero() {
       </div>
 
       <motion.div
+        data-testid="hero-scroll-indicator"
         aria-hidden="true"
-        initial={false}
-        animate={reduceMotion ? { y: 0 } : { y: [0, 3, 0] }}
-        transition={reduceMotion ? { duration: 0 } : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
         style={{ opacity: reduceMotion ? 0.72 : arrowOpacity }}
-        className="pointer-events-none absolute bottom-7 left-1/2 z-10 grid h-16 w-16 -translate-x-1/2 place-items-center select-none rounded-full border border-white/30 bg-white/10 text-white/80 shadow-[0_10px_32px_rgba(0,0,0,0.2)] backdrop-blur-md md:bottom-8"
+        className="pointer-events-none absolute bottom-7 left-1/2 z-10 -translate-x-1/2 select-none md:bottom-8"
       >
-        <ChevronDown className="h-9 w-9" strokeWidth={1.4} />
+        <motion.div
+          initial={{ y: 0, scale: 1 }}
+          animate={reduceMotion ? { y: 0, scale: 1 } : { y: [0, 4, 0], scale: [1, 0.985, 1] }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="grid h-16 w-16 place-items-center rounded-full border border-white/30 bg-white/10 text-white/80 shadow-[0_10px_32px_rgba(0,0,0,0.2)] backdrop-blur-md"
+        >
+          <ChevronDown className="h-9 w-9" strokeWidth={1.4} />
+        </motion.div>
       </motion.div>
     </section>
   );

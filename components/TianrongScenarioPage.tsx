@@ -742,26 +742,26 @@ function RevealSection({ id, className, children }: { id?: string; className: st
 }
 
 function ScrollDrivenSection({ id, className, children }: { id?: string; className: string; children: React.ReactNode }) {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "start start"]
+    offset: ["start end", "start center"]
   });
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.75, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [180, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.72, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [96, 0]);
 
   return (
-    <div ref={sectionRef}>
-      <motion.section
-        id={id}
-        className={`module-section ${className}`}
+    <section ref={sectionRef} id={id} className={className}>
+      <motion.div
+        data-testid="matrix-scroll-content"
+        className="module-section mx-auto w-[min(1240px,calc(100%-32px))]"
         initial={false}
         style={reduceMotion ? undefined : { opacity, y }}
       >
-        <div className="mx-auto w-[min(1240px,calc(100%-32px))]">{children}</div>
-      </motion.section>
-    </div>
+        {children}
+      </motion.div>
+    </section>
   );
 }
 
