@@ -54,7 +54,7 @@ export function VideoHero() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,15,0.82)_0%,rgba(3,8,15,0.48)_30%,rgba(3,8,15,0.08)_68%,rgba(3,8,15,0.3)_100%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(3,8,15,0.3)_0%,rgba(3,8,15,0.08)_42%,transparent_100%)]" />
 
-      <div className="relative z-10 mx-auto flex h-full min-h-[560px] w-[min(1240px,calc(100%-32px))] items-start justify-center pt-16 text-center sm:pt-20 md:pt-24">
+      <div className="relative z-10 mx-auto flex h-full min-h-[560px] w-[min(1240px,calc(100%-32px))] items-start justify-center pt-24 text-center sm:pt-28 md:pt-32">
         <div className="w-full">
           <motion.h1
             id="video-hero-title"

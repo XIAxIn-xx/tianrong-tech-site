@@ -123,8 +123,8 @@ const aboutItems = [
 
 export function TianrongScenarioPage() {
   return (
-    <div id="top" className="tianrong-page min-h-screen bg-white text-[#161616]">
-      <TianrongHeader />
+    <div id="top" className="tianrong-page relative min-h-screen bg-white text-[#161616]">
+      <TianrongHeader overlay />
 
       <main>
         {!USE_VIDEO_HERO && <section className="relative overflow-hidden border-b border-[#E0E0E0] bg-[#F4F4F4]">
@@ -190,31 +190,6 @@ export function TianrongScenarioPage() {
           </div>
         </section>}
         {USE_VIDEO_HERO && <VideoHero />}
-
-        <section className="relative min-h-[460px] overflow-hidden bg-[#161616] text-white md:min-h-[580px]">
-          <LazyPatrolVideo />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/30 to-black/5" />
-          <div className="relative mx-auto flex min-h-[460px] w-[min(1240px,calc(100%-32px))] items-end pb-14 md:min-h-[620px] md:pb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7 }}
-              className="max-w-2xl border-l-2 border-[#78A9FF] pl-5 md:pl-7"
-            >
-              <p className="text-sm font-semibold tracking-[0.16em] text-[#B9D4FF]">现场验证</p>
-              <h2 className="cjk-heading mt-4 max-w-2xl text-4xl font-semibold leading-tight md:text-6xl">
-                <span className="block">让机器人进入</span>
-                <span className="block keep-phrase">真实作业现场</span>
-              </h2>
-              <p className="cjk-body mt-5 max-w-xl text-lg leading-8 text-white/80">从<span className="keep-phrase">移动平台</span>、<span className="keep-phrase">任务载荷</span>到<span className="keep-phrase">远程管理</span>，<span className="keep-phrase">产品能力</span>在<span className="keep-phrase">真实环境</span>中<span className="keep-phrase">协同工作</span>。</p>
-              <a href="#case" className="mt-7 inline-flex items-center text-base font-semibold text-white transition hover:text-[#B9D4FF]">
-                <span className="keep-phrase">查看实践案例</span>
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </motion.div>
-          </div>
-        </section>
 
         <RevealSection id="matrix" className="bg-white py-20">
           <SectionHeading
@@ -746,73 +721,6 @@ function HeroRobotPoster({ interactive, onActivate }: { interactive: boolean; on
         查看 3D 模型
       </span>
     </button>
-  );
-}
-
-function LazyPatrolVideo() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(reducedMotionQuery.matches);
-
-    if (!("IntersectionObserver" in window)) {
-      setShouldLoad(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          if (!reducedMotionQuery.matches) void video.play().catch(() => undefined);
-        } else {
-          video.pause();
-        }
-      },
-      { rootMargin: "300px 0px" }
-    );
-
-    const handleVisibility = () => {
-      if (document.hidden) video.pause();
-      else if (!reducedMotionQuery.matches && shouldLoad) void video.play().catch(() => undefined);
-    };
-
-    observer.observe(video);
-    document.addEventListener("visibilitychange", handleVisibility);
-
-    return () => {
-      observer.disconnect();
-      document.removeEventListener("visibilitychange", handleVisibility);
-      video.pause();
-    };
-  }, [shouldLoad]);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !shouldLoad) return;
-    video.load();
-    if (!reducedMotion) void video.play().catch(() => undefined);
-  }, [shouldLoad, reducedMotion]);
-
-  return (
-    <video
-      ref={videoRef}
-      className="absolute inset-0 h-full w-full object-cover"
-      autoPlay={!reducedMotion}
-      muted
-      loop
-      playsInline
-      preload="none"
-      poster="/images/tianrong/industrial-inspection.png"
-    >
-      {shouldLoad && <source src="/videos/tianrong/s07-complex-scene-2.mp4" type="video/mp4" />}
-    </video>
   );
 }
 
