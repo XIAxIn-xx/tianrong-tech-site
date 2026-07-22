@@ -410,6 +410,7 @@ export function TianrongScenarioPage() {
               />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/10 to-transparent" />
             </div>
+          </div>
 
             <div className="relative left-1/2 mt-12 h-[190px] w-screen -translate-x-1/2 overflow-hidden bg-[#161616] md:h-[220px] lg:mt-0">
               <Image
@@ -417,11 +418,10 @@ export function TianrongScenarioPage() {
                 alt="天戎科技杭州办公位置卫星图"
                 fill
                 sizes="100vw"
-                className="object-cover object-[50%_54%] grayscale-[0.65] saturate-[0.55] contrast-[0.9] brightness-[0.72]"
+                className="object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#161616]/70 via-[#161616]/24 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#161616] to-transparent" />
-              <div className="relative z-10 mx-auto flex h-full w-[min(1240px,calc(100%-32px))] flex-col justify-center text-white">
+              <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-[#161616]/55 to-transparent" />
+              <div className="relative z-10 mx-auto flex h-full w-[min(1240px,calc(100%-32px))] flex-col justify-center text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.75)]">
                 <div className="text-lg font-semibold tracking-[0.02em] md:text-xl">杭州 · 天戎科技</div>
                 <div className="mt-2 max-w-[520px] text-sm leading-6 text-white/80 md:text-base">
                   中国浙江省杭州市上城区新风路与新塘路辅路交叉口北100米
@@ -436,7 +436,6 @@ export function TianrongScenarioPage() {
                 </a>
               </div>
             </div>
-          </div>
         </RevealSection>
 
         <section id="contact" className="bg-[#161616] py-20 text-white">
