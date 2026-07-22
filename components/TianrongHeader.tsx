@@ -116,7 +116,8 @@ export function TianrongHeader({
         width={1080}
         height={820}
         priority
-        className="h-9 w-11 shrink-0 object-contain"
+        className="h-12 w-16 shrink-0 object-contain"
+        style={{ filter: "brightness(0) saturate(100%) invert(31%) sepia(97%) saturate(3697%) hue-rotate(211deg) brightness(98%) contrast(107%)" }}
       />
     );
   };
