@@ -412,25 +412,26 @@ export function TianrongScenarioPage() {
             </div>
           </div>
 
-            <div className="relative left-1/2 mt-12 h-[190px] w-screen -translate-x-1/2 overflow-hidden bg-[#161616] md:h-[220px] lg:mt-0">
+            <div className="relative left-1/2 mt-8 h-[300px] min-h-[280px] w-screen -translate-x-1/2 overflow-hidden bg-[#161616] md:mt-10 md:h-[340px] md:min-h-[340px] lg:mt-0 lg:h-[clamp(380px,28vw,440px)] lg:min-h-[380px]">
               <Image
                 src="/images/tianrong/location-map.png"
                 alt="天戎科技杭州办公位置卫星图"
                 fill
                 sizes="100vw"
-                className="object-cover object-center"
+                className="object-cover object-[50%_50%] md:object-[50%_35%]"
               />
-              <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-[#161616]/55 to-transparent" />
-              <div className="relative z-10 mx-auto flex h-full w-[min(1240px,calc(100%-32px))] flex-col justify-center text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.75)]">
-                <div className="text-lg font-semibold tracking-[0.02em] md:text-xl">杭州 · 天戎科技</div>
-                <div className="mt-2 max-w-[520px] text-sm leading-6 text-white/80 md:text-base">
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-[min(76%,760px)] bg-gradient-to-r from-[#161616]/70 via-[#161616]/28 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#161616]/35 to-transparent" />
+              <div className="relative z-10 mx-auto flex h-full w-full flex-col justify-end px-6 pb-7 text-white md:px-8 md:pb-12 lg:px-[max(6vw,48px)]">
+                <div className="text-xl font-semibold tracking-[0.02em] md:text-2xl">杭州 · 天戎科技</div>
+                <div className="mt-2 max-w-[560px] text-sm leading-6 text-white/90 md:text-base">
                   中国浙江省杭州市上城区新风路与新塘路辅路交叉口北100米
                 </div>
                 <a
                   href="https://maps.apple.com/?q=%E5%A4%A9%E6%88%8E%E7%A7%91%E6%8A%80%0A%E4%B8%AD%E5%9B%BD%0A%E6%B5%99%E6%B1%9F%E7%9C%81%0A%E6%9D%AD%E5%B7%9E%E5%B8%82%20%E4%B8%8A%E5%9F%8E%E5%8C%BA%0A%E6%96%B0%E9%A3%8E%E8%B7%AF%E4%B8%8E%E6%96%B0%E5%A1%98%E8%B7%AF%E8%BE%85%E8%B7%AF%E4%BA%A4%E5%8F%89%E5%8F%A3%E5%8C%97100%E7%B1%B3&ll=30.287306,120.211700"
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-4 inline-flex w-fit items-center text-sm font-semibold text-white underline decoration-white/45 underline-offset-4 transition hover:decoration-white md:text-base"
+                  className="mt-3 inline-flex w-fit items-center text-sm font-semibold text-white underline decoration-white/55 underline-offset-4 transition hover:text-white hover:decoration-white md:text-base"
                 >
                   查看地图 <span aria-hidden="true" className="ml-1">↗</span>
                 </a>
