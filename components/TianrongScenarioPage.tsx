@@ -512,7 +512,7 @@ export function TianrongScenarioPage() {
                 <span className="block keep-phrase">进入真实现场</span>
               </h2>
               <p className="cjk-body mt-6 max-w-xl text-base leading-7 text-white/70 md:text-lg md:leading-8">
-                从 RSP 云控平台、数采平台到硬件背包与传感器集成，天戎智能根据现场环境、巡检任务和项目阶段，提供高度定制化的巡检解决方案。
+                从 RSP 云控平台、数采平台到硬件背包与传感器集成，天戎科技根据现场环境、巡检任务和项目阶段，提供高度定制化的巡检解决方案。
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
                 <ContactMeta label="商务咨询" value="contact@tianrongtech.com" href="mailto:contact@tianrongtech.com" />
@@ -525,10 +525,10 @@ export function TianrongScenarioPage() {
               <div className="relative min-h-40 overflow-hidden border-b border-[#E6EAF0]">
                 <Image
                   src="/images/tianrong/contact-robots.png"
-                  alt="天戎智能巡检机器人本体"
+                  alt="天戎科技巡检机器人本体"
                   fill
                   sizes="(min-width: 1024px) 58vw, 100vw"
-                  className="pointer-events-none object-contain object-right"
+                  className="pointer-events-none origin-right scale-[1.16] object-contain object-right"
                 />
                 <div className="relative z-10 max-w-[48%] py-5">
                   <div className="text-xl font-semibold">项目咨询</div>
@@ -579,7 +579,7 @@ export function TianrongScenarioPage() {
                   </Select>
                 </ContactField>
                 <ContactField label="需求描述" required className="md:col-span-2">
-                  <Textarea id="contact-details" name="details" required placeholder="请描述现场环境、巡检任务、设备需求或期望的合作方式" value={contactForm.details} onChange={(event) => updateContactField("details", event.target.value)} className="min-h-32 rounded-none border-[#D9DEE7]" />
+                  <Textarea id="contact-details" name="details" required placeholder="请描述现场环境、巡检任务、设备需求或期望的合作方式" value={contactForm.details} onChange={(event) => updateContactField("details", event.target.value)} className="min-h-24 rounded-none border-[#D9DEE7]" />
                 </ContactField>
                 <ContactField label="验证码" required className="md:col-span-2">
                   <div className="flex gap-3">
@@ -593,7 +593,7 @@ export function TianrongScenarioPage() {
 
               <label className="mt-6 flex items-start gap-3 text-sm leading-6 text-[#737373]">
                 <input type="checkbox" required className="mt-1 h-4 w-4 shrink-0 accent-[#0F62FE]" />
-                <span>我同意天戎智能使用本次提交的信息联系我并进行项目沟通。</span>
+                <span>我同意天戎科技使用本次提交的信息联系我并进行项目沟通。</span>
               </label>
               {contactStatus && <p className="mt-4 text-sm leading-6 text-[#0F62FE]" role="status">{contactStatus}</p>}
               <Button type="submit" size="lg" className="mt-6 w-full rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
