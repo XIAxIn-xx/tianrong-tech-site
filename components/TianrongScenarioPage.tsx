@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type FormEvent, type ReactNode, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -12,6 +12,9 @@ import {
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import DotField from "@/components/DotField";
 import { TianrongHeader } from "@/components/TianrongHeader";
 import VideoHero from "@/components/hero/video-hero";
@@ -113,7 +116,54 @@ const caseImages = [
   ["/images/tianrong/final-assets/logistics-gate-patrol.png", "园区出入口巡检实践"]
 ];
 
+type ContactFormState = {
+  name: string;
+  company: string;
+  contact: string;
+  direction: string;
+  scenario: string;
+  location: string;
+  stage: string;
+  capability: string;
+  details: string;
+  captcha: string;
+};
+
+const initialContactForm: ContactFormState = {
+  name: "",
+  company: "",
+  contact: "",
+  direction: "",
+  scenario: "",
+  location: "",
+  stage: "",
+  capability: "",
+  details: "",
+  captcha: ""
+};
+
 export function TianrongScenarioPage() {
+  const [contactForm, setContactForm] = useState<ContactFormState>(initialContactForm);
+  const [contactStatus, setContactStatus] = useState("");
+
+  const updateContactField = (field: keyof ContactFormState, value: string) => {
+    setContactForm((current) => ({ ...current, [field]: value }));
+    setContactStatus("");
+  };
+
+  const handleCaptchaRequest = () => {
+    setContactStatus(
+      contactForm.contact.trim()
+        ? "验证码发送接口待接入，当前已保留获取入口。"
+        : "请先填写联系方式，再获取验证码。"
+    );
+  };
+
+  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setContactStatus("信息已完成前端校验，正式提交接口待接入。请保留验证码校验。 ");
+  };
+
   return (
     <div id="top" className="tianrong-page relative min-h-screen bg-white text-[#161616]">
       <TianrongHeader overlay />
@@ -439,25 +489,120 @@ export function TianrongScenarioPage() {
             </div>
         </RevealSection>
 
-        <section id="contact" className="bg-[#161616] py-20 text-white">
-          <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <h2 className="cjk-heading text-4xl font-semibold leading-tight md:text-6xl"><span className="block">为您的项目选择合适的</span><span className="block keep-phrase">机器人产品与平台</span></h2>
-            </div>
-            <div className="border-t border-white/20 pt-6 text-white">
-              <div className="grid gap-4 md:grid-cols-2">
-                <Field className="md:col-span-2" label="合作方向" value={<><span className="keep-phrase">机器人本体</span> / <span className="keep-phrase">任务载荷</span> / <span className="keep-phrase">ROBOX</span> / <span className="keep-phrase">机器人调度平台</span></>} />
-                <Field label="应用行业" value={<><span className="keep-phrase">安防</span> / <span className="keep-phrase">巡检</span> / <span className="keep-phrase">仓储</span> / <span className="keep-phrase">应急</span></>} />
-                <Field label="能力需求" value={<><span className="keep-phrase">硬件模块</span> / <span className="keep-phrase">软件平台</span> / <span className="keep-phrase">接口集成</span></>} />
-                <Field label="项目阶段" value={<><span className="keep-phrase">评估</span> / <span className="keep-phrase">试点</span> / <span className="keep-phrase">批量</span></>} />
+        <section id="contact" className="bg-[#161616] py-20 text-white md:py-28">
+          <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+            <div className="lg:pt-4">
+              <div className="text-sm font-bold uppercase tracking-[0.24em] text-[#68B7FF]">Project inquiry</div>
+              <h2 className="cjk-heading mt-4 text-4xl font-semibold leading-[1.12] md:text-6xl">
+                <span className="block">让巡检方案</span>
+                <span className="block keep-phrase">进入真实现场</span>
+              </h2>
+              <p className="cjk-body mt-6 max-w-xl text-base leading-7 text-white/70 md:text-lg md:leading-8">
+                从 RSP 云控平台、数采平台到硬件背包与传感器集成，天戎智能根据现场环境、巡检任务和项目阶段，提供高度定制化的巡检解决方案。
+              </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+                <ContactMeta label="商务咨询" value="contact@tianrongtech.com" href="mailto:contact@tianrongtech.com" />
+                <ContactMeta label="核心能力" value="RSP / 数采平台 / 硬件集成" />
+                <ContactMeta label="合作方式" value="项目定制 / 本体合作 / 平台合作" />
               </div>
-              <Button asChild size="lg" className="mt-6 rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
-                <a href="mailto:contact@tianrongtech.com">
-                  <span className="keep-phrase">联系天戎科技</span>
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
+              <div className="relative mt-10 hidden overflow-hidden border border-white/10 bg-black/30 lg:block">
+                <Image
+                  src="/images/tianrong/rsp-teleop-dark.png"
+                  alt="RSP 云控平台与机器人巡检调度界面"
+                  width={1672}
+                  height={941}
+                  className="h-44 w-full object-cover opacity-75"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#07111E] to-transparent px-4 pb-4 pt-12 text-sm text-white/80">
+                  RSP 云控平台 · 从遥控巡检走向自主巡检
+                </div>
+              </div>
             </div>
+
+            <form onSubmit={handleContactSubmit} className="rounded-sm bg-white p-5 text-[#161616] shadow-2xl shadow-black/20 sm:p-7 md:p-8">
+              <div className="border-b border-[#E6EAF0] pb-5">
+                <div className="text-xl font-semibold">项目咨询</div>
+                <p className="mt-2 text-sm leading-6 text-[#737373]">请留下现场与项目需求，我们将据此匹配合适的产品和合作方式。</p>
+              </div>
+
+              <div className="mt-6 grid gap-5 md:grid-cols-2">
+                <ContactField label="姓名 / 称呼" required>
+                  <Input id="contact-name" name="name" autoComplete="name" required placeholder="请输入姓名或称呼" value={contactForm.name} onChange={(event) => updateContactField("name", event.target.value)} className="rounded-none border-[#D9DEE7]" />
+                </ContactField>
+                <ContactField label="公司 / 单位" required>
+                  <Input id="contact-company" name="company" autoComplete="organization" required placeholder="请输入公司或单位名称" value={contactForm.company} onChange={(event) => updateContactField("company", event.target.value)} className="rounded-none border-[#D9DEE7]" />
+                </ContactField>
+                <ContactField label="联系方式" required>
+                  <Input id="contact-contact" name="contact" autoComplete="email" required placeholder="手机号或邮箱" value={contactForm.contact} onChange={(event) => updateContactField("contact", event.target.value)} className="rounded-none border-[#D9DEE7]" />
+                </ContactField>
+                <ContactField label="项目所在地" required>
+                  <Input id="contact-location" name="location" required placeholder="省 / 市 / 国家或地区" value={contactForm.location} onChange={(event) => updateContactField("location", event.target.value)} className="rounded-none border-[#D9DEE7]" />
+                </ContactField>
+                <ContactField label="咨询方向" required>
+                  <Select id="contact-direction" name="direction" required value={contactForm.direction} onChange={(event) => updateContactField("direction", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
+                    <option value="" disabled>请选择咨询方向</option>
+                    <option>RSP 云控平台</option>
+                    <option>数采平台</option>
+                    <option>硬件背包与传感器集成</option>
+                    <option>机器狗本体选型 / 合作</option>
+                    <option>定制化巡检方案</option>
+                    <option>项目或生态合作</option>
+                  </Select>
+                </ContactField>
+                <ContactField label="应用场景" required>
+                  <Select id="contact-scenario" name="scenario" required value={contactForm.scenario} onChange={(event) => updateContactField("scenario", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
+                    <option value="" disabled>请选择应用场景</option>
+                    <option>物流仓储</option>
+                    <option>公共安全</option>
+                    <option>停车场巡检</option>
+                    <option>工业园区</option>
+                    <option>能源电力</option>
+                    <option>其他场景</option>
+                  </Select>
+                </ContactField>
+                <ContactField label="项目阶段" required>
+                  <Select id="contact-stage" name="stage" required value={contactForm.stage} onChange={(event) => updateContactField("stage", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
+                    <option value="" disabled>请选择项目阶段</option>
+                    <option>需求沟通</option>
+                    <option>试点验证</option>
+                    <option>方案设计</option>
+                    <option>采购部署</option>
+                  </Select>
+                </ContactField>
+                <ContactField label="关注能力">
+                  <Select id="contact-capability" name="capability" value={contactForm.capability} onChange={(event) => updateContactField("capability", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
+                    <option value="">请选择关注能力</option>
+                    <option>遥控巡检</option>
+                    <option>视频流与远程查看</option>
+                    <option>对讲与警报</option>
+                    <option>热成像预警</option>
+                    <option>自主导航与 AI 视觉</option>
+                    <option>数据采集与分析</option>
+                  </Select>
+                </ContactField>
+                <ContactField label="需求描述" required className="md:col-span-2">
+                  <Textarea id="contact-details" name="details" required placeholder="请描述现场环境、巡检任务、设备需求或期望的合作方式" value={contactForm.details} onChange={(event) => updateContactField("details", event.target.value)} className="min-h-32 rounded-none border-[#D9DEE7]" />
+                </ContactField>
+                <ContactField label="验证码" required className="md:col-span-2">
+                  <div className="flex gap-3">
+                    <Input id="contact-captcha" name="captcha" required inputMode="numeric" placeholder="请输入验证码" value={contactForm.captcha} onChange={(event) => updateContactField("captcha", event.target.value)} className="rounded-none border-[#D9DEE7]" />
+                    <Button type="button" variant="outline" onClick={handleCaptchaRequest} className="h-11 shrink-0 rounded-none border-[#D9DEE7] bg-[#F4F6F8] px-4 text-[#3D3D3D] shadow-none hover:bg-[#E9EDF2]">
+                      获取验证码
+                    </Button>
+                  </div>
+                </ContactField>
+              </div>
+
+              <label className="mt-6 flex items-start gap-3 text-sm leading-6 text-[#737373]">
+                <input type="checkbox" required className="mt-1 h-4 w-4 shrink-0 accent-[#0F62FE]" />
+                <span>我同意天戎智能使用本次提交的信息联系我并进行项目沟通。</span>
+              </label>
+              {contactStatus && <p className="mt-4 text-sm leading-6 text-[#0F62FE]" role="status">{contactStatus}</p>}
+              <Button type="submit" size="lg" className="mt-6 w-full rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
+                提交项目需求
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </form>
           </div>
         </section>
 
@@ -874,11 +1019,22 @@ function FeatureItem({
   );
 }
 
-function Field({ label, value, className = "" }: { label: string; value: React.ReactNode; className?: string }) {
+function ContactMeta({ label, value, href }: { label: string; value: string; href?: string }) {
   return (
-    <div className={`border-t border-white/15 py-4 ${className}`}>
-      <div className="text-base font-semibold text-[#9CC4FF]">{label}</div>
-      <div className="cjk-body mt-2 text-base leading-7 text-white/75">{value}</div>
+    <div className="border-t border-white/15 pt-4">
+      <div className="text-sm font-semibold text-[#9CC4FF]">{label}</div>
+      {href ? <a href={href} className="cjk-body mt-2 inline-block text-base leading-7 text-white/80 transition hover:text-white">{value}</a> : <div className="cjk-body mt-2 text-base leading-7 text-white/75">{value}</div>}
     </div>
+  );
+}
+
+function ContactField({ label, required = false, className = "", children }: { label: string; required?: boolean; className?: string; children: ReactNode }) {
+  return (
+    <label className={`block ${className}`}>
+      <span className="mb-2 block text-sm font-semibold text-[#3D3D3D]">
+        {label}{required && <span className="ml-1 text-[#0F62FE]" aria-hidden="true">*</span>}
+      </span>
+      {children}
+    </label>
   );
 }
