@@ -246,15 +246,17 @@ export function TianrongScenarioPage() {
             <ProductStage />
           </div>
         </section>}
-        {USE_VIDEO_HERO && <VideoHero />}
+        <div className={USE_VIDEO_HERO ? "relative isolate" : undefined}>
+          {USE_VIDEO_HERO && <VideoHero />}
 
-        <ScrollDrivenSection id="matrix" className="bg-white py-20">
-          <SectionHeading
-            title={<>机器人巡检<span className="keep-phrase">软硬件产品</span>体系</>}
-            description={<>从<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">任务载荷</span>到<span className="keep-phrase">远程接入</span>和<span className="keep-phrase">调度平台</span>，覆盖机器人巡检项目所需的<span className="keep-phrase">核心产品</span>。</>}
-          />
-          <ProductShowcase />
-        </ScrollDrivenSection>
+          <ScrollDrivenSection id="matrix" className="relative z-10 bg-white py-20">
+            <SectionHeading
+              title={<>机器人巡检<span className="keep-phrase">软硬件产品</span>体系</>}
+              description={<>从<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">任务载荷</span>到<span className="keep-phrase">远程接入</span>和<span className="keep-phrase">调度平台</span>，覆盖机器人巡检项目所需的<span className="keep-phrase">核心产品</span>。</>}
+            />
+            <ProductShowcase />
+          </ScrollDrivenSection>
+        </div>
 
         <RevealSection id="robot-series" className="bg-[#F4F4F4] py-20 md:py-24">
           <span id="bodies" className="block scroll-mt-20" />

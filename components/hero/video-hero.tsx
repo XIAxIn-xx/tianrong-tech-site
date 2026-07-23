@@ -44,7 +44,7 @@ export function VideoHero() {
   }, [videoEnabled]);
 
   return (
-    <section ref={heroRef} className="relative h-[100svh] min-h-[560px] overflow-hidden bg-[#101820] text-white" aria-labelledby="video-hero-title">
+    <section ref={heroRef} className="sticky top-0 z-0 h-[100svh] min-h-[560px] overflow-hidden bg-[#101820] text-white" aria-labelledby="video-hero-title">
       <video
         ref={videoRef}
         aria-hidden="true"
