@@ -138,25 +138,44 @@ const initialContactForm: ContactFormState = {
   captcha: ""
 };
 
+function getContactValidationMessage(value: string) {
+  const contact = value.trim();
+  if (!contact) return "请输入手机号或邮箱。";
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const phonePattern = /^\+?[0-9][0-9\s-]{6,19}$/;
+  return emailPattern.test(contact) || phonePattern.test(contact) ? "" : "请输入有效的手机号或邮箱。";
+}
+
 export function TianrongScenarioPage() {
   const [contactForm, setContactForm] = useState<ContactFormState>(initialContactForm);
   const [contactStatus, setContactStatus] = useState("");
+  const [contactError, setContactError] = useState("");
 
   const updateContactField = (field: keyof ContactFormState, value: string) => {
     setContactForm((current) => ({ ...current, [field]: value }));
     setContactStatus("");
+    if (field === "contact") setContactError("");
   };
 
   const handleCaptchaRequest = () => {
-    setContactStatus(
-      contactForm.contact.trim()
-        ? "验证码发送接口待接入，当前已保留获取入口。"
-        : "请先填写联系方式，再获取验证码。"
-    );
+    const validationMessage = getContactValidationMessage(contactForm.contact);
+    if (validationMessage) {
+      setContactError(validationMessage);
+      setContactStatus("");
+      return;
+    }
+    setContactStatus("验证码发送接口待接入，当前已保留获取入口。");
   };
 
   const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const validationMessage = getContactValidationMessage(contactForm.contact);
+    if (validationMessage) {
+      setContactError(validationMessage);
+      setContactStatus("");
+      return;
+    }
     setContactStatus("信息已完成前端校验，正式提交接口待接入。请保留验证码校验。 ");
   };
 
@@ -488,7 +507,6 @@ export function TianrongScenarioPage() {
         <section id="contact" className="bg-[#161616] py-20 text-white md:py-28">
           <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
             <div className="lg:pt-4">
-              <div className="text-sm font-bold uppercase tracking-[0.24em] text-[#68B7FF]">Project inquiry</div>
               <h2 className="cjk-heading mt-4 text-4xl font-semibold leading-[1.12] md:text-6xl">
                 <span className="block">让巡检方案</span>
                 <span className="block keep-phrase">进入真实现场</span>
@@ -514,7 +532,7 @@ export function TianrongScenarioPage() {
                 />
                 <div className="relative z-10 max-w-[48%] py-5">
                   <div className="text-xl font-semibold">项目咨询</div>
-                  <p className="mt-2 text-sm leading-6 text-[#737373]">请留下现场与项目需求，我们将据此匹配合适的产品和合作方式。</p>
+                  <p className="mt-2 text-sm leading-6 text-[#737373]">请留下应用场景与项目需求，我们将据此匹配合适的产品和合作方式。</p>
                 </div>
               </div>
 
@@ -526,10 +544,17 @@ export function TianrongScenarioPage() {
                   <Input id="contact-company" name="company" autoComplete="organization" required placeholder="请输入公司或单位名称" value={contactForm.company} onChange={(event) => updateContactField("company", event.target.value)} className="rounded-none border-[#D9DEE7]" />
                 </ContactField>
                 <ContactField label="联系方式" required>
-                  <Input id="contact-contact" name="contact" autoComplete="email" required placeholder="手机号或邮箱" value={contactForm.contact} onChange={(event) => updateContactField("contact", event.target.value)} className="rounded-none border-[#D9DEE7]" />
+                  <Input id="contact-contact" name="contact" autoComplete="email" required placeholder="手机号或邮箱" value={contactForm.contact} onChange={(event) => updateContactField("contact", event.target.value)} onBlur={() => setContactError(getContactValidationMessage(contactForm.contact))} aria-invalid={Boolean(contactError)} aria-describedby={contactError ? "contact-contact-error" : undefined} className="rounded-none border-[#D9DEE7]" />
+                  {contactError && <span id="contact-contact-error" className="mt-2 block text-sm text-[#D33A2C]">{contactError}</span>}
                 </ContactField>
                 <ContactField label="项目所在地" required>
-                  <Input id="contact-location" name="location" required placeholder="省 / 市 / 国家或地区" value={contactForm.location} onChange={(event) => updateContactField("location", event.target.value)} className="rounded-none border-[#D9DEE7]" />
+                  <Select id="contact-location" name="location" required value={contactForm.location} onChange={(event) => updateContactField("location", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
+                    <option value="" disabled>请选择项目所在地</option>
+                    <option>中国大陆</option>
+                    <option>中国香港</option>
+                    <option>美国</option>
+                    <option>其他国家或地区</option>
+                  </Select>
                 </ContactField>
                 <ContactField label="咨询方向" required>
                   <Select id="contact-direction" name="direction" required value={contactForm.direction} onChange={(event) => updateContactField("direction", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
