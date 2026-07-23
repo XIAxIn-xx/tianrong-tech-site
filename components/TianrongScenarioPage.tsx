@@ -29,7 +29,7 @@ const USE_VIDEO_HERO = true;
 const products = [
   {
     id: "payload-modules",
-    title: "硬件背包与传感器集成",
+    title: "背包与传感器",
     tagline: "面向巡检任务的模块化硬件系统",
     description: "以统一背包为载体，集成可见光、热成像、气体检测、通信、边缘计算和广播等传感器与设备，根据巡检任务完成硬件模块组合与系统集成。",
     image: "/images/generated/modular-backpack.png",
@@ -261,7 +261,7 @@ export function TianrongScenarioPage() {
           <ScrollDrivenSection id="matrix" className="relative z-10 bg-white py-20">
             <SectionHeading
               title={<>面向巡检场景的<span className="keep-phrase">软硬件产品矩阵</span></>}
-              description={<>从<span className="keep-phrase">硬件背包与传感器集成</span>、<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">狗窝系统</span>，到<span className="keep-phrase">导航系统</span>、<span className="keep-phrase">云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可组合、可集成、可扩展的巡检产品体系。</>}
+              description={<>从<span className="keep-phrase">背包与传感器</span>、<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">狗窝系统</span>，到<span className="keep-phrase">导航系统</span>、<span className="keep-phrase">云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可组合、可集成、可扩展的巡检产品体系。</>}
             />
             <ProductShowcase />
           </ScrollDrivenSection>
@@ -790,7 +790,6 @@ function ProductShowcase() {
               className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr_auto] lg:items-end"
             >
               <div>
-                <div className="text-base font-semibold text-[#0F62FE]">产品 {String(active + 1).padStart(2, "0")}</div>
                 <h3 className="cjk-heading keep-phrase mt-3 text-3xl font-semibold leading-tight md:text-4xl">{activeProduct.title}</h3>
               </div>
               <div>
