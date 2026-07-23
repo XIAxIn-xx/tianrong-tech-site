@@ -19,6 +19,8 @@ export function VideoHero() {
     offset: ["start start", "end start"]
   });
   const arrowOpacity = useTransform(heroScrollProgress, [0, 0.5, 0.9], [1, 0.78, 0]);
+  const arrowY = useTransform(heroScrollProgress, [0, 0.4, 0.9], [0, 12, 32]);
+  const arrowScale = useTransform(heroScrollProgress, [0, 0.45, 0.9], [1, 1.05, 0.88]);
 
   useEffect(() => {
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -98,21 +100,29 @@ export function VideoHero() {
         </div>
       </div>
 
-      <motion.div
+      <div
         data-testid="hero-scroll-indicator"
         aria-hidden="true"
-        style={{ opacity: reduceMotion ? 0.72 : arrowOpacity }}
         className="pointer-events-none absolute bottom-7 left-1/2 z-10 -translate-x-1/2 select-none md:bottom-8"
       >
         <motion.div
-          initial={{ y: 0, scale: 1 }}
-          animate={reduceMotion ? { y: 0, scale: 1 } : { y: [0, 4, 0], scale: [1, 0.985, 1] }}
-          transition={reduceMotion ? { duration: 0 } : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="grid h-16 w-16 place-items-center rounded-full border border-white/30 bg-white/10 text-white/80 shadow-[0_10px_32px_rgba(0,0,0,0.2)] backdrop-blur-md"
+          initial={false}
+          style={{
+            opacity: reduceMotion ? 0.72 : arrowOpacity,
+            y: reduceMotion ? 0 : arrowY,
+            scale: reduceMotion ? 1 : arrowScale
+          }}
         >
-          <ChevronDown className="h-9 w-9" strokeWidth={1.4} />
+          <motion.div
+            initial={{ y: 0, scale: 1 }}
+            animate={reduceMotion ? { y: 0, scale: 1 } : { y: [0, 4, 0], scale: [1, 0.985, 1] }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="grid h-16 w-16 place-items-center rounded-full border border-white/30 bg-white/10 text-white/80 shadow-[0_10px_32px_rgba(0,0,0,0.2)] backdrop-blur-md"
+          >
+            <ChevronDown className="h-9 w-9" strokeWidth={1.4} />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

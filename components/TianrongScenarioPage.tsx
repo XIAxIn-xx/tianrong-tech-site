@@ -930,7 +930,7 @@ function ScrollDrivenSection({ id, className, children }: { id?: string; classNa
     offset: ["start end", "start center"]
   });
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.72, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [96, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [136, 0]);
 
   return (
     <section ref={sectionRef} id={id} className={className}>
