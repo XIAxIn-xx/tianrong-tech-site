@@ -28,49 +28,58 @@ const USE_VIDEO_HERO = true;
 
 const products = [
   {
-    id: "robot-body",
-    title: "机器人本体系列",
-    tagline: "面向多场景部署的机器人本体系列",
-    description: "提供多尺寸、多配置的机器人本体，可根据负载、续航、地形与任务需求选择合适配置。",
-    image: "/images/generated/argos-body.png",
-    target: "#robot-series",
-    cta: "了解本体系列"
-  },
-  {
     id: "payload-modules",
-    title: "任务载荷模块",
-    tagline: "按任务灵活组合的功能模块",
-    description: "可见光、热成像、气体检测、通信、计算和广播模块可独立选配，也可根据项目需要组合使用。",
+    title: "硬件背包与传感器集成",
+    tagline: "面向巡检任务的模块化硬件系统",
+    description: "以统一背包为载体，集成可见光、热成像、气体检测、通信、边缘计算和广播等传感器与设备；ROBOX 作为背包组成部分，负责现场设备接入、数据回传和远程控制链路。",
     image: "/images/generated/modular-backpack.png",
     target: "#payload-modules",
-    cta: "了解任务载荷"
+    cta: "了解硬件集成"
   },
   {
-    id: "robox",
-    title: "ROBOX 远程控制盒",
-    tagline: "连接机器人、现场网络与远程平台",
-    description: "负责视频与设备数据回传、网络接入和远程控制，让现场机器人稳定接入上层平台。",
-    image: "/images/generated/robox.png",
-    target: "#robox",
-    cta: "了解 ROBOX"
+    id: "robot-body",
+    title: "机器人本体适配",
+    tagline: "根据任务需求匹配合作方本体",
+    description: "基于负载、续航、地形与作业范围选择合适的四足或轮足本体，与背包、传感器和软件系统组合部署。",
+    image: "/images/generated/argos-body.png",
+    target: "#robot-series",
+    cta: "了解本体适配"
+  },
+  {
+    id: "doghouse",
+    title: "狗窝充电与数据同步系统",
+    tagline: "支撑机器人长期连续运行",
+    description: "集成自动充电、温湿度监测、通信和数据同步，为机器人提供稳定的驻留、补能与现场数据回传能力。",
+    image: "/images/tianrong/robot-foot-platform.png",
+    target: "#robot-series",
+    cta: "了解狗窝系统"
+  },
+  {
+    id: "navigation",
+    title: "导航系统",
+    tagline: "支撑机器人在真实现场稳定移动",
+    description: "围绕环境建图、定位、路径规划和实时避障，采用激光 SLAM，并向视觉融合 SLAM 演进，支撑巡检任务的自主执行。",
+    image: "/images/generated/mission-control-ui.png",
+    target: "#rsp-platform",
+    cta: "了解导航系统"
   },
   {
     id: "rsp",
-    title: "机器人远程调度平台",
-    tagline: "统一管理机器人、任务与现场数据",
-    description: "集中完成地图管理、任务下发、设备监控和远程控制，适用于多设备、多点位巡检。",
+    title: "RSP 云控平台",
+    tagline: "统一管理机器人、任务与现场运行",
+    description: "集中完成地图管理、任务下发、设备监控、远程控制和巡检过程管理，支撑从遥控作业到自主巡检的能力演进。",
     image: "/images/generated/mission-control-ui.png",
     target: "#rsp-platform",
-    cta: "了解调度平台"
+    cta: "了解 RSP 平台"
   },
   {
-    id: "scenario",
-    title: "场景部署方案",
-    tagline: "让产品能力进入真实作业现场",
-    description: "根据园区、仓储和厂区环境，组合机器人、任务载荷、远程接入与调度平台，形成可落地的巡检方案。",
-    image: "/images/tianrong/logistics-route-a.png",
-    target: "#case",
-    cta: "查看实践案例"
+    id: "data-platform",
+    title: "数采平台",
+    tagline: "让巡检数据形成业务闭环",
+    description: "独立完成巡检数据的采集、存储、分析、可视化、异常预警和报告生成，为巡检决策与任务优化提供依据。",
+    image: "/images/tianrong/rsp-monitor.png",
+    target: "#rsp-platform",
+    cta: "了解数采平台"
   }
 ];
 
@@ -251,8 +260,8 @@ export function TianrongScenarioPage() {
 
           <ScrollDrivenSection id="matrix" className="relative z-10 bg-white py-20">
             <SectionHeading
-              title={<>机器人巡检<span className="keep-phrase">软硬件产品</span>体系</>}
-              description={<>从<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">任务载荷</span>到<span className="keep-phrase">远程接入</span>和<span className="keep-phrase">调度平台</span>，覆盖机器人巡检项目所需的<span className="keep-phrase">核心产品</span>。</>}
+              title={<>面向巡检场景的<span className="keep-phrase">软硬件产品矩阵</span></>}
+              description={<>从<span className="keep-phrase">硬件背包与传感器集成</span>、<span className="keep-phrase">机器人本体适配</span>、<span className="keep-phrase">狗窝充电与数据同步系统</span>，到<span className="keep-phrase">导航系统</span>、<span className="keep-phrase">RSP 云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可组合、可集成、可扩展的巡检产品体系。</>}
             />
             <ProductShowcase />
           </ScrollDrivenSection>
