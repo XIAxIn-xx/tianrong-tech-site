@@ -123,8 +123,6 @@ type ContactFormState = {
   direction: string;
   scenario: string;
   location: string;
-  stage: string;
-  capability: string;
   details: string;
   captcha: string;
 };
@@ -136,8 +134,6 @@ const initialContactForm: ContactFormState = {
   direction: "",
   scenario: "",
   location: "",
-  stage: "",
-  capability: "",
   details: "",
   captcha: ""
 };
@@ -505,24 +501,21 @@ export function TianrongScenarioPage() {
                 <ContactMeta label="核心能力" value="RSP / 数采平台 / 硬件集成" />
                 <ContactMeta label="合作方式" value="项目定制 / 本体合作 / 平台合作" />
               </div>
-              <div className="relative mt-10 hidden overflow-hidden border border-white/10 bg-black/30 lg:block">
-                <Image
-                  src="/images/tianrong/rsp-teleop-dark.png"
-                  alt="RSP 云控平台与机器人巡检调度界面"
-                  width={1672}
-                  height={941}
-                  className="h-44 w-full object-cover opacity-75"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#07111E] to-transparent px-4 pb-4 pt-12 text-sm text-white/80">
-                  RSP 云控平台 · 从遥控巡检走向自主巡检
-                </div>
-              </div>
             </div>
 
             <form onSubmit={handleContactSubmit} className="rounded-sm bg-white p-5 text-[#161616] shadow-2xl shadow-black/20 sm:p-7 md:p-8">
-              <div className="border-b border-[#E6EAF0] pb-5">
-                <div className="text-xl font-semibold">项目咨询</div>
-                <p className="mt-2 text-sm leading-6 text-[#737373]">请留下现场与项目需求，我们将据此匹配合适的产品和合作方式。</p>
+              <div className="relative min-h-40 overflow-hidden border-b border-[#E6EAF0]">
+                <Image
+                  src="/images/tianrong/contact-robots.png"
+                  alt="天戎智能巡检机器人本体"
+                  fill
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  className="pointer-events-none object-contain object-right"
+                />
+                <div className="relative z-10 max-w-[48%] py-5">
+                  <div className="text-xl font-semibold">项目咨询</div>
+                  <p className="mt-2 text-sm leading-6 text-[#737373]">请留下现场与项目需求，我们将据此匹配合适的产品和合作方式。</p>
+                </div>
               </div>
 
               <div className="mt-6 grid gap-5 md:grid-cols-2">
@@ -558,26 +551,6 @@ export function TianrongScenarioPage() {
                     <option>工业园区</option>
                     <option>能源电力</option>
                     <option>其他场景</option>
-                  </Select>
-                </ContactField>
-                <ContactField label="项目阶段" required>
-                  <Select id="contact-stage" name="stage" required value={contactForm.stage} onChange={(event) => updateContactField("stage", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
-                    <option value="" disabled>请选择项目阶段</option>
-                    <option>需求沟通</option>
-                    <option>试点验证</option>
-                    <option>方案设计</option>
-                    <option>采购部署</option>
-                  </Select>
-                </ContactField>
-                <ContactField label="关注能力">
-                  <Select id="contact-capability" name="capability" value={contactForm.capability} onChange={(event) => updateContactField("capability", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
-                    <option value="">请选择关注能力</option>
-                    <option>遥控巡检</option>
-                    <option>视频流与远程查看</option>
-                    <option>对讲与警报</option>
-                    <option>热成像预警</option>
-                    <option>自主导航与 AI 视觉</option>
-                    <option>数据采集与分析</option>
                   </Select>
                 </ContactField>
                 <ContactField label="需求描述" required className="md:col-span-2">
