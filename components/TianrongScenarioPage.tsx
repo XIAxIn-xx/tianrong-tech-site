@@ -31,25 +31,25 @@ const products = [
     id: "payload-modules",
     title: "硬件背包与传感器集成",
     tagline: "面向巡检任务的模块化硬件系统",
-    description: "以统一背包为载体，集成可见光、热成像、气体检测、通信、边缘计算和广播等传感器与设备；ROBOX 作为背包组成部分，负责现场设备接入、数据回传和远程控制链路。",
+    description: "以统一背包为载体，集成可见光、热成像、气体检测、通信、边缘计算和广播等传感器与设备，根据巡检任务完成硬件模块组合与系统集成。",
     image: "/images/generated/modular-backpack.png",
     target: "#payload-modules",
     cta: "了解硬件集成"
   },
   {
     id: "robot-body",
-    title: "机器人本体适配",
-    tagline: "根据任务需求匹配合作方本体",
-    description: "基于负载、续航、地形与作业范围选择合适的四足或轮足本体，与背包、传感器和软件系统组合部署。",
+    title: "机器人本体",
+    tagline: "面向巡检任务的机器人本体",
+    description: "根据负载、续航、地形与作业范围，选择合适的四足或轮足机器人本体，满足不同巡检任务的部署需求。",
     image: "/images/generated/argos-body.png",
     target: "#robot-series",
-    cta: "了解本体适配"
+    cta: "了解机器人本体"
   },
   {
     id: "doghouse",
-    title: "狗窝充电与数据同步系统",
+    title: "狗窝系统",
     tagline: "支撑机器人长期连续运行",
-    description: "集成自动充电、温湿度监测、通信和数据同步，为机器人提供稳定的驻留、补能与现场数据回传能力。",
+    description: "集成自动充电、温湿度监测、通信和数据采集等功能，为机器人提供稳定的驻留、补能与现场运行支持。",
     image: "/images/tianrong/robot-foot-platform.png",
     target: "#robot-series",
     cta: "了解狗窝系统"
@@ -58,19 +58,19 @@ const products = [
     id: "navigation",
     title: "导航系统",
     tagline: "支撑机器人在真实现场稳定移动",
-    description: "围绕环境建图、定位、路径规划和实时避障，采用激光 SLAM，并向视觉融合 SLAM 演进，支撑巡检任务的自主执行。",
+    description: "提供环境建图、定位、路径规划和实时避障能力，采用激光 SLAM，支撑机器人完成巡检任务。",
     image: "/images/generated/mission-control-ui.png",
     target: "#rsp-platform",
     cta: "了解导航系统"
   },
   {
     id: "rsp",
-    title: "RSP 云控平台",
+    title: "云控平台",
     tagline: "统一管理机器人、任务与现场运行",
-    description: "集中完成地图管理、任务下发、设备监控、远程控制和巡检过程管理，支撑从遥控作业到自主巡检的能力演进。",
+    description: "集中完成地图管理、任务下发、设备监控、远程控制和巡检过程管理。",
     image: "/images/generated/mission-control-ui.png",
     target: "#rsp-platform",
-    cta: "了解 RSP 平台"
+    cta: "了解云控平台"
   },
   {
     id: "data-platform",
@@ -261,7 +261,7 @@ export function TianrongScenarioPage() {
           <ScrollDrivenSection id="matrix" className="relative z-10 bg-white py-20">
             <SectionHeading
               title={<>面向巡检场景的<span className="keep-phrase">软硬件产品矩阵</span></>}
-              description={<>从<span className="keep-phrase">硬件背包与传感器集成</span>、<span className="keep-phrase">机器人本体适配</span>、<span className="keep-phrase">狗窝充电与数据同步系统</span>，到<span className="keep-phrase">导航系统</span>、<span className="keep-phrase">RSP 云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可组合、可集成、可扩展的巡检产品体系。</>}
+              description={<>从<span className="keep-phrase">硬件背包与传感器集成</span>、<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">狗窝系统</span>，到<span className="keep-phrase">导航系统</span>、<span className="keep-phrase">云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可组合、可集成、可扩展的巡检产品体系。</>}
             />
             <ProductShowcase />
           </ScrollDrivenSection>
