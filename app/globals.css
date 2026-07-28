@@ -75,6 +75,34 @@ body {
   backdrop-filter: blur(18px);
 }
 
+.tr-product-rail {
+  display: flex;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding-inline: clamp(2rem, 9vw, 7rem);
+  scroll-behavior: smooth;
+  scroll-padding-inline: clamp(2rem, 9vw, 7rem);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+
+.tr-product-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.tr-product-slide {
+  flex: 0 0 min(82vw, 960px);
+  scroll-snap-align: center;
+}
+
+@media (min-width: 768px) {
+  .tr-product-slide {
+    flex-basis: min(76vw, 980px);
+  }
+}
+
 .tr-deep-section {
   background:
     radial-gradient(circle at 82% 16%, rgba(99, 193, 223, 0.2), transparent 28%),
