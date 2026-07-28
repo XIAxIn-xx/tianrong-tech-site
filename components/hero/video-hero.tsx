@@ -44,7 +44,7 @@ export function VideoHero() {
   }, [videoEnabled]);
 
   return (
-    <section ref={heroRef} className="sticky top-0 z-0 h-[100svh] min-h-[560px] overflow-hidden bg-[#101820] text-white" aria-labelledby="video-hero-title">
+    <section ref={heroRef} className="sticky top-0 z-0 h-[100svh] min-h-[560px] overflow-hidden bg-[var(--tr-ink-deep)] text-white" aria-labelledby="video-hero-title">
       <video
         ref={videoRef}
         aria-hidden="true"
@@ -59,8 +59,8 @@ export function VideoHero() {
         {videoEnabled && <source src={VIDEO_SRC} type="video/mp4" />}
       </video>
 
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,15,0.82)_0%,rgba(3,8,15,0.48)_30%,rgba(3,8,15,0.08)_68%,rgba(3,8,15,0.3)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(3,8,15,0.3)_0%,rgba(3,8,15,0.08)_42%,transparent_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(9,29,45,0.9)_0%,rgba(9,29,45,0.54)_30%,rgba(9,29,45,0.12)_68%,rgba(9,29,45,0.34)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,45,0.34)_0%,rgba(9,29,45,0.08)_42%,transparent_100%)]" />
 
       <div className="relative z-10 mx-auto flex h-full min-h-[560px] w-[min(1240px,calc(100%-32px))] items-start justify-center pt-24 text-center sm:pt-28 md:pt-32">
         <div className="w-full">
@@ -84,7 +84,7 @@ export function VideoHero() {
           </motion.p>
 
           <div className="mt-7 flex flex-nowrap justify-center gap-3">
-            <Button asChild size="lg" className="rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
+            <Button asChild size="lg" className="rounded-none bg-[var(--tr-primary)] text-white shadow-none hover:bg-[var(--tr-primary-hover)]">
               <a href="#contact">
                 <span className="keep-phrase">项目咨询</span>
                 <ArrowRight className="ml-2 h-4 w-4" />

@@ -26,6 +26,7 @@
   --tr-primary: #2b6c98;
   --tr-primary-hover: #1f587d;
   --tr-primary-soft: #eaf2f6;
+  --tr-on-dark: #c8dce8;
   --tr-surface: #ffffff;
   --tr-surface-soft: #f5f8fa;
   --tr-surface-blue: #edf4f8;
@@ -105,75 +106,75 @@ body {
 }
 
 /* Tianrong visual system: one restrained blue scale across all modules. */
-.tianrong-page [class*="bg-[#161616]"],
-.tianrong-page [class*="bg-[#101820]"] {
+.tianrong-page [class~="bg-[#161616]"],
+.tianrong-page [class~="bg-[#101820]"] {
   background-color: var(--tr-ink-deep) !important;
 }
 
-.tianrong-page [class*="bg-[#10283E]"] {
+.tianrong-page [class~="bg-[#10283E]"] {
   background-color: var(--tr-ink) !important;
 }
 
-.tianrong-page [class*="bg-[#F4F4F4]"],
-.tianrong-page [class*="bg-[#F1F2F0]"],
-.tianrong-page [class*="bg-[#F5F7FA]"] {
+.tianrong-page [class~="bg-[#F4F4F4]"],
+.tianrong-page [class~="bg-[#F1F2F0]"],
+.tianrong-page [class~="bg-[#F5F7FA]"] {
   background-color: var(--tr-surface-soft) !important;
 }
 
-.tianrong-page [class*="bg-[#F4F8FC]"],
-.tianrong-page [class*="bg-[#EAF4FF]"],
-.tianrong-page [class*="bg-[#F4F6F8]"] {
+.tianrong-page [class~="bg-[#F4F8FC]"],
+.tianrong-page [class~="bg-[#EAF4FF]"],
+.tianrong-page [class~="bg-[#F4F6F8]"] {
   background-color: var(--tr-surface-blue) !important;
 }
 
-.tianrong-page [class*="bg-[#0F62FE]"] {
+.tianrong-page [class*="bg-[#0F62FE]"]:not([class*="after:bg-[#0F62FE]"]) {
   background-color: var(--tr-primary) !important;
 }
 
-.tianrong-page [class*="hover:bg-[#0050E6]"]:hover {
+.tianrong-page [class~="hover:bg-[#0050E6]"]:hover {
   background-color: var(--tr-primary-hover) !important;
 }
 
-.tianrong-page [class*="hover:bg-[#EAF4FF]"]:hover,
-.tianrong-page [class*="hover:bg-[#E9EDF2]"]:hover {
+.tianrong-page [class~="hover:bg-[#EAF4FF]"]:hover,
+.tianrong-page [class~="hover:bg-[#E9EDF2]"]:hover {
   background-color: var(--tr-primary-soft) !important;
 }
 
-.tianrong-page [class*="text-[#161616]"],
-.tianrong-page [class*="text-[#0f172a]"] {
+.tianrong-page [class~="text-[#161616]"],
+.tianrong-page [class~="text-[#0f172a]"] {
   color: var(--tr-ink-deep) !important;
 }
 
-.tianrong-page [class*="text-[#393939]"],
-.tianrong-page [class*="text-[#3D3D3D]"],
-.tianrong-page [class*="text-[#525252]"],
-.tianrong-page [class*="text-[#4E514F]"] {
+.tianrong-page [class~="text-[#393939]"],
+.tianrong-page [class~="text-[#3D3D3D]"],
+.tianrong-page [class~="text-[#525252]"],
+.tianrong-page [class~="text-[#4E514F]"] {
   color: var(--tr-text) !important;
 }
 
-.tianrong-page [class*="text-[#737373]"] {
+.tianrong-page [class~="text-[#737373]"] {
   color: var(--tr-muted) !important;
 }
 
-.tianrong-page [class*="text-[#0F62FE]"],
-.tianrong-page [class*="text-[#0B5CAD]"],
-.tianrong-page [class*="text-[#1F4F82]"] {
+.tianrong-page [class~="text-[#0F62FE]"],
+.tianrong-page [class~="text-[#0B5CAD]"],
+.tianrong-page [class~="text-[#1F4F82]"] {
   color: var(--tr-primary) !important;
 }
 
-.tianrong-page [class*="hover:text-[#0F62FE]"]:hover {
+.tianrong-page [class~="hover:text-[#0F62FE]"]:hover {
   color: var(--tr-primary-hover) !important;
 }
 
-.tianrong-page [class*="border-[#E0E0E0]"],
-.tianrong-page [class*="border-[#F0F0F0]"],
-.tianrong-page [class*="border-[#D9DEE7]"],
-.tianrong-page [class*="border-[#D8E6F5]"],
-.tianrong-page [class*="border-[#E6EAF0]"] {
+.tianrong-page [class~="border-[#E0E0E0]"],
+.tianrong-page [class~="border-[#F0F0F0]"],
+.tianrong-page [class~="border-[#D9DEE7]"],
+.tianrong-page [class~="border-[#D8E6F5]"],
+.tianrong-page [class~="border-[#E6EAF0]"] {
   border-color: var(--tr-line) !important;
 }
 
-.tianrong-page [class*="border-[#0F62FE]"] {
+.tianrong-page [class~="border-[#0F62FE]"] {
   border-color: var(--tr-primary) !important;
 }
 
@@ -181,7 +182,7 @@ body {
   --tw-ring-color: var(--tr-primary) !important;
 }
 
-.tianrong-page [class*="accent-[#0F62FE]"] {
+.tianrong-page [class~="accent-[#0F62FE]"] {
   accent-color: var(--tr-primary) !important;
 }
 

@@ -189,7 +189,7 @@ export function TianrongScenarioPage() {
   };
 
   return (
-    <div id="top" className="tianrong-page relative min-h-screen bg-white text-[#161616]">
+    <div id="top" className="tianrong-page relative min-h-screen bg-[var(--tr-surface)] text-[var(--tr-ink-deep)]">
       <TianrongHeader overlay />
 
       <main>
@@ -258,7 +258,7 @@ export function TianrongScenarioPage() {
         <div className={USE_VIDEO_HERO ? "relative isolate" : undefined}>
           {USE_VIDEO_HERO && <VideoHero />}
 
-          <ScrollDrivenSection id="matrix" className="relative z-10 bg-white py-20">
+          <ScrollDrivenSection id="matrix" className="relative z-10 bg-[var(--tr-surface-soft)] py-20">
             <SectionHeading
               title={<>面向巡检场景的<span className="keep-phrase">软硬件产品矩阵</span></>}
               description={<>从<span className="keep-phrase">背包与传感器</span>、<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">狗窝系统</span>，到<span className="keep-phrase">导航系统</span>、<span className="keep-phrase">云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可组合、可集成、可扩展的巡检产品体系。</>}
@@ -267,7 +267,7 @@ export function TianrongScenarioPage() {
           </ScrollDrivenSection>
         </div>
 
-        <RevealSection id="robot-series" className="bg-[#F4F4F4] py-20 md:py-24">
+        <RevealSection id="robot-series" className="bg-[var(--tr-surface)] py-20 md:py-24">
           <span id="bodies" className="block scroll-mt-20" />
           <SectionHeading
             title={<span className="keep-phrase">四足机器人本体</span>}
@@ -303,7 +303,7 @@ export function TianrongScenarioPage() {
           </div>
         </RevealSection>
 
-        <RevealSection id="payload-modules" className="bg-white py-20 md:py-24">
+        <RevealSection id="payload-modules" className="bg-[var(--tr-surface-soft)] py-20 md:py-24">
           <span id="modules" className="block scroll-mt-20" />
           <SectionHeading
             title={<>面向巡检任务的 <span className="keep-phrase">模块化载荷</span></>}
@@ -340,7 +340,7 @@ export function TianrongScenarioPage() {
           </div>
         </RevealSection>
 
-        <RevealSection id="robox" className="bg-white py-20">
+        <RevealSection id="robox" className="bg-[var(--tr-surface)] py-20">
           <SectionHeading
             title={<span className="keep-phrase">ROBOX 远程控制盒</span>}
             description={<>将机器人、<span className="keep-phrase">现场网络</span>与<span className="keep-phrase">远程管理平台</span>安全连接，实现视频、<span className="keep-phrase">设备状态</span>和<span className="keep-phrase">告警数据</span>回传，并支持<span className="keep-phrase">远程诊断</span>、<span className="keep-phrase">配置与控制</span>。</>}
@@ -382,7 +382,7 @@ export function TianrongScenarioPage() {
           </div>
         </RevealSection>
 
-        <RevealSection id="rsp-platform" className="bg-[#F4F4F4] py-20">
+        <RevealSection id="rsp-platform" className="bg-[var(--tr-surface-soft)] py-20">
           <span id="rsp" className="block scroll-mt-20" />
           <SectionHeading
             title={<span className="keep-phrase">机器人调度平台</span>}
@@ -414,7 +414,7 @@ export function TianrongScenarioPage() {
           </div>
         </RevealSection>
 
-        <section id="case" className="relative overflow-hidden bg-[#161616] text-white">
+        <section id="case" className="relative overflow-hidden bg-[var(--tr-ink-deep)] text-white">
           <div className="relative min-h-[680px] md:min-h-[760px]">
             <Image
               src={caseImages[0][0]}
@@ -453,7 +453,7 @@ export function TianrongScenarioPage() {
           </div>
         </section>
 
-        <RevealSection id="about" className="overflow-hidden bg-[#F1F2F0] pb-0 pt-20 md:pt-32">
+        <RevealSection id="about" className="overflow-hidden bg-[var(--tr-surface-soft)] pb-0 pt-20 md:pt-32">
           <div className="relative lg:min-h-[720px]">
             <div className="relative z-10 max-w-[660px]">
               <div className="text-[13px] font-medium tracking-[0.08em] text-[#737373]">关于天戎</div>
@@ -488,7 +488,7 @@ export function TianrongScenarioPage() {
             </div>
           </div>
 
-            <div className="relative left-1/2 mt-8 h-[300px] min-h-[280px] w-screen -translate-x-1/2 overflow-hidden bg-[#161616] md:mt-10 md:h-[340px] md:min-h-[340px] lg:mt-0 lg:h-[clamp(380px,28vw,440px)] lg:min-h-[380px]">
+            <div className="relative left-1/2 mt-8 h-[300px] min-h-[280px] w-screen -translate-x-1/2 overflow-hidden bg-[var(--tr-ink-deep)] md:mt-10 md:h-[340px] md:min-h-[340px] lg:mt-0 lg:h-[clamp(380px,28vw,440px)] lg:min-h-[380px]">
               <Image
                 src="/images/tianrong/location-map.png"
                 alt="天戎科技杭州办公位置卫星图"
@@ -515,7 +515,7 @@ export function TianrongScenarioPage() {
             </div>
         </RevealSection>
 
-        <section id="contact" className="bg-[#161616] py-20 text-white md:py-28">
+        <section id="contact" className="bg-[var(--tr-ink-deep)] py-20 text-white md:py-28">
           <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
             <div className="lg:pt-4">
               <h2 className="cjk-heading mt-4 text-4xl font-semibold leading-[1.12] md:text-6xl">

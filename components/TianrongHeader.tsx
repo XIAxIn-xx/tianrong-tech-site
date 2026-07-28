@@ -99,13 +99,13 @@ export function TianrongHeader({
 
   const isProductsActive = productSectionIds.includes(activeSection);
   const isHeroOverlay = overlay && !isScrolled && activeSection === "home";
-  const brandActiveClass = brand === "mark" ? "text-[#0B5CAD]" : "text-[#0F62FE]";
-  const activeClass = isHeroOverlay ? "text-[#B9D4FF]" : brandActiveClass;
-  const focusClass = isHeroOverlay ? "focus-visible:ring-white/70" : brand === "mark" ? "focus-visible:ring-[#0B5CAD]/45" : "focus-visible:ring-[#0F62FE]/45";
-  const activeIndicator = isHeroOverlay ? "after:bg-[#B9D4FF]" : brand === "mark" ? "after:bg-[#0B5CAD]" : "after:bg-[#0F62FE]";
+  const brandActiveClass = "text-[var(--tr-primary)]";
+  const activeClass = isHeroOverlay ? "text-[var(--tr-on-dark)]" : brandActiveClass;
+  const focusClass = isHeroOverlay ? "focus-visible:ring-white/70" : "focus-visible:ring-[var(--tr-primary)]";
+  const activeIndicator = isHeroOverlay ? "after:bg-[var(--tr-on-dark)]" : "after:bg-[var(--tr-primary)]";
 
   const navClass = (active: boolean) =>
-    `relative inline-flex h-12 items-center whitespace-nowrap px-1 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 ${focusClass} ${isHeroOverlay ? "focus-visible:ring-offset-0" : "focus-visible:ring-offset-2"} ${active ? `${activeClass} after:absolute after:inset-x-1 after:bottom-0 after:h-0.5 ${activeIndicator}` : isHeroOverlay ? "text-white/85 hover:text-white" : "text-[#525252] hover:text-[#0F62FE]"}`;
+    `relative inline-flex h-12 items-center whitespace-nowrap px-1 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 ${focusClass} ${isHeroOverlay ? "focus-visible:ring-offset-0" : "focus-visible:ring-offset-2"} ${active ? `${activeClass} after:absolute after:inset-x-1 after:bottom-0 after:h-0.5 ${activeIndicator}` : isHeroOverlay ? "text-white/85 hover:text-white" : "text-[var(--tr-text)] hover:text-[var(--tr-primary)]"}`;
 
   function handleProductBlur(event: FocusEvent<HTMLDivElement>) {
     if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setProductOpen(false);
@@ -113,7 +113,7 @@ export function TianrongHeader({
 
   const renderBrand = (): ReactNode => {
     if (brand === "mark") {
-      return <span className="grid h-9 w-9 shrink-0 place-items-center rounded border border-[#1C3F5F] bg-[#10283E] text-sm font-black text-white">TR</span>;
+      return <span className="grid h-9 w-9 shrink-0 place-items-center rounded border border-[var(--tr-primary-hover)] bg-[var(--tr-ink)] text-sm font-black text-white">TR</span>;
     }
     return (
       <Image
@@ -129,7 +129,7 @@ export function TianrongHeader({
   };
 
   return (
-    <header className={isHeroOverlay ? "fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-gradient-to-b from-black/35 to-transparent" : overlay ? "fixed inset-x-0 top-0 z-50 border-b border-[#E0E0E0] bg-white/95 backdrop-blur" : "sticky top-0 z-50 border-b border-[#E0E0E0] bg-white/95 backdrop-blur"}>
+    <header className={isHeroOverlay ? "fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[rgba(9,29,45,0.58)] backdrop-blur-md" : overlay ? "fixed inset-x-0 top-0 z-50 border-b border-[var(--tr-line)] bg-white/95 backdrop-blur" : "sticky top-0 z-50 border-b border-[var(--tr-line)] bg-white/95 backdrop-blur"}>
       <div className={`relative mx-auto flex h-[74px] items-center justify-between gap-6 ${containerClassName}`}>
         <Link href="/" className={`flex shrink-0 items-center gap-3 focus-visible:outline-none focus-visible:ring-2 ${isHeroOverlay ? "focus-visible:ring-white/70" : "focus-visible:ring-[#0F62FE]/45 focus-visible:ring-offset-2"}`} onClick={closeMenus}>
           {renderBrand()}
