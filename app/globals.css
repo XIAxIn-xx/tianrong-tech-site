@@ -25,14 +25,20 @@
   --tr-ink-deep: #091d2d;
   --tr-primary: #2b6c98;
   --tr-primary-hover: #1f587d;
-  --tr-primary-soft: #eaf2f6;
+  --tr-primary-soft: #d8eaf4;
   --tr-on-dark: #c8dce8;
-  --tr-surface: #ffffff;
-  --tr-surface-soft: #f5f8fa;
-  --tr-surface-blue: #edf4f8;
-  --tr-line: #d9e4eb;
+  --tr-surface: rgba(231, 242, 248, 0.84);
+  --tr-surface-soft: rgba(222, 237, 245, 0.82);
+  --tr-surface-blue: rgba(211, 230, 240, 0.88);
+  --tr-panel: rgba(239, 248, 252, 0.72);
+  --tr-panel-strong: rgba(233, 244, 250, 0.92);
+  --tr-line: rgba(62, 119, 153, 0.24);
   --tr-text: #40596a;
   --tr-muted: #738696;
+  --tr-deep-start: #061c2b;
+  --tr-deep-mid: #0b3550;
+  --tr-deep-end: #12668b;
+  --tr-accent-gradient: linear-gradient(135deg, #245f86 0%, #368fb8 52%, #63c1df 100%);
 }
 
 * {
@@ -45,13 +51,45 @@ html {
 
 body {
   margin: 0;
-  background: var(--tr-surface-soft);
+  background:
+    radial-gradient(circle at 16% 12%, rgba(99, 193, 223, 0.18), transparent 26%),
+    radial-gradient(circle at 84% 38%, rgba(43, 108, 152, 0.14), transparent 30%),
+    linear-gradient(180deg, #eaf3f8 0%, #dceaf2 46%, #e5f0f6 100%);
   color: var(--tr-ink-deep);
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
 }
 
 .tianrong-page {
   overflow-x: clip;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(99, 193, 223, 0.16), transparent 24%),
+    radial-gradient(circle at 88% 48%, rgba(43, 108, 152, 0.12), transparent 30%),
+    linear-gradient(180deg, #eaf3f8 0%, #dceaf2 48%, #e5f0f6 100%);
+}
+
+.tr-glass-panel {
+  border: 1px solid rgba(75, 133, 168, 0.22);
+  background:
+    linear-gradient(145deg, rgba(242, 249, 252, 0.78), rgba(213, 233, 243, 0.48));
+  box-shadow: 0 24px 70px rgba(20, 72, 104, 0.1);
+  backdrop-filter: blur(18px);
+}
+
+.tr-deep-section {
+  background:
+    radial-gradient(circle at 82% 16%, rgba(99, 193, 223, 0.2), transparent 28%),
+    radial-gradient(circle at 14% 82%, rgba(43, 108, 152, 0.22), transparent 34%),
+    linear-gradient(135deg, var(--tr-deep-start) 0%, var(--tr-deep-mid) 58%, var(--tr-deep-end) 100%);
+}
+
+.tr-accent-button {
+  background-color: var(--tr-primary) !important;
+  background-image: var(--tr-accent-gradient) !important;
+  box-shadow: 0 12px 34px rgba(54, 143, 184, 0.26) !important;
+}
+
+.tr-accent-button:hover {
+  filter: brightness(1.06);
 }
 
 .tianrong-page :where(h1, h2, h3) {
@@ -129,6 +167,7 @@ body {
 
 .tianrong-page [class*="bg-[#0F62FE]"]:not([class*="after:bg-[#0F62FE]"]) {
   background-color: var(--tr-primary) !important;
+  background-image: var(--tr-accent-gradient) !important;
 }
 
 .tianrong-page [class~="hover:bg-[#0050E6]"]:hover {

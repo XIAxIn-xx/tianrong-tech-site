@@ -114,7 +114,7 @@ export function VideoHero() {
           </motion.p>
 
           <div className="mt-7 flex flex-nowrap justify-center gap-3">
-            <Button asChild size="lg" className="rounded-none bg-[var(--tr-primary)] text-white shadow-none hover:bg-[var(--tr-primary-hover)]">
+            <Button asChild size="lg" className="tr-accent-button rounded-none text-white hover:bg-[var(--tr-primary-hover)]">
               <a href="#matrix">
                 <span className="keep-phrase">查看产品矩阵</span>
                 <ArrowRight className="ml-2 h-4 w-4" />

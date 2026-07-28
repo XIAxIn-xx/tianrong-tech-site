@@ -129,7 +129,7 @@ export function TianrongHeader({
   };
 
   return (
-    <header className={isHeroOverlay ? "fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[rgba(9,29,45,0.58)] backdrop-blur-md" : overlay ? "fixed inset-x-0 top-0 z-50 border-b border-[var(--tr-line)] bg-white/95 backdrop-blur" : "sticky top-0 z-50 border-b border-[var(--tr-line)] bg-white/95 backdrop-blur"}>
+    <header className={isHeroOverlay ? "fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[rgba(9,29,45,0.58)] backdrop-blur-md" : overlay ? "fixed inset-x-0 top-0 z-50 border-b border-[var(--tr-line)] bg-[rgba(230,241,247,0.88)] backdrop-blur-xl" : "sticky top-0 z-50 border-b border-[var(--tr-line)] bg-[rgba(230,241,247,0.88)] backdrop-blur-xl"}>
       <div className={`relative mx-auto flex h-[74px] items-center justify-between gap-6 ${containerClassName}`}>
         <Link href="/" className={`flex shrink-0 items-center gap-3 focus-visible:outline-none focus-visible:ring-2 ${isHeroOverlay ? "focus-visible:ring-white/70" : "focus-visible:ring-[#0F62FE]/45 focus-visible:ring-offset-2"}`} onClick={closeMenus}>
           {renderBrand()}
@@ -156,7 +156,7 @@ export function TianrongHeader({
               <ChevronDown className={`h-4 w-4 transition-transform ${productOpen ? "rotate-180" : ""}`} />
             </button>
             {productOpen && (
-              <div role="menu" className="absolute left-0 top-[calc(100%-1px)] z-[60] w-[300px] border border-[#E0E0E0] bg-white p-2 shadow-[0_12px_32px_rgba(15,23,42,0.12)]">
+              <div role="menu" className="absolute left-0 top-[calc(100%-1px)] z-[60] w-[300px] border border-[var(--tr-line)] bg-[rgba(232,243,249,0.94)] p-2 shadow-[0_16px_42px_rgba(20,72,104,0.16)] backdrop-blur-xl">
                 {productItems.map(([label, id]) => (
                   <a
                     key={id}
@@ -188,7 +188,7 @@ export function TianrongHeader({
         </button>
 
         {mobileOpen && (
-          <div className="absolute inset-x-0 top-[74px] z-50 max-h-[calc(100dvh-74px)] overflow-y-auto border-t border-[#E0E0E0] bg-white shadow-[0_16px_32px_rgba(15,23,42,0.1)] lg:hidden">
+          <div className="absolute inset-x-0 top-[74px] z-50 max-h-[calc(100dvh-74px)] overflow-y-auto border-t border-[var(--tr-line)] bg-[rgba(232,243,249,0.96)] shadow-[0_16px_42px_rgba(20,72,104,0.16)] backdrop-blur-xl lg:hidden">
             <nav aria-label="移动端主导航" className="flex flex-col gap-1 p-4">
               <a href={hrefFor("top")} onClick={closeMenus} className="keep-phrase flex min-h-12 items-center border-b border-[#F0F0F0] px-2 text-base text-[#3D3D3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F62FE]/45">首页</a>
               <button
