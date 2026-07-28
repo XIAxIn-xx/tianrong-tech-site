@@ -4,12 +4,8 @@ import { type FormEvent, type ReactNode, useEffect, useRef, useState } from "rea
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,54 +26,50 @@ const products = [
   {
     id: "payload-modules",
     title: "背包与传感器",
+    category: "硬件产品",
     tagline: "面向巡检任务的模块化硬件组合",
-    description: "以统一背包为载体，集成可见光、热成像、气体检测、通信、边缘计算和广播等传感器与设备，根据巡检任务完成硬件模块组合与软硬件集成。",
-    image: "/images/generated/modular-backpack.png",
+    description: "以统一背包为载体，集成 ROBOX、可见光、热成像、气体检测、通信和边缘计算等模块，根据巡检任务完成硬件组合与现场适配。",
+    nodes: ["ROBOX 模块", "可见光 / 热成像", "气体 / 通信"],
     target: "#payload-modules",
     cta: "了解硬件集成"
   },
   {
-    id: "robot-body",
-    title: "机器人本体",
-    tagline: "面向巡检任务的机器人本体",
-    description: "根据负载、续航、地形与作业范围，选择合适的四足或轮足机器人本体，满足不同巡检任务的部署需求。",
-    image: "/images/generated/argos-body.png",
-    target: "#robot-series",
-    cta: "了解机器人本体"
-  },
-  {
     id: "doghouse",
     title: "机器人狗窝",
+    category: "硬件产品",
     tagline: "支撑机器人长期连续运行",
     description: "集成自动充电、温湿度监测、通信和数据采集等功能，为机器人提供稳定的驻留、补能与现场运行支持。",
-    image: "/images/tianrong/robot-foot-platform.png",
-    target: "#robot-series",
-    cta: "了解机器人狗窝"
+    nodes: ["自动补能", "温湿度监测", "通信 / 数采"],
+    target: "#contact",
+    cta: "咨询机器人狗窝"
   },
   {
     id: "navigation",
     title: "自主导航",
+    category: "软件产品",
     tagline: "支撑机器人在真实现场稳定移动",
     description: "提供环境建图、定位、路径规划和实时避障能力，采用激光 SLAM，支撑机器人完成巡检任务。",
-    image: "/images/generated/mission-control-ui.png",
+    nodes: ["环境建图", "定位与规划", "实时避障"],
     target: "#rsp-platform",
     cta: "了解自主导航"
   },
   {
     id: "rsp",
-    title: "云控平台",
+    title: "RSP 云控平台",
+    category: "软件产品",
     tagline: "统一管理机器人、任务与现场运行",
     description: "集中完成地图管理、任务下发、设备监控、远程控制和巡检过程管理。",
-    image: "/images/generated/mission-control-ui.png",
+    nodes: ["任务下发", "远程控制", "设备状态"],
     target: "#rsp-platform",
     cta: "了解云控平台"
   },
   {
     id: "data-platform",
     title: "数采平台",
+    category: "软件产品",
     tagline: "让巡检数据形成业务闭环",
     description: "独立完成巡检数据的采集、存储、分析、可视化、异常预警和报告生成，为巡检决策与任务优化提供依据。",
-    image: "/images/tianrong/rsp-monitor.png",
+    nodes: ["数据采集", "异常预警", "分析报告"],
     target: "#rsp-platform",
     cta: "了解数采平台"
   }
@@ -261,7 +253,7 @@ export function TianrongScenarioPage() {
           <ScrollDrivenSection id="matrix" className="relative z-10 bg-[var(--tr-surface-soft)] py-20">
             <SectionHeading
               title={<>面向巡检场景的<span className="keep-phrase">软硬件产品矩阵</span></>}
-              description={<>从<span className="keep-phrase">背包与传感器</span>、<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">机器人狗窝</span>，到<span className="keep-phrase">自主导航</span>、<span className="keep-phrase">云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可组合、可集成、可扩展的巡检产品矩阵。</>}
+              description={<>以适配机器人本体为载体，围绕<span className="keep-phrase">背包与传感器</span>、<span className="keep-phrase">机器人狗窝</span>、<span className="keep-phrase">自主导航</span>、<span className="keep-phrase">RSP 云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可按任务组合的巡检产品矩阵。</>}
             />
             <ProductShowcase />
           </ScrollDrivenSection>
@@ -458,20 +450,15 @@ export function TianrongScenarioPage() {
             <div className="relative z-10 max-w-[660px]">
               <div className="text-[13px] font-medium tracking-[0.08em] text-[#737373]">关于天戎</div>
               <h2 className="cjk-heading mt-8 max-w-[720px] text-left text-[clamp(40px,10.5vw,48px)] font-semibold leading-[1.1] tracking-[-0.035em] md:text-[clamp(52px,4.4vw,68px)] md:leading-[1.1]">
-                <span className="block lg:whitespace-nowrap">
-                  专注于<span className="keep-phrase">巡检场景</span>的
-                </span>
-                <span className="block lg:whitespace-nowrap">
-                  <span className="keep-phrase">高度定制化</span>{" "}
-                  <span className="keep-phrase">解决方案</span>
-                </span>
+                <span className="block keep-phrase lg:whitespace-nowrap">以洞见启程，</span>
+                <span className="block keep-phrase lg:whitespace-nowrap">以智能抵达</span>
               </h2>
               <div className="cjk-body mt-12 max-w-[660px] space-y-6 text-[17px] leading-[1.9] text-[#4E514F] md:text-[18px]">
                 <p>
-                  天戎科技聚焦巡检场景的高度定制化解决方案，面向物流仓储、公共安全、工业园区等领域，提供能够进入真实作业现场的智能化巡检服务。
+                  杭州天戎智能科技有限公司成立于2025年9月，是一家专注于具身智能技术与机器人系统集成的高科技企业，致力于为全球客户提供智能化、自动化、远程化的机器人解决方案。公司业务涵盖机器人运动控制、环境感知、自主巡航、AI智能融合及系统集成，产品和方案广泛应用于安防巡检等多个行业。
                 </p>
                 <p>
-                  公司以 RSP 云控平台、设备传感器与硬件背包集成、数采与分析平台为核心，基于不同厂商的机器狗本体，提供从本体选型、模块集成到远程控制和数据闭环的完整巡检方案。
+                  公司的创始团队由来自知名科技企业的资深专家组成，在具身智能机器人领域拓展了新的技术应用领域。现有技术团队由一群来自于国内外知名院校及实验室的年轻人组成，热衷于投身具身智能产业化应用事业。依托深厚的研发能力和全球化战略布局，公司正加速推进具身智能技术创新、行业应用标准化落地。
                 </p>
               </div>
             </div>
@@ -623,180 +610,177 @@ export function TianrongScenarioPage() {
 
 function ProductShowcase() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const dragStartRef = useRef<number | null>(null);
-  const didDragRef = useRef(false);
+  const showcaseRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
   const activeProduct = products[active];
+  const { scrollYProgress } = useScroll({
+    target: showcaseRef,
+    offset: ["start start", "end end"]
+  });
 
-  useEffect(() => {
-    if (paused) return;
-    const timer = window.setInterval(() => {
-      setActive((current) => (current + 1) % products.length);
-    }, 5200);
-    return () => window.clearInterval(timer);
-  }, [paused]);
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    if (typeof window === "undefined" || window.innerWidth < 768) return;
+    const next = Math.min(products.length - 1, Math.floor(progress * products.length));
+    setActive((current) => current === next ? current : next);
+  });
 
-  function goTo(index: number) {
+  function selectProduct(index: number, syncScroll = false) {
     const next = (index + products.length) % products.length;
     setActive(next);
-    const container = scrollRef.current;
-    const item = container?.children[next] as HTMLElement | undefined;
-    item?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    if (!syncScroll || typeof window === "undefined" || window.innerWidth < 768) return;
+
+    const element = showcaseRef.current;
+    if (!element) return;
+    const start = window.scrollY + element.getBoundingClientRect().top;
+    const distance = Math.max(0, element.offsetHeight - window.innerHeight);
+    const target = start + (next / Math.max(products.length - 1, 1)) * distance;
+    window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
   }
 
   function scrollToTarget(target: string) {
-    document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.querySelector(target)?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
   }
 
-  function onMobileScroll() {
-    const container = scrollRef.current;
-    if (!container) return;
-    const center = container.scrollLeft + container.clientWidth / 2;
-    let next = active;
-    let min = Number.POSITIVE_INFINITY;
-    Array.from(container.children).forEach((child, index) => {
-      const item = child as HTMLElement;
-      const itemCenter = item.offsetLeft + item.offsetWidth / 2;
-      const distance = Math.abs(center - itemCenter);
-      if (distance < min) {
-        min = distance;
-        next = index;
-      }
-    });
-    if (next !== active) setActive(next);
-  }
-
-  function getOffset(index: number) {
-    const raw = index - active;
-    if (raw > products.length / 2) return raw - products.length;
-    if (raw < -products.length / 2) return raw + products.length;
-    return raw;
+  function handleTabKeyDown(event: React.KeyboardEvent<HTMLButtonElement>, index: number) {
+    let next: number | null = null;
+    if (event.key === "ArrowDown" || event.key === "ArrowRight") next = index + 1;
+    if (event.key === "ArrowUp" || event.key === "ArrowLeft") next = index - 1;
+    if (event.key === "Home") next = 0;
+    if (event.key === "End") next = products.length - 1;
+    if (next === null) return;
+    event.preventDefault();
+    const normalized = (next + products.length) % products.length;
+    selectProduct(normalized, true);
+    document.getElementById(`matrix-tab-${products[normalized].id}`)?.focus();
   }
 
   return (
-    <div className="mt-10 overflow-hidden bg-[linear-gradient(180deg,#FFFFFF_0%,#F2F6F8_100%)]">
-      <div
-        className="relative overflow-hidden"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(43,108,152,0.10),transparent_38%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-[#2B6C98]/22" />
-
-        <div
-          className="relative hidden h-[520px] touch-pan-y select-none md:block"
-          onPointerDown={(event) => {
-            dragStartRef.current = event.clientX;
-            didDragRef.current = false;
-            setPaused(true);
-          }}
-          onPointerUp={(event) => {
-            const start = dragStartRef.current;
-            dragStartRef.current = null;
-            if (start === null) return;
-            const distance = event.clientX - start;
-            if (Math.abs(distance) > 48) {
-              didDragRef.current = true;
-              goTo(active + (distance < 0 ? 1 : -1));
-            }
-          }}
-          onPointerCancel={() => {
-            dragStartRef.current = null;
-            didDragRef.current = false;
-          }}
-        >
-          {products.map((product, index) => {
-            const offset = getOffset(index);
-            const hidden = Math.abs(offset) > 2;
-            return (
-              <button
-                key={product.id}
-                type="button"
-                aria-label={`查看${product.title}`}
-                onClick={() => {
-                  if (didDragRef.current) {
-                    didDragRef.current = false;
-                    return;
-                  }
-                  goTo(index);
-                }}
-                className="absolute left-1/2 top-1/2 h-[390px] w-[52%] max-w-[720px] -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out"
-                style={{
-                  transform: `translate(-50%, -50%) translateX(${offset * 46}%) scale(${offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.72 : 0.52})`,
-                  opacity: hidden ? 0 : offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.48 : 0.18,
-                  filter: offset === 0 ? "none" : "blur(1px)",
-                  zIndex: 20 - Math.abs(offset),
-                  pointerEvents: hidden ? "none" : "auto"
-                }}
-              >
-                <span className="absolute inset-x-10 bottom-8 h-16 bg-[#2B6C98]/10 blur-2xl" />
-                <span className="relative flex h-full items-center justify-center bg-white/75 p-8 shadow-[0_24px_70px_rgba(23,56,79,0.08)] backdrop-blur transition-shadow duration-500 hover:shadow-[0_28px_90px_rgba(23,56,79,0.14)]">
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    width={980}
-                    height={720}
-                    className="h-full w-full object-contain"
-                    priority={index === 0}
-                  />
-                </span>
-              </button>
-            );
-          })}
-
-          <button
-            type="button"
-            aria-label="上一个产品"
-            onClick={() => goTo(active - 1)}
-            className="absolute left-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center bg-white/85 text-[#2B6C98] shadow-[0_8px_24px_rgba(23,56,79,0.10)] backdrop-blur transition hover:bg-[#EAF4FF]"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            aria-label="下一个产品"
-            onClick={() => goTo(active + 1)}
-            className="absolute right-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center bg-white/85 text-[#2B6C98] shadow-[0_8px_24px_rgba(23,56,79,0.10)] backdrop-blur transition hover:bg-[#EAF4FF]"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
+    <div ref={showcaseRef} className="relative mt-12 md:h-[360vh]">
+      <div className="relative overflow-hidden border border-[#C9D9E3] bg-[#071B2A] text-white md:sticky md:top-0 md:min-h-[calc(100svh-72px)]">
+        <div className="pointer-events-none absolute inset-0 opacity-90 [mask-image:linear-gradient(to_right,black,black_74%,transparent)]">
+          <DotField
+            dotRadius={1.5}
+            dotSpacing={16}
+            bulgeStrength={72}
+            glowRadius={190}
+            sparkle={false}
+            waveAmplitude={0}
+            cursorRadius={520}
+            cursorForce={0.12}
+            bulgeOnly
+            gradientFrom="rgba(93, 185, 233, 0.34)"
+            gradientTo="rgba(43, 108, 152, 0.10)"
+            glowColor="#5DB9E9"
+          />
         </div>
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_68%_45%,rgba(43,108,152,0.25),transparent_34%),linear-gradient(90deg,rgba(7,27,42,0.98)_0%,rgba(7,27,42,0.86)_43%,rgba(7,27,42,0.50)_100%)]" />
 
-        <div
-          ref={scrollRef}
-          onScroll={onMobileScroll}
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
-          className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-8 md:hidden"
-        >
-          {products.map((product) => (
-            <div key={product.id} className="w-[82%] shrink-0 snap-center bg-white/85 p-5 shadow-[0_18px_52px_rgba(15,98,254,0.12)]">
-              <div className="relative aspect-[1.28]">
-                <Image src={product.image} alt={product.title} fill sizes="82vw" className="object-contain" />
-              </div>
+        <div className="relative z-10 grid min-h-[inherit] md:grid-cols-[minmax(250px,0.72fr)_minmax(0,1.45fr)]">
+          <div className="border-b border-white/12 p-5 sm:p-7 md:flex md:flex-col md:justify-center md:border-b-0 md:border-r md:px-8 lg:px-10">
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-xs font-semibold tracking-[0.22em] text-[#87C8EA]">PRODUCT MATRIX</p>
+              <p className="text-sm tabular-nums text-white/58">{String(active + 1).padStart(2, "0")} / {String(products.length).padStart(2, "0")}</p>
             </div>
-          ))}
-        </div>
-
-        <div className="relative border-t border-[#D8E6F5] bg-white/86 p-6 backdrop-blur md:p-8">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={activeProduct.id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.32, ease: "easeOut" }}
-              className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr_auto] lg:items-end"
+            <div
+              role="tablist"
+              aria-label="产品矩阵"
+              aria-orientation="vertical"
+              className="mt-5 flex snap-x gap-2 overflow-x-auto pb-2 md:mt-8 md:flex-col md:gap-1 md:overflow-visible md:pb-0"
             >
+              {products.map((product, index) => {
+                const isActive = index === active;
+                return (
+                  <button
+                    key={product.id}
+                    id={`matrix-tab-${product.id}`}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-controls="matrix-product-panel"
+                    tabIndex={isActive ? 0 : -1}
+                    onClick={() => selectProduct(index, true)}
+                    onKeyDown={(event) => handleTabKeyDown(event, index)}
+                    className={`group min-h-11 shrink-0 snap-start border px-4 py-3 text-left transition md:w-full md:border-x-0 md:border-b-0 md:border-t md:px-0 md:py-4 ${
+                      isActive
+                        ? "border-[#5DB9E9] bg-[#5DB9E9]/12 text-white md:bg-transparent"
+                        : "border-white/12 text-white/52 hover:border-white/30 hover:text-white/82"
+                    }`}
+                  >
+                    <span className="flex items-center gap-3">
+                      <span className={`text-xs tabular-nums ${isActive ? "text-[#87C8EA]" : "text-white/32"}`}>{String(index + 1).padStart(2, "0")}</span>
+                      <span className="cjk-heading keep-phrase text-base font-semibold md:text-lg">{product.title}</span>
+                    </span>
+                    <span className={`cjk-body mt-1 hidden pl-8 text-sm leading-6 md:block ${isActive ? "text-white/66" : "text-white/0"}`}>
+                      {product.tagline}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="mt-5 h-px overflow-hidden bg-white/12 md:mt-8">
+              <div
+                className="h-full bg-[#5DB9E9] transition-[width] duration-300"
+                style={{ width: `${((active + 1) / products.length) * 100}%` }}
+              />
+            </div>
+            <p className="mt-3 hidden text-xs leading-5 text-white/42 md:block">滚动页面或选择产品，查看软硬件协同关系。</p>
+          </div>
+
+          <div className="flex min-h-[680px] flex-col p-5 sm:p-7 md:min-h-[calc(100svh-72px)] md:p-8 lg:p-10">
+            <div className="flex items-center justify-between gap-4">
               <div>
-                <h3 className="cjk-heading keep-phrase mt-3 text-3xl font-semibold leading-tight md:text-4xl">{activeProduct.title}</h3>
+                <p className="text-xs font-semibold tracking-[0.2em] text-[#87C8EA]">{activeProduct.category}</p>
+                <h3 className="cjk-heading keep-phrase mt-2 text-3xl font-semibold leading-tight md:text-4xl">{activeProduct.title}</h3>
               </div>
-              <div>
-                <div className="cjk-heading text-lg font-semibold text-[#1F4F82]">{activeProduct.tagline}</div>
-                <p className="cjk-body mt-3 max-w-3xl leading-7 text-[#525252]">{activeProduct.description}</p>
+              <span className="hidden border border-[#87C8EA]/34 bg-[#071B2A]/60 px-3 py-2 text-xs text-[#B8DDF0] sm:block">适配本体载体</span>
+            </div>
+
+            <div className="relative mt-4 min-h-[330px] flex-1 overflow-hidden border border-white/10 bg-[#061724]/62 md:mt-6 md:min-h-[360px]">
+              <div className="pointer-events-none absolute left-1/2 top-1/2 h-[68%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5DB9E9]/14" />
+              <div className="pointer-events-none absolute left-1/2 top-1/2 h-[48%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#5DB9E9]/22" />
+              <div className="absolute inset-0">
+                <LazyHeroRobotPreview />
               </div>
-              <Button asChild size="lg" className="w-fit rounded-none bg-[#0F62FE] text-white shadow-none hover:bg-[#0050E6]">
+
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={activeProduct.id}
+                  initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+                  transition={{ duration: reduceMotion ? 0.12 : 0.3, ease: "easeOut" }}
+                  className="pointer-events-none absolute inset-x-3 bottom-3 grid grid-cols-3 gap-2 sm:inset-x-5 sm:bottom-5"
+                >
+                  {activeProduct.nodes.map((node, index) => (
+                    <div key={node} className="border border-[#87C8EA]/28 bg-[#071B2A]/86 px-2 py-2 text-center backdrop-blur sm:px-3 sm:py-3">
+                      <span className="block text-[10px] tabular-nums text-[#5DB9E9]">0{index + 1}</span>
+                      <span className="keep-phrase mt-1 block text-xs font-medium text-white/82 sm:text-sm">{node}</span>
+                    </div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <div
+              id="matrix-product-panel"
+              role="tabpanel"
+              aria-labelledby={`matrix-tab-${activeProduct.id}`}
+              aria-live="polite"
+              className="mt-5 grid gap-5 border-t border-white/12 pt-5 lg:grid-cols-[1fr_auto] lg:items-end"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={activeProduct.id}
+                  initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
+                  transition={{ duration: reduceMotion ? 0.12 : 0.28 }}
+                >
+                  <p className="cjk-heading text-lg font-semibold text-[#B8DDF0]">{activeProduct.tagline}</p>
+                  <p className="cjk-body mt-2 max-w-3xl text-sm leading-7 text-white/62 md:text-base">{activeProduct.description}</p>
+                </motion.div>
+              </AnimatePresence>
+              <Button asChild size="lg" className="w-fit rounded-none bg-[#2B6C98] text-white shadow-none hover:bg-[#347DAA]">
                 <a
                   href={activeProduct.target}
                   onClick={(event) => {
@@ -808,19 +792,7 @@ function ProductShowcase() {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="mt-6 flex gap-2">
-            {products.map((product, index) => (
-              <button
-                key={product.id}
-                type="button"
-                aria-label={`切换到${product.title}`}
-                onClick={() => goTo(index)}
-                className={`h-1.5 transition-all ${index === active ? "w-10 bg-[#0F62FE]" : "w-4 bg-[#C7DBF2] hover:bg-[#78A9FF]"}`}
-              />
-            ))}
+            </div>
           </div>
         </div>
       </div>

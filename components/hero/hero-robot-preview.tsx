@@ -3,6 +3,7 @@
 import { Suspense, useMemo, useRef } from "react";
 import { Bounds, Center, Html, OrbitControls, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { useReducedMotion } from "framer-motion";
 
 const MODEL_URL = "/models/tianrong-robot-dog.v1.glb";
 
@@ -20,9 +21,10 @@ function TianrongRobotDogModel() {
   const groupRef = useRef<any>(null);
   const { scene } = useGLTF(MODEL_URL);
   const clonedScene = useMemo(() => scene.clone(), [scene]);
+  const reduceMotion = useReducedMotion();
 
   useFrame((_, delta) => {
-    if (!groupRef.current) return;
+    if (!groupRef.current || reduceMotion) return;
     groupRef.current.rotation.y += delta * 0.22;
   });
 
