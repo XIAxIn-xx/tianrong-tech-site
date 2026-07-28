@@ -56,11 +56,11 @@ const config: Config = {
         ]
       },
       boxShadow: {
-        glow: "0 0 42px rgba(24, 194, 255, 0.22)"
+        glow: "0 0 42px rgba(43, 108, 152, 0.16)"
       },
       backgroundImage: {
         "grid-fade":
-          "linear-gradient(rgba(20, 184, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(20, 184, 255, 0.1) 1px, transparent 1px)"
+          "linear-gradient(rgba(43, 108, 152, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(43, 108, 152, 0.08) 1px, transparent 1px)"
       }
     }
   },

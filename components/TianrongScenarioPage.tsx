@@ -675,14 +675,14 @@ function ProductShowcase() {
   }
 
   return (
-    <div className="mt-10 overflow-hidden bg-[linear-gradient(180deg,#F8FBFF_0%,#EEF6FF_100%)]">
+    <div className="mt-10 overflow-hidden bg-[linear-gradient(180deg,#FFFFFF_0%,#F2F6F8_100%)]">
       <div
         className="relative overflow-hidden"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(15,98,254,0.16),transparent_38%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-[#0F62FE]/25" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(43,108,152,0.10),transparent_38%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-[#2B6C98]/22" />
 
         <div
           className="relative hidden h-[520px] touch-pan-y select-none md:block"
@@ -730,8 +730,8 @@ function ProductShowcase() {
                   pointerEvents: hidden ? "none" : "auto"
                 }}
               >
-                <span className="absolute inset-x-10 bottom-8 h-16 bg-[#0F62FE]/12 blur-2xl" />
-                <span className="relative flex h-full items-center justify-center bg-white/75 p-8 shadow-[0_24px_70px_rgba(15,98,254,0.12)] backdrop-blur transition-shadow duration-500 hover:shadow-[0_28px_90px_rgba(15,98,254,0.2)]">
+                <span className="absolute inset-x-10 bottom-8 h-16 bg-[#2B6C98]/10 blur-2xl" />
+                <span className="relative flex h-full items-center justify-center bg-white/75 p-8 shadow-[0_24px_70px_rgba(23,56,79,0.08)] backdrop-blur transition-shadow duration-500 hover:shadow-[0_28px_90px_rgba(23,56,79,0.14)]">
                   <Image
                     src={product.image}
                     alt={product.title}
@@ -749,7 +749,7 @@ function ProductShowcase() {
             type="button"
             aria-label="上一个产品"
             onClick={() => goTo(active - 1)}
-            className="absolute left-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center bg-white/85 text-[#0F62FE] shadow-[0_8px_24px_rgba(15,98,254,0.14)] backdrop-blur transition hover:bg-[#EAF4FF]"
+            className="absolute left-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center bg-white/85 text-[#2B6C98] shadow-[0_8px_24px_rgba(23,56,79,0.10)] backdrop-blur transition hover:bg-[#EAF4FF]"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -757,7 +757,7 @@ function ProductShowcase() {
             type="button"
             aria-label="下一个产品"
             onClick={() => goTo(active + 1)}
-            className="absolute right-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center bg-white/85 text-[#0F62FE] shadow-[0_8px_24px_rgba(15,98,254,0.14)] backdrop-blur transition hover:bg-[#EAF4FF]"
+            className="absolute right-6 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center bg-white/85 text-[#2B6C98] shadow-[0_8px_24px_rgba(23,56,79,0.10)] backdrop-blur transition hover:bg-[#EAF4FF]"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
