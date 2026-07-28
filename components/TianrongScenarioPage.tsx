@@ -30,8 +30,8 @@ const products = [
   {
     id: "payload-modules",
     title: "背包与传感器",
-    tagline: "面向巡检任务的模块化硬件系统",
-    description: "以统一背包为载体，集成可见光、热成像、气体检测、通信、边缘计算和广播等传感器与设备，根据巡检任务完成硬件模块组合与系统集成。",
+    tagline: "面向巡检任务的模块化硬件组合",
+    description: "以统一背包为载体，集成可见光、热成像、气体检测、通信、边缘计算和广播等传感器与设备，根据巡检任务完成硬件模块组合与软硬件集成。",
     image: "/images/generated/modular-backpack.png",
     target: "#payload-modules",
     cta: "了解硬件集成"
@@ -47,21 +47,21 @@ const products = [
   },
   {
     id: "doghouse",
-    title: "狗窝系统",
+    title: "机器人狗窝",
     tagline: "支撑机器人长期连续运行",
     description: "集成自动充电、温湿度监测、通信和数据采集等功能，为机器人提供稳定的驻留、补能与现场运行支持。",
     image: "/images/tianrong/robot-foot-platform.png",
     target: "#robot-series",
-    cta: "了解狗窝系统"
+    cta: "了解机器人狗窝"
   },
   {
     id: "navigation",
-    title: "导航系统",
+    title: "自主导航",
     tagline: "支撑机器人在真实现场稳定移动",
     description: "提供环境建图、定位、路径规划和实时避障能力，采用激光 SLAM，支撑机器人完成巡检任务。",
     image: "/images/generated/mission-control-ui.png",
     target: "#rsp-platform",
-    cta: "了解导航系统"
+    cta: "了解自主导航"
   },
   {
     id: "rsp",
@@ -261,7 +261,7 @@ export function TianrongScenarioPage() {
           <ScrollDrivenSection id="matrix" className="relative z-10 bg-[var(--tr-surface-soft)] py-20">
             <SectionHeading
               title={<>面向巡检场景的<span className="keep-phrase">软硬件产品矩阵</span></>}
-              description={<>从<span className="keep-phrase">背包与传感器</span>、<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">狗窝系统</span>，到<span className="keep-phrase">导航系统</span>、<span className="keep-phrase">云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可组合、可集成、可扩展的巡检产品体系。</>}
+              description={<>从<span className="keep-phrase">背包与传感器</span>、<span className="keep-phrase">机器人本体</span>、<span className="keep-phrase">机器人狗窝</span>，到<span className="keep-phrase">自主导航</span>、<span className="keep-phrase">云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可组合、可集成、可扩展的巡检产品矩阵。</>}
             />
             <ProductShowcase />
           </ScrollDrivenSection>

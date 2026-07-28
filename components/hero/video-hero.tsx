@@ -48,7 +48,12 @@ export function VideoHero() {
   }, [videoEnabled]);
 
   return (
-    <section ref={heroRef} className="sticky top-0 z-0 h-[100svh] min-h-[560px] overflow-hidden bg-[var(--tr-ink-deep)] text-white" aria-labelledby="video-hero-title">
+    <section
+      ref={heroRef}
+      className="sticky top-0 z-0 h-[100svh] min-h-[560px] overflow-hidden bg-[var(--tr-ink-deep)] text-white"
+      aria-labelledby="video-hero-title"
+      aria-describedby="video-hero-description"
+    >
       <motion.div
         initial={false}
         style={{ scale: reduceMotion ? 1 : videoScale }}
@@ -82,24 +87,15 @@ export function VideoHero() {
           }}
           className="w-full origin-top will-change-transform"
         >
-          <motion.p
-            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={reduceMotion ? { duration: 0.2 } : { duration: 0.55, delay: 0.04 }}
-            className="cjk-body text-sm font-semibold tracking-[0.12em] text-white/78 md:text-[15px]"
-          >
-            机器人智能产品服务商
-          </motion.p>
-
           <motion.h1
             id="video-hero-title"
             initial={reduceMotion ? false : { opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={reduceMotion ? { duration: 0.2 } : { duration: 0.65, delay: 0.08 }}
-            className="cjk-heading mt-4 text-[clamp(2rem,5vw,4rem)] font-semibold leading-[1.1] tracking-[-0.035em]"
+            className="cjk-heading mt-6 text-[clamp(2rem,5vw,4rem)] font-semibold leading-[1.1] tracking-[-0.035em]"
           >
             <span className="block keep-phrase">面向真实巡检场景的</span>
-            <span className="mt-1 block keep-phrase">机器人智能产品服务</span>
+            <span className="mt-1 block keep-phrase">机器人智能产品服务商</span>
           </motion.h1>
 
           <motion.p
@@ -109,13 +105,18 @@ export function VideoHero() {
             transition={reduceMotion ? { duration: 0.2 } : { duration: 0.65, delay: 0.16 }}
             className="cjk-body mx-auto mt-5 max-w-4xl text-base font-medium leading-7 text-white/88 md:mt-6 md:text-lg md:leading-8"
           >
-            天戎科技以 <span className="keep-phrase">RSP 云控平台</span>、<span className="keep-phrase">数采平台</span>、<span className="keep-phrase">硬件背包与传感器集成</span>为核心，为客户提供<span className="keep-phrase">机器人产品组合</span>、<span className="keep-phrase">系统适配</span>与<span className="keep-phrase">现场交付服务</span>。
+            <span className="block lg:whitespace-nowrap">
+              天戎科技以 <span className="keep-phrase">RSP 云控平台</span>、<span className="keep-phrase">数采平台</span>、<span className="keep-phrase">硬件背包与传感器集成</span>为核心，
+            </span>
+            <span className="block lg:whitespace-nowrap">
+              为客户提供<span className="keep-phrase">机器人产品组合</span>、<span className="keep-phrase">现场适配</span>与<span className="keep-phrase">现场交付服务</span>。
+            </span>
           </motion.p>
 
           <div className="mt-7 flex flex-nowrap justify-center gap-3">
             <Button asChild size="lg" className="rounded-none bg-[var(--tr-primary)] text-white shadow-none hover:bg-[var(--tr-primary-hover)]">
               <a href="#matrix">
-                <span className="keep-phrase">查看产品体系</span>
+                <span className="keep-phrase">查看产品矩阵</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
