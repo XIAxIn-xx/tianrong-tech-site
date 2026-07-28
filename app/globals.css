@@ -27,9 +27,9 @@
   --tr-primary-hover: #1f587d;
   --tr-primary-soft: #d8eaf4;
   --tr-on-dark: #c8dce8;
-  --tr-surface: rgba(231, 242, 248, 0.84);
-  --tr-surface-soft: rgba(222, 237, 245, 0.82);
-  --tr-surface-blue: rgba(211, 230, 240, 0.88);
+  --tr-surface: #e7f2f8;
+  --tr-surface-soft: #deedf5;
+  --tr-surface-blue: #d3e6f0;
   --tr-panel: rgba(239, 248, 252, 0.72);
   --tr-panel-strong: rgba(233, 244, 250, 0.92);
   --tr-line: rgba(62, 119, 153, 0.24);
