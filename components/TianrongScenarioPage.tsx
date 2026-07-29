@@ -89,24 +89,69 @@ const products = [
   }
 ];
 
-const productStorySteps = [
+type ProductStoryStep = {
+  id: string;
+  aliases: string[];
+  eyebrow: string;
+  title: string;
+  tagline: string;
+  description: string;
+  highlights: string[];
+  capabilities?: Array<{
+    title: string;
+    description: string;
+  }>;
+  systemRole?: string;
+};
+
+const productStorySteps: ProductStoryStep[] = [
   {
     id: "robot-series",
     aliases: ["bodies"],
     eyebrow: "平台适配",
     title: "机器人平台选型与适配",
-    tagline: "让合适的平台，进入合适的巡检现场",
-    description: "面向不同巡检场景，综合地形、载荷、续航与防护需求，完成机器人平台选型、软硬件接口适配、任务载荷集成与现场运行调校。",
-    highlights: ["机械结构适配", "电气与通信接口", "载荷与运行调校"]
+    tagline: "先选对平台，再谈系统能力",
+    description: "面向不同巡检场景，综合地形条件、作业范围、任务载荷、续航与防护需求，选择适合的机器人平台，并完成从接口到现场运行的系统适配。",
+    highlights: ["场景与平台选型", "软硬件接口适配", "现场集成与调校"],
+    capabilities: [
+      {
+        title: "场景与平台选型",
+        description: "结合通道宽度、地面条件、坡度、作业范围与载荷需求，综合评估平台通过性、负载、续航和防护能力。"
+      },
+      {
+        title: "软硬件接口适配",
+        description: "围绕机械安装、电气供电、通信协议与控制接口完成适配，为任务载荷和软件系统建立稳定连接。"
+      },
+      {
+        title: "现场集成与调校",
+        description: "完成载荷联调、参数配置、运动稳定性验证与现场试运行，使整套系统适应真实巡检环境。"
+      }
+    ],
+    systemRole: "系统起点：为后续背包、导航、云控和数采能力提供稳定载体。"
   },
   {
     id: "payload-modules",
     aliases: ["modules", "robox"],
     eyebrow: "感知装配",
     title: "背包与传感器",
-    tagline: "把现场所需能力，装进统一硬件载体",
-    description: "围绕巡检任务设计背包结构，集成 ROBOX、可见光、热成像、气体检测、通信与边缘计算等模块，兼顾安装、散热和维护。",
-    highlights: ["模块化背包", "多类型传感器", "ROBOX 现场接入"]
+    tagline: "感知能力，按任务装配",
+    description: "围绕具体巡检任务设计模块化背包，将 ROBOX、可见光、热成像、气体检测、通信和边缘计算等能力集成到统一硬件载体中。",
+    highlights: ["模块化结构设计", "多类型传感器集成", "ROBOX 现场接入"],
+    capabilities: [
+      {
+        title: "模块化结构设计",
+        description: "统筹外观壳体、模块安装、散热、走线与维护空间，使不同任务载荷能够稳定组合并快速调整。"
+      },
+      {
+        title: "多类型传感器集成",
+        description: "按任务选择可见光、热成像、气体检测、激光雷达等感知设备，形成面向现场目标的采集能力。"
+      },
+      {
+        title: "ROBOX 现场接入",
+        description: "连接机器人、传感器与现场网络，持续回传视频、设备状态和任务数据，并支撑远程诊断与控制。"
+      }
+    ],
+    systemRole: "系统作用：把现场感知与机器人平台连接，并向导航、RSP 与数采平台持续输出设备和任务数据。"
   },
   {
     id: "charging-station",
@@ -699,6 +744,7 @@ function ProductShowcase() {
 
 function ProductStorySection() {
   const [active, setActive] = useState(0);
+  const [chapterProgress, setChapterProgress] = useState(0);
   const stepRefs = useRef<(HTMLElement | null)[]>([]);
   const reduceMotion = useReducedMotion();
 
@@ -720,6 +766,34 @@ function ProductStorySection() {
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const updateProgress = () => {
+      frame = 0;
+      const element = stepRefs.current[active];
+      if (!element) return;
+      const rect = element.getBoundingClientRect();
+      const viewportAnchor = window.innerHeight * 0.5;
+      const progress = Math.min(1, Math.max(0, (viewportAnchor - rect.top) / rect.height));
+      setChapterProgress(progress);
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateProgress);
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [active]);
 
   function goToStep(index: number) {
     stepRefs.current[index]?.scrollIntoView({
@@ -754,14 +828,17 @@ function ProductStorySection() {
               </p>
             </div>
 
-            <ProductStoryVisual active={active} />
+            <ProductStoryVisual active={active} progress={chapterProgress} />
 
-            <nav aria-label="装配长卷步骤" className="relative mt-4 grid grid-cols-6">
-              <div className="absolute left-[8.333%] right-[8.333%] top-[7px] h-px bg-white/18" />
+            <nav
+              aria-label="装配长卷步骤"
+              className="absolute -right-[7px] top-1/2 z-30 flex -translate-y-1/2 flex-col gap-5"
+            >
+              <div className="absolute bottom-[7px] left-[7px] top-[7px] w-px bg-white/16" />
               <motion.div
                 aria-hidden="true"
-                className="absolute left-[8.333%] top-[6px] h-[3px] bg-[linear-gradient(90deg,#368FB8,#63C1DF)] shadow-[0_0_14px_rgba(99,193,223,0.7)]"
-                animate={{ width: `${active * 16.667}%` }}
+                className="absolute left-[6px] top-[7px] w-[3px] bg-[linear-gradient(180deg,#368FB8,#63C1DF)] shadow-[0_0_14px_rgba(99,193,223,0.7)]"
+                animate={{ height: `${active * 20}%` }}
                 transition={reduceMotion ? { duration: 0 } : { duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               />
               {productStorySteps.map((step, index) => (
@@ -771,7 +848,7 @@ function ProductStorySection() {
                   aria-current={index === active ? "step" : undefined}
                   aria-label={`查看${step.title}`}
                   onClick={() => goToStep(index)}
-                  className="group relative z-10 flex min-w-0 flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#63C1DF]"
+                  className="group relative z-10 flex h-[15px] w-[15px] items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#63C1DF]"
                 >
                   <span
                     className={`h-[15px] w-[15px] rounded-full border transition ${
@@ -780,9 +857,11 @@ function ProductStorySection() {
                         : "border-white/42 bg-[#0A283B] group-hover:border-white/75"
                     }`}
                   />
-                  <span className={`mt-2 truncate text-[10px] xl:text-[11px] ${index === active ? "text-white" : "text-white/42"}`}>
-                    {step.eyebrow}
-                  </span>
+                  {index === active && (
+                    <span className="pointer-events-none absolute right-6 whitespace-nowrap text-[11px] font-semibold tracking-[0.12em] text-[#BDEAF7]">
+                      {step.eyebrow}
+                    </span>
+                  )}
                 </button>
               ))}
             </nav>
@@ -811,43 +890,59 @@ function ProductStorySection() {
                 stepRefs.current[index] = element;
               }}
               data-story-index={index}
-              className="relative scroll-mt-24 border-t border-white/10 py-12 first:border-t-0 lg:flex lg:min-h-[82svh] lg:items-center lg:border-t-0 lg:py-24 lg:pl-12 lg:pr-4 xl:pl-16 xl:pr-8"
+              className={`relative scroll-mt-24 border-t border-white/10 py-12 first:border-t-0 lg:flex lg:items-center lg:border-t-0 lg:py-24 lg:pl-12 lg:pr-4 xl:pl-16 xl:pr-8 ${
+                index < 2 ? "lg:min-h-[125svh]" : "lg:min-h-[82svh]"
+              }`}
             >
               {step.aliases.map((alias) => (
                 <span key={alias} id={alias} className="pointer-events-none absolute top-0 scroll-mt-24" />
               ))}
 
-              <div className="absolute -left-[5px] top-1/2 hidden h-[9px] w-[9px] -translate-y-1/2 rounded-full border border-[#63C1DF] bg-[#071F31] lg:block">
-                {index === active && <span className="absolute inset-[2px] rounded-full bg-[#63C1DF] shadow-[0_0_12px_rgba(99,193,223,0.9)]" />}
-              </div>
-
-              <div className="w-full">
+              <div className={`w-full ${index < 2 ? "lg:sticky lg:top-1/2 lg:-translate-y-1/2 lg:py-12" : ""}`}>
                 <div className="mb-7 lg:hidden">
                   <ProductStoryVisual active={index} compact />
                 </div>
-                <div className={`text-xs font-semibold tracking-[0.18em] text-[#63C1DF] transition-opacity ${index === active ? "lg:opacity-100" : "lg:opacity-45"}`}>
+                <div className={`text-xs font-semibold tracking-[0.18em] text-[#63C1DF] transition-opacity ${index === active ? "lg:opacity-100" : "lg:opacity-65"}`}>
                   {step.eyebrow}
                 </div>
                 <h3 className={`cjk-heading keep-phrase mt-4 text-3xl font-semibold leading-tight transition-colors md:text-4xl ${index === active ? "lg:text-white" : "lg:text-white/45"}`}>
                   {step.title}
                 </h3>
-                <p className={`cjk-heading mt-4 text-lg font-semibold leading-8 transition-colors ${index === active ? "text-[#BDEAF7] lg:text-[#BDEAF7]" : "text-[#BDEAF7] lg:text-white/36"}`}>
+                <p className={`cjk-heading mt-4 text-xl font-semibold leading-8 transition-colors ${index === active ? "text-[#BDEAF7] lg:text-[#BDEAF7]" : "text-[#BDEAF7] lg:text-white/58"}`}>
                   {step.tagline}
                 </p>
-                <p className={`cjk-body mt-5 text-base leading-8 transition-colors ${index === active ? "text-white/72" : "text-white/72 lg:text-white/32"}`}>
+                <p className={`cjk-body mt-5 text-base leading-8 transition-colors ${index === active ? "text-white/76" : "text-white/72 lg:text-white/58"}`}>
                   {step.description}
                 </p>
-                <div className="mt-7 grid gap-3">
-                  {step.highlights.map((item) => (
-                    <div
-                      key={item}
-                      className={`flex items-center gap-3 text-sm transition-colors ${index === active ? "text-white/82" : "text-white/82 lg:text-white/32"}`}
-                    >
-                      <span className="h-px w-5 shrink-0 bg-[#63C1DF]" />
-                      <span className="keep-phrase">{item}</span>
+                {step.capabilities ? (
+                  <>
+                    <div className="mt-8 border-t border-white/14">
+                      {step.capabilities.map((capability) => (
+                        <div key={capability.title} className="grid gap-2 border-b border-white/10 py-4 xl:grid-cols-[132px_1fr] xl:gap-5">
+                          <h4 className="cjk-heading keep-phrase text-sm font-semibold text-white/92">{capability.title}</h4>
+                          <p className="cjk-body text-sm leading-6 text-white/62">{capability.description}</p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                    {step.systemRole && (
+                      <p className="cjk-body mt-6 border-l-2 border-[#63C1DF] pl-4 text-sm leading-6 text-[#BDEAF7]">
+                        {step.systemRole}
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <div className="mt-7 grid gap-3">
+                    {step.highlights.map((item) => (
+                      <div
+                        key={item}
+                        className={`flex items-center gap-3 text-sm transition-colors ${index === active ? "text-white/82" : "text-white/62"}`}
+                      >
+                        <span className="h-px w-5 shrink-0 bg-[#63C1DF]" />
+                        <span className="keep-phrase">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </article>
           ))}
@@ -857,23 +952,27 @@ function ProductStorySection() {
   );
 }
 
-function ProductStoryVisual({ active, compact = false }: { active: number; compact?: boolean }) {
+function ProductStoryVisual({
+  active,
+  compact = false,
+  progress = 1
+}: {
+  active: number;
+  compact?: boolean;
+  progress?: number;
+}) {
   const reduceMotion = useReducedMotion();
 
   return (
     <div
-      className={`relative isolate overflow-hidden border border-white/12 bg-[#0A293D] ${
+      className={`relative isolate overflow-hidden bg-[radial-gradient(circle_at_48%_46%,rgba(54,143,184,0.22),transparent_48%),linear-gradient(150deg,rgba(9,38,57,0.78),rgba(5,24,37,0.24))] ${
         compact ? "aspect-[1.18]" : "mt-5 min-h-0 flex-1"
       }`}
     >
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(99,193,223,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(99,193,223,0.09)_1px,transparent_1px)] [background-size:42px_42px]"
-      />
-      <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_50%_44%,rgba(54,143,184,0.24),transparent_58%)]" />
+      <div aria-hidden="true" className="absolute inset-x-[8%] bottom-[9%] h-px bg-[linear-gradient(90deg,transparent,rgba(139,216,238,0.3),transparent)]" />
 
       {compact ? (
-        <StoryVisualContent index={active} compact />
+        <StoryVisualContent index={active} compact progress={1} />
       ) : (
         productStorySteps.map((step, index) => (
           <motion.div
@@ -889,31 +988,35 @@ function ProductStoryVisual({ active, compact = false }: { active: number; compa
             }
             transition={reduceMotion ? { duration: 0 } : { duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
           >
-            <StoryVisualContent index={index} />
+            <StoryVisualContent index={index} progress={index === active ? progress : 1} />
           </motion.div>
         ))
       )}
-
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-between bg-[linear-gradient(180deg,rgba(5,24,37,0.72),transparent)] px-4 py-3 text-[10px] tracking-[0.16em] text-white/52 md:px-5">
-        <span>TIANRONG · INSPECTION SYSTEM</span>
-        <span className="text-[#8BD8EE]">LIVE</span>
-      </div>
     </div>
   );
 }
 
-function StoryVisualContent({ index, compact = false }: { index: number; compact?: boolean }) {
+function StoryVisualContent({
+  index,
+  compact = false,
+  progress = 1
+}: {
+  index: number;
+  compact?: boolean;
+  progress?: number;
+}) {
   if (index === 0) {
     const platformNodes = [
-      ["机械结构", "left-[5%] top-[22%]"],
-      ["通信协议", "right-[5%] top-[28%]"],
-      ["电气接口", "left-[8%] bottom-[20%]"],
-      ["任务载荷", "right-[7%] bottom-[18%]"]
-    ];
+      ["地形通过性", "复杂地面与坡度", "left-[4%] top-[18%]", 0.12],
+      ["载荷能力", "背包与任务载荷", "right-[4%] top-[22%]", 0.22],
+      ["续航需求", "作业范围与频次", "left-[6%] bottom-[18%]", 0.32],
+      ["接口适配", "机械 · 电气 · 通信", "right-[5%] bottom-[16%]", 0.42]
+    ] as const;
+    const scanProgress = Math.min(1, Math.max(0, (progress - 0.08) / 0.7));
 
     return (
       <div className="absolute inset-0">
-        <div className="absolute inset-[5%] md:inset-[2%]">
+        <div className="absolute inset-[4%] md:inset-[1%]">
           {compact ? (
             <Image
               src="/images/generated/argos-body.png"
@@ -926,13 +1029,28 @@ function StoryVisualContent({ index, compact = false }: { index: number; compact
             <LazyHeroRobotPreview />
           )}
         </div>
-        {platformNodes.map(([label, position]) => (
+        <div
+          aria-hidden="true"
+          className="absolute bottom-[9%] left-[10%] h-px bg-[linear-gradient(90deg,#63C1DF,#F1A85B)] shadow-[0_0_14px_rgba(99,193,223,0.55)]"
+          style={{ width: `${scanProgress * 80}%` }}
+        />
+        <span
+          aria-hidden="true"
+          className="absolute bottom-[calc(9%_-_4px)] h-2 w-2 rounded-full bg-[#F1A85B] shadow-[0_0_16px_rgba(241,168,91,0.9)]"
+          style={{ left: `${10 + scanProgress * 80}%`, opacity: scanProgress > 0.04 ? 1 : 0 }}
+        />
+        {platformNodes.map(([label, detail, position, threshold]) => (
           <div
             key={label}
-            className={`absolute ${position} flex items-center gap-2 border border-[#63C1DF]/30 bg-[#071F31]/72 px-2.5 py-1.5 text-[10px] text-[#BDEAF7] backdrop-blur-md md:text-xs`}
+            className={`absolute ${position} w-[26%] text-[10px] transition-opacity duration-300 md:text-xs`}
+            style={{ opacity: progress >= Number(threshold) || compact ? 1 : 0.18 }}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#63C1DF] shadow-[0_0_8px_rgba(99,193,223,0.9)]" />
-            {label}
+            <div className="flex items-center gap-2 font-semibold text-[#BDEAF7]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#63C1DF] shadow-[0_0_8px_rgba(99,193,223,0.9)]" />
+              {label}
+            </div>
+            <div className="mt-1 text-[9px] leading-4 text-white/45 md:text-[10px]">{detail}</div>
+            <div className="mt-2 h-px w-full bg-[linear-gradient(90deg,rgba(99,193,223,0.62),transparent)]" />
           </div>
         ))}
       </div>
@@ -940,15 +1058,19 @@ function StoryVisualContent({ index, compact = false }: { index: number; compact
   }
 
   if (index === 1) {
-    const sensorCards = [
-      ["/images/tianrong/matrix/sensor-module.png", "多传感器", "left-[4%] top-[20%]"],
-      ["/images/tianrong/final-assets/payload-thermal.png", "热成像", "right-[4%] top-[23%]"],
-      ["/images/tianrong/final-assets/payload-gas.png", "气体检测", "right-[7%] bottom-[13%]"]
-    ];
+    const sensorModules = [
+      ["/images/tianrong/matrix/sensor-module.png", "感知模组", "left-[3%] top-[18%]", -46, -18],
+      ["/images/tianrong/final-assets/payload-thermal.png", "热成像", "right-[3%] top-[20%]", 48, -16],
+      ["/images/generated/robox.png", "ROBOX", "right-[6%] bottom-[12%]", 54, 24]
+    ] as const;
+    const assemblyProgress = Math.min(1, Math.max(0, (progress - 0.08) / 0.46));
 
     return (
       <div className="absolute inset-0">
-        <div className="absolute inset-x-[20%] inset-y-[12%]">
+        <div
+          className="absolute inset-x-[22%] inset-y-[10%] transition-transform duration-200"
+          style={{ transform: `scale(${0.9 + assemblyProgress * 0.1})` }}
+        >
           <Image
             src="/images/generated/modular-backpack.png"
             alt="模块化背包"
@@ -957,18 +1079,38 @@ function StoryVisualContent({ index, compact = false }: { index: number; compact
             className="object-contain p-3 drop-shadow-[0_28px_45px_rgba(2,16,26,0.42)]"
           />
         </div>
-        {sensorCards.map(([src, label, position]) => (
+        <div aria-hidden="true" className="absolute left-[22%] top-[35%] h-px w-[16%] bg-[linear-gradient(90deg,rgba(99,193,223,0.16),rgba(99,193,223,0.68))]" />
+        <div aria-hidden="true" className="absolute right-[21%] top-[37%] h-px w-[17%] bg-[linear-gradient(90deg,rgba(99,193,223,0.68),rgba(99,193,223,0.16))]" />
+        <div aria-hidden="true" className="absolute bottom-[27%] right-[22%] h-px w-[17%] bg-[linear-gradient(90deg,rgba(99,193,223,0.68),rgba(241,168,91,0.35))]" />
+        {sensorModules.map(([src, label, position, offsetX, offsetY]) => (
           <div
             key={label}
-            className={`absolute ${position} h-[26%] w-[24%] overflow-hidden border border-[#63C1DF]/24 bg-[#DDEDF4]/92 shadow-[0_16px_30px_rgba(2,16,26,0.3)]`}
+            className={`absolute ${position} h-[26%] w-[24%]`}
+            style={{
+              opacity: 0.22 + assemblyProgress * 0.78,
+              transform: `translate3d(${Number(offsetX) * (1 - assemblyProgress)}px, ${Number(offsetY) * (1 - assemblyProgress)}px, 0)`
+            }}
           >
-            <div className="relative h-[72%]">
-              <Image src={src} alt={label} fill sizes="18vw" className="object-contain p-2" />
+            <div className="relative h-[78%]">
+              <Image
+                src={src}
+                alt={label}
+                fill
+                sizes="18vw"
+                className="object-contain p-1 drop-shadow-[0_18px_24px_rgba(2,16,26,0.42)]"
+              />
             </div>
-            <div className="truncate border-t border-[#2B6C98]/18 px-2 py-1 text-[9px] font-semibold text-[#123247] md:text-[10px]">{label}</div>
+            <div className="mt-1 flex items-center gap-2 text-[9px] font-semibold tracking-[0.08em] text-[#BDEAF7] md:text-[10px]">
+              <span className={`h-1.5 w-1.5 rounded-full ${label === "ROBOX" ? "bg-[#F1A85B] shadow-[0_0_10px_rgba(241,168,91,0.85)]" : "bg-[#63C1DF]"}`} />
+              {label}
+            </div>
           </div>
         ))}
-        <div className="absolute bottom-[7%] left-[28%] right-[28%] h-px bg-[linear-gradient(90deg,transparent,#63C1DF,transparent)] shadow-[0_0_12px_rgba(99,193,223,0.8)]" />
+        <div className="absolute bottom-[8%] left-[28%] right-[28%] flex items-center justify-center gap-2 text-[9px] tracking-[0.14em] text-white/38 md:text-[10px]">
+          <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#63C1DF]/45" />
+          模块化装配
+          <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#63C1DF]/45" />
+        </div>
       </div>
     );
   }
