@@ -9,7 +9,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,12 +35,9 @@ const products = [
     description: "以统一背包为载体，集成 ROBOX、可见光、热成像、气体检测、通信和边缘计算等模块，根据巡检任务完成硬件组合与现场适配。",
     nodes: ["ROBOX 模块", "可见光 / 热成像", "气体 / 通信"],
     image: "/images/generated/modular-backpack.png",
-    images: [
-      "/images/tianrong/matrix/sensor-module.png",
-      "/images/generated/modular-backpack.png"
-    ],
+    images: ["/images/generated/modular-backpack.png"],
     target: "#payload-modules",
-    cta: "了解硬件集成"
+    cta: "了解更多"
   },
   {
     id: "charging-station",
@@ -52,7 +49,7 @@ const products = [
     image: "/images/tianrong/matrix/autonomous-charging-station.png",
     images: ["/images/tianrong/matrix/autonomous-charging-station.png"],
     target: "#contact",
-    cta: "咨询自主充电站"
+    cta: "了解更多"
   },
   {
     id: "navigation",
@@ -64,7 +61,7 @@ const products = [
     image: "/images/tianrong/matrix/navigation-system.png",
     images: ["/images/tianrong/matrix/navigation-system.png"],
     target: "#rsp-platform",
-    cta: "了解导航系统"
+    cta: "了解更多"
   },
   {
     id: "rsp",
@@ -76,7 +73,7 @@ const products = [
     image: "/images/tianrong/matrix/rsp-platform.png",
     images: ["/images/tianrong/matrix/rsp-platform.png"],
     target: "#rsp-platform",
-    cta: "了解云控平台"
+    cta: "了解更多"
   },
   {
     id: "data-platform",
@@ -88,7 +85,7 @@ const products = [
     image: "/images/tianrong/matrix/data-platform.png",
     images: ["/images/tianrong/matrix/data-platform.png"],
     target: "#rsp-platform",
-    cta: "了解数采平台"
+    cta: "了解更多"
   }
 ];
 
@@ -268,10 +265,7 @@ export function TianrongScenarioPage() {
           {USE_VIDEO_HERO && <VideoHero />}
 
           <ScrollDrivenSection id="matrix" className="relative z-10 bg-[var(--tr-surface-soft)] py-20">
-            <SectionHeading
-              title={<>面向巡检场景的<span className="keep-phrase">软硬件产品矩阵</span></>}
-              description={<>以适配机器人本体为载体，围绕<span className="keep-phrase">背包与传感器</span>、<span className="keep-phrase">自主充电站</span>、<span className="keep-phrase">导航系统</span>、<span className="keep-phrase">RSP 云控平台</span>和<span className="keep-phrase">数采平台</span>，形成可按任务组合的巡检产品矩阵。</>}
-            />
+            <SectionHeading title={<span className="keep-phrase">产品矩阵</span>} />
             <ProductShowcase />
           </ScrollDrivenSection>
         </div>
@@ -630,13 +624,18 @@ function ProductShowcase() {
   const [paused, setPaused] = useState(false);
   const railRef = useRef<HTMLDivElement>(null);
   const dragStartRef = useRef<number | null>(null);
-  const didDragRef = useRef(false);
-  const activeProduct = products[active];
 
   useEffect(() => {
     if (paused) return;
     const timer = window.setInterval(() => {
-      setActive((current) => (current + 1) % products.length);
+      setActive((current) => {
+        const next = (current + 1) % products.length;
+        window.requestAnimationFrame(() => {
+          const item = railRef.current?.children[next] as HTMLElement | undefined;
+          item?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        });
+        return next;
+      });
     }, 5200);
     return () => window.clearInterval(timer);
   }, [paused]);
@@ -678,7 +677,7 @@ function ProductShowcase() {
   }
 
   return (
-    <div className="mt-10">
+    <div className="relative left-1/2 mt-10 w-screen -translate-x-1/2">
       <div className="relative">
         <div
           ref={railRef}
@@ -688,7 +687,6 @@ function ProductShowcase() {
           onMouseLeave={() => setPaused(false)}
           onPointerDown={(event) => {
             dragStartRef.current = event.clientX;
-            didDragRef.current = false;
             setPaused(true);
           }}
           onPointerUp={(event) => {
@@ -698,66 +696,93 @@ function ProductShowcase() {
             if (start === null) return;
             const distance = event.clientX - start;
             if (Math.abs(distance) > 48) {
-              didDragRef.current = true;
               goTo(active + (distance < 0 ? 1 : -1));
             }
           }}
           onPointerCancel={() => {
             dragStartRef.current = null;
-            didDragRef.current = false;
             setPaused(false);
           }}
           className="tr-product-rail select-none"
-          aria-label="产品图片横向滑轨"
+          aria-label="产品矩阵横向滑轨"
         >
           {products.map((product, index) => (
-            <button
+            <article
               key={product.id}
-              type="button"
-              aria-label={`查看${product.title}`}
-              onClick={() => {
-                if (didDragRef.current) {
-                  didDragRef.current = false;
-                  return;
-                }
-                goTo(index);
-              }}
-              className="tr-product-slide group relative text-left"
+              aria-current={index === active ? "true" : undefined}
+              className="tr-product-slide group relative h-[580px] overflow-hidden md:h-[680px] lg:h-[720px]"
             >
-              <span className="pointer-events-none absolute left-0 top-0 z-10 text-sm font-semibold tracking-[0.16em] text-[#2B6C98]">{product.category}</span>
-              <div className="relative flex h-[300px] items-center justify-center pt-6 md:h-[500px] md:pt-8">
-                {product.images.length > 1 ? (
-                  <div className="grid h-full w-full grid-cols-[0.38fr_0.62fr] items-center gap-3 md:gap-8">
-                    <Image
-                      src={product.images[0]}
-                      alt={`${product.title}传感器图片`}
-                      width={1254}
-                      height={1254}
-                      className="h-full w-full object-contain mix-blend-multiply transition duration-700 ease-out group-hover:scale-[1.03]"
-                      priority={index === 0}
-                    />
-                    <Image
-                      src={product.images[1]}
-                      alt={`${product.title}背包图片`}
-                      width={1774}
-                      height={887}
-                      className="h-full w-full object-contain transition duration-700 ease-out group-hover:scale-[1.03]"
-                      priority={index === 0}
-                    />
-                  </div>
-                ) : (
-                  <Image
-                    src={product.images[0]}
-                    alt={product.title}
-                    width={1672}
-                    height={941}
-                    className="h-full w-full object-contain transition duration-700 ease-out group-hover:scale-[1.025]"
-                    priority={index === 0}
-                  />
-                )}
+              <div
+                className={`absolute inset-0 ${
+                  product.id === "payload-modules"
+                    ? "bg-[radial-gradient(circle_at_66%_38%,rgba(99,193,223,0.48),transparent_32%),linear-gradient(135deg,#d7eaf4_0%,#a9cedf_48%,#4b85a8_100%)]"
+                    : "bg-[#0B2435]"
+                }`}
+              >
+                <Image
+                  src={product.images[0]}
+                  alt={product.title}
+                  fill
+                  sizes="100vw"
+                  className={`transition duration-700 ease-out group-hover:scale-[1.015] ${
+                    product.id === "payload-modules"
+                      ? "object-contain p-10 md:p-20 lg:p-24"
+                      : "object-cover"
+                  }`}
+                  priority={index === 0}
+                />
               </div>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#deedf5] via-[#deedf5]/30 to-transparent opacity-80" />
-            </button>
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.9)_0%,rgba(6,28,43,0.54)_42%,rgba(6,28,43,0.08)_78%),linear-gradient(0deg,rgba(6,28,43,0.96)_0%,rgba(6,28,43,0.2)_62%,transparent_100%)]" />
+
+              <div className="absolute inset-x-0 bottom-0 z-10">
+                <div className="mx-auto w-[min(1240px,calc(100%-32px))] pb-8 md:pb-10">
+                  <h3 className="cjk-heading keep-phrase text-3xl font-semibold leading-tight text-white md:text-5xl">
+                    {product.title}
+                  </h3>
+                  <div className="cjk-heading mt-3 text-base font-semibold text-[#9EDCF0] md:text-xl">
+                    {product.tagline}
+                  </div>
+                  <p className="cjk-body mt-3 max-w-3xl text-sm leading-6 text-white/72 md:text-base md:leading-7">
+                    {product.description}
+                  </p>
+                  <Button asChild size="lg" className="tr-accent-button mt-5 w-fit rounded-none text-white">
+                    <a
+                      href={product.target}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        scrollToTarget(product.target);
+                      }}
+                    >
+                      <span className="keep-phrase">{product.cta}</span>
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+
+                  <div className="mt-7 grid grid-cols-5 gap-2" aria-label="产品轮播进度">
+                    {products.map((item, progressIndex) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        aria-label={`切换到${item.title}`}
+                        aria-current={progressIndex === active ? "true" : undefined}
+                        onClick={() => goTo(progressIndex)}
+                        className="group/progress flex h-5 items-center"
+                      >
+                        <span
+                          className={`h-0.5 w-full transition-colors ${
+                            progressIndex === active
+                              ? "bg-[#63C1DF]"
+                              : progressIndex < active
+                                ? "bg-white/65"
+                                : "bg-white/28 group-hover/progress:bg-white/50"
+                          }`}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
 
@@ -765,7 +790,7 @@ function ProductShowcase() {
           type="button"
           aria-label="上一个产品"
           onClick={() => goTo(active - 1)}
-          className="absolute left-0 top-1/2 z-20 -translate-y-1/2 p-2 text-[#2B6C98] transition hover:-translate-x-1 hover:text-[#1F587D]"
+          className="absolute left-3 top-1/2 z-20 -translate-y-1/2 p-2 text-white drop-shadow-[0_2px_8px_rgba(6,28,43,0.75)] transition hover:-translate-x-1 hover:text-[#9EDCF0] md:left-6"
         >
           <ChevronLeft className="h-7 w-7" />
         </button>
@@ -773,51 +798,10 @@ function ProductShowcase() {
           type="button"
           aria-label="下一个产品"
           onClick={() => goTo(active + 1)}
-          className="absolute right-0 top-1/2 z-20 -translate-y-1/2 p-2 text-[#2B6C98] transition hover:translate-x-1 hover:text-[#1F587D]"
+          className="absolute right-3 top-1/2 z-20 -translate-y-1/2 p-2 text-white drop-shadow-[0_2px_8px_rgba(6,28,43,0.75)] transition hover:translate-x-1 hover:text-[#9EDCF0] md:right-6"
         >
           <ChevronRight className="h-7 w-7" />
         </button>
-      </div>
-
-      <div className="mt-4 border-t border-[var(--tr-line)] pt-7 md:mt-7 md:pt-8">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={activeProduct.id}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.32, ease: "easeOut" }}
-            className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr_auto] lg:items-end"
-          >
-            <div>
-              <div className="text-sm font-semibold tracking-[0.14em] text-[#2B6C98]">{activeProduct.category}</div>
-              <h3 className="cjk-heading keep-phrase mt-3 text-3xl font-semibold leading-tight md:text-4xl">{activeProduct.title}</h3>
-            </div>
-            <div>
-              <div className="cjk-heading text-lg font-semibold text-[#1F4F82]">{activeProduct.tagline}</div>
-              <p className="cjk-body mt-3 max-w-3xl leading-7 text-[#525252]">{activeProduct.description}</p>
-            </div>
-            <Button asChild size="lg" className="tr-accent-button w-fit rounded-none text-white">
-              <a
-                href={activeProduct.target}
-                onClick={(event) => {
-                  event.preventDefault();
-                  scrollToTarget(activeProduct.target);
-                }}
-              >
-                <span className="keep-phrase">{activeProduct.cta}</span>
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-          </motion.div>
-        </AnimatePresence>
-
-        <div className="mt-7 flex items-center gap-4">
-          <div className="h-px flex-1 bg-[#9FC8DE]/60">
-            <div className="h-full bg-[#2B6C98] transition-all duration-500" style={{ width: `${((active + 1) / products.length) * 100}%` }} />
-          </div>
-          <div className="keep-phrase text-sm font-semibold text-[#2B6C98]">{activeProduct.title}</div>
-        </div>
       </div>
     </div>
   );
