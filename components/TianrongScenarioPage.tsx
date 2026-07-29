@@ -621,30 +621,47 @@ export function TianrongScenarioPage() {
 function ProductShowcase() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const railRef = useRef<HTMLDivElement>(null);
-  const dragStartRef = useRef<number | null>(null);
+  const dragStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
-    if (paused) return;
+    const rail = railRef.current;
+    if (!rail) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.2),
+      { threshold: [0, 0.2] }
+    );
+    observer.observe(rail);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (paused || !isVisible) return;
     const timer = window.setInterval(() => {
       setActive((current) => {
         const next = (current + 1) % products.length;
         window.requestAnimationFrame(() => {
-          const item = railRef.current?.children[next] as HTMLElement | undefined;
-          item?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+          scrollRailTo(next);
         });
         return next;
       });
     }, 5200);
     return () => window.clearInterval(timer);
-  }, [paused]);
+  }, [isVisible, paused]);
+
+  function scrollRailTo(index: number) {
+    const container = railRef.current;
+    const item = container?.children[index] as HTMLElement | undefined;
+    if (!container || !item) return;
+    container.scrollTo({ left: item.offsetLeft, behavior: "smooth" });
+  }
 
   function goTo(index: number) {
     const next = (index + products.length) % products.length;
     setActive(next);
-    const container = railRef.current;
-    const item = container?.children[next] as HTMLElement | undefined;
-    item?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    scrollRailTo(next);
   }
 
   function scrollToTarget(target: string) {
@@ -669,23 +686,16 @@ function ProductShowcase() {
     if (next !== active) setActive(next);
   }
 
-  function onRailWheel(event: React.WheelEvent<HTMLDivElement>) {
-    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-    event.preventDefault();
-    railRef.current?.scrollBy({ left: event.deltaY, behavior: "smooth" });
-  }
-
   return (
     <div className="relative left-1/2 w-screen -translate-x-1/2">
       <div className="relative">
         <div
           ref={railRef}
           onScroll={onRailScroll}
-          onWheel={onRailWheel}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onPointerDown={(event) => {
-            dragStartRef.current = event.clientX;
+            dragStartRef.current = { x: event.clientX, y: event.clientY };
             setPaused(true);
           }}
           onPointerUp={(event) => {
@@ -693,9 +703,10 @@ function ProductShowcase() {
             dragStartRef.current = null;
             setPaused(false);
             if (start === null) return;
-            const distance = event.clientX - start;
-            if (Math.abs(distance) > 48) {
-              goTo(active + (distance < 0 ? 1 : -1));
+            const distanceX = event.clientX - start.x;
+            const distanceY = event.clientY - start.y;
+            if (Math.abs(distanceX) > 48 && Math.abs(distanceX) > Math.abs(distanceY) * 1.2) {
+              goTo(active + (distanceX < 0 ? 1 : -1));
             }
           }}
           onPointerCancel={() => {
@@ -731,17 +742,17 @@ function ProductShowcase() {
                   priority={index === 0}
                 />
               </div>
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.72)_0%,rgba(6,28,43,0.34)_40%,rgba(6,28,43,0.04)_76%),linear-gradient(0deg,rgba(6,28,43,0.82)_0%,rgba(6,28,43,0.12)_58%,transparent_100%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.54)_0%,rgba(6,28,43,0.18)_40%,transparent_76%),linear-gradient(0deg,rgba(6,28,43,0.66)_0%,rgba(6,28,43,0.06)_58%,transparent_100%)]" />
 
               <div className="absolute inset-x-0 bottom-0 z-10">
                 <div className="mx-auto w-[min(1240px,calc(100%-32px))] pb-8 md:pb-10">
-                  <h3 className="cjk-heading keep-phrase text-3xl font-semibold leading-tight text-white md:text-5xl">
+                  <h3 className="cjk-heading keep-phrase text-3xl font-semibold leading-tight text-white drop-shadow-[0_2px_8px_rgba(6,28,43,0.72)] md:text-5xl">
                     {product.title}
                   </h3>
-                  <div className="cjk-heading mt-3 text-base font-semibold text-[#9EDCF0] md:text-xl">
+                  <div className="cjk-heading mt-3 text-base font-semibold text-[#BDEAF7] drop-shadow-[0_1px_5px_rgba(6,28,43,0.72)] md:text-xl">
                     {product.tagline}
                   </div>
-                  <p className="cjk-body mt-3 max-w-3xl text-sm leading-6 text-white opacity-90 md:text-base md:leading-7">
+                  <p className="cjk-body mt-3 max-w-3xl text-sm leading-6 text-white opacity-95 drop-shadow-[0_1px_4px_rgba(6,28,43,0.72)] md:text-base md:leading-7">
                     {product.description}
                   </p>
                   <Button asChild size="lg" className="tr-accent-button mt-5 w-fit rounded-none text-white">
