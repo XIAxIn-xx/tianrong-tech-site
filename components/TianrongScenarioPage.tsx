@@ -264,8 +264,7 @@ export function TianrongScenarioPage() {
         <div className={USE_VIDEO_HERO ? "relative isolate" : undefined}>
           {USE_VIDEO_HERO && <VideoHero />}
 
-          <ScrollDrivenSection id="matrix" className="relative z-10 bg-[var(--tr-surface-soft)] py-20">
-            <SectionHeading title={<span className="keep-phrase">产品矩阵</span>} />
+          <ScrollDrivenSection id="matrix" className="relative z-10 bg-[var(--tr-surface-soft)] p-0">
             <ProductShowcase />
           </ScrollDrivenSection>
         </div>
@@ -677,7 +676,7 @@ function ProductShowcase() {
   }
 
   return (
-    <div className="relative left-1/2 mt-10 w-screen -translate-x-1/2">
+    <div className="relative left-1/2 w-screen -translate-x-1/2">
       <div className="relative">
         <div
           ref={railRef}
@@ -732,7 +731,7 @@ function ProductShowcase() {
                   priority={index === 0}
                 />
               </div>
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.9)_0%,rgba(6,28,43,0.54)_42%,rgba(6,28,43,0.08)_78%),linear-gradient(0deg,rgba(6,28,43,0.96)_0%,rgba(6,28,43,0.2)_62%,transparent_100%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.72)_0%,rgba(6,28,43,0.34)_40%,rgba(6,28,43,0.04)_76%),linear-gradient(0deg,rgba(6,28,43,0.82)_0%,rgba(6,28,43,0.12)_58%,transparent_100%)]" />
 
               <div className="absolute inset-x-0 bottom-0 z-10">
                 <div className="mx-auto w-[min(1240px,calc(100%-32px))] pb-8 md:pb-10">
@@ -742,7 +741,7 @@ function ProductShowcase() {
                   <div className="cjk-heading mt-3 text-base font-semibold text-[#9EDCF0] md:text-xl">
                     {product.tagline}
                   </div>
-                  <p className="cjk-body mt-3 max-w-3xl text-sm leading-6 text-white/72 md:text-base md:leading-7">
+                  <p className="cjk-body mt-3 max-w-3xl text-sm leading-6 text-white opacity-90 md:text-base md:leading-7">
                     {product.description}
                   </p>
                   <Button asChild size="lg" className="tr-accent-button mt-5 w-fit rounded-none text-white">
@@ -769,12 +768,10 @@ function ProductShowcase() {
                         className="group/progress flex h-5 items-center"
                       >
                         <span
-                          className={`h-0.5 w-full transition-colors ${
+                          className={`w-full transition-all duration-300 ${
                             progressIndex === active
-                              ? "bg-[#63C1DF]"
-                              : progressIndex < active
-                                ? "bg-white/65"
-                                : "bg-white/28 group-hover/progress:bg-white/50"
+                              ? "h-1 bg-[#63C1DF] shadow-[0_0_12px_rgba(99,193,223,0.72)]"
+                              : "h-0.5 bg-white/55 group-hover/progress:bg-white/75"
                           }`}
                         />
                       </button>
