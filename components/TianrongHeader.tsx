@@ -14,14 +14,16 @@ type TianrongHeaderProps = {
 };
 
 const productItems = [
-  ["机器人本体", "robot-series"],
-  ["任务载荷模块", "payload-modules"],
-  ["ROBOX 远程控制盒", "robox"],
-  ["机器人调度平台", "rsp-platform"]
+  ["机器人平台适配", "robot-series"],
+  ["背包与传感器", "payload-modules"],
+  ["自主充电站", "charging-station"],
+  ["导航系统", "navigation"],
+  ["RSP 云控平台", "rsp-platform"],
+  ["数采平台", "data-platform"]
 ] as const;
 
 const productSectionIds: readonly string[] = ["matrix", ...productItems.map(([, id]) => id)];
-const defaultSectionIds = ["matrix", "robot-series", "payload-modules", "robox", "rsp-platform", "case", "about", "contact"];
+const defaultSectionIds = ["matrix", ...productItems.map(([, id]) => id), "case", "about", "contact"];
 
 export function TianrongHeader({
   basePath = "",

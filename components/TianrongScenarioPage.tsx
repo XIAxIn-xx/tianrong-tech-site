@@ -48,7 +48,7 @@ const products = [
     nodes: ["自动补能", "温湿度监测", "通信 / 数采"],
     image: "/images/tianrong/matrix/autonomous-charging-station.png",
     images: ["/images/tianrong/matrix/autonomous-charging-station.png"],
-    target: "#contact",
+    target: "#charging-station",
     cta: "了解更多"
   },
   {
@@ -60,7 +60,7 @@ const products = [
     nodes: ["环境建图", "定位与规划", "实时避障"],
     image: "/images/tianrong/matrix/navigation-system.png",
     images: ["/images/tianrong/matrix/navigation-system.png"],
-    target: "#rsp-platform",
+    target: "#navigation",
     cta: "了解更多"
   },
   {
@@ -84,39 +84,66 @@ const products = [
     nodes: ["数据采集", "异常预警", "分析报告"],
     image: "/images/tianrong/matrix/data-platform.png",
     images: ["/images/tianrong/matrix/data-platform.png"],
-    target: "#rsp-platform",
+    target: "#data-platform",
     cta: "了解更多"
   }
 ];
 
-const robotBodies = [
-  { model: "TR-S1", name:  "轻型点足本体", image: "/images/tianrong/final-assets/body-tr-s1.png", note: "适用于室内通道、轻量巡检。" },
-  { model: "TR-M1", name:  "中型点足本体", image: "/images/tianrong/final-assets/body-tr-m1.png", note: "适用于园区和安防的巡逻巡检。" },
-  { model: "TR-L1", name:  "重载点足本体", image: "/images/tianrong/final-assets/body-tr-l1.png", note: "面向高负载、长续航和复杂地形任务。" },
-  { model: "TR-S1W", name: "轻型轮足本体", image: "/images/tianrong/final-assets/body-tr-s1w.png", note: "适用于平整路面和短距离高频巡检。" },
-  { model: "TR-M1W", name: "中型轮足本体", image: "/images/tianrong/final-assets/body-tr-m1w.png", note: "适用于园区道路、仓储通道和长距离巡检。" },
-  { model: "TR-L1W", name: "重载轮足本体", image: "/images/tianrong/final-assets/body-tr-l1w.png", note: "适用于大范围场地和复杂路况下的连续作业。" }
-];
-
-const payloadModules = [
-  { name: "可见光巡检载荷", tag: "视频巡检与远程查看", image: "/images/tianrong/final-assets/payload-visible-light.png", note: "用于常规视频巡检、点位复核和远程查看。" },
-  { name: "热成像载荷", tag: "温度异常与设备状态识别", image: "/images/tianrong/final-assets/payload-thermal.png", note: "用于设备温度异常、热源变化和状态识别。" },
-  { name: "气体检测载荷", tag: "危险环境与工业安全监测", image: "/images/tianrong/final-assets/payload-gas.png", note: "用于气体风险识别和工业现场安全监测。" },
-  { name: "通信增强载荷", tag: "复杂现场网络接入", image: "/images/tianrong/final-assets/payload-communication.png", note: "用于弱网区域、复杂园区和远距链路增强。" },
-  { name: "边缘计算载荷", tag: "现场数据处理与智能识别", image: "/images/tianrong/final-assets/payload-edge-compute.png", note: "用于现场推理、事件初筛和低延迟处理。" },
-  { name: "广播交互载荷", tag: "远程喊话与现场交互", image: "/images/tianrong/final-assets/payload-broadcast.png", note: "用于安防巡逻、现场提示和远程交互。" }
-];
-
-const roboxFeatures = [
-  ["现场设备接入", "统一接入机器人、摄像头和传感器，适配有线与无线网络环境。"],
-  ["实时数据回传", "持续回传视频画面、机器人状态、任务进度和异常告警。"],
-  ["远程诊断与控制", "连接机器人调度平台，支持远程查看设备状态、排查故障、调整配置和接管设备。"]
-];
-
-const rspFeatures = [
-  ["地图与任务编排", "在统一地图中配置巡检点位、路线、执行时间和任务规则。"],
-  ["多机器人协同调度", "根据机器人状态、位置和任务优先级分配任务，支持多区域协同运行。"],
-  ["监控、告警与远程运维", "集中查看任务、设备和现场视频，处理异常并完成任务暂停、恢复和结果复盘。"]
+const productStorySteps = [
+  {
+    id: "robot-series",
+    aliases: ["bodies"],
+    eyebrow: "平台适配",
+    title: "机器人平台选型与适配",
+    tagline: "让合适的平台，进入合适的巡检现场",
+    description: "面向不同巡检场景，综合地形、载荷、续航与防护需求，完成机器人平台选型、软硬件接口适配、任务载荷集成与现场运行调校。",
+    highlights: ["机械结构适配", "电气与通信接口", "载荷与运行调校"]
+  },
+  {
+    id: "payload-modules",
+    aliases: ["modules", "robox"],
+    eyebrow: "感知装配",
+    title: "背包与传感器",
+    tagline: "把现场所需能力，装进统一硬件载体",
+    description: "围绕巡检任务设计背包结构，集成 ROBOX、可见光、热成像、气体检测、通信与边缘计算等模块，兼顾安装、散热和维护。",
+    highlights: ["模块化背包", "多类型传感器", "ROBOX 现场接入"]
+  },
+  {
+    id: "charging-station",
+    aliases: [],
+    eyebrow: "持续运行",
+    title: "自主充电站",
+    tagline: "让机器人从单次执行走向长期驻留",
+    description: "通过自动返航与补能，结合温湿度监测、通信和数据采集，为机器人提供稳定驻留与连续运行支持。",
+    highlights: ["自动返航补能", "环境状态监测", "驻留与数据同步"]
+  },
+  {
+    id: "navigation",
+    aliases: [],
+    eyebrow: "自主移动",
+    title: "导航系统",
+    tagline: "把环境变成机器人可理解的路径",
+    description: "基于激光 SLAM 完成环境建图、实时定位、全局路径规划和动态避障，支撑机器人在真实现场稳定执行巡检任务。",
+    highlights: ["环境建图", "定位与路径规划", "实时避障"]
+  },
+  {
+    id: "rsp-platform",
+    aliases: ["rsp"],
+    eyebrow: "任务云控",
+    title: "RSP 云控平台",
+    tagline: "把设备、地图和任务放进同一套运行视图",
+    description: "集中完成机器人管理、地图管理、任务下发、远程控制、视频回传和巡检过程管理，连接现场设备与远程运营。",
+    highlights: ["地图与任务编排", "远程控制与视频", "设备状态监控"]
+  },
+  {
+    id: "data-platform",
+    aliases: [],
+    eyebrow: "数据闭环",
+    title: "数采平台",
+    tagline: "让一次次巡检沉淀为可用的数据资产",
+    description: "独立完成巡检数据的采集、存储、分析、可视化、异常预警和报告生成，并将结果反馈至后续任务优化。",
+    highlights: ["实时采集与存储", "异常预警", "分析报告与回溯"]
+  }
 ];
 
 const casePoints = [
@@ -269,152 +296,7 @@ export function TianrongScenarioPage() {
           </ScrollDrivenSection>
         </div>
 
-        <RevealSection id="robot-series" className="bg-[var(--tr-surface)] py-20 md:py-24">
-          <span id="bodies" className="block scroll-mt-20" />
-          <SectionHeading
-            title={<span className="keep-phrase">四足机器人本体</span>}
-            align="left"
-          />
-          <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
-            {robotBodies.map((item, index) => (
-              <motion.article
-                key={item.name}
-                tabIndex={0}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: index * 0.08, duration: 0.62 }}
-                className="group overflow-hidden bg-transparent transition duration-500 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-[#0F62FE]/35"
-              >
-                <div className="relative aspect-[1.38] overflow-hidden border border-[var(--tr-line)] bg-[var(--tr-panel)]">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-contain p-5 transition duration-700 ease-out group-hover:scale-[1.12] group-hover:-translate-y-1 group-focus:scale-[1.12]"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div className="pt-5">
-                  <div className="text-sm font-semibold tracking-[0.12em] text-[#0F62FE]">{item.model}</div>
-                  <h3 className="cjk-heading keep-phrase mt-2 text-2xl font-semibold">{item.name}</h3>
-                  <p className="cjk-body mt-2 max-h-0 overflow-hidden text-base leading-7 text-[#525252] opacity-0 transition-all duration-300 max-md:max-h-16 max-md:opacity-100 md:group-hover:max-h-16 md:group-hover:opacity-100 md:group-focus-within:max-h-16 md:group-focus-within:opacity-100">{item.note}</p>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </RevealSection>
-
-        <RevealSection id="payload-modules" className="bg-[var(--tr-surface-soft)] py-20 md:py-24">
-          <span id="modules" className="block scroll-mt-20" />
-          <SectionHeading
-            title={<>面向巡检任务的 <span className="keep-phrase">模块化载荷</span></>}
-            description={<>根据巡检、检测、通信和现场交互需求，灵活选择和组合不同功能模块。</>}
-            align="left"
-          />
-          <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
-            {payloadModules.map((item, index) => (
-              <motion.article
-                key={item.name}
-                tabIndex={0}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: index * 0.08, duration: 0.62 }}
-                className="group overflow-hidden bg-transparent transition duration-500 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-[#0F62FE]/35"
-              >
-                <div className="relative aspect-[1.42] overflow-hidden border border-[var(--tr-line)] bg-[#F4F8FC]">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-contain p-7 transition duration-700 ease-out group-hover:scale-[1.14] group-hover:-translate-y-1 group-focus:scale-[1.14]"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div className="pt-5">
-                  <h3 className="cjk-heading keep-phrase text-2xl font-semibold">{item.name}</h3>
-                  <p className="cjk-body keep-phrase mt-2 text-base font-semibold text-[#0F62FE]">{item.tag}</p>
-                  <p className="cjk-body mt-2 max-h-0 overflow-hidden text-base leading-7 text-[#525252] opacity-0 transition-all duration-300 max-md:max-h-16 max-md:opacity-100 md:group-hover:max-h-16 md:group-hover:opacity-100 md:group-focus-within:max-h-16 md:group-focus-within:opacity-100">{item.note}</p>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </RevealSection>
-
-        <RevealSection id="robox" className="bg-[var(--tr-surface)] py-20">
-          <SectionHeading
-            title={<span className="keep-phrase">ROBOX 远程控制盒</span>}
-            description={<>将机器人、<span className="keep-phrase">现场网络</span>与<span className="keep-phrase">远程管理平台</span>安全连接，实现视频、<span className="keep-phrase">设备状态</span>和<span className="keep-phrase">告警数据</span>回传，并支持<span className="keep-phrase">远程诊断</span>、<span className="keep-phrase">配置与控制</span>。</>}
-            align="left"
-          />
-          <div className="mt-12">
-            <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-              <div className="tr-glass-panel relative min-h-[500px] overflow-hidden md:min-h-[560px]">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(54,143,184,0.22),transparent_52%)]" />
-                <div className="relative flex h-full min-h-[500px] items-center justify-center p-8 md:min-h-[560px] md:p-12">
-                  <Image
-                    src="/images/generated/robox.png"
-                    alt="ROBOX 远程控制盒"
-                    width={860}
-                    height={640}
-                    className="max-h-[360px] w-full object-contain"
-                  />
-                </div>
-              </div>
-              <div className="py-8 lg:pl-12 lg:pt-5">
-                <div className="border-b border-[#E0E0E0] pb-6">
-                  <div className="text-sm font-semibold tracking-[0.12em] text-[#0F62FE]">连接链路</div>
-                  <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center">
-                    {["机器人与现场设备", "ROBOX", "机器人调度平台"].map((item, index) => (
-                      <div key={item} className="flex items-center gap-3">
-                        <div className="keep-phrase px-1 py-3 text-base font-semibold text-[#393939]">{item}</div>
-                        {index < 2 && <ArrowRight className="hidden h-4 w-4 shrink-0 text-[#0F62FE] md:block" />}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-2 grid gap-0">
-                  {roboxFeatures.map(([title, description], index) => (
-                    <FeatureItem key={title} index={index} title={title} description={description} />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </RevealSection>
-
-        <RevealSection id="rsp-platform" className="bg-[var(--tr-surface-soft)] py-20">
-          <span id="rsp" className="block scroll-mt-20" />
-          <SectionHeading
-            title={<span className="keep-phrase">机器人调度平台</span>}
-            description={<><span className="keep-phrase">集中管理</span>机器人、地图、任务和现场数据，支持<span className="keep-phrase">多机器人任务编排</span>、<span className="keep-phrase">运行监控</span>、<span className="keep-phrase">异常处理</span>和<span className="keep-phrase">远程运维</span>。</>}
-            align="left"
-          />
-          <div className="mt-12 grid gap-10 lg:grid-cols-[1.18fr_0.82fr] lg:items-start">
-            <div className="tr-glass-panel relative overflow-hidden p-3 md:p-5">
-              <Image
-                src="/images/tianrong/final-assets/rsp-platform-complete.png"
-                alt="机器人调度平台真实界面"
-                width={1672}
-                height={941}
-                className="max-h-[680px] w-full object-contain"
-              />
-            </div>
-            <div className="py-2 lg:pl-3">
-              <div className="grid gap-0">
-                {rspFeatures.map(([title, description], index) => (
-                  <FeatureItem
-                    key={title}
-                    index={index}
-                    title={title}
-                    description={description}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </RevealSection>
+        <ProductStorySection />
 
         <section id="case" className="tr-deep-section relative overflow-hidden text-white">
           <div className="relative min-h-[680px] md:min-h-[760px]">
@@ -815,6 +697,383 @@ function ProductShowcase() {
   );
 }
 
+function ProductStorySection() {
+  const [active, setActive] = useState(0);
+  const stepRefs = useRef<(HTMLElement | null)[]>([]);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const elements = stepRefs.current.filter((element): element is HTMLElement => Boolean(element));
+    if (!elements.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        setActive(Number((visible.target as HTMLElement).dataset.storyIndex ?? 0));
+      },
+      { rootMargin: "-34% 0px -42% 0px", threshold: [0.05, 0.25, 0.5, 0.75] }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
+  function goToStep(index: number) {
+    stepRefs.current[index]?.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "center"
+    });
+  }
+
+  return (
+    <section
+      aria-labelledby="product-story-title"
+      className="relative isolate overflow-clip bg-[#071F31] text-white"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_16%,rgba(99,193,223,0.16),transparent_28%),radial-gradient(circle_at_86%_52%,rgba(54,143,184,0.13),transparent_32%),linear-gradient(180deg,#071f31_0%,#09283c_52%,#071f31_100%)]"
+      />
+
+      <div className="relative mx-auto w-[min(1440px,calc(100%-32px))] lg:grid lg:grid-cols-[minmax(0,1.42fr)_minmax(380px,0.78fr)]">
+        <div className="hidden lg:block">
+          <div className="sticky top-[74px] flex h-[calc(100svh-74px)] min-h-[680px] flex-col py-7 pr-8 xl:pr-12">
+            <div>
+              <div className="text-xs font-semibold tracking-[0.2em] text-[#63C1DF]">系统装配长卷</div>
+              <h2
+                id="product-story-title"
+                className="cjk-heading mt-3 text-[clamp(32px,3.1vw,52px)] font-semibold leading-[1.08] tracking-[-0.025em]"
+              >
+                从平台适配到数据闭环
+              </h2>
+              <p className="cjk-body mt-3 max-w-2xl text-sm leading-6 text-white/62 xl:text-base xl:leading-7">
+                沿着一条持续流动的数据链路，看巡检系统如何由六个环节逐步装配成形。
+              </p>
+            </div>
+
+            <ProductStoryVisual active={active} />
+
+            <nav aria-label="装配长卷步骤" className="relative mt-4 grid grid-cols-6">
+              <div className="absolute left-[8.333%] right-[8.333%] top-[7px] h-px bg-white/18" />
+              <motion.div
+                aria-hidden="true"
+                className="absolute left-[8.333%] top-[6px] h-[3px] bg-[linear-gradient(90deg,#368FB8,#63C1DF)] shadow-[0_0_14px_rgba(99,193,223,0.7)]"
+                animate={{ width: `${active * 16.667}%` }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              />
+              {productStorySteps.map((step, index) => (
+                <button
+                  key={step.id}
+                  type="button"
+                  aria-current={index === active ? "step" : undefined}
+                  aria-label={`查看${step.title}`}
+                  onClick={() => goToStep(index)}
+                  className="group relative z-10 flex min-w-0 flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#63C1DF]"
+                >
+                  <span
+                    className={`h-[15px] w-[15px] rounded-full border transition ${
+                      index <= active
+                        ? "border-[#8BD8EE] bg-[#63C1DF] shadow-[0_0_12px_rgba(99,193,223,0.75)]"
+                        : "border-white/42 bg-[#0A283B] group-hover:border-white/75"
+                    }`}
+                  />
+                  <span className={`mt-2 truncate text-[10px] xl:text-[11px] ${index === active ? "text-white" : "text-white/42"}`}>
+                    {step.eyebrow}
+                  </span>
+                </button>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        <div className="relative py-16 lg:border-l lg:border-white/10 lg:py-0">
+          <header className="pb-12 lg:hidden">
+            <div className="text-xs font-semibold tracking-[0.2em] text-[#63C1DF]">系统装配长卷</div>
+            <h2
+              id="product-story-title-mobile"
+              className="cjk-heading mt-4 text-4xl font-semibold leading-[1.1] tracking-[-0.025em]"
+            >
+              从平台适配到数据闭环
+            </h2>
+            <p className="cjk-body mt-4 max-w-2xl text-base leading-7 text-white/62">
+              六个环节顺序展开，组成完整巡检系统。
+            </p>
+          </header>
+
+          {productStorySteps.map((step, index) => (
+            <article
+              key={step.id}
+              id={step.id}
+              ref={(element) => {
+                stepRefs.current[index] = element;
+              }}
+              data-story-index={index}
+              className="relative scroll-mt-24 border-t border-white/10 py-12 first:border-t-0 lg:flex lg:min-h-[82svh] lg:items-center lg:border-t-0 lg:py-24 lg:pl-12 lg:pr-4 xl:pl-16 xl:pr-8"
+            >
+              {step.aliases.map((alias) => (
+                <span key={alias} id={alias} className="pointer-events-none absolute top-0 scroll-mt-24" />
+              ))}
+
+              <div className="absolute -left-[5px] top-1/2 hidden h-[9px] w-[9px] -translate-y-1/2 rounded-full border border-[#63C1DF] bg-[#071F31] lg:block">
+                {index === active && <span className="absolute inset-[2px] rounded-full bg-[#63C1DF] shadow-[0_0_12px_rgba(99,193,223,0.9)]" />}
+              </div>
+
+              <div className="w-full">
+                <div className="mb-7 lg:hidden">
+                  <ProductStoryVisual active={index} compact />
+                </div>
+                <div className={`text-xs font-semibold tracking-[0.18em] text-[#63C1DF] transition-opacity ${index === active ? "lg:opacity-100" : "lg:opacity-45"}`}>
+                  {step.eyebrow}
+                </div>
+                <h3 className={`cjk-heading keep-phrase mt-4 text-3xl font-semibold leading-tight transition-colors md:text-4xl ${index === active ? "lg:text-white" : "lg:text-white/45"}`}>
+                  {step.title}
+                </h3>
+                <p className={`cjk-heading mt-4 text-lg font-semibold leading-8 transition-colors ${index === active ? "text-[#BDEAF7] lg:text-[#BDEAF7]" : "text-[#BDEAF7] lg:text-white/36"}`}>
+                  {step.tagline}
+                </p>
+                <p className={`cjk-body mt-5 text-base leading-8 transition-colors ${index === active ? "text-white/72" : "text-white/72 lg:text-white/32"}`}>
+                  {step.description}
+                </p>
+                <div className="mt-7 grid gap-3">
+                  {step.highlights.map((item) => (
+                    <div
+                      key={item}
+                      className={`flex items-center gap-3 text-sm transition-colors ${index === active ? "text-white/82" : "text-white/82 lg:text-white/32"}`}
+                    >
+                      <span className="h-px w-5 shrink-0 bg-[#63C1DF]" />
+                      <span className="keep-phrase">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProductStoryVisual({ active, compact = false }: { active: number; compact?: boolean }) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <div
+      className={`relative isolate overflow-hidden border border-white/12 bg-[#0A293D] ${
+        compact ? "aspect-[1.18]" : "mt-5 min-h-0 flex-1"
+      }`}
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(99,193,223,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(99,193,223,0.09)_1px,transparent_1px)] [background-size:42px_42px]"
+      />
+      <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_50%_44%,rgba(54,143,184,0.24),transparent_58%)]" />
+
+      {compact ? (
+        <StoryVisualContent index={active} compact />
+      ) : (
+        productStorySteps.map((step, index) => (
+          <motion.div
+            key={step.id}
+            aria-hidden={index !== active}
+            className="absolute inset-0"
+            style={{ pointerEvents: index === active ? "auto" : "none" }}
+            initial={false}
+            animate={
+              index === active
+                ? { opacity: 1, scale: 1, y: 0 }
+                : { opacity: 0, scale: 0.985, y: reduceMotion ? 0 : 12 }
+            }
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <StoryVisualContent index={index} />
+          </motion.div>
+        ))
+      )}
+
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-between bg-[linear-gradient(180deg,rgba(5,24,37,0.72),transparent)] px-4 py-3 text-[10px] tracking-[0.16em] text-white/52 md:px-5">
+        <span>TIANRONG · INSPECTION SYSTEM</span>
+        <span className="text-[#8BD8EE]">LIVE</span>
+      </div>
+    </div>
+  );
+}
+
+function StoryVisualContent({ index, compact = false }: { index: number; compact?: boolean }) {
+  if (index === 0) {
+    const platformNodes = [
+      ["机械结构", "left-[5%] top-[22%]"],
+      ["通信协议", "right-[5%] top-[28%]"],
+      ["电气接口", "left-[8%] bottom-[20%]"],
+      ["任务载荷", "right-[7%] bottom-[18%]"]
+    ];
+
+    return (
+      <div className="absolute inset-0">
+        <div className="absolute inset-[5%] md:inset-[2%]">
+          {compact ? (
+            <Image
+              src="/images/generated/argos-body.png"
+              alt="机器人平台适配示意"
+              fill
+              sizes="100vw"
+              className="object-contain p-8"
+            />
+          ) : (
+            <LazyHeroRobotPreview />
+          )}
+        </div>
+        {platformNodes.map(([label, position]) => (
+          <div
+            key={label}
+            className={`absolute ${position} flex items-center gap-2 border border-[#63C1DF]/30 bg-[#071F31]/72 px-2.5 py-1.5 text-[10px] text-[#BDEAF7] backdrop-blur-md md:text-xs`}
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-[#63C1DF] shadow-[0_0_8px_rgba(99,193,223,0.9)]" />
+            {label}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (index === 1) {
+    const sensorCards = [
+      ["/images/tianrong/matrix/sensor-module.png", "多传感器", "left-[4%] top-[20%]"],
+      ["/images/tianrong/final-assets/payload-thermal.png", "热成像", "right-[4%] top-[23%]"],
+      ["/images/tianrong/final-assets/payload-gas.png", "气体检测", "right-[7%] bottom-[13%]"]
+    ];
+
+    return (
+      <div className="absolute inset-0">
+        <div className="absolute inset-x-[20%] inset-y-[12%]">
+          <Image
+            src="/images/generated/modular-backpack.png"
+            alt="模块化背包"
+            fill
+            sizes="(max-width: 1024px) 70vw, 36vw"
+            className="object-contain p-3 drop-shadow-[0_28px_45px_rgba(2,16,26,0.42)]"
+          />
+        </div>
+        {sensorCards.map(([src, label, position]) => (
+          <div
+            key={label}
+            className={`absolute ${position} h-[26%] w-[24%] overflow-hidden border border-[#63C1DF]/24 bg-[#DDEDF4]/92 shadow-[0_16px_30px_rgba(2,16,26,0.3)]`}
+          >
+            <div className="relative h-[72%]">
+              <Image src={src} alt={label} fill sizes="18vw" className="object-contain p-2" />
+            </div>
+            <div className="truncate border-t border-[#2B6C98]/18 px-2 py-1 text-[9px] font-semibold text-[#123247] md:text-[10px]">{label}</div>
+          </div>
+        ))}
+        <div className="absolute bottom-[7%] left-[28%] right-[28%] h-px bg-[linear-gradient(90deg,transparent,#63C1DF,transparent)] shadow-[0_0_12px_rgba(99,193,223,0.8)]" />
+      </div>
+    );
+  }
+
+  if (index === 2) {
+    return (
+      <div className="absolute inset-0">
+        <Image
+          src="/images/tianrong/matrix/autonomous-charging-station.png"
+          alt="自主充电站"
+          fill
+          sizes="(max-width: 1024px) 100vw, 58vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,24,37,0.54),transparent_58%),linear-gradient(0deg,rgba(5,24,37,0.68),transparent_52%)]" />
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 800 520" fill="none" aria-hidden="true">
+          <path d="M92 430C244 438 252 328 366 330C496 332 486 208 678 214" stroke="rgba(139,216,238,0.68)" strokeWidth="3" strokeDasharray="9 12" />
+          <circle cx="678" cy="214" r="10" fill="#63C1DF" fillOpacity="0.28" />
+          <circle cx="678" cy="214" r="4" fill="#8BD8EE" />
+        </svg>
+        <div className="absolute bottom-[11%] left-[7%] border-l-2 border-[#63C1DF] bg-[#071F31]/72 px-3 py-2 text-xs text-white/82 backdrop-blur-md">
+          自动返航 · 驻留补能
+        </div>
+        <div className="absolute right-[6%] top-[24%] flex items-center gap-2 text-xs text-[#BDEAF7]">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-[#63C1DF] shadow-[0_0_14px_rgba(99,193,223,0.95)]" />
+          能量链路已连接
+        </div>
+      </div>
+    );
+  }
+
+  if (index === 3) {
+    return (
+      <div className="absolute inset-0">
+        <Image
+          src="/images/tianrong/matrix/navigation-system.png"
+          alt="导航系统界面"
+          fill
+          sizes="(max-width: 1024px) 100vw, 58vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,24,37,0.36),transparent_55%),linear-gradient(0deg,rgba(5,24,37,0.58),transparent_46%)]" />
+        <div className="absolute inset-x-[8%] top-[47%] h-px bg-[#63C1DF]/85 shadow-[0_0_16px_rgba(99,193,223,0.9)]" />
+        <div className="absolute left-[13%] top-[30%] h-3 w-3 rounded-full border border-[#8BD8EE]">
+          <span className="absolute inset-[3px] rounded-full bg-[#63C1DF]" />
+        </div>
+        <div className="absolute bottom-[9%] left-[7%] flex flex-wrap gap-2">
+          {["环境建图", "实时定位", "路径规划", "动态避障"].map((item) => (
+            <span key={item} className="border border-white/18 bg-[#071F31]/68 px-2.5 py-1.5 text-[10px] text-white/76 backdrop-blur-md md:text-xs">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (index === 4) {
+    return (
+      <div className="absolute inset-0 p-[7%] pt-[10%]">
+        <div className="relative h-full overflow-hidden border border-white/16 bg-[#091E2D] shadow-[0_28px_70px_rgba(0,0,0,0.38)]">
+          <Image
+            src="/images/tianrong/final-assets/rsp-platform-complete.png"
+            alt="RSP 云控平台"
+            fill
+            sizes="(max-width: 1024px) 90vw, 52vw"
+            className="object-contain"
+          />
+          <div className="absolute left-[20%] top-[24%] h-3 w-3 rounded-full bg-[#63C1DF] shadow-[0_0_0_7px_rgba(99,193,223,0.16),0_0_18px_rgba(99,193,223,0.9)]" />
+          <div className="absolute bottom-[18%] right-[16%] h-3 w-3 rounded-full bg-[#63C1DF] shadow-[0_0_0_7px_rgba(99,193,223,0.16),0_0_18px_rgba(99,193,223,0.9)]" />
+        </div>
+        <div className="absolute right-[3%] top-[17%] border border-[#63C1DF]/30 bg-[#071F31]/80 px-3 py-2 text-[10px] text-[#BDEAF7] backdrop-blur-md md:text-xs">
+          统一任务视图
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="absolute inset-0">
+      <Image
+        src="/images/tianrong/matrix/data-platform.png"
+        alt="数采平台"
+        fill
+        sizes="(max-width: 1024px) 100vw, 58vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,24,37,0.28),transparent_60%),linear-gradient(0deg,rgba(5,24,37,0.54),transparent_50%)]" />
+      <div className="absolute bottom-[9%] left-[7%] right-[7%] grid grid-cols-3 gap-2">
+        {[
+          ["实时采集", "DATA IN"],
+          ["异常识别", "ALERT"],
+          ["分析报告", "REPORT"]
+        ].map(([title, label]) => (
+          <div key={title} className="border-t border-[#63C1DF]/72 bg-[#071F31]/72 px-3 py-2 backdrop-blur-md">
+            <div className="text-[9px] tracking-[0.14em] text-[#63C1DF] md:text-[10px]">{label}</div>
+            <div className="mt-1 text-[10px] text-white/82 md:text-xs">{title}</div>
+          </div>
+        ))}
+      </div>
+      <div className="absolute right-[8%] top-[18%] h-2.5 w-2.5 animate-pulse rounded-full bg-[#63C1DF] shadow-[0_0_16px_rgba(99,193,223,0.9)]" />
+    </div>
+  );
+}
+
 function ProductStage() {
   return (
     <motion.div
@@ -943,17 +1202,6 @@ function ScrollDrivenSection({ id, className, children }: { id?: string; classNa
   );
 }
 
-function SectionHeading({ title, description, align = "center" }: { title: React.ReactNode; description?: React.ReactNode; align?: "center" | "left" }) {
-  const isLeftAligned = align === "left";
-
-  return (
-    <div className={`section-heading ${isLeftAligned ? "max-w-3xl text-left" : "mx-auto max-w-4xl text-center"}`}>
-      <h2 className="cjk-heading section-title text-4xl font-semibold leading-tight md:text-5xl">{title}</h2>
-      {description && <p className={`${isLeftAligned ? "mx-0" : "mx-auto"} cjk-body section-description mt-5 max-w-3xl text-lg leading-8 text-[#525252]`}>{description}</p>}
-    </div>
-  );
-}
-
 function TianrongFooter() {
   return (
     <footer className="tr-deep-section border-t border-white/10 text-white">
@@ -987,30 +1235,6 @@ function TianrongFooter() {
       </div>
       <div className="border-t border-white/10 py-5 text-center text-sm text-white/48">Copyright © 2026 <span className="keep-phrase">杭州天戎智能科技有限公司</span> 版权所有</div>
     </footer>
-  );
-}
-
-function FeatureItem({
-  index,
-  title,
-  description,
-  className = ""
-}: {
-  index: number;
-  title: string;
-  description: string;
-  className?: string;
-}) {
-  return (
-    <article className={`feature-item border-t border-[#D8E6F5] pt-4 ${className}`}>
-      <div className="flex gap-3">
-        <span className="shrink-0 text-base font-semibold text-[#0F62FE]">{String(index + 1).padStart(2, "0")}</span>
-        <div>
-          <h3 className="cjk-heading keep-phrase text-lg font-semibold text-[#161616]">{title}</h3>
-          <p className="cjk-body card-description mt-2 text-base leading-7 text-[#525252]">{description}</p>
-        </div>
-      </div>
-    </article>
   );
 }
 
