@@ -709,7 +709,7 @@ function ProductShowcase() {
             <article
               key={product.id}
               aria-current={index === active ? "true" : undefined}
-              className="tr-product-slide group relative h-[580px] overflow-hidden md:h-[680px] lg:h-[720px]"
+              className="tr-product-slide group relative h-[100svh] min-h-[680px] overflow-hidden md:min-h-[760px]"
             >
               <div
                 className={`absolute inset-0 ${
@@ -725,7 +725,7 @@ function ProductShowcase() {
                   sizes="100vw"
                   className={`transition duration-700 ease-out group-hover:scale-[1.015] ${
                     product.id === "payload-modules"
-                      ? "object-contain p-10 md:p-20 lg:p-24"
+                      ? "object-contain object-top p-8 pb-[270px] md:p-14 md:pb-[300px] lg:p-16 lg:pb-[320px]"
                       : "object-cover"
                   }`}
                   priority={index === 0}
