@@ -444,15 +444,19 @@ export function TianrongScenarioPage() {
           </div>
         </section>
 
-        <RevealSection id="about" className="overflow-hidden bg-[var(--tr-surface-soft)] pb-0 pt-20 md:pt-32">
-          <div className="relative lg:min-h-[720px]">
+        <RevealSection id="about" className="relative isolate overflow-hidden bg-[#071F31] pb-0 pt-20 text-white md:pt-32">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_16%,rgba(99,193,223,0.16),transparent_28%),radial-gradient(circle_at_86%_52%,rgba(54,143,184,0.13),transparent_32%),linear-gradient(180deg,#071f31_0%,#09283c_52%,#071f31_100%)]"
+          />
+          <div className="relative z-10 lg:min-h-[720px]">
             <div className="relative z-10 max-w-[660px]">
-              <div className="text-[13px] font-medium tracking-[0.08em] text-[#737373]">关于天戎</div>
+              <div className="text-[13px] font-medium tracking-[0.08em] text-[#63C1DF]">关于天戎</div>
               <h2 className="cjk-heading mt-8 max-w-[720px] text-left text-[clamp(40px,10.5vw,48px)] font-semibold leading-[1.1] tracking-[-0.035em] md:text-[clamp(52px,4.4vw,68px)] md:leading-[1.1]">
                 <span className="block keep-phrase lg:whitespace-nowrap">以洞见启程，</span>
                 <span className="block keep-phrase lg:whitespace-nowrap">以智能抵达</span>
               </h2>
-              <div className="cjk-body mt-12 max-w-[660px] space-y-6 text-[17px] leading-[1.9] text-[#4E514F] md:text-[18px]">
+              <div className="cjk-body mt-12 max-w-[660px] space-y-6 text-[17px] leading-[1.9] text-white/72 md:text-[18px]">
                 <p>
                   杭州天戎智能科技有限公司成立于2025年9月，是一家专注于具身智能技术与机器人系统集成的高科技企业，致力于为全球客户提供智能化、自动化、远程化的机器人解决方案。公司业务涵盖机器人运动控制、环境感知、自主巡航、AI智能融合及系统集成，产品和方案广泛应用于安防巡检等多个行业。
                 </p>
