@@ -34,8 +34,8 @@ const products = [
     tagline: "面向巡检任务的模块化硬件组合",
     description: "以统一背包为载体，集成 ROBOX、可见光、热成像、气体检测、通信和边缘计算等模块，根据巡检任务完成硬件组合与现场适配。",
     nodes: ["ROBOX 模块", "可见光 / 热成像", "气体 / 通信"],
-    image: "/images/generated/modular-backpack.png",
-    images: ["/images/generated/modular-backpack.png"],
+    image: "/images/tianrong/matrix/backpack-and-sensors-robot.png",
+    images: ["/images/tianrong/matrix/backpack-and-sensors-robot.png"],
     target: "#payload-modules",
     cta: "了解更多"
   },
@@ -712,24 +712,46 @@ function ProductShowcase() {
               <div
                 className={`absolute inset-0 ${
                   product.id === "payload-modules"
-                    ? "bg-[radial-gradient(circle_at_66%_38%,rgba(99,193,223,0.48),transparent_32%),linear-gradient(135deg,#d7eaf4_0%,#a9cedf_48%,#4b85a8_100%)]"
+                    ? "bg-[#071F31]"
                     : "bg-[#0B2435]"
                 }`}
               >
-                <Image
-                  src={product.images[0]}
-                  alt={product.title}
-                  fill
-                  sizes="100vw"
-                  className={`transition duration-700 ease-out group-hover:scale-[1.015] ${
+                {product.id === "payload-modules" && (
+                  <>
+                    <Image
+                      src={product.images[0]}
+                      alt=""
+                      aria-hidden="true"
+                      fill
+                      sizes="100vw"
+                      className="scale-110 object-cover opacity-45 blur-[14px] saturate-[0.78]"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-[#071F31]/28" />
+                  </>
+                )}
+                <div
+                  className={
                     product.id === "payload-modules"
-                      ? "object-contain object-top p-8 pb-[270px] md:p-14 md:pb-[300px] lg:p-16 lg:pb-[320px]"
-                      : "object-cover"
-                  }`}
-                  priority={index === 0}
-                />
+                      ? "absolute inset-x-[6vw] bottom-[24vh] top-[5vh] overflow-hidden shadow-[0_28px_80px_rgba(2,16,26,0.34)] md:inset-x-[9vw] md:bottom-[26vh] md:top-[6vh]"
+                      : "absolute inset-0"
+                  }
+                >
+                  <Image
+                    src={product.images[0]}
+                    alt={product.title}
+                    fill
+                    sizes="100vw"
+                    className={`transition duration-700 ease-out ${
+                      product.id === "payload-modules"
+                        ? "object-contain object-center group-hover:scale-[1.008]"
+                        : "object-cover group-hover:scale-[1.015]"
+                    }`}
+                    priority={index === 0}
+                  />
+                </div>
               </div>
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.54)_0%,rgba(6,28,43,0.18)_40%,transparent_76%),linear-gradient(0deg,rgba(6,28,43,0.66)_0%,rgba(6,28,43,0.06)_58%,transparent_100%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.54)_0%,rgba(6,28,43,0.18)_40%,transparent_76%),linear-gradient(0deg,rgba(6,28,43,0.72)_0%,rgba(6,28,43,0.08)_58%,transparent_100%)]" />
 
               <div className="absolute inset-x-0 bottom-0 z-10">
                 <div className="mx-auto w-[min(1240px,calc(100%-32px))] pb-8 md:pb-10">
