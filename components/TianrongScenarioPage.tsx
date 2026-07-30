@@ -401,6 +401,8 @@ export function TianrongScenarioPage() {
           </ScrollDrivenSection>
         </div>
 
+        <div aria-hidden="true" className="h-16 bg-[#071F31] md:h-24 lg:h-28" />
+
         <ProductStorySection />
 
         <section id="case" className="tr-deep-section relative overflow-hidden text-white">
@@ -709,49 +711,19 @@ function ProductShowcase() {
               aria-current={index === active ? "true" : undefined}
               className="tr-product-slide group relative h-[100svh] min-h-[680px] overflow-hidden md:min-h-[760px]"
             >
-              <div
-                className={`absolute inset-0 ${
-                  product.id === "payload-modules"
-                    ? "bg-[#071F31]"
-                    : "bg-[#0B2435]"
-                }`}
-              >
-                {product.id === "payload-modules" && (
-                  <>
-                    <Image
-                      src={product.images[0]}
-                      alt=""
-                      aria-hidden="true"
-                      fill
-                      sizes="100vw"
-                      className="scale-110 object-cover opacity-45 blur-[14px] saturate-[0.78]"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-[#071F31]/28" />
-                  </>
-                )}
-                <div
-                  className={
-                    product.id === "payload-modules"
-                      ? "absolute inset-x-[6vw] bottom-[24vh] top-[5vh] overflow-hidden shadow-[0_28px_80px_rgba(2,16,26,0.34)] md:inset-x-[9vw] md:bottom-[26vh] md:top-[6vh]"
-                      : "absolute inset-0"
-                  }
-                >
-                  <Image
-                    src={product.images[0]}
-                    alt={product.title}
-                    fill
-                    sizes="100vw"
-                    className={`transition duration-700 ease-out ${
-                      product.id === "payload-modules"
-                        ? "object-contain object-center group-hover:scale-[1.008]"
-                        : "object-cover group-hover:scale-[1.015]"
-                    }`}
-                    priority={index === 0}
-                  />
-                </div>
+              <div className="absolute inset-0 bg-[#0B2435]">
+                <Image
+                  src={product.images[0]}
+                  alt={product.title}
+                  fill
+                  sizes="100vw"
+                  className={`object-cover transition duration-700 ease-out group-hover:scale-[1.015] ${
+                    product.id === "payload-modules" ? "object-[52%_58%]" : "object-center"
+                  }`}
+                  priority={index === 0}
+                />
               </div>
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.54)_0%,rgba(6,28,43,0.18)_40%,transparent_76%),linear-gradient(0deg,rgba(6,28,43,0.72)_0%,rgba(6,28,43,0.08)_58%,transparent_100%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.38)_0%,rgba(6,28,43,0.12)_40%,transparent_76%),linear-gradient(0deg,rgba(6,28,43,0.56)_0%,rgba(6,28,43,0.04)_58%,transparent_100%)]" />
 
               <div className="absolute inset-x-0 bottom-0 z-10">
                 <div className="mx-auto w-[min(1240px,calc(100%-32px))] pb-8 md:pb-10">
