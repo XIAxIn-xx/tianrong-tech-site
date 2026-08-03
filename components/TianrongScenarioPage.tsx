@@ -92,8 +92,6 @@ const products = [
 type ProductStoryStep = {
   id: string;
   aliases: string[];
-  progressLabel: string;
-  eyebrow: string;
   title: string;
   tagline: string;
   description: string;
@@ -108,8 +106,6 @@ const productStorySteps: ProductStoryStep[] = [
   {
     id: "robot-series",
     aliases: ["bodies"],
-    progressLabel: "平台",
-    eyebrow: "平台适配",
     title: "机器人平台选型与适配",
     tagline: "面向现场条件完成平台选型与系统适配",
     description: "根据通道条件、地面环境、作业范围、载荷需求及续航要求，完成机器人平台选型，并开展机械、电气、通信与控制接口适配。",
@@ -123,8 +119,6 @@ const productStorySteps: ProductStoryStep[] = [
   {
     id: "payload-modules",
     aliases: ["modules", "robox"],
-    progressLabel: "感知",
-    eyebrow: "感知装配",
     title: "背包与传感器",
     tagline: "面向任务需求完成感知载荷集成",
     description: "围绕巡检任务，将可见光、热成像、环境检测及远程接入等模块集成于统一背包，实现安装、供电、散热与线缆管理的一体化。",
@@ -138,8 +132,6 @@ const productStorySteps: ProductStoryStep[] = [
   {
     id: "charging-station",
     aliases: [],
-    progressLabel: "补能",
-    eyebrow: "持续运行",
     title: "自主充电站",
     tagline: "提供自主补能与设备驻留保障",
     description: "自主充电站集成自动返航、充电、环境监测、通信与数据同步能力，为机器人长期驻留与连续作业提供运行保障。",
@@ -153,8 +145,6 @@ const productStorySteps: ProductStoryStep[] = [
   {
     id: "navigation",
     aliases: [],
-    progressLabel: "导航",
-    eyebrow: "自主移动",
     title: "导航系统",
     tagline: "面向复杂环境提供自主移动能力",
     description: "基于现场地图与任务路线，完成环境建图、实时定位、路径规划与动态避障，支撑机器人按预设任务执行巡检。",
@@ -168,8 +158,6 @@ const productStorySteps: ProductStoryStep[] = [
   {
     id: "rsp-platform",
     aliases: ["rsp"],
-    progressLabel: "调度",
-    eyebrow: "任务调度",
     title: "RSP 云控平台",
     tagline: "统一管理设备、任务与巡检流程",
     description: "RSP 云控平台集中管理机器人、地图、任务与运行状态，支持任务配置、远程操作、视频回传、异常处置及巡检记录管理。",
@@ -183,8 +171,6 @@ const productStorySteps: ProductStoryStep[] = [
   {
     id: "data-platform",
     aliases: [],
-    progressLabel: "数据",
-    eyebrow: "数据闭环",
     title: "数据采集平台",
     tagline: "形成可追溯的巡检数据资产",
     description: "数采平台独立完成巡检数据的采集、存储、分析、可视化、异常预警与报告生成，为业务管理、结果追溯及任务优化提供数据支持。",
@@ -391,8 +377,7 @@ export function TianrongScenarioPage() {
           />
           <div className="relative z-10 lg:min-h-[720px]">
             <div className="relative z-10 max-w-[660px]">
-              <div className="text-[13px] font-medium tracking-[0.08em] text-[#63C1DF]">关于天戎</div>
-              <h2 className="cjk-heading mt-8 max-w-[720px] text-left text-[clamp(40px,10.5vw,48px)] font-semibold leading-[1.1] tracking-[-0.035em] md:text-[clamp(52px,4.4vw,68px)] md:leading-[1.1]">
+              <h2 className="cjk-heading mt-0 max-w-[720px] text-left text-[clamp(40px,10.5vw,48px)] font-semibold leading-[1.1] tracking-[-0.035em] md:text-[clamp(52px,4.4vw,68px)] md:leading-[1.1]">
                 <span className="block keep-phrase lg:whitespace-nowrap">以洞见启程，</span>
                 <span className="block keep-phrase lg:whitespace-nowrap">以智能抵达</span>
               </h2>
@@ -785,10 +770,9 @@ function ProductStorySection() {
         <div className="hidden lg:block">
           <div className="sticky top-[74px] flex h-[calc(100svh-74px)] min-h-[680px] flex-col py-7 pr-8 xl:pr-12">
             <div>
-              <div className="text-xs font-semibold tracking-[0.2em] text-[#63C1DF]">系统装配长卷</div>
               <h2
                 id="product-story-title"
-                className="cjk-heading mt-3 text-[clamp(32px,3.1vw,52px)] font-semibold leading-[1.08] tracking-[-0.025em]"
+                className="cjk-heading mt-0 text-[clamp(32px,3.1vw,52px)] font-semibold leading-[1.08] tracking-[-0.025em]"
               >
                 巡检系统的构成与运行闭环
               </h2>
@@ -823,9 +807,6 @@ function ProductStorySection() {
                         : "border-white/42 bg-[#0A283B] group-hover:border-white/75"
                     }`}
                   />
-                  <span className={`mt-2 truncate text-[10px] xl:text-[11px] ${index === active ? "text-white" : "text-white/42"}`}>
-                    {step.eyebrow}
-                  </span>
                 </button>
               ))}
             </nav>
@@ -834,10 +815,9 @@ function ProductStorySection() {
 
         <div className="relative py-16 lg:border-l lg:border-white/10 lg:py-0">
           <header className="pb-12 lg:hidden">
-            <div className="text-xs font-semibold tracking-[0.2em] text-[#63C1DF]">系统装配长卷</div>
             <h2
               id="product-story-title-mobile"
-              className="cjk-heading mt-4 text-4xl font-semibold leading-[1.1] tracking-[-0.025em]"
+              className="cjk-heading mt-0 text-4xl font-semibold leading-[1.1] tracking-[-0.025em]"
             >
               从平台适配到数据闭环
             </h2>
@@ -868,10 +848,7 @@ function ProductStorySection() {
                 <div className="mb-7 lg:hidden">
                   <ProductStoryVisual active={index} compact />
                 </div>
-                <div className={`text-xs font-semibold tracking-[0.18em] text-[#63C1DF] transition-opacity ${index === active ? "lg:opacity-100" : "lg:opacity-45"}`}>
-                  {step.eyebrow}
-                </div>
-                <h3 className={`cjk-heading keep-phrase mt-4 text-3xl font-semibold leading-tight transition-colors md:text-4xl ${index === active ? "lg:text-white" : "lg:text-white/45"}`}>
+                <h3 className={`cjk-heading keep-phrase mt-0 text-3xl font-semibold leading-tight transition-colors md:text-4xl ${index === active ? "lg:text-white" : "lg:text-white/45"}`}>
                   {step.title}
                 </h3>
                 <p className={`cjk-heading mt-4 text-lg font-semibold leading-8 transition-colors ${index === active ? "text-[#BDEAF7] lg:text-[#BDEAF7]" : "text-[#BDEAF7] lg:text-white/36"}`}>

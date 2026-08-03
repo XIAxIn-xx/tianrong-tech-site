@@ -40,6 +40,8 @@ def json_safe(value, depth=0):
     """Convert common Blender RNA values without recursively dumping datablocks."""
     if value is None or isinstance(value, (str, bool, int)):
         return value
+    if isinstance(value, (bytes, bytearray)):
+        return {"encoding": "hex", "value": bytes(value).hex()}
     if isinstance(value, float):
         return number(value)
     if isinstance(value, (Vector, Matrix)):
@@ -196,6 +198,15 @@ def mesh_record(obj):
         "edges": len(mesh.edges),
         "faces": len(mesh.polygons),
         "materials_slots": [slot.material.name if slot.material else None for slot in obj.material_slots],
+        "vertex_groups": [group.name for group in obj.vertex_groups],
+        "armature_modifiers": [
+            {
+                "name": modifier.name,
+                "object": modifier.object.name if modifier.object else None,
+            }
+            for modifier in obj.modifiers
+            if modifier.type == "ARMATURE"
+        ],
         "topology": topology,
         "geometry_signature": mesh_signature(mesh),
     }
@@ -661,7 +672,7 @@ def main():
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report = build_report()
     report["audit"]["report_path"] = str(report_path)
-    report_json = json.dumps(report, ensure_ascii=False, indent=2)
+    report_json = json.dumps(report, ensure_ascii=False, indent=2, default=json_safe)
     report_path.write_text(report_json + "\n", encoding="utf-8")
 
     print("\n=== Tianrong robot-dog Blender audit ===")

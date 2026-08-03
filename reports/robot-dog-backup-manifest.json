@@ -1,0 +1,61 @@
+{
+  "manifest": "robot-dog-industrial-backup",
+  "created_at_utc": "2026-08-03T03:04:53Z",
+  "backup_root": "backups/robot-dog-industrial/20260803T030453Z",
+  "source_model_search": {
+    "blend_files_found": [],
+    "fbx_files_found": [
+      "public/models/source/robot-dog-4k.fbx"
+    ],
+    "glb_files_found": [
+      "public/models/source/robot-dog-4k.glb",
+      "public/models/tianrong-robot-dog.v1.glb",
+      "public/models/tianrong-robot-dog-manual.glb"
+    ],
+    "selected_source": "public/models/source/robot-dog-4k.fbx",
+    "selection_reason": "项目内没有 blend；FBX 保留源结构的优先级高于已导出的 GLB。"
+  },
+  "files": [
+    {
+      "original": "public/models/source/robot-dog-4k.fbx",
+      "backup": "backups/robot-dog-industrial/20260803T030453Z/public/models/source/robot-dog-4k.fbx",
+      "sha256": "342603e580f55905002ac44503496d8005a93dd90bdb17d62f73939a54b42753"
+    },
+    {
+      "original": "public/models/source/robot-dog-4k.glb",
+      "backup": "backups/robot-dog-industrial/20260803T030453Z/public/models/source/robot-dog-4k.glb",
+      "sha256": "7818161eb391deb4edce7bcbb1fe145d41669d9b4091804d8c694b66ec58e332"
+    },
+    {
+      "original": "public/models/tianrong-robot-dog.v1.glb",
+      "backup": "backups/robot-dog-industrial/20260803T030453Z/public/models/tianrong-robot-dog.v1.glb",
+      "sha256": "eddab024101fce34eb418de4ba26936e9961ab2bb5d50a466159028658e22d32"
+    },
+    {
+      "original": "public/models/tianrong-robot-dog-manual.glb",
+      "backup": "backups/robot-dog-industrial/20260803T030453Z/public/models/tianrong-robot-dog-manual.glb",
+      "sha256": "656e97f3955a0d0155c0a7b94aaec7f1275cbbf9efd60323b5d8af5cdadb19f0"
+    },
+    {
+      "original": "scripts/audit_robot_dog.py",
+      "backup": "backups/robot-dog-industrial/20260803T030453Z/scripts/audit_robot_dog.py",
+      "sha256": "aeca1770bc17ff402f3896c93927c653759407181176f3c5018fb3860dda2e7c"
+    },
+    {
+      "original": "scripts/create-tianrong-robot-dog.py",
+      "backup": "backups/robot-dog-industrial/20260803T030453Z/scripts/create-tianrong-robot-dog.py",
+      "sha256": "9724660b7a928d836a0ef692995f33a6a81ebd15ec1e9841e5405d3d970764d9"
+    },
+    {
+      "original": "components/hero/hero-robot-preview.tsx",
+      "backup": "backups/robot-dog-industrial/20260803T030453Z/components/hero/hero-robot-preview.tsx",
+      "sha256": "9c05298112a95e868b2e94f5195e86658d1aa15931fcdc1eb7c5582473a675c6"
+    },
+    {
+      "original": "next.config.mjs",
+      "backup": "backups/robot-dog-industrial/20260803T030453Z/next.config.mjs",
+      "sha256": "dee28e895f33bc74019ba86cd331ce1334efb26f815b2bb5d6c0225f15a25f42"
+    }
+  ],
+  "restore_note": "将 backup_root 中对应文件复制回 original 路径即可恢复；本次未覆盖原始模型文件。"
+}

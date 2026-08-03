@@ -1,0 +1,1764 @@
+{
+  "audit": {
+    "name": "robot-dog-read-only-audit",
+    "generated_at_utc": "2026-08-03T03:15:42.935591+00:00",
+    "read_only_scene_audit": true,
+    "report_path_is_only_write": true,
+    "report_path": "/Users/edy/Desktop/tianrong-tech-site/reports/robot-dog-audit.json"
+  },
+  "blender": {
+    "version": "4.5.11 LTS",
+    "version_tuple": [
+      4,
+      5,
+      11
+    ],
+    "build_branch": {
+      "encoding": "hex",
+      "value": "626c656e6465722d76342e352d72656c65617365"
+    }
+  },
+  "blend_file": {
+    "path": "/Users/edy/Desktop/tianrong-tech-site/artifacts/robot-dog-industrial/source-imported.blend",
+    "is_saved": true,
+    "scene_name": "Scene",
+    "frame_current": 1,
+    "frame_start": 1,
+    "frame_end": 250,
+    "unit_system": "METRIC",
+    "unit_scale": 1.0
+  },
+  "scene_summary": {
+    "object_count": 14,
+    "mesh_object_count": 3,
+    "armature_object_count": 2,
+    "objects_not_linked_to_active_scene": []
+  },
+  "objects": [
+    {
+      "name": "CINEMA_4D_Editor",
+      "type": "CAMERA",
+      "parent": null,
+      "parent_type": null,
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          5.062201023101807,
+          -3.8267812728881836,
+          2.157806158065796
+        ],
+        "world_location": [
+          5.062201023101807,
+          -3.8267812728881836,
+          2.157806158065796
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          1.3648474216461182,
+          -5.1251511479222245e-08,
+          0.9189159870147705
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          0.009999998845160007,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_unapplied_scale": true,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.999997701015673e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          5.062201023101807,
+          -3.8267812728881836,
+          2.157806158065796
+        ],
+        "max": [
+          5.062201023101807,
+          -3.8267812728881836,
+          2.157806158065796
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          5.062201023101807,
+          -3.8267812728881836,
+          2.157806158065796
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": false
+      }
+    },
+    {
+      "name": "OctaneCamera_1",
+      "type": "CAMERA",
+      "parent": null,
+      "parent_type": null,
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          10.653255462646484,
+          -12.067767143249512,
+          2.863677978515625
+        ],
+        "world_location": [
+          10.653255462646484,
+          -12.067767143249512,
+          2.863677978515625
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          1.4590953588485718,
+          -3.928925096374769e-08,
+          0.8168142437934875
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_unapplied_scale": true,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.999999974752427e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          10.653255462646484,
+          -12.067767143249512,
+          2.863677978515625
+        ],
+        "max": [
+          10.653255462646484,
+          -12.067767143249512,
+          2.863677978515625
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          10.653255462646484,
+          -12.067767143249512,
+          2.863677978515625
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": false
+      }
+    },
+    {
+      "name": "OctaneCamera",
+      "type": "CAMERA",
+      "parent": null,
+      "parent_type": null,
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          -12.207508087158203,
+          24.7677001953125,
+          2.49788761138916
+        ],
+        "world_location": [
+          -12.207508087158203,
+          24.7677001953125,
+          2.49788761138916
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          1.534775972366333,
+          -6.541905150925231e-08,
+          -2.6852824687957764
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.010000000707805157
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_unapplied_scale": true,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.99999883788405e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          -12.207508087158203,
+          24.7677001953125,
+          2.49788761138916
+        ],
+        "max": [
+          -12.207508087158203,
+          24.7677001953125,
+          2.49788761138916
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          -12.207508087158203,
+          24.7677001953125,
+          2.49788761138916
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": true,
+        "action": {
+          "name": "OctaneCamera|CINEMA_4D_Main|Layer0",
+          "users": 2,
+          "frame_range": [
+            1.0,
+            190.0
+          ],
+          "fcurve_count": 9,
+          "groups": [
+            "OctaneCamera"
+          ]
+        },
+        "nla_tracks": [],
+        "driver_count": 0
+      }
+    },
+    {
+      "name": "Root_2",
+      "type": "EMPTY",
+      "parent": "REAR_R_LEG",
+      "parent_type": "OBJECT",
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          2.1316282072803006e-14,
+          -5.684341886080802e-14,
+          1.0424832908029202e-05
+        ],
+        "world_location": [
+          -0.44385576248168945,
+          0.7920630574226379,
+          1.5532418489456177
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          0.0,
+          -0.0,
+          1.1012487105489972e-17
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_unapplied_scale": false,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.99999883788405e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          -0.44385576248168945,
+          0.7920630574226379,
+          1.5532418489456177
+        ],
+        "max": [
+          -0.44385576248168945,
+          0.7920630574226379,
+          1.5532418489456177
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          -0.44385576248168945,
+          0.7920630574226379,
+          1.5532418489456177
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": false
+      }
+    },
+    {
+      "name": "Armature",
+      "type": "ARMATURE",
+      "parent": "REAR_R_LEG",
+      "parent_type": "OBJECT",
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "world_location": [
+          -0.44385576248168945,
+          0.7920631766319275,
+          1.5532418489456177
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.2954944968223572,
+          2.3396830558776855,
+          1.8607221841812134
+        ],
+        "has_unapplied_scale": false,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.99999883788405e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          -0.6850666999816895,
+          0.7897834181785583,
+          -0.02845850959420204
+        ],
+        "max": [
+          -0.10659773647785187,
+          2.6574206352233887,
+          2.3352489471435547
+        ],
+        "dimensions": [
+          0.5784689784049988,
+          1.8676371574401855,
+          2.3637075424194336
+        ],
+        "center": [
+          -0.39583221077919006,
+          1.723602056503296,
+          1.153395175933838
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": true,
+        "action": {
+          "name": "Armature|CINEMA_4D_Main|Layer0",
+          "users": 2,
+          "frame_range": [
+            1.0,
+            190.0
+          ],
+          "fcurve_count": 20,
+          "groups": [
+            "Joint_1_2",
+            "Joint_2_2"
+          ]
+        },
+        "nla_tracks": [],
+        "driver_count": 0
+      },
+      "armature": {
+        "data_name": "Armature",
+        "bone_count": 3,
+        "bones": [
+          {
+            "name": "Joint_1_2",
+            "parent": null,
+            "use_deform": true,
+            "head": [
+              -0.9342065453529358,
+              10.770705223083496,
+              -16.494686126708984
+            ],
+            "tail": [
+              -4.511438369750977,
+              39.900569915771484,
+              -104.56196594238281
+            ]
+          },
+          {
+            "name": "Joint_2_2",
+            "parent": "Joint_1_2",
+            "use_deform": true,
+            "head": [
+              9.800076484680176,
+              -76.63995361328125,
+              -45.843379974365234
+            ],
+            "tail": [
+              20.649417877197266,
+              -164.98753356933594,
+              -104.82730865478516
+            ]
+          },
+          {
+            "name": "Joint_3_2",
+            "parent": "Joint_2_2",
+            "use_deform": true,
+            "head": [
+              16.989471435546875,
+              -135.18408203125,
+              43.16788101196289
+            ],
+            "tail": [
+              27.83881187438965,
+              -223.5316619873047,
+              -15.816047668457031
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "REAR_R_LEG",
+      "type": "MESH",
+      "parent": "SPOT_BODY",
+      "parent_type": "OBJECT",
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          -44.122257232666016,
+          -0.3152315020561218,
+          -88.27853393554688
+        ],
+        "world_location": [
+          -0.44385576248168945,
+          0.7920631766319275,
+          1.5532418489456177
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          0.0,
+          -0.0,
+          1.1012487105489972e-17
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.2795557677745819,
+          1.7480332851409912,
+          1.0975456237792969
+        ],
+        "has_unapplied_scale": false,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.99999883788405e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          -0.7490159869194031,
+          0.11297808587551117,
+          -0.006222584284842014
+        ],
+        "max": [
+          -0.25848156213760376,
+          1.2157121896743774,
+          1.7660658359527588
+        ],
+        "dimensions": [
+          0.4905344247817993,
+          1.102734088897705,
+          1.77228844165802
+        ],
+        "center": [
+          -0.5037487745285034,
+          0.6643451452255249,
+          0.8799216151237488
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": false
+      },
+      "mesh": {
+        "data_name": "Mesh.002",
+        "vertices": 3766,
+        "edges": 11097,
+        "faces": 7334,
+        "materials_slots": [],
+        "vertex_groups": [
+          "Joint_1_2",
+          "Joint_2_2"
+        ],
+        "armature_modifiers": [],
+        "topology": {
+          "open_edge_count": 192,
+          "boundary_edge_count": 192,
+          "loose_edge_count": 0,
+          "over_connected_edge_count": 0,
+          "non_manifold_edge_count": 0,
+          "has_open_edges": true,
+          "has_non_manifold_edges": false,
+          "open_edge_sample": [
+            23,
+            39,
+            41,
+            542,
+            617,
+            622,
+            623,
+            867,
+            877,
+            879,
+            882,
+            1184,
+            1185,
+            1188,
+            1195,
+            1196,
+            1213,
+            1215,
+            1261,
+            1262,
+            1263,
+            1264,
+            1397,
+            1401,
+            1926,
+            2014,
+            2015,
+            2275,
+            2278,
+            2279,
+            2578,
+            2580,
+            2582,
+            2585,
+            2612,
+            2613,
+            2652,
+            2653,
+            2654,
+            2752
+          ],
+          "non_manifold_edge_sample": []
+        },
+        "geometry_signature": "ed967508b4f7a761a71db43d1527a0b5063f0bcc"
+      }
+    },
+    {
+      "name": "Armature.001",
+      "type": "ARMATURE",
+      "parent": "FRONT_LEG",
+      "parent_type": "OBJECT",
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "world_location": [
+          0.41902896761894226,
+          -0.9876183271408081,
+          1.4420523643493652
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.3209400773048401,
+          2.4266083240509033,
+          1.8928240537643433
+        ],
+        "has_unapplied_scale": false,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.99999883788405e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          0.15782350301742554,
+          -0.9900780320167542,
+          -0.16769395768642426
+        ],
+        "max": [
+          0.7721433639526367,
+          0.9099231958389282,
+          2.2854857444763184
+        ],
+        "dimensions": [
+          0.6143198609352112,
+          1.9000012874603271,
+          2.4531795978546143
+        ],
+        "center": [
+          0.46498343348503113,
+          -0.040077418088912964,
+          1.0588959455490112
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": true,
+        "action": {
+          "name": "Armature.001|CINEMA_4D_Main|Layer0",
+          "users": 2,
+          "frame_range": [
+            1.0,
+            190.0
+          ],
+          "fcurve_count": 20,
+          "groups": [
+            "Joint_2_4",
+            "Joint_3_4"
+          ]
+        },
+        "nla_tracks": [],
+        "driver_count": 0
+      },
+      "armature": {
+        "data_name": "Armature.001",
+        "bone_count": 3,
+        "bones": [
+          {
+            "name": "Joint_2_4",
+            "parent": null,
+            "use_deform": true,
+            "head": [
+              -1.6461018323898315,
+              21.885835647583008,
+              -16.495464324951172
+            ],
+            "tail": [
+              -8.317290306091309,
+              76.21018981933594,
+              -91.47251892089844
+            ]
+          },
+          {
+            "name": "Joint_3_4",
+            "parent": "Joint_2_4",
+            "use_deform": true,
+            "head": [
+              7.49265193939209,
+              -52.53218460083008,
+              -71.2279052734375
+            ],
+            "tail": [
+              15.642910957336426,
+              -118.90078735351562,
+              -154.47984313964844
+            ]
+          },
+          {
+            "name": "Joint_4",
+            "parent": "Joint_3_4",
+            "use_deform": true,
+            "head": [
+              17.639999389648438,
+              -135.1634063720703,
+              -4.360750198364258
+            ],
+            "tail": [
+              25.79025650024414,
+              -201.53199768066406,
+              -87.6126937866211
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "FRONT_LEG",
+      "type": "MESH",
+      "parent": "SPOT_BODY",
+      "parent_type": "OBJECT",
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          42.814422607421875,
+          -0.3152165114879608,
+          89.72148895263672
+        ],
+        "world_location": [
+          0.41902896761894226,
+          -0.9876183271408081,
+          1.4420523643493652
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          0.0,
+          -0.0,
+          1.1012487105489972e-17
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.2555840313434601,
+          1.8583197593688965,
+          0.8152775168418884
+        ],
+        "has_unapplied_scale": false,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.99999883788405e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          0.0902678370475769,
+          -1.1980984210968018,
+          -0.21840880811214447
+        ],
+        "max": [
+          0.5704517960548401,
+          -0.37731826305389404,
+          1.6595927476882935
+        ],
+        "dimensions": [
+          0.4801839590072632,
+          0.8207801580429077,
+          1.8780015707015991
+        ],
+        "center": [
+          0.3303598165512085,
+          -0.7877083420753479,
+          0.7205919623374939
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": false
+      },
+      "mesh": {
+        "data_name": "Mesh.004",
+        "vertices": 3719,
+        "edges": 10952,
+        "faces": 7236,
+        "materials_slots": [],
+        "vertex_groups": [
+          "Joint_2_4",
+          "Joint_3_4"
+        ],
+        "armature_modifiers": [],
+        "topology": {
+          "open_edge_count": 196,
+          "boundary_edge_count": 196,
+          "loose_edge_count": 0,
+          "over_connected_edge_count": 0,
+          "non_manifold_edge_count": 0,
+          "has_open_edges": true,
+          "has_non_manifold_edges": false,
+          "open_edge_sample": [
+            156,
+            160,
+            162,
+            167,
+            184,
+            185,
+            817,
+            1103,
+            1114,
+            1115,
+            1118,
+            1172,
+            1174,
+            1176,
+            1178,
+            1180,
+            1232,
+            1234,
+            1369,
+            1370,
+            1372,
+            1374,
+            1375,
+            1523,
+            1524,
+            1528,
+            1532,
+            2186,
+            2467,
+            2470,
+            2471,
+            2533,
+            2536,
+            2538,
+            2541,
+            2588,
+            2589,
+            2710,
+            2711,
+            2712
+          ],
+          "non_manifold_edge_sample": []
+        },
+        "geometry_signature": "e7dd260fb546f55a043563f0ef8411e47aece3a1"
+      }
+    },
+    {
+      "name": "SPOT_BODY",
+      "type": "MESH",
+      "parent": "SPOT_DOG",
+      "parent_type": "OBJECT",
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          -0.5538773536682129,
+          150.0,
+          9.056977272033691
+        ],
+        "world_location": [
+          -0.0055387732572853565,
+          -0.09056966006755829,
+          1.5
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          0.0029137961100786924,
+          0.0003578221658244729,
+          -0.12219062447547913
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          0.9999999403953552,
+          1.0
+        ],
+        "dimensions": [
+          0.7737250924110413,
+          0.543944239616394,
+          2.625278949737549
+        ],
+        "has_unapplied_scale": false,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.99999883788405e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          -0.38619449734687805,
+          -1.4041212797164917,
+          1.17457115650177
+        ],
+        "max": [
+          0.4480615258216858,
+          1.2230082750320435,
+          1.8164710998535156
+        ],
+        "dimensions": [
+          0.8342560529708862,
+          2.627129554748535,
+          0.6418999433517456
+        ],
+        "center": [
+          0.03093351423740387,
+          -0.09055650234222412,
+          1.495521068572998
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": true,
+        "action": {
+          "name": "SPOT_BODY|CINEMA_4D_Main|Layer0",
+          "users": 2,
+          "frame_range": [
+            1.0,
+            190.0
+          ],
+          "fcurve_count": 9,
+          "groups": [
+            "SPOT_BODY"
+          ]
+        },
+        "nla_tracks": [],
+        "driver_count": 0
+      },
+      "mesh": {
+        "data_name": "Mesh",
+        "vertices": 9417,
+        "edges": 26896,
+        "faces": 17506,
+        "materials_slots": [],
+        "vertex_groups": [],
+        "armature_modifiers": [],
+        "topology": {
+          "open_edge_count": 1274,
+          "boundary_edge_count": 1274,
+          "loose_edge_count": 0,
+          "over_connected_edge_count": 0,
+          "non_manifold_edge_count": 0,
+          "has_open_edges": true,
+          "has_non_manifold_edges": false,
+          "open_edge_sample": [
+            40,
+            41,
+            48,
+            51,
+            52,
+            88,
+            93,
+            96,
+            169,
+            172,
+            173,
+            176,
+            177,
+            180,
+            183,
+            184,
+            185,
+            186,
+            193,
+            196,
+            197,
+            264,
+            267,
+            272,
+            281,
+            286,
+            289,
+            296,
+            381,
+            537,
+            727,
+            736,
+            744,
+            745,
+            746,
+            765,
+            770,
+            777,
+            928,
+            931
+          ],
+          "non_manifold_edge_sample": []
+        },
+        "geometry_signature": "ad24314a2263f7f69893228b4e18c6012ca6eba1"
+      }
+    },
+    {
+      "name": "FRONLT_R_LEG_CONTROL",
+      "type": "EMPTY",
+      "parent": "SPOT_DOG",
+      "parent_type": "OBJECT",
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          -41.80604934692383,
+          -1.3465430736541748,
+          170.71038818359375
+        ],
+        "world_location": [
+          -0.4180604815483093,
+          -1.7071038484573364,
+          -0.01346530206501484
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          -2.443751096725464,
+          0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_unapplied_scale": false,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.999999974752427e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          -0.4180604815483093,
+          -1.7071038484573364,
+          -0.01346530206501484
+        ],
+        "max": [
+          -0.4180604815483093,
+          -1.7071038484573364,
+          -0.01346530206501484
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          -0.4180604815483093,
+          -1.7071038484573364,
+          -0.01346530206501484
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": false
+      }
+    },
+    {
+      "name": "FRONT_L_LEG_CONTROL",
+      "type": "EMPTY",
+      "parent": "SPOT_DOG",
+      "parent_type": "OBJECT",
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          42.525211334228516,
+          -1.167281150817871,
+          29.773120880126953
+        ],
+        "world_location": [
+          0.42525210976600647,
+          -0.2977311909198761,
+          -0.011672789230942726
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          -2.2445437908172607,
+          0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_unapplied_scale": false,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.99999883788405e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          0.42525210976600647,
+          -0.2977311909198761,
+          -0.011672789230942726
+        ],
+        "max": [
+          0.42525210976600647,
+          -0.2977311909198761,
+          -0.011672789230942726
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          0.42525210976600647,
+          -0.2977311909198761,
+          -0.011672789230942726
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": false
+      }
+    },
+    {
+      "name": "REAR_R_LEG_CONTROL",
+      "type": "EMPTY",
+      "parent": "SPOT_DOG",
+      "parent_type": "OBJECT",
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          -44.063720703125,
+          -1.9917861223220825,
+          -158.47396850585938
+        ],
+        "world_location": [
+          -0.4406372010707855,
+          1.5847396850585938,
+          -0.019917979836463928
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          -2.5534355640411377,
+          0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_unapplied_scale": false,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.99999883788405e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          -0.4406372010707855,
+          1.5847396850585938,
+          -0.019917979836463928
+        ],
+        "max": [
+          -0.4406372010707855,
+          1.5847396850585938,
+          -0.019917979836463928
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          -0.4406372010707855,
+          1.5847396850585938,
+          -0.019917979836463928
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": false
+      }
+    },
+    {
+      "name": "REAR_L_LEG_CONTROL",
+      "type": "EMPTY",
+      "parent": "SPOT_DOG",
+      "parent_type": "OBJECT",
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          43.58427047729492,
+          -0.8171952962875366,
+          -19.318077087402344
+        ],
+        "world_location": [
+          0.43584269285202026,
+          0.19318076968193054,
+          -0.00817196723073721
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          -1.9923171997070312,
+          0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          0.9999999403953552,
+          0.9999999403953552
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_unapplied_scale": false,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.99999883788405e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          0.43584269285202026,
+          0.19318076968193054,
+          -0.00817196723073721
+        ],
+        "max": [
+          0.43584269285202026,
+          0.19318076968193054,
+          -0.00817196723073721
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          0.43584269285202026,
+          0.19318076968193054,
+          -0.00817196723073721
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": false
+      }
+    },
+    {
+      "name": "SPOT_DOG",
+      "type": "EMPTY",
+      "parent": null,
+      "parent_type": null,
+      "collection_names": [
+        "Collection"
+      ],
+      "transform": {
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "world_location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_mode": "XYZ",
+        "rotation_euler": [
+          1.570796251296997,
+          -0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "has_unapplied_scale": true,
+        "has_negative_scale": false,
+        "world_matrix_determinant": 9.999999974752427e-07,
+        "world_has_negative_determinant": false
+      },
+      "world_bounds": {
+        "available": true,
+        "min": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dimensions": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": [],
+      "animation": {
+        "has_animation_data": false
+      }
+    }
+  ],
+  "materials": {
+    "material_count": 2,
+    "items": [
+      {
+        "name": "Dots Stroke",
+        "use_nodes": false,
+        "users": 0,
+        "usage": []
+      },
+      {
+        "name": "Material",
+        "use_nodes": true,
+        "users": 1,
+        "usage": []
+      }
+    ]
+  },
+  "animation": {
+    "has_armature": true,
+    "armature_objects": [
+      "Armature",
+      "Armature.001"
+    ],
+    "has_linked_object_or_armature_animation": true,
+    "has_action_datablocks": true,
+    "actions": [
+      {
+        "name": "Armature.001|CINEMA_4D_Main|Layer0",
+        "users": 2,
+        "frame_range": [
+          1.0,
+          190.0
+        ],
+        "fcurve_count": 20,
+        "groups": [
+          "Joint_2_4",
+          "Joint_3_4"
+        ]
+      },
+      {
+        "name": "Armature|CINEMA_4D_Main|Layer0",
+        "users": 2,
+        "frame_range": [
+          1.0,
+          190.0
+        ],
+        "fcurve_count": 20,
+        "groups": [
+          "Joint_1_2",
+          "Joint_2_2"
+        ]
+      },
+      {
+        "name": "OctaneCamera|CINEMA_4D_Main|Layer0",
+        "users": 2,
+        "frame_range": [
+          1.0,
+          190.0
+        ],
+        "fcurve_count": 9,
+        "groups": [
+          "OctaneCamera"
+        ]
+      },
+      {
+        "name": "SPOT_BODY|CINEMA_4D_Main|Layer0",
+        "users": 2,
+        "frame_range": [
+          1.0,
+          190.0
+        ],
+        "fcurve_count": 9,
+        "groups": [
+          "SPOT_BODY"
+        ]
+      }
+    ]
+  },
+  "modifiers": {
+    "all_types": {},
+    "required_type_checks": {
+      "MIRROR": {
+        "label": "Mirror",
+        "present": false,
+        "count": 0,
+        "objects": []
+      },
+      "SOLIDIFY": {
+        "label": "Solidify",
+        "present": false,
+        "count": 0,
+        "objects": []
+      },
+      "SUBSURF": {
+        "label": "Subdivision Surface",
+        "present": false,
+        "count": 0,
+        "objects": []
+      },
+      "BEVEL": {
+        "label": "Bevel",
+        "present": false,
+        "count": 0,
+        "objects": []
+      }
+    }
+  },
+  "mesh_checks": {
+    "objects_with_open_edges": [
+      "REAR_R_LEG",
+      "FRONT_LEG",
+      "SPOT_BODY"
+    ],
+    "objects_with_non_manifold_edges": [],
+    "has_open_edges": true,
+    "has_non_manifold_meshes": false,
+    "has_unapplied_scale": true,
+    "has_negative_scale": false
+  },
+  "duplicates": {
+    "has_shared_mesh_data": false,
+    "shared_mesh_data_groups": [],
+    "has_potential_identical_objects": false,
+    "potential_identical_object_groups": [],
+    "interpretation": "这些是筛查结果，不等于应当删除；镜像、实例和左右腿可能是有意重复。"
+  },
+  "preliminary_part_identification": {
+    "status": "preliminary_only",
+    "method": "对象名称关键词 + 世界空间位置/尺寸的弱启发式筛查",
+    "spatial_assumptions": [
+      "仅将 Z 轴作为暂定高度轴，未确认模型是否以 Z-up 建模。",
+      "按 X/Y 较长方向暂定纵向轴；纵向正方向未知，因此前后方向不由位置单独推断。",
+      "分类不读取材质外观、不改变对象、不替用户确认对象语义。"
+    ],
+    "scene_bounds": {
+      "min": [
+        -0.7490159869194031,
+        -1.4041212797164917,
+        -0.21840880811214447
+      ],
+      "max": [
+        0.5704517960548401,
+        1.2230082750320435,
+        1.8164710998535156
+      ],
+      "dimensions": [
+        1.3194677829742432,
+        2.627129554748535,
+        2.0348799228668213
+      ],
+      "tentative_longitudinal_axis": "Y"
+    },
+    "categories": {
+      "body": {
+        "status": "likely_candidate",
+        "reason": "名称证据较强；仍需在 Blender 视图中人工确认。",
+        "candidates": [
+          {
+            "object": "SPOT_BODY",
+            "score": 9,
+            "evidence": [
+              "名称命中: body",
+              "相对场景体积较大"
+            ],
+            "position": [
+              0.03093351423740387,
+              -0.09055650234222412,
+              1.495521068572998
+            ],
+            "dimensions": [
+              0.8342560529708862,
+              2.627129554748535,
+              0.6418999433517456
+            ]
+          }
+        ]
+      },
+      "upper_cover": {
+        "status": "ambiguous",
+        "reason": "证据偏弱，仅作初步候选。",
+        "candidates": [
+          {
+            "object": "SPOT_BODY",
+            "score": 4,
+            "evidence": [
+              "位于较高位置",
+              "几何外形较扁平"
+            ],
+            "position": [
+              0.03093351423740387,
+              -0.09055650234222412,
+              1.495521068572998
+            ],
+            "dimensions": [
+              0.8342560529708862,
+              2.627129554748535,
+              0.6418999433517456
+            ]
+          }
+        ]
+      },
+      "front_leg": {
+        "status": "likely_candidate",
+        "reason": "名称证据较强；仍需在 Blender 视图中人工确认。",
+        "candidates": [
+          {
+            "object": "FRONT_LEG",
+            "score": 18,
+            "evidence": [
+              "名称命中: front_leg, front, leg",
+              "名称含腿部线索",
+              "位于较低位置"
+            ],
+            "position": [
+              0.3303598165512085,
+              -0.7877083420753479,
+              0.7205919623374939
+            ],
+            "dimensions": [
+              0.4801839590072632,
+              0.8207801580429077,
+              1.8780015707015991
+            ]
+          },
+          {
+            "object": "REAR_R_LEG",
+            "score": 5,
+            "evidence": [
+              "名称命中: leg",
+              "名称含腿部线索",
+              "位于较低位置",
+              "未命中明确前向命名，前腿含义未确认"
+            ],
+            "position": [
+              -0.5037487745285034,
+              0.6643451452255249,
+              0.8799216151237488
+            ],
+            "dimensions": [
+              0.4905344247817993,
+              1.102734088897705,
+              1.77228844165802
+            ]
+          }
+        ]
+      },
+      "rear_leg": {
+        "status": "likely_candidate",
+        "reason": "名称证据较强；仍需在 Blender 视图中人工确认。",
+        "candidates": [
+          {
+            "object": "REAR_R_LEG",
+            "score": 9,
+            "evidence": [
+              "名称命中: rear, leg",
+              "名称含腿部线索",
+              "位于较低位置"
+            ],
+            "position": [
+              -0.5037487745285034,
+              0.6643451452255249,
+              0.8799216151237488
+            ],
+            "dimensions": [
+              0.4905344247817993,
+              1.102734088897705,
+              1.77228844165802
+            ]
+          },
+          {
+            "object": "FRONT_LEG",
+            "score": 5,
+            "evidence": [
+              "名称命中: leg",
+              "名称含腿部线索",
+              "位于较低位置",
+              "未命中明确后向命名，后腿含义未确认"
+            ],
+            "position": [
+              0.3303598165512085,
+              -0.7877083420753479,
+              0.7205919623374939
+            ],
+            "dimensions": [
+              0.4801839590072632,
+              0.8207801580429077,
+              1.8780015707015991
+            ]
+          }
+        ]
+      },
+      "thigh": {
+        "status": "unresolved",
+        "reason": "没有足够名称或空间证据，不做对象语义猜测。",
+        "candidates": []
+      },
+      "shin": {
+        "status": "unresolved",
+        "reason": "没有足够名称或空间证据，不做对象语义猜测。",
+        "candidates": []
+      },
+      "joint": {
+        "status": "unresolved",
+        "reason": "没有足够名称或空间证据，不做对象语义猜测。",
+        "candidates": []
+      },
+      "foot": {
+        "status": "unresolved",
+        "reason": "没有足够名称或空间证据，不做对象语义猜测。",
+        "candidates": []
+      },
+      "payload": {
+        "status": "ambiguous",
+        "reason": "证据偏弱，仅作初步候选。",
+        "candidates": [
+          {
+            "object": "SPOT_BODY",
+            "score": 3,
+            "evidence": [
+              "位于机身上方区域",
+              "几何外形较扁平"
+            ],
+            "position": [
+              0.03093351423740387,
+              -0.09055650234222412,
+              1.495521068572998
+            ],
+            "dimensions": [
+              0.8342560529708862,
+              2.627129554748535,
+              0.6418999433517456
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
