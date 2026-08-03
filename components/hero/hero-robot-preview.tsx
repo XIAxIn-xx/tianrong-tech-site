@@ -5,7 +5,11 @@ import { Bounds, Center, Html, OrbitControls, useGLTF } from "@react-three/drei"
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useReducedMotion } from "framer-motion";
 
-const MODEL_URL = "/models/tianrong-robot-dog.v1.glb";
+const LEGACY_MODEL_PATH = "/models/tianrong-robot-dog.v1.glb";
+const INDUSTRIAL_V1_MODEL_PATH = "/models/tianrong-robot-dog-industrial.glb";
+const REPAIRED_MODEL_PATH = "/models/tianrong-robot-dog-industrial-repaired.glb";
+const USE_REPAIRED_MODEL = true;
+const MODEL_URL = USE_REPAIRED_MODEL ? REPAIRED_MODEL_PATH : INDUSTRIAL_V1_MODEL_PATH;
 
 function Loader() {
   return (
@@ -39,12 +43,12 @@ function TianrongRobotDogModel() {
 
 export function HeroRobotPreview() {
   return (
-    <Canvas gl={{ alpha: true, antialias: true }} camera={{ position: [4.6, 2.24, 5.9], fov: 39 }} dpr={[1, 1.5]}>
-      <ambientLight intensity={0.72} />
-      <directionalLight position={[4, 5, 4]} intensity={1.18} />
-      <directionalLight position={[-4, 2, -3]} intensity={0.42} />
+    <Canvas gl={{ alpha: true, antialias: true }} camera={{ position: [5.4, 2.8, 7.0], fov: 42 }} dpr={[1, 1.5]}>
+      <ambientLight intensity={0.66} />
+      <directionalLight position={[4.5, 5.5, 5]} intensity={1.0} />
+      <directionalLight position={[-4, 2.5, -3]} intensity={0.34} />
       <Suspense fallback={<Loader />}>
-        <Bounds fit clip observe margin={1.04}>
+        <Bounds fit clip observe margin={1.16}>
           <TianrongRobotDogModel />
         </Bounds>
       </Suspense>

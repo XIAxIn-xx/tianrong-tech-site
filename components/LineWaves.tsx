@@ -168,6 +168,8 @@ export default function LineWaves({
     const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
+    gl.canvas.style.display = 'block';
+    gl.canvas.style.pointerEvents = 'none';
 
     let program: Program;
     let currentMouse = [0.5, 0.5];
@@ -175,10 +177,10 @@ export default function LineWaves({
 
     function handleMouseMove(e: MouseEvent) {
       const rect = gl.canvas.getBoundingClientRect();
-      targetMouse = [
-        (e.clientX - rect.left) / rect.width,
-        1.0 - (e.clientY - rect.top) / rect.height
-      ];
+      if (!rect.width || !rect.height) return;
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      targetMouse = x >= 0 && x <= 1 && y >= 0 && y <= 1 ? [x, 1.0 - y] : [0.5, 0.5];
     }
 
     function handleMouseLeave() {
@@ -224,8 +226,8 @@ export default function LineWaves({
     container.appendChild(gl.canvas);
 
     if (enableMouseInteraction) {
-      gl.canvas.addEventListener('mousemove', handleMouseMove);
-      gl.canvas.addEventListener('mouseleave', handleMouseLeave);
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('blur', handleMouseLeave);
     }
 
     let animationFrameId: number;
@@ -252,13 +254,13 @@ export default function LineWaves({
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resize);
       if (enableMouseInteraction) {
-        gl.canvas.removeEventListener('mousemove', handleMouseMove);
-        gl.canvas.removeEventListener('mouseleave', handleMouseLeave);
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('blur', handleMouseLeave);
       }
       container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
   }, [speed, innerLineCount, outerLineCount, warpIntensity, rotation, edgeFadeWidth, colorCycleSpeed, brightness, color1, color2, color3, enableMouseInteraction, mouseInfluence]);
 
-  return <div ref={containerRef} className="w-full h-full" />;
+  return <div ref={containerRef} className="pointer-events-none h-full w-full" />;
 }

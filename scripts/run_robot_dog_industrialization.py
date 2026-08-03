@@ -27,7 +27,12 @@ def run_and_quit():
     except Exception:
         traceback.print_exc()
     finally:
-        bpy.ops.wm.quit_blender()
+        bpy.app.timers.register(quit_later, first_interval=2.0)
+    return None
+
+
+def quit_later():
+    bpy.ops.wm.quit_blender()
     return None
 
 

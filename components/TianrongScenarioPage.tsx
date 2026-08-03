@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import DotField from "@/components/DotField";
+import LineWaves from "@/components/LineWaves";
 import { TianrongHeader } from "@/components/TianrongHeader";
 import VideoHero from "@/components/hero/video-hero";
 
@@ -189,6 +190,12 @@ const casePoints = [
   "夜间连续巡检减少重复人工巡查，也为异常情况留下完整记录。"
 ];
 
+const caseStats = [
+  { marker: "↓", value: "60%", label: "减少人工巡检成本" },
+  { marker: "↓", value: "80%", label: "缩短异常响应时间" },
+  { marker: "↑", value: "40%", label: "提升巡检效率" }
+];
+
 const casePoster = "/images/tianrong/final-assets/logistics-yard-road.png";
 
 type ContactFormState = {
@@ -347,22 +354,33 @@ export function TianrongScenarioPage() {
             >
               <source src="/videos/tianrong/practice-case.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.78)_0%,rgba(11,53,80,0.48)_50%,rgba(18,102,139,0.10)_100%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(6,28,43,0.58)_0%,transparent_58%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.52)_0%,rgba(11,53,80,0.26)_50%,rgba(18,102,139,0.05)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(6,28,43,0.40)_0%,transparent_58%)]" />
             <div className="relative z-10 mx-auto flex min-h-[100svh] w-[min(1240px,calc(100%-32px))] items-end py-14 md:py-20">
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.7 }}
-                className="max-w-3xl"
+                className="max-w-5xl"
               >
                 
-                <h2 className="cjk-heading mt-4 text-4xl font-semibold leading-tight md:text-6xl [text-wrap:balance]"><span className="block">物流园区机器人</span><span className="block keep-phrase">夜间巡检实践</span></h2>
-                <p className="cjk-body mt-5 max-w-2xl text-lg leading-8 text-white/80">围绕<span className="keep-phrase">园区道路</span>、<span className="keep-phrase">仓储外围</span>及<span className="keep-phrase">重点点位</span>开展巡检，通过机器人<span className="keep-phrase">连续作业</span>与<span className="keep-phrase">远程管理</span>，提升<span className="keep-phrase">巡检覆盖效率</span>，减少<span className="keep-phrase">重复性人工投入</span>。</p>
+                <h2 className="cjk-heading mt-4 text-4xl font-semibold leading-tight drop-shadow-[0_2px_8px_rgba(6,28,43,0.65)] md:text-6xl [text-wrap:balance]"><span className="block">物流园区机器人</span><span className="block keep-phrase">夜间巡检实践</span></h2>
+                <p className="cjk-body mt-5 max-w-2xl text-lg leading-8 text-white/80 drop-shadow-[0_1px_4px_rgba(6,28,43,0.6)]">围绕<span className="keep-phrase">园区道路</span>、<span className="keep-phrase">仓储外围</span>及<span className="keep-phrase">重点点位</span>开展巡检，通过机器人<span className="keep-phrase">连续作业</span>与<span className="keep-phrase">远程管理</span>，提升<span className="keep-phrase">巡检覆盖效率</span>，减少<span className="keep-phrase">重复性人工投入</span>。</p>
                 <div className="mt-8 grid gap-4 border-t border-white/25 pt-6 md:grid-cols-3">
                   {casePoints.map((item) => (
-                    <p key={item} className="border-l border-[#78A9FF] pl-4 text-base leading-7 text-white/85">{item}</p>
+                    <p key={item} className="border-l border-[#78A9FF] pl-4 text-base leading-7 text-white/85 drop-shadow-[0_1px_4px_rgba(6,28,43,0.55)]">{item}</p>
+                  ))}
+                </div>
+                <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                  {caseStats.map((stat) => (
+                    <div key={stat.label} className="border border-[#8BD8EE]/45 bg-[#071F31]/70 px-4 py-4 backdrop-blur-[2px] md:px-5 md:py-5">
+                      <div className="flex items-baseline gap-2 text-[#BDEAF7]">
+                        <span className="text-2xl font-semibold md:text-3xl">{stat.marker}</span>
+                        <span className="text-4xl font-semibold tracking-[-0.04em] md:text-5xl">{stat.value}</span>
+                      </div>
+                      <p className="mt-2 text-sm leading-6 text-white/82">{stat.label}</p>
+                    </div>
                   ))}
                 </div>
               </motion.div>
@@ -430,105 +448,16 @@ export function TianrongScenarioPage() {
             </div>
         </RevealSection>
 
-        <section id="contact" className="tr-deep-section border-t border-white/10 py-20 text-white md:py-28">
-          <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
-            <div className="lg:pt-4">
-              <h2 className="cjk-heading mt-4 text-4xl font-semibold leading-[1.12] md:text-6xl">
-                <span className="block">携手合作伙伴</span>
-                <span className="block keep-phrase">共建具身智能应用生态</span>
-              </h2>
-              <p className="cjk-body mt-6 max-w-xl text-base leading-7 text-white/70 md:text-lg md:leading-8">
-                从 RSP 云控平台、数采平台到硬件背包与传感器集成，天戎科技根据现场环境、巡检任务和项目阶段，提供高度定制化的巡检解决方案。
-              </p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-                <ContactMeta label="商务咨询" value="contact@tianrongtech.com" href="mailto:contact@tianrongtech.com" />
-                <ContactMeta label="核心能力" value="RSP / 数采平台 / 硬件集成" />
-                <ContactMeta label="合作方式" value="项目定制 / 本体合作 / 平台合作" />
-              </div>
-            </div>
-
-            <form onSubmit={handleContactSubmit} className="tr-glass-panel rounded-sm bg-[var(--tr-panel-strong)] p-5 text-[#161616] sm:p-7 md:p-8">
-              <div className="relative min-h-40 overflow-hidden border-b border-[#E6EAF0]">
-                <Image
-                  src="/images/tianrong/contact-robots.png"
-                  alt="天戎科技巡检机器人本体"
-                  fill
-                  sizes="(min-width: 1024px) 58vw, 100vw"
-                  className="pointer-events-none origin-right scale-[1.16] object-contain object-right"
-                />
-                <div className="relative z-10 max-w-[48%] py-5">
-                  <div className="text-xl font-semibold">项目咨询</div>
-                  <p className="mt-2 text-sm leading-6 text-[#737373]">请留下应用场景与项目需求，我们将据此匹配合适的产品和合作方式。</p>
-                </div>
-              </div>
-
-              <div className="mt-6 grid gap-5 md:grid-cols-2">
-                <ContactField label="姓名 / 称呼" required>
-                  <Input id="contact-name" name="name" autoComplete="name" required placeholder="请输入姓名或称呼" value={contactForm.name} onChange={(event) => updateContactField("name", event.target.value)} className="rounded-none border-[#D9DEE7]" />
-                </ContactField>
-                <ContactField label="公司 / 单位" required>
-                  <Input id="contact-company" name="company" autoComplete="organization" required placeholder="请输入公司或单位名称" value={contactForm.company} onChange={(event) => updateContactField("company", event.target.value)} className="rounded-none border-[#D9DEE7]" />
-                </ContactField>
-                <ContactField label="联系方式" required>
-                  <Input id="contact-contact" name="contact" autoComplete="email" required placeholder="手机号或邮箱" value={contactForm.contact} onChange={(event) => updateContactField("contact", event.target.value)} onBlur={() => setContactError(getContactValidationMessage(contactForm.contact))} aria-invalid={Boolean(contactError)} aria-describedby={contactError ? "contact-contact-error" : undefined} className="rounded-none border-[#D9DEE7]" />
-                  {contactError && <span id="contact-contact-error" className="mt-2 block text-sm text-[#D33A2C]">{contactError}</span>}
-                </ContactField>
-                <ContactField label="项目所在地" required>
-                  <Select id="contact-location" name="location" required value={contactForm.location} onChange={(event) => updateContactField("location", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
-                    <option value="" disabled>请选择项目所在地</option>
-                    <option>中国大陆</option>
-                    <option>中国香港</option>
-                    <option>美国</option>
-                    <option>其他国家或地区</option>
-                  </Select>
-                </ContactField>
-                <ContactField label="咨询方向" required>
-                  <Select id="contact-direction" name="direction" required value={contactForm.direction} onChange={(event) => updateContactField("direction", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
-                    <option value="" disabled>请选择咨询方向</option>
-                    <option>RSP 云控平台</option>
-                    <option>数采平台</option>
-                    <option>硬件背包与传感器集成</option>
-                    <option>机器狗本体选型 / 合作</option>
-                    <option>定制化巡检方案</option>
-                    <option>项目或生态合作</option>
-                  </Select>
-                </ContactField>
-                <ContactField label="应用场景" required>
-                  <Select id="contact-scenario" name="scenario" required value={contactForm.scenario} onChange={(event) => updateContactField("scenario", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
-                    <option value="" disabled>请选择应用场景</option>
-                    <option>物流仓储</option>
-                    <option>公共安全</option>
-                    <option>停车场巡检</option>
-                    <option>工业园区</option>
-                    <option>能源电力</option>
-                    <option>其他场景</option>
-                  </Select>
-                </ContactField>
-                <ContactField label="需求描述" required className="md:col-span-2">
-                  <Textarea id="contact-details" name="details" required placeholder="请描述现场环境、巡检任务、设备需求或期望的合作方式" value={contactForm.details} onChange={(event) => updateContactField("details", event.target.value)} className="min-h-24 rounded-none border-[#D9DEE7]" />
-                </ContactField>
-                <ContactField label="验证码" required className="md:col-span-2">
-                  <div className="flex gap-3">
-                    <Input id="contact-captcha" name="captcha" required inputMode="numeric" placeholder="请输入验证码" value={contactForm.captcha} onChange={(event) => updateContactField("captcha", event.target.value)} className="rounded-none border-[#D9DEE7]" />
-                    <Button type="button" variant="outline" onClick={handleCaptchaRequest} className="h-11 shrink-0 rounded-none border-[#D9DEE7] bg-[#F4F6F8] px-4 text-[#3D3D3D] shadow-none hover:bg-[#E9EDF2]">
-                      获取验证码
-                    </Button>
-                  </div>
-                </ContactField>
-              </div>
-
-              <label className="mt-6 flex items-start gap-3 text-sm leading-6 text-[#737373]">
-                <input type="checkbox" required className="mt-1 h-4 w-4 shrink-0 accent-[#0F62FE]" />
-                <span>我同意天戎科技使用本次提交的信息联系我并进行项目沟通。</span>
-              </label>
-              {contactStatus && <p className="mt-4 text-sm leading-6 text-[#0F62FE]" role="status">{contactStatus}</p>}
-              <Button type="submit" size="lg" className="tr-accent-button mt-6 w-full rounded-none text-white">
-                提交项目需求
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </form>
-          </div>
-        </section>
+        <PartnerEcosystemSection />
+        <ContactSection
+          contactForm={contactForm}
+          contactStatus={contactStatus}
+          contactError={contactError}
+          onFieldChange={updateContactField}
+          onContactBlur={() => setContactError(getContactValidationMessage(contactForm.contact))}
+          onCaptchaRequest={handleCaptchaRequest}
+          onSubmit={handleContactSubmit}
+        />
 
         <TianrongFooter />
       </main>
@@ -1222,6 +1151,152 @@ function ScrollDrivenSection({ id, className, children }: { id?: string; classNa
   );
 }
 
+function PartnerEcosystemSection() {
+  return (
+    <section
+      aria-labelledby="partner-ecosystem-title"
+      className="tr-deep-section relative isolate flex h-[72vh] min-h-[560px] max-h-[760px] items-center overflow-hidden border-t border-white/10 text-white"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(47,128,237,0.18),transparent_42%),linear-gradient(180deg,rgba(6,28,43,0.24),rgba(6,28,43,0.32))]"
+      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+        <LineWaves
+          speed={0.18}
+          innerLineCount={28}
+          outerLineCount={34}
+          warpIntensity={0.65}
+          rotation={-40}
+          edgeFadeWidth={0.08}
+          colorCycleSpeed={0.4}
+          brightness={0.16}
+          color1="#5DADE2"
+          color2="#2F80ED"
+          color3="#7DB9F5"
+          enableMouseInteraction
+          mouseInfluence={0.8}
+        />
+      </div>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(6,28,43,0.28),transparent_35%,transparent_65%,rgba(6,28,43,0.28))]" />
+
+      <div className="relative z-10 mx-auto flex h-full w-[min(960px,calc(100%-32px))] items-center justify-center text-center">
+        <div className="-translate-y-4 md:-translate-y-8">
+          <h2 id="partner-ecosystem-title" className="cjk-heading max-w-[820px] text-white">
+            <span className="block text-[clamp(2rem,3.8vw,3.8rem)] font-medium leading-[1.18] tracking-[-0.035em]">携手合作伙伴</span>
+            <span className="keep-phrase mt-2 block text-[clamp(2.55rem,5.2vw,5.1rem)] font-semibold leading-[1.12] tracking-[-0.045em]">共建具身智能应用生态</span>
+          </h2>
+          <p className="cjk-body mx-auto mt-7 max-w-[640px] text-base leading-7 text-white/72 md:mt-8 md:text-lg md:leading-8">
+            开放软硬件能力，与合作伙伴共同推动具身智能在真实场景中落地。
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+type ContactSectionProps = {
+  contactForm: ContactFormState;
+  contactStatus: string;
+  contactError: string;
+  onFieldChange: (field: keyof ContactFormState, value: string) => void;
+  onContactBlur: () => void;
+  onCaptchaRequest: () => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+};
+
+function ContactSection({
+  contactForm,
+  contactStatus,
+  contactError,
+  onFieldChange,
+  onContactBlur,
+  onCaptchaRequest,
+  onSubmit
+}: ContactSectionProps) {
+  return (
+    <section id="contact" aria-labelledby="contact-title" className="relative isolate overflow-hidden bg-[#071F31] py-16 text-white md:py-24">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_16%,rgba(99,193,223,0.16),transparent_28%),radial-gradient(circle_at_86%_52%,rgba(54,143,184,0.13),transparent_32%),linear-gradient(180deg,#071f31_0%,#09283c_52%,#071f31_100%)]"
+      />
+      <form onSubmit={onSubmit} className="tr-glass-panel relative z-10 mx-auto w-[min(1240px,calc(100%-32px))] rounded-sm bg-[var(--tr-panel-strong)] p-5 text-[#161616] sm:p-7 md:p-8">
+        <div className="border-b border-[#E6EAF0] pb-6">
+          <h2 id="contact-title" className="cjk-heading text-3xl font-semibold leading-[1.12] md:text-4xl">项目咨询</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#737373] md:text-base">
+            请留下应用场景与项目需求，我们将据此匹配合适的产品和合作方式。
+          </p>
+        </div>
+
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
+            <ContactField label="姓名 / 称呼" required>
+              <Input id="contact-name" name="name" autoComplete="name" required placeholder="请输入姓名或称呼" value={contactForm.name} onChange={(event) => onFieldChange("name", event.target.value)} className="rounded-none border-[#D9DEE7]" />
+            </ContactField>
+            <ContactField label="公司 / 单位" required>
+              <Input id="contact-company" name="company" autoComplete="organization" required placeholder="请输入公司或单位名称" value={contactForm.company} onChange={(event) => onFieldChange("company", event.target.value)} className="rounded-none border-[#D9DEE7]" />
+            </ContactField>
+            <ContactField label="联系方式" required>
+              <Input id="contact-contact" name="contact" autoComplete="email" required placeholder="手机号或邮箱" value={contactForm.contact} onChange={(event) => onFieldChange("contact", event.target.value)} onBlur={onContactBlur} aria-invalid={Boolean(contactError)} aria-describedby={contactError ? "contact-contact-error" : undefined} className="rounded-none border-[#D9DEE7]" />
+              {contactError && <span id="contact-contact-error" className="mt-2 block text-sm text-[#D33A2C]">{contactError}</span>}
+            </ContactField>
+            <ContactField label="项目所在地" required>
+              <Select id="contact-location" name="location" required value={contactForm.location} onChange={(event) => onFieldChange("location", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
+                <option value="" disabled>请选择项目所在地</option>
+                <option>中国大陆</option>
+                <option>中国香港</option>
+                <option>美国</option>
+                <option>其他国家或地区</option>
+              </Select>
+            </ContactField>
+            <ContactField label="咨询方向" required>
+              <Select id="contact-direction" name="direction" required value={contactForm.direction} onChange={(event) => onFieldChange("direction", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
+                <option value="" disabled>请选择咨询方向</option>
+                <option>RSP 云控平台</option>
+                <option>数采平台</option>
+                <option>硬件背包与传感器集成</option>
+                <option>机器狗本体选型 / 合作</option>
+                <option>定制化巡检方案</option>
+                <option>项目或生态合作</option>
+              </Select>
+            </ContactField>
+            <ContactField label="应用场景" required>
+              <Select id="contact-scenario" name="scenario" required value={contactForm.scenario} onChange={(event) => onFieldChange("scenario", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
+                <option value="" disabled>请选择应用场景</option>
+                <option>物流仓储</option>
+                <option>公共安全</option>
+                <option>停车场巡检</option>
+                <option>工业园区</option>
+                <option>能源电力</option>
+                <option>其他场景</option>
+              </Select>
+            </ContactField>
+            <ContactField label="需求描述" required className="md:col-span-2">
+              <Textarea id="contact-details" name="details" required placeholder="请描述现场环境、巡检任务、设备需求或期望的合作方式" value={contactForm.details} onChange={(event) => onFieldChange("details", event.target.value)} className="min-h-24 rounded-none border-[#D9DEE7]" />
+            </ContactField>
+            <ContactField label="验证码" required className="md:col-span-2">
+              <div className="flex gap-3">
+                <Input id="contact-captcha" name="captcha" required inputMode="numeric" placeholder="请输入验证码" value={contactForm.captcha} onChange={(event) => onFieldChange("captcha", event.target.value)} className="rounded-none border-[#D9DEE7]" />
+                <Button type="button" variant="outline" onClick={onCaptchaRequest} className="h-11 shrink-0 rounded-none border-[#D9DEE7] bg-[#F4F6F8] px-4 text-[#3D3D3D] shadow-none hover:bg-[#E9EDF2]">
+                  获取验证码
+                </Button>
+              </div>
+            </ContactField>
+          </div>
+
+          <label className="mt-6 flex items-start gap-3 text-sm leading-6 text-[#737373]">
+            <input type="checkbox" required className="mt-1 h-4 w-4 shrink-0 accent-[#0F62FE]" />
+            <span>我同意天戎科技使用本次提交的信息联系我并进行项目沟通。</span>
+          </label>
+          {contactStatus && <p className="mt-4 text-sm leading-6 text-[#0F62FE]" role="status">{contactStatus}</p>}
+          <Button type="submit" size="lg" className="tr-accent-button mt-6 w-full rounded-none text-white">
+            提交项目需求
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+      </form>
+    </section>
+  );
+}
+
 function TianrongFooter() {
   return (
     <footer className="tr-deep-section border-t border-white/10 text-white">
@@ -1255,15 +1330,6 @@ function TianrongFooter() {
       </div>
       <div className="border-t border-white/10 py-5 text-center text-sm text-white/48">Copyright © 2026 <span className="keep-phrase">杭州天戎智能科技有限公司</span> 版权所有</div>
     </footer>
-  );
-}
-
-function ContactMeta({ label, value, href }: { label: string; value: string; href?: string }) {
-  return (
-    <div className="border-t border-white/15 pt-4">
-      <div className="text-sm font-semibold text-[#9CC4FF]">{label}</div>
-      {href ? <a href={href} className="cjk-body mt-2 inline-block text-base leading-7 text-white/80 transition hover:text-white">{value}</a> : <div className="cjk-body mt-2 text-base leading-7 text-white/75">{value}</div>}
-    </div>
   );
 }
 

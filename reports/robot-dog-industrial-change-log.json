@@ -1,0 +1,464 @@
+{
+  "generated_at_utc": "2026-08-03T04:03:42.735841+00:00",
+  "changes": [
+    {
+      "kind": "materials",
+      "item": "industrial_material_set",
+      "detail": [
+        "Shell_WarmGray",
+        "Frame_Graphite",
+        "Joint_BlastedMetal",
+        "Rubber_Black",
+        "Sensor_DarkGlass",
+        "Accent_BrandBlue"
+      ]
+    },
+    {
+      "kind": "material_assignment",
+      "item": "SPOT_BODY",
+      "detail": "Shell_WarmGray"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "FRONT_LEG",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "REAR_R_LEG",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "non_destructive_structure",
+      "item": "FRONT_LEG",
+      "detail": "添加 X 轴 Mirror 以恢复对称腿，不修改原网格顶点。"
+    },
+    {
+      "kind": "non_destructive_structure",
+      "item": "REAR_R_LEG",
+      "detail": "添加 X 轴 Mirror 以恢复对称腿，不修改原网格顶点。"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_lower_load_frame",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_side_load_rail_-1",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_side_load_rail_1",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_end_crossmember_0",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_end_crossmember_1",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_upper_service_cover",
+      "detail": "Shell_WarmGray"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_upper_service_panel",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_service_panel_fastener",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_service_panel_fastener.001",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_service_panel_fastener.002",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_service_panel_fastener.003",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_front_sensor_dark_window",
+      "detail": "Sensor_DarkGlass"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_side_service_interface",
+      "detail": "Sensor_DarkGlass"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_brand_identifier_plate",
+      "detail": "Accent_BrandBlue"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_cooling_fin_-1_0",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_cooling_fin_-1_1",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_cooling_fin_-1_2",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_cooling_fin_-1_3",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_cooling_fin_1_0",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_cooling_fin_1_1",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_cooling_fin_1_2",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_body_cooling_fin_1_3",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_bracket_-1_0",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_joint_housing_-1_0",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_fastener_-1_0_-0.085",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_fastener_-1_0_0.085",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_bracket_-1_1",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_joint_housing_-1_1",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_fastener_-1_1_-0.085",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_fastener_-1_1_0.085",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_bracket_1_0",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_joint_housing_1_0",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_fastener_1_0_-0.085",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_fastener_1_0_0.085",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_bracket_1_1",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_joint_housing_1_1",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_fastener_1_1_-0.085",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_hip_mount_fastener_1_1_0.085",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_payload_mounting_saddle",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_payload_mounting_deck",
+      "detail": "Shell_WarmGray"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_payload_mount_fastener",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_payload_mount_fastener.001",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_payload_mount_fastener.002",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_payload_mount_fastener.003",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_payload_guide_rail_left",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_payload_guide_rail_right",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "structure",
+      "item": "SPOT_BODY",
+      "detail": "增加下方承重框架、上盖、检修板、传感器窗口、接口、散热片、髋部安装座和克制的载荷平台；全部为外部新增对象。"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_REAR_R_LEG_load_bearing_cuff_0",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_REAR_R_LEG_joint_shell_0",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_REAR_R_LEG_load_bearing_cuff_1",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_REAR_R_LEG_joint_shell_1",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_REAR_R_LEG_load_bearing_cuff_2",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_REAR_R_LEG_joint_shell_2",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_REAR_R_LEG_rubber_foot",
+      "detail": "Rubber_Black"
+    },
+    {
+      "kind": "leg_structure",
+      "item": "REAR_R_LEG",
+      "detail": {
+        "armature": "Armature",
+        "bones_bound": [
+          "Joint_1_2",
+          "Joint_2_2",
+          "Joint_3_2"
+        ],
+        "binding": "new objects parented to original bones; original rig untouched"
+      }
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_FRONT_LEG_load_bearing_cuff_0",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_FRONT_LEG_joint_shell_0",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_FRONT_LEG_load_bearing_cuff_1",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_FRONT_LEG_joint_shell_1",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_FRONT_LEG_load_bearing_cuff_2",
+      "detail": "Frame_Graphite"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_FRONT_LEG_joint_shell_2",
+      "detail": "Joint_BlastedMetal"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_FRONT_LEG_rubber_foot",
+      "detail": "Rubber_Black"
+    },
+    {
+      "kind": "leg_structure",
+      "item": "FRONT_LEG",
+      "detail": {
+        "armature": "Armature.001",
+        "bones_bound": [
+          "Joint_2_4",
+          "Joint_3_4",
+          "Joint_4"
+        ],
+        "binding": "new objects parented to original bones; original rig untouched"
+      }
+    },
+    {
+      "kind": "preservation",
+      "item": "source_rig",
+      "detail": {
+        "armatures": [
+          "Armature",
+          "Armature.001"
+        ],
+        "actions": [
+          {
+            "name": "Armature.001|CINEMA_4D_Main|Layer0",
+            "frame_range": [
+              1.0,
+              190.0
+            ],
+            "fcurves": 20
+          },
+          {
+            "name": "Armature|CINEMA_4D_Main|Layer0",
+            "frame_range": [
+              1.0,
+              190.0
+            ],
+            "fcurves": 20
+          },
+          {
+            "name": "OctaneCamera|CINEMA_4D_Main|Layer0",
+            "frame_range": [
+              1.0,
+              190.0
+            ],
+            "fcurves": 9
+          },
+          {
+            "name": "SPOT_BODY|CINEMA_4D_Main|Layer0",
+            "frame_range": [
+              1.0,
+              190.0
+            ],
+            "fcurves": 9
+          }
+        ]
+      }
+    },
+    {
+      "kind": "save",
+      "item": "v1_blend",
+      "detail": "/Users/edy/Desktop/tianrong-tech-site/artifacts/robot-dog-industrial/tianrong-robot-dog-industrial-v1.blend"
+    },
+    {
+      "kind": "material_assignment",
+      "item": "TR_preview_ground",
+      "detail": "TR_Preview_NeutralGround"
+    },
+    {
+      "kind": "preview",
+      "item": "front-3q",
+      "detail": "/Users/edy/Desktop/tianrong-tech-site/artifacts/robot-dog-industrial/previews/front-3q.png"
+    },
+    {
+      "kind": "preview",
+      "item": "side",
+      "detail": "/Users/edy/Desktop/tianrong-tech-site/artifacts/robot-dog-industrial/previews/side.png"
+    },
+    {
+      "kind": "preview",
+      "item": "rear-3q",
+      "detail": "/Users/edy/Desktop/tianrong-tech-site/artifacts/robot-dog-industrial/previews/rear-3q.png"
+    },
+    {
+      "kind": "preview",
+      "item": "top-detail",
+      "detail": "/Users/edy/Desktop/tianrong-tech-site/artifacts/robot-dog-industrial/previews/top-detail.png"
+    },
+    {
+      "kind": "cleanup",
+      "item": "unused_materials",
+      "detail": [
+        "Material"
+      ]
+    },
+    {
+      "kind": "export",
+      "item": "industrial_glb",
+      "detail": "/Users/edy/Desktop/tianrong-tech-site/public/models/tianrong-robot-dog-industrial.glb"
+    },
+    {
+      "kind": "save",
+      "item": "final_blend",
+      "detail": "/Users/edy/Desktop/tianrong-tech-site/artifacts/robot-dog-industrial/tianrong-robot-dog-industrial-final.blend"
+    }
+  ]
+}

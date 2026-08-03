@@ -9,6 +9,14 @@ const nextConfig = {
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
       },
       {
+        source: "/models/tianrong-robot-dog-industrial.glb",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
+      },
+      {
+        source: "/models/tianrong-robot-dog-industrial-repaired.glb",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
+      },
+      {
         source: "/videos/tianrong/autonomous-patrol.v1.mp4",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
       }

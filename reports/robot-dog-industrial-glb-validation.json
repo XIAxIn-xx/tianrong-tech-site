@@ -1,0 +1,99 @@
+{
+  "path": "/Users/edy/Desktop/tianrong-tech-site/public/models/tianrong-robot-dog-industrial.glb",
+  "exists": true,
+  "file_size_bytes": 2460644,
+  "import_error": null,
+  "status": "passed",
+  "object_count": 88,
+  "mesh_object_count": 79,
+  "armature_count": 2,
+  "linked_animation_count": 3,
+  "action_names": [
+    "Armature.001|CINEMA_4D_Main|Layer0",
+    "Armature.001|CINEMA_4D_Main|Layer0.001",
+    "Armature|CINEMA_4D_Main|Layer0",
+    "Armature|CINEMA_4D_Main|Layer0.001",
+    "OctaneCamera|CINEMA_4D_Main|Layer0",
+    "SPOT_BODY|CINEMA_4D_Main|Layer0",
+    "SPOT_BODY|CINEMA_4D_Main|Layer0.001"
+  ],
+  "material_names": [
+    "Accent_BrandBlue",
+    "Accent_BrandBlue.001",
+    "Frame_Graphite",
+    "Frame_Graphite.001",
+    "Joint_BlastedMetal",
+    "Joint_BlastedMetal.001",
+    "Rubber_Black",
+    "Rubber_Black.001",
+    "Sensor_DarkGlass",
+    "Sensor_DarkGlass.001",
+    "Shell_WarmGray",
+    "Shell_WarmGray.001"
+  ],
+  "required_materials_present": true,
+  "material_colors": {
+    "Accent_BrandBlue": [
+      0.014999999664723873,
+      0.11999999731779099,
+      0.2800000011920929
+    ],
+    "Accent_BrandBlue.001": [
+      0.014999999664723873,
+      0.11999999731779099,
+      0.2800000011920929
+    ],
+    "Frame_Graphite": [
+      0.03500000014901161,
+      0.04500000178813934,
+      0.052000001072883606
+    ],
+    "Frame_Graphite.001": [
+      0.03500000014901161,
+      0.04500000178813934,
+      0.052000001072883606
+    ],
+    "Joint_BlastedMetal": [
+      0.12999999523162842,
+      0.15000000596046448,
+      0.1599999964237213
+    ],
+    "Joint_BlastedMetal.001": [
+      0.12999999523162842,
+      0.15000000596046448,
+      0.1599999964237213
+    ],
+    "Rubber_Black": [
+      0.012000000104308128,
+      0.014000000432133675,
+      0.014999999664723873
+    ],
+    "Rubber_Black.001": [
+      0.012000000104308128,
+      0.014000000432133675,
+      0.014999999664723873
+    ],
+    "Sensor_DarkGlass": [
+      0.00800000037997961,
+      0.012000000104308128,
+      0.014999999664723873
+    ],
+    "Sensor_DarkGlass.001": [
+      0.00800000037997961,
+      0.012000000104308128,
+      0.014999999664723873
+    ],
+    "Shell_WarmGray": [
+      0.47999998927116394,
+      0.46000000834465027,
+      0.41999998688697815
+    ],
+    "Shell_WarmGray.001": [
+      0.47999998927116394,
+      0.46000000834465027,
+      0.41999998688697815
+    ]
+  },
+  "all_objects_have_finite_dimensions": true,
+  "has_cameras_or_lights": false
+}

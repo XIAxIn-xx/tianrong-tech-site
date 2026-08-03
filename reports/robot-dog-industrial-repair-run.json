@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "result": {
+    "path": "/Users/edy/Desktop/tianrong-tech-site/public/models/tianrong-robot-dog-industrial-repaired.glb",
+    "exists": true,
+    "file_size_bytes": 2240560,
+    "status": "passed",
+    "object_count": 53,
+    "mesh_object_count": 44,
+    "armature_count": 2,
+    "action_names": [
+      "Armature.001|CINEMA_4D_Main|Layer0",
+      "Armature.001|CINEMA_4D_Main|Layer0.001",
+      "Armature|CINEMA_4D_Main|Layer0",
+      "Armature|CINEMA_4D_Main|Layer0.001",
+      "OctaneCamera|CINEMA_4D_Main|Layer0",
+      "SPOT_BODY|CINEMA_4D_Main|Layer0",
+      "SPOT_BODY|CINEMA_4D_Main|Layer0.001"
+    ],
+    "animation_present": true,
+    "material_names": [
+      "Accent_BrandBlue",
+      "Accent_BrandBlue.001",
+      "Frame_Graphite",
+      "Frame_Graphite.001",
+      "Joint_DarkMetal",
+      "Joint_DarkMetal.001",
+      "Rubber_Black",
+      "Rubber_Black.001",
+      "Sensor_SmokedGlass",
+      "Sensor_SmokedGlass.001",
+      "Shell_WarmGray",
+      "Shell_WarmGray.001",
+      "TopInset_Composite",
+      "TopInset_Composite.001"
+    ],
+    "required_materials_present": true,
+    "top_module_objects_present": [
+      "Industrial_UpperModule_Shell",
+      "Industrial_UpperModule_Base",
+      "Industrial_TopInset_Panel",
+      "Industrial_FunctionBand"
+    ],
+    "top_module_complete": true,
+    "has_cameras_or_lights": false,
+    "all_finite_dimensions": true
+  }
+}

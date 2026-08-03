@@ -6,3 +6,7 @@ node_modules
 *.pyc
 __pycache__/
 *.tsbuildinfo
+
+# Blender working/generated files
+artifacts/robot-dog-industrial/
+*.blend1

@@ -13,6 +13,7 @@ import json
 import math
 import os
 import shutil
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -89,6 +90,29 @@ def move_to_collection(obj, collection):
     collection.objects.link(obj)
 
 
+def newly_created_object(before):
+    created = [obj for obj in bpy.data.objects if obj not in before]
+    if not created:
+        raise RuntimeError("Blender operator created no object")
+    return created[-1]
+
+
+@contextmanager
+def blender_ui_context():
+    """Provide a real window/area context for Blender I/O operators."""
+    window_manager = getattr(bpy.context, "window_manager", None)
+    windows = list(window_manager.windows) if window_manager else []
+    if not windows:
+        yield
+        return
+    window = windows[0]
+    screen = window.screen
+    area = next((item for item in screen.areas if item.type == "VIEW_3D"), screen.areas[0])
+    region = next((item for item in area.regions if item.type == "WINDOW"), area.regions[0])
+    with bpy.context.temp_override(window=window, screen=screen, area=area, region=region):
+        yield
+
+
 def tag_generated(obj, role, collection):
     obj[GENERATED_PROP] = True
     obj["TR_Industrial_Role"] = role
@@ -106,7 +130,7 @@ def cleanup_previous_pass():
 
     for obj in list(bpy.data.objects):
         for modifier in list(obj.modifiers):
-            if modifier.name == MIRROR_MODIFIER_NAME or modifier.get(GENERATED_PROP):
+            if modifier.name == MIRROR_MODIFIER_NAME or modifier.name == "TR | restrained edge radius":
                 obj.modifiers.remove(modifier)
 
     for collection in list(bpy.data.collections):
@@ -169,11 +193,10 @@ def assign_material(obj, material):
 
 
 def create_cube(role, location, dimensions, material, collection, bevel=0.012, rotation=None, parent=None, bone=None, binding="object"):
+    before = set(bpy.data.objects)
     bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0.0, 0.0, 0.0))
-    obj = bpy.context.object
-    obj.scale = tuple(float(value) for value in dimensions)
-    bpy.context.view_layer.objects.active = obj
-    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    obj = newly_created_object(before)
+    obj.data.transform(Matrix.Diagonal((float(dimensions[0]), float(dimensions[1]), float(dimensions[2]), 1.0)))
     if rotation is not None:
         obj.rotation_mode = "QUATERNION"
         obj.rotation_quaternion = rotation
@@ -186,7 +209,6 @@ def create_cube(role, location, dimensions, material, collection, bevel=0.012, r
         modifier.width = bevel
         modifier.segments = 2
         modifier.limit_method = "ANGLE"
-        modifier[GENERATED_PROP] = True
     if parent is not None:
         parent_keep_world(obj, parent, bone)
         obj["TR_Industrial_Binding"] = binding
@@ -194,8 +216,9 @@ def create_cube(role, location, dimensions, material, collection, bevel=0.012, r
 
 
 def create_cylinder(role, location, radius, depth, material, collection, rotation=None, bevel=0.006, parent=None, bone=None, binding="object"):
+    before = set(bpy.data.objects)
     bpy.ops.mesh.primitive_cylinder_add(vertices=24, radius=radius, depth=depth, location=(0.0, 0.0, 0.0))
-    obj = bpy.context.object
+    obj = newly_created_object(before)
     if rotation is not None:
         obj.rotation_mode = "QUATERNION"
         obj.rotation_quaternion = rotation
@@ -208,7 +231,6 @@ def create_cylinder(role, location, radius, depth, material, collection, rotatio
         modifier.width = bevel
         modifier.segments = 2
         modifier.limit_method = "ANGLE"
-        modifier[GENERATED_PROP] = True
     if parent is not None:
         parent_keep_world(obj, parent, bone)
         obj["TR_Industrial_Binding"] = binding
@@ -216,6 +238,7 @@ def create_cylinder(role, location, radius, depth, material, collection, rotatio
 
 
 def parent_keep_world(obj, parent, bone=None):
+    bpy.context.view_layer.update()
     matrix = obj.matrix_world.copy()
     obj.parent = parent
     if bone is not None:
@@ -224,6 +247,7 @@ def parent_keep_world(obj, parent, bone=None):
     else:
         obj.parent_type = "OBJECT"
     obj.matrix_world = matrix
+    bpy.context.view_layer.update()
 
 
 def oriented_box(role, start, end, width, depth, material, collection, parent=None, bone=None, binding="bone"):
@@ -254,6 +278,7 @@ def reflect_matrix_x(matrix, center_x):
 
 
 def make_rest_pose_mirror(obj, role, center_x, collection):
+    bpy.context.view_layer.update()
     duplicate = obj.copy()
     duplicate.data = obj.data.copy()
     duplicate.parent = None
@@ -266,8 +291,9 @@ def make_rest_pose_mirror(obj, role, center_x, collection):
 
 
 def add_leg_mirror_modifiers(center_x, collection):
+    before = set(bpy.data.objects)
     bpy.ops.object.empty_add(type="PLAIN_AXES", location=(center_x, 0.0, 0.0))
-    mirror_empty = bpy.context.object
+    mirror_empty = newly_created_object(before)
     mirror_empty.name = "TR_leg_mirror_center"
     tag_generated(mirror_empty, "leg_mirror_center", collection)
     for leg_name in ["FRONT_LEG", "REAR_R_LEG"]:
@@ -280,7 +306,6 @@ def add_leg_mirror_modifiers(center_x, collection):
         modifier.use_axis[2] = False
         modifier.use_clip = False
         modifier.mirror_object = mirror_empty
-        modifier[GENERATED_PROP] = True
         log_change("non_destructive_structure", leg.name, "添加 X 轴 Mirror 以恢复对称腿，不修改原网格顶点。")
 
 
@@ -380,6 +405,19 @@ def bone_chain(armature):
     return chain
 
 
+def leg_contact_point(leg):
+    points = [leg.matrix_world @ vertex.co for vertex in leg.data.vertices]
+    if not points:
+        minimum, maximum = world_bounds(leg)
+        return Vector(((minimum.x + maximum.x) / 2, (minimum.y + maximum.y) / 2, minimum.z))
+    minimum_z = min(point.z for point in points)
+    maximum_z = max(point.z for point in points)
+    threshold = minimum_z + max((maximum_z - minimum_z) * 0.06, 0.015)
+    low_points = [point for point in points if point.z <= threshold]
+    average = sum(low_points, Vector()) / max(len(low_points), 1)
+    return Vector((average.x, average.y, minimum_z))
+
+
 def add_leg_structures(armatures, body_center_x, materials, collection):
     frame = materials["Frame_Graphite"]
     joint = materials["Joint_BlastedMetal"]
@@ -392,17 +430,15 @@ def add_leg_structures(armatures, body_center_x, materials, collection):
         for index, bone in enumerate(chain):
             start = armature.matrix_world @ bone.head_local
             end = armature.matrix_world @ bone.tail_local
-            segment_width = 0.18 if index == 0 else 0.145
-            guard = oriented_box("%s_thigh_guard_%s" % (armature.parent.name, index), start, end, segment_width, segment_width * 0.76, frame, collection, parent=armature, bone=bone)
-            if guard is not None:
-                make_rest_pose_mirror(guard, "%s_thigh_guard_%s" % (armature.parent.name, index), body_center_x, collection)
             direction = (end - start).normalized() if (end - start).length else Vector((0, 0, 1))
-            joint_shell = create_cylinder("%s_joint_shell_%s" % (armature.parent.name, index), start, 0.115 if index == 0 else 0.105, 0.19, joint, collection, rotation=Vector((0, 0, 1)).rotation_difference(direction), bevel=0.008, parent=armature, bone=bone)
+            cuff_center = start + direction * min((end - start).length * 0.12, 0.11)
+            cuff = create_cube("%s_load_bearing_cuff_%s" % (armature.parent.name, index), cuff_center, (0.19 if index == 0 else 0.16, 0.15, 0.12), frame, collection, 0.018, rotation=Vector((0, 0, 1)).rotation_difference(direction), parent=armature, bone=bone)
+            make_rest_pose_mirror(cuff, "%s_load_bearing_cuff_%s" % (armature.parent.name, index), body_center_x, collection)
+            joint_shell = create_cylinder("%s_joint_shell_%s" % (armature.parent.name, index), start, 0.115 if index == 0 else 0.105, 0.17, joint, collection, rotation=Vector((0, 0, 1)).rotation_difference(direction), bevel=0.008, parent=armature, bone=bone)
             make_rest_pose_mirror(joint_shell, "%s_joint_shell_%s" % (armature.parent.name, index), body_center_x, collection)
 
-        final_bone = chain[-1]
-        foot_center = armature.matrix_world @ ((final_bone.head_local + final_bone.tail_local) * 0.5)
-        foot = create_cube("%s_rubber_foot" % armature.parent.name, foot_center, (0.23, 0.19, 0.10), rubber, collection, 0.024, parent=armature, bone=final_bone)
+        foot_center = leg_contact_point(armature.parent) + Vector((0.0, 0.0, 0.035))
+        foot = create_cube("%s_rubber_foot" % armature.parent.name, foot_center, (0.23, 0.19, 0.10), rubber, collection, 0.024, parent=armature.parent, binding="leg_object_rest_pose")
         make_rest_pose_mirror(foot, "%s_rubber_foot" % armature.parent.name, body_center_x, collection)
         log_change("leg_structure", armature.parent.name, {"armature": armature.name, "bones_bound": [bone.name for bone in chain], "binding": "new objects parented to original bones; original rig untouched"})
 
@@ -466,8 +502,9 @@ def setup_preview_stage(model_minimum, model_maximum):
         ("preview_rim", (span * 0.4, span * 2.5, span * 2.5), 620.0, span * 1.1),
     ]
     for role, location, energy, size in light_specs:
+        before = set(bpy.data.objects)
         bpy.ops.object.light_add(type="AREA", location=location)
-        light = bpy.context.object
+        light = newly_created_object(before)
         light.name = "TR_" + role
         light.data.energy = energy
         light.data.shape = "DISK"
@@ -484,8 +521,9 @@ def setup_preview_stage(model_minimum, model_maximum):
     }
     cameras = {}
     for role, location in camera_specs.items():
+        before = set(bpy.data.objects)
         bpy.ops.object.camera_add(location=location)
-        camera = bpy.context.object
+        camera = newly_created_object(before)
         camera.name = "TR_preview_camera_" + role
         camera.data.lens = 58 if role != "top-detail" else 62
         camera.data.sensor_width = 36
@@ -546,13 +584,14 @@ def remove_preview_stage(stage):
     if stage and stage.name in bpy.data.collections and not stage.objects and not stage.children:
         bpy.data.collections.remove(stage)
     preview_material_data = bpy.data.materials.get("TR_Preview_NeutralGround")
-    if preview_material_data and preview_material_data.users == 0:
-        bpy.data.materials.remove(preview_material_data)
+    if preview_material_data:
+        bpy.data.materials.remove(preview_material_data, do_unlink=True)
 
 
 def export_glb():
     FINAL_GLB.parent.mkdir(parents=True, exist_ok=True)
-    bpy.ops.object.select_all(action="DESELECT")
+    for obj in bpy.context.scene.objects:
+        obj.select_set(False)
     export_objects = [
         obj for obj in bpy.context.scene.objects
         if obj.type not in {"CAMERA", "LIGHT"} and not obj.get(PREVIEW_PROP)
@@ -563,18 +602,19 @@ def export_glb():
     body = bpy.data.objects.get("SPOT_BODY")
     if body:
         bpy.context.view_layer.objects.active = body
-    bpy.ops.export_scene.gltf(
-        filepath=str(FINAL_GLB),
-        export_format="GLB",
-        export_yup=True,
-        export_apply=True,
-        export_materials="EXPORT",
-        export_animations=True,
-        export_skins=True,
-        export_morph=True,
-        export_lights=False,
-        export_cameras=False,
-    )
+    with blender_ui_context():
+        bpy.ops.export_scene.gltf(
+            filepath=str(FINAL_GLB),
+            export_format="GLB",
+            export_yup=True,
+            export_apply=True,
+            export_materials="EXPORT",
+            export_animations=True,
+            export_skins=True,
+            export_morph=True,
+            export_lights=False,
+            export_cameras=False,
+        )
     log_change("export", "industrial_glb", str(FINAL_GLB))
 
 
@@ -602,7 +642,8 @@ def validate_export():
     try:
         for obj in list(bpy.data.objects):
             bpy.data.objects.remove(obj, do_unlink=True)
-        bpy.ops.import_scene.gltf(filepath=str(FINAL_GLB))
+        with blender_ui_context():
+            bpy.ops.import_scene.gltf(filepath=str(FINAL_GLB))
         scene_objects = list(bpy.context.scene.objects)
         materials = list(bpy.data.materials)
         actions = list(bpy.data.actions)
