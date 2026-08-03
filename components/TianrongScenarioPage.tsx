@@ -347,8 +347,8 @@ export function TianrongScenarioPage() {
 
         <ProductStorySection />
 
-        <section id="case" className="tr-deep-section relative overflow-hidden text-white">
-          <div className="relative min-h-[680px] md:min-h-[760px]">
+        <section id="case" className="tr-deep-section relative min-h-[100svh] overflow-hidden text-white">
+          <div className="relative min-h-[100svh]">
             <video
               aria-label="物流园区路线实践"
               autoPlay
@@ -361,9 +361,9 @@ export function TianrongScenarioPage() {
             >
               <source src="/videos/tianrong/practice-case.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.94)_0%,rgba(11,53,80,0.64)_50%,rgba(18,102,139,0.18)_100%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(6,28,43,0.78)_0%,transparent_58%)]" />
-            <div className="relative z-10 mx-auto flex min-h-[680px] w-[min(1240px,calc(100%-32px))] items-end py-14 md:min-h-[760px] md:py-20">
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.78)_0%,rgba(11,53,80,0.48)_50%,rgba(18,102,139,0.10)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(6,28,43,0.58)_0%,transparent_58%)]" />
+            <div className="relative z-10 mx-auto flex min-h-[100svh] w-[min(1240px,calc(100%-32px))] items-end py-14 md:py-20">
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
