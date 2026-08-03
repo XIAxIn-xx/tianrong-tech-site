@@ -203,11 +203,7 @@ const casePoints = [
   "夜间连续巡检减少重复人工巡查，也为异常情况留下完整记录。"
 ];
 
-const caseImages = [
-  ["/images/tianrong/final-assets/logistics-yard-road.png", "物流园区路线实践"],
-  ["/images/tianrong/final-assets/logistics-warehouse-patrol.png", "仓储物流园区巡检路线"],
-  ["/images/tianrong/final-assets/logistics-gate-patrol.png", "园区出入口巡检实践"]
-];
+const casePoster = "/images/tianrong/final-assets/logistics-yard-road.png";
 
 type ContactFormState = {
   name: string;
@@ -353,13 +349,18 @@ export function TianrongScenarioPage() {
 
         <section id="case" className="tr-deep-section relative overflow-hidden text-white">
           <div className="relative min-h-[680px] md:min-h-[760px]">
-            <Image
-              src={caseImages[0][0]}
-              alt={caseImages[0][1]}
-              fill
-              sizes="100vw"
-              className="object-cover"
-            />
+            <video
+              aria-label="物流园区路线实践"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster={casePoster}
+              className="absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/videos/tianrong/practice-case.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.94)_0%,rgba(11,53,80,0.64)_50%,rgba(18,102,139,0.18)_100%)]" />
             <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(6,28,43,0.78)_0%,transparent_58%)]" />
             <div className="relative z-10 mx-auto flex min-h-[680px] w-[min(1240px,calc(100%-32px))] items-end py-14 md:min-h-[760px] md:py-20">
@@ -379,13 +380,6 @@ export function TianrongScenarioPage() {
                   ))}
                 </div>
               </motion.div>
-            </div>
-            <div className="absolute right-4 top-4 z-10 grid w-28 grid-cols-2 gap-2 md:right-8 md:top-8 md:w-52">
-              {caseImages.slice(1).map(([src, alt]) => (
-                <div key={src} className="relative aspect-[1.2] overflow-hidden bg-black/30 ring-1 ring-white/35">
-                  <Image src={src} alt={alt} fill sizes="(max-width: 768px) 14vw, 26vw" className="object-cover" />
-                </div>
-              ))}
             </div>
           </div>
         </section>
