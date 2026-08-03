@@ -43,8 +43,46 @@ export function VideoHero() {
       return;
     }
 
-    video.load();
-    void video.play().catch(() => undefined);
+    const section = heroRef.current;
+    const isNearViewportRef = { current: false };
+    const hasLoadedRef = { current: false };
+    const startVideo = () => {
+      if (document.visibilityState === "hidden" || !isNearViewportRef.current) return;
+      if (!hasLoadedRef.current) {
+        video.load();
+        hasLoadedRef.current = true;
+      }
+      void video.play().catch(() => undefined);
+    };
+    const observer = section && "IntersectionObserver" in window
+      ? new IntersectionObserver(
+          ([entry]) => {
+            isNearViewportRef.current = entry.isIntersecting;
+            if (entry.isIntersecting) startVideo();
+            else video.pause();
+          },
+          { rootMargin: "160px 0px" }
+        )
+      : null;
+    const timer = window.setTimeout(startVideo, 160);
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") video.pause();
+      else startVideo();
+    };
+
+    if (observer && section) {
+      observer.observe(section);
+    } else {
+      isNearViewportRef.current = true;
+      startVideo();
+    }
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      window.clearTimeout(timer);
+      observer?.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      video.pause();
+    };
   }, [videoEnabled]);
 
   return (

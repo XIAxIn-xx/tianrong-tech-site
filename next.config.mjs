@@ -1,6 +1,8 @@
 const nextConfig = {
   images: {
-    formats: ["image/avif", "image/webp"],
+    formats: ["image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1920],
+    minimumCacheTTL: 31536000
   },
   async headers() {
     return [
@@ -18,6 +20,22 @@ const nextConfig = {
       },
       {
         source: "/videos/tianrong/autonomous-patrol.v1.mp4",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
+      },
+      {
+        source: "/videos/tianrong/s07-complex-scene-2.mp4",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
+      },
+      {
+        source: "/videos/tianrong/practice-case.mp4",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
+      },
+      {
+        source: "/images/tianrong/industrial-inspection.png",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
+      },
+      {
+        source: "/images/tianrong/final-assets/logistics-yard-road.png",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
       }
     ];

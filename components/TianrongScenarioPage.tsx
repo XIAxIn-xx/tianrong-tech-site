@@ -342,18 +342,12 @@ export function TianrongScenarioPage() {
 
         <section id="case" className="tr-deep-section relative min-h-[100svh] overflow-hidden text-white">
           <div className="relative min-h-[100svh]">
-            <video
-              aria-label="物流园区路线实践"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
+            <LazyPatrolVideo
+              src="/videos/tianrong/practice-case.mp4"
               poster={casePoster}
+              ariaLabel="物流园区路线实践"
               className="absolute inset-0 h-full w-full object-cover"
-            >
-              <source src="/videos/tianrong/practice-case.mp4" type="video/mp4" />
-            </video>
+            />
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.52)_0%,rgba(11,53,80,0.26)_50%,rgba(18,102,139,0.05)_100%)]" />
             <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(6,28,43,0.40)_0%,transparent_58%)]" />
             <div className="relative z-10 mx-auto flex min-h-[100svh] w-[min(1240px,calc(100%-32px))] items-end py-14 md:py-20">
@@ -426,7 +420,7 @@ export function TianrongScenarioPage() {
                 src="/images/tianrong/location-map.png"
                 alt="天戎科技杭州办公位置卫星图"
                 fill
-                sizes="100vw"
+                sizes="(max-width: 1920px) 100vw, 1920px"
                 className="object-cover object-[50%_50%] saturate-[0.78] contrast-105 md:object-[50%_35%]"
               />
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.90)_0%,rgba(11,53,80,0.46)_48%,rgba(18,102,139,0.16)_100%)]" />
@@ -463,6 +457,75 @@ export function TianrongScenarioPage() {
       </main>
     </div>
   );
+}
+
+function LazyPatrolVideo({
+  src,
+  poster,
+  ariaLabel,
+  className
+}: {
+  src: string;
+  poster: string;
+  ariaLabel: string;
+  className: string;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isNearViewportRef = useRef(false);
+  const hasSourceRef = useRef(false);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const playWhenReady = () => {
+      if (reduceMotion || !isNearViewportRef.current || document.visibilityState === "hidden") {
+        video.pause();
+        return;
+      }
+
+      if (!hasSourceRef.current) {
+        video.src = src;
+        hasSourceRef.current = true;
+        video.load();
+      }
+
+      void video.play().catch(() => undefined);
+    };
+
+    const observer = "IntersectionObserver" in window
+      ? new IntersectionObserver(
+          ([entry]) => {
+            isNearViewportRef.current = entry.isIntersecting;
+            if (entry.isIntersecting) playWhenReady();
+            else video.pause();
+          },
+          { rootMargin: "480px 0px" }
+        )
+      : null;
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") playWhenReady();
+      else video.pause();
+    };
+
+    if (observer) {
+      observer.observe(video);
+    } else {
+      isNearViewportRef.current = true;
+      playWhenReady();
+    }
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      observer?.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      video.pause();
+    };
+  }, [reduceMotion, src]);
+
+  return <video ref={videoRef} aria-label={ariaLabel} loop muted playsInline preload="none" poster={poster} className={className} />;
 }
 
 function ProductShowcase() {
@@ -574,7 +637,7 @@ function ProductShowcase() {
                   src={product.images[0]}
                   alt={product.title}
                   fill
-                  sizes="100vw"
+                  sizes="(max-width: 1023px) 100vw, 68vw"
                   className={`object-cover transition duration-700 ease-out group-hover:scale-[1.015] ${
                     product.id === "payload-modules" ? "object-[52%_58%]" : "object-center"
                   }`}
@@ -824,23 +887,15 @@ function ProductStoryVisual({ active, compact = false }: { active: number; compa
       {compact ? (
         <StoryVisualContent index={active} compact />
       ) : (
-        productStorySteps.map((step, index) => (
-          <motion.div
-            key={step.id}
-            aria-hidden={index !== active}
-            className="absolute inset-0"
-            style={{ pointerEvents: index === active ? "auto" : "none" }}
-            initial={false}
-            animate={
-              index === active
-                ? { opacity: 1, scale: 1, y: 0 }
-                : { opacity: 0, scale: 0.985, y: reduceMotion ? 0 : 12 }
-            }
-            transition={reduceMotion ? { duration: 0 } : { duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <StoryVisualContent index={index} />
-          </motion.div>
-        ))
+        <motion.div
+          key={productStorySteps[active].id}
+          className="absolute inset-0"
+          initial={false}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <StoryVisualContent index={active} />
+        </motion.div>
       )}
 
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-between bg-[linear-gradient(180deg,rgba(5,24,37,0.72),transparent)] px-4 py-3 text-[10px] tracking-[0.16em] text-white/52 md:px-5">
@@ -868,7 +923,7 @@ function StoryVisualContent({ index, compact = false }: { index: number; compact
               src="/images/generated/argos-body.png"
               alt="机器人平台适配示意"
               fill
-              sizes="100vw"
+              sizes="(max-width: 1023px) 100vw, 52vw"
               className="object-contain p-8"
             />
           ) : (
