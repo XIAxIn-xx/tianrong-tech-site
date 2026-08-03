@@ -415,34 +415,8 @@ export function TianrongScenarioPage() {
             </div>
           </div>
 
-            <div className="tr-deep-section relative left-1/2 mt-8 h-[300px] min-h-[280px] w-screen -translate-x-1/2 overflow-hidden md:mt-10 md:h-[340px] md:min-h-[340px] lg:mt-0 lg:h-[clamp(380px,28vw,440px)] lg:min-h-[380px]">
-              <Image
-                src="/images/tianrong/location-map.png"
-                alt="天戎科技杭州办公位置卫星图"
-                fill
-                sizes="(max-width: 1920px) 100vw, 1920px"
-                className="object-cover object-[50%_50%] saturate-[0.78] contrast-105 md:object-[50%_35%]"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.90)_0%,rgba(11,53,80,0.46)_48%,rgba(18,102,139,0.16)_100%)]" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(0deg,rgba(6,28,43,0.72),transparent)]" />
-              <div className="relative z-10 mx-auto flex h-full w-full flex-col justify-end px-6 pb-7 text-white md:px-8 md:pb-12 lg:px-[max(6vw,48px)]">
-                <div className="text-xl font-semibold tracking-[0.02em] md:text-2xl">杭州 · 天戎科技</div>
-                <div className="mt-2 max-w-[560px] text-sm leading-6 text-white/90 md:text-base">
-                  中国浙江省杭州市上城区新风路与新塘路辅路交叉口北100米
-                </div>
-                <a
-                  href="https://maps.apple.com/?q=%E5%A4%A9%E6%88%8E%E7%A7%91%E6%8A%80%0A%E4%B8%AD%E5%9B%BD%0A%E6%B5%99%E6%B1%9F%E7%9C%81%0A%E6%9D%AD%E5%B7%9E%E5%B8%82%20%E4%B8%8A%E5%9F%8E%E5%8C%BA%0A%E6%96%B0%E9%A3%8E%E8%B7%AF%E4%B8%8E%E6%96%B0%E5%A1%98%E8%B7%AF%E8%BE%85%E8%B7%AF%E4%BA%A4%E5%8F%89%E5%8F%A3%E5%8C%97100%E7%B1%B3&ll=30.287306,120.211700"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-flex w-fit items-center text-sm font-semibold text-white underline decoration-white/55 underline-offset-4 transition hover:text-white hover:decoration-white md:text-base"
-                >
-                  查看地图 <span aria-hidden="true" className="ml-1">↗</span>
-                </a>
-              </div>
-            </div>
         </RevealSection>
 
-        <PartnerEcosystemSection />
         <ContactSection
           contactForm={contactForm}
           contactStatus={contactStatus}
@@ -452,6 +426,8 @@ export function TianrongScenarioPage() {
           onCaptchaRequest={handleCaptchaRequest}
           onSubmit={handleContactSubmit}
         />
+        <PartnerEcosystemSection />
+        <TianrongLocationSection />
 
         <TianrongFooter />
       </main>
@@ -1245,6 +1221,39 @@ function PartnerEcosystemSection() {
             开放软硬件能力，与合作伙伴共同推动具身智能在真实场景中落地。
           </p>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function TianrongLocationSection() {
+  return (
+    <section
+      aria-labelledby="location-title"
+      className="tr-deep-section relative isolate h-[300px] min-h-[280px] overflow-hidden border-t border-white/10 text-white md:h-[340px] md:min-h-[340px] lg:h-[clamp(380px,28vw,440px)] lg:min-h-[380px]"
+    >
+      <Image
+        src="/images/tianrong/location-map.png"
+        alt="天戎科技杭州办公位置卫星图"
+        fill
+        sizes="(max-width: 1920px) 100vw, 1920px"
+        className="object-cover object-[50%_50%] saturate-[0.78] contrast-105 md:object-[50%_35%]"
+      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.90)_0%,rgba(11,53,80,0.46)_48%,rgba(18,102,139,0.16)_100%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(0deg,rgba(6,28,43,0.92),transparent)]" />
+      <div className="relative z-10 mx-auto flex h-full w-[min(1240px,calc(100%-32px))] flex-col justify-end pb-8 text-white md:pb-12">
+        <h2 id="location-title" className="text-xl font-semibold tracking-[0.02em] md:text-2xl">杭州 · 天戎科技</h2>
+        <div className="mt-2 max-w-[560px] text-sm leading-6 text-white/90 md:text-base">
+          中国浙江省杭州市上城区新风路与新塘路辅路交叉口北100米
+        </div>
+        <a
+          href="https://maps.apple.com/?q=%E5%A4%A9%E6%88%8E%E7%A7%91%E6%8A%80%0A%E4%B8%AD%E5%9B%BD%0A%E6%B5%99%E6%B1%9F%E7%9C%81%0A%E6%9D%AD%E5%B7%9E%E5%B8%82%20%E4%B8%8A%E5%9F%8E%E5%8C%BA%0A%E6%96%B0%E9%A3%8E%E8%B7%AF%E4%B8%8E%E6%96%B0%E5%A1%98%E8%B7%AF%E8%BE%85%E8%B7%AF%E4%BA%A4%E5%8F%89%E5%8F%A3%E5%8C%97100%E7%B1%B3&ll=30.287306,120.211700"
+          target="_blank"
+          rel="noreferrer"
+          className="mt-3 inline-flex w-fit items-center text-sm font-semibold text-white underline decoration-white/55 underline-offset-4 transition hover:decoration-white md:text-base"
+        >
+          查看地图 <span aria-hidden="true" className="ml-1">↗</span>
+        </a>
       </div>
     </section>
   );
