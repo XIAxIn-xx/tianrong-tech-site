@@ -18,7 +18,7 @@ const productItems = [
   ["背包与传感器", "payload-modules"],
   ["自主充电站", "charging-station"],
   ["导航系统", "navigation"],
-  ["RSP 云控平台", "rsp-platform"],
+  ["云控平台", "rsp-platform"],
   ["数采平台", "data-platform"]
 ] as const;
 

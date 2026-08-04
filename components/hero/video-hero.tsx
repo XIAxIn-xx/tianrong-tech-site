@@ -144,7 +144,7 @@ export function VideoHero() {
             className="cjk-body mx-auto mt-5 max-w-4xl text-base font-medium leading-7 text-white/88 md:mt-6 md:text-lg md:leading-8"
           >
             <span className="block lg:whitespace-nowrap">
-              天戎科技以 <span className="keep-phrase">RSP 云控平台</span>、<span className="keep-phrase">数采平台</span>、<span className="keep-phrase">硬件背包与传感器集成</span>为核心，
+              天戎科技以 <span className="keep-phrase">云控平台</span>、<span className="keep-phrase">数采平台</span>、<span className="keep-phrase">硬件背包与传感器集成</span>为核心，
             </span>
             <span className="block lg:whitespace-nowrap">
               为客户提供<span className="keep-phrase">机器人产品组合</span>、<span className="keep-phrase">现场适配</span>与<span className="keep-phrase">现场交付服务</span>。

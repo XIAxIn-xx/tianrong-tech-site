@@ -159,9 +159,9 @@ const productStorySteps: ProductStoryStep[] = [
   {
     id: "rsp-platform",
     aliases: ["rsp"],
-    title: "RSP 云控平台",
+    title: "云控平台",
     tagline: "统一管理设备、任务与巡检流程",
-    description: "RSP 云控平台集中管理机器人、地图、任务与运行状态，支持任务配置、远程操作、视频回传、异常处置及巡检记录管理。",
+    description: "云控平台集中管理机器人、地图、任务与运行状态，支持任务配置、远程操作、视频回传、异常处置及巡检记录管理。",
     capabilities: [
       { title: "地图与任务配置", description: "配置巡检点位、路线、执行时间与任务规则。" },
       { title: "运行监控与视频回传", description: "查看设备位置、任务状态与现场画面。" },
@@ -1012,7 +1012,7 @@ function StoryVisualContent({ index, compact = false }: { index: number; compact
         <div className="relative h-full overflow-hidden border border-white/16 bg-[#091E2D] shadow-[0_28px_70px_rgba(0,0,0,0.38)]">
           <Image
             src="/images/tianrong/final-assets/rsp-platform-complete.png"
-            alt="RSP 云控平台"
+            alt="云控平台"
             fill
             sizes="(max-width: 1024px) 90vw, 52vw"
             className="object-contain"
@@ -1315,7 +1315,7 @@ function ContactSection({
             <ContactField label="咨询方向" required>
               <Select id="contact-direction" name="direction" required value={contactForm.direction} onChange={(event) => onFieldChange("direction", event.target.value)} className="rounded-none border-[#D9DEE7] text-[#525252]">
                 <option value="" disabled>请选择咨询方向</option>
-                <option>RSP 云控平台</option>
+                <option>云控平台</option>
                 <option>数采平台</option>
                 <option>硬件背包与传感器集成</option>
                 <option>机器狗本体选型 / 合作</option>
