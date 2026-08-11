@@ -205,7 +205,7 @@ export function TianrongPage({ locale }: TianrongPageProps) {
             <div className="lg:pt-10">
               <p className="text-lg leading-8 text-[#C7D4DF]">{content.contactCopy}</p>
               <Button asChild size="lg" className="mt-8 bg-white text-[#10283E] shadow-none hover:bg-[#E9EEF3]">
-                <a href="mailto:contact@tianrongtech.com">
+                <a href="mailto:contact@argosrobo.com">
                   {content.contactButton}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>

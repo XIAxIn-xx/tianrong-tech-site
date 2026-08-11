@@ -427,7 +427,6 @@ export function TianrongScenarioPage() {
           onSubmit={handleContactSubmit}
         />
         <PartnerEcosystemSection />
-        <TianrongLocationSection />
 
         <TianrongFooter />
       </main>
@@ -1226,39 +1225,6 @@ function PartnerEcosystemSection() {
   );
 }
 
-function TianrongLocationSection() {
-  return (
-    <section
-      aria-labelledby="location-title"
-      className="tr-deep-section relative isolate h-[300px] min-h-[280px] overflow-hidden border-t border-white/10 text-white md:h-[340px] md:min-h-[340px] lg:h-[clamp(380px,28vw,440px)] lg:min-h-[380px]"
-    >
-      <Image
-        src="/images/tianrong/location-map.png"
-        alt="天戎科技杭州办公位置卫星图"
-        fill
-        sizes="(max-width: 1920px) 100vw, 1920px"
-        className="object-cover object-[50%_50%] saturate-[0.78] contrast-105 md:object-[50%_35%]"
-      />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.90)_0%,rgba(11,53,80,0.46)_48%,rgba(18,102,139,0.16)_100%)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(0deg,rgba(6,28,43,0.92),transparent)]" />
-      <div className="relative z-10 mx-auto flex h-full w-[min(1240px,calc(100%-32px))] flex-col justify-end pb-8 text-white md:pb-12">
-        <h2 id="location-title" className="text-xl font-semibold tracking-[0.02em] md:text-2xl">杭州 · 天戎科技</h2>
-        <div className="mt-2 max-w-[560px] text-sm leading-6 text-white/90 md:text-base">
-          中国浙江省杭州市上城区新风路与新塘路辅路交叉口北100米
-        </div>
-        <a
-          href="https://maps.apple.com/?q=%E5%A4%A9%E6%88%8E%E7%A7%91%E6%8A%80%0A%E4%B8%AD%E5%9B%BD%0A%E6%B5%99%E6%B1%9F%E7%9C%81%0A%E6%9D%AD%E5%B7%9E%E5%B8%82%20%E4%B8%8A%E5%9F%8E%E5%8C%BA%0A%E6%96%B0%E9%A3%8E%E8%B7%AF%E4%B8%8E%E6%96%B0%E5%A1%98%E8%B7%AF%E8%BE%85%E8%B7%AF%E4%BA%A4%E5%8F%89%E5%8F%A3%E5%8C%97100%E7%B1%B3&ll=30.287306,120.211700"
-          target="_blank"
-          rel="noreferrer"
-          className="mt-3 inline-flex w-fit items-center text-sm font-semibold text-white underline decoration-white/55 underline-offset-4 transition hover:decoration-white md:text-base"
-        >
-          查看地图 <span aria-hidden="true" className="ml-1">↗</span>
-        </a>
-      </div>
-    </section>
-  );
-}
-
 type ContactSectionProps = {
   contactForm: ContactFormState;
   contactStatus: string;
@@ -1363,8 +1329,8 @@ function ContactSection({
 
 function TianrongFooter() {
   return (
-    <footer className="tr-deep-section border-t border-white/10 text-white">
-      <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-10 py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+    <footer className="tr-deep-section overflow-hidden border-t border-white/10 text-white">
+      <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-8 py-12 md:grid-cols-2 lg:grid-cols-[1fr_0.65fr_1.15fr_1.2fr]">
         <div>
           <Link href="#top" className="inline-flex items-center gap-3">
             <Image
@@ -1389,8 +1355,28 @@ function TianrongFooter() {
         </div>
         <div>
           <h2 className="cjk-heading whitespace-nowrap text-base font-semibold text-white">联系天戎</h2>
-          <a href="mailto:contact@tianrongtech.com" className="mt-4 inline-block whitespace-nowrap text-base text-white/62 hover:text-[#87C8EA]">contact@tianrongtech.com</a>
+          <address className="mt-4 max-w-[320px] text-sm not-italic leading-6 text-white/62">
+            中国浙江省杭州市上城区彭埠街道新风路260号西迪港1层1-b06室
+          </address>
+          <a href="mailto:contact@argosrobo.com" className="mt-3 inline-block whitespace-nowrap text-base text-white/62 hover:text-[#87C8EA]">contact@argosrobo.com</a>
         </div>
+        <a
+          href="https://maps.apple.com/?q=中国浙江省杭州市上城区彭埠街道新风路260号西迪港1层1-b06室"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="在地图中查看天戎科技杭州办公地址"
+          className="group relative block h-[210px] overflow-hidden border border-white/15 md:h-[220px] lg:h-[190px]"
+        >
+          <Image
+            src="/images/tianrong/footer-location-map.png"
+            alt="西迪港周边地图及天戎科技杭州办公位置"
+            fill
+            sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1023px) 50vw, 300px"
+            className="object-cover transition duration-500 group-hover:scale-[1.02]"
+          />
+          <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#061C2B]/80 to-transparent" />
+          <span className="absolute bottom-4 left-4 text-sm font-semibold text-white">查看地图 <span aria-hidden="true">↗</span></span>
+        </a>
       </div>
       <div className="border-t border-white/10 py-5 text-center text-sm text-white/48">Copyright © 2026 <span className="keep-phrase">杭州天戎智能科技有限公司</span> 版权所有</div>
     </footer>
