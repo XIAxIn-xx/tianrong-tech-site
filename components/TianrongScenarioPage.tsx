@@ -1343,7 +1343,6 @@ function TianrongFooter() {
             />
             <span className="text-base font-semibold text-white">天戎科技</span>
           </Link>
-          <p className="mt-5 max-w-xs text-sm leading-6 text-white/62">机器人本体、任务载荷、远程接入与调度平台，为项目提供可组合、可集成的软硬件能力。</p>
         </div>
         <div>
           <h2 className="cjk-heading whitespace-nowrap text-base font-semibold text-white">快速浏览</h2>
@@ -1361,7 +1360,7 @@ function TianrongFooter() {
           <a href="mailto:contact@argosrobo.com" className="mt-3 inline-block whitespace-nowrap text-base text-white/62 hover:text-[#87C8EA]">contact@argosrobo.com</a>
         </div>
         <a
-          href="https://maps.apple.com/?q=中国浙江省杭州市上城区彭埠街道新风路260号西迪港1层1-b06室"
+          href="https://surl.amap.com/cIlaw4i1p0r2"
           target="_blank"
           rel="noreferrer"
           aria-label="在地图中查看天戎科技杭州办公地址"
