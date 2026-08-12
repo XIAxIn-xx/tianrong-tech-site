@@ -23,7 +23,7 @@ const nextConfig = {
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
       },
       {
-        source: "/videos/tianrong/s07-complex-scene-2.mp4",
+        source: "/videos/tianrong/s07-complex-scene-2.h264.mp4",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
       },
       {
@@ -31,11 +31,11 @@ const nextConfig = {
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
       },
       {
-        source: "/images/tianrong/industrial-inspection.png",
+        source: "/images/tianrong/industrial-inspection.webp",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
       },
       {
-        source: "/images/tianrong/final-assets/logistics-yard-road.png",
+        source: "/images/tianrong/final-assets/logistics-yard-road.webp",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }]
       }
     ];

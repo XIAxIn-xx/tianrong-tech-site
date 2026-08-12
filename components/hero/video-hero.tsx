@@ -6,8 +6,8 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 
 import { Button } from "@/components/ui/button";
 
-const VIDEO_SRC = "/videos/tianrong/s07-complex-scene-2.mp4";
-const POSTER_SRC = "/images/tianrong/industrial-inspection.png";
+const VIDEO_SRC = "/videos/tianrong/s07-complex-scene-2.h264.mp4";
+const POSTER_SRC = "/images/tianrong/industrial-inspection.webp";
 
 export function VideoHero() {
   const heroRef = useRef<HTMLElement>(null);

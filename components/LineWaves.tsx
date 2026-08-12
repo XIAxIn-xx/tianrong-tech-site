@@ -1,5 +1,5 @@
 import { Renderer, Program, Mesh, Triangle } from 'ogl';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface LineWavesProps {
   speed?: number;
@@ -161,15 +161,59 @@ export default function LineWaves({
   mouseInfluence = 2.0
 }: LineWavesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current) return;
     const container = containerRef.current;
-    const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
-    const gl = renderer.gl;
-    gl.clearColor(0, 0, 0, 0);
-    gl.canvas.style.display = 'block';
-    gl.canvas.style.pointerEvents = 'none';
+    if (!container) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let isNearViewport = false;
+    let isDocumentVisible = document.visibilityState === 'visible';
+    const syncActivity = () => {
+      setIsActive(isNearViewport && !reducedMotion.matches && isDocumentVisible);
+    };
+    const handleVisibilityChange = () => {
+      isDocumentVisible = document.visibilityState === 'visible';
+      syncActivity();
+    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isNearViewport = entry.isIntersecting;
+        syncActivity();
+      },
+      { rootMargin: '120px 0px', threshold: 0.01 }
+    );
+
+    observer.observe(container);
+    reducedMotion.addEventListener('change', syncActivity);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      observer.disconnect();
+      reducedMotion.removeEventListener('change', syncActivity);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isActive || !containerRef.current) return;
+    const container = containerRef.current;
+    let renderer: Renderer;
+
+    try {
+      renderer = new Renderer({
+        alpha: true,
+        antialias: false,
+        depth: false,
+        stencil: false,
+        premultipliedAlpha: false,
+        powerPreference: 'low-power'
+      });
+      const gl = renderer.gl;
+      gl.clearColor(0, 0, 0, 0);
+      gl.canvas.style.display = 'block';
+      gl.canvas.style.pointerEvents = 'none';
 
     let program: Program;
     let currentMouse = [0.5, 0.5];
@@ -188,7 +232,10 @@ export default function LineWaves({
     }
 
     function resize() {
-      renderer.setSize(container.offsetWidth, container.offsetHeight);
+      const width = container.offsetWidth;
+      const height = container.offsetHeight;
+      if (!width || !height) return;
+      renderer.setSize(width, height);
       if (program) {
         program.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height];
       }
@@ -230,10 +277,11 @@ export default function LineWaves({
       window.addEventListener('blur', handleMouseLeave);
     }
 
-    let animationFrameId: number;
+    let animationFrameId = 0;
+    let stopped = false;
 
     function update(time: number) {
-      animationFrameId = requestAnimationFrame(update);
+      if (stopped) return;
       program.uniforms.uTime.value = time * 0.001;
 
       if (enableMouseInteraction) {
@@ -246,21 +294,32 @@ export default function LineWaves({
         program.uniforms.uMouse.value[1] = 0.5;
       }
 
-      renderer.render({ scene: mesh });
+      try {
+        renderer.render({ scene: mesh });
+        animationFrameId = requestAnimationFrame(update);
+      } catch (error) {
+        stopped = true;
+        console.warn('LineWaves rendering stopped', error);
+      }
     }
     animationFrameId = requestAnimationFrame(update);
 
     return () => {
+      stopped = true;
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resize);
       if (enableMouseInteraction) {
         window.removeEventListener('mousemove', handleMouseMove);
         window.removeEventListener('blur', handleMouseLeave);
       }
-      container.removeChild(gl.canvas);
+      if (gl.canvas.parentNode === container) container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [speed, innerLineCount, outerLineCount, warpIntensity, rotation, edgeFadeWidth, colorCycleSpeed, brightness, color1, color2, color3, enableMouseInteraction, mouseInfluence]);
+    } catch (error) {
+      console.warn('LineWaves WebGL unavailable', error);
+      return;
+    }
+  }, [isActive, speed, innerLineCount, outerLineCount, warpIntensity, rotation, edgeFadeWidth, colorCycleSpeed, brightness, color1, color2, color3, enableMouseInteraction, mouseInfluence]);
 
   return <div ref={containerRef} className="pointer-events-none h-full w-full" />;
 }

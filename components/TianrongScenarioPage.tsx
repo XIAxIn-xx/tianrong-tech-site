@@ -196,7 +196,7 @@ const caseStats = [
   { marker: "↑", value: "40%", label: "提升巡检效率" }
 ];
 
-const casePoster = "/images/tianrong/final-assets/logistics-yard-road.png";
+const casePoster = "/images/tianrong/final-assets/logistics-yard-road.webp";
 
 type ContactFormState = {
   name: string;
@@ -1071,44 +1071,36 @@ function ProductStage() {
 
 function LazyHeroRobotPreview() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
+  const [requested, setRequested] = useState(false);
 
   useEffect(() => {
     const element = containerRef.current;
     if (!element) return;
 
-    const mobileQuery = window.matchMedia("(max-width: 767px)");
-    const updateMobileState = () => setIsMobile(mobileQuery.matches);
-    updateMobileState();
-
     if (!("IntersectionObserver" in window)) {
-      if (!mobileQuery.matches) setShouldLoad(true);
-      mobileQuery.addEventListener("change", updateMobileState);
-      return () => mobileQuery.removeEventListener("change", updateMobileState);
+      setShouldRender(requested);
+      return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting || mobileQuery.matches) return;
-        setShouldLoad(true);
-        observer.disconnect();
+        setShouldRender(entry.isIntersecting && requested);
       },
-      { rootMargin: "300px 0px" }
+      { rootMargin: "180px 0px" }
     );
 
     observer.observe(element);
-    mobileQuery.addEventListener("change", updateMobileState);
-
-    return () => {
-      observer.disconnect();
-      mobileQuery.removeEventListener("change", updateMobileState);
-    };
-  }, []);
+    return () => observer.disconnect();
+  }, [requested]);
 
   return (
     <div ref={containerRef} className="relative h-full w-full">
-      {shouldLoad ? <DynamicHeroRobotPreview /> : <HeroRobotPoster interactive={isMobile} onActivate={() => setShouldLoad(true)} />}
+      {shouldRender ? (
+        <DynamicHeroRobotPreview />
+      ) : (
+        <HeroRobotPoster interactive onActivate={() => setRequested(true)} />
+      )}
     </div>
   );
 }
